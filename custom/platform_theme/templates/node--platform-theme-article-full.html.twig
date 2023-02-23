@@ -1,0 +1,8 @@
+{% extends get_module_path('templating') ~ "/templates/misc/node.html.twig" %}
+{% block templating_content %}
+
+  {% set n = (node_parser(node)) %}
+
+ {{n.body|first.value|raw}}
+
+{% endblock %}

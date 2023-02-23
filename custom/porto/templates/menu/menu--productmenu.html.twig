@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+<ul class="nav nav-pills" id="mainNav">
+    {% set items = simplify_menu('productmenu') %}
+    {% for item in items.menu_tree %}
+
+        <li class="dropdown dropdown-mega">
+            {% if item.submenu %}
+                <a class="dropdown-item dropdown-toggle" href=" {{ item.url }}">
+                    {{ item.text|t }}
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="dropdown-mega-content">
+                            <div class="row">
+                                    {% for menu in item.submenu %}
+                                        {% if menu.submenu %}
+                                        <div class="col-lg-3">
+                                            <span class="dropdown-mega-sub-title">{{ menu.text }}</span>
+                                            <ul class="dropdown-mega-sub-nav">
+                                                {% for menu_item in menu.submenu %}
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           href="{{ menu_item.url }}"> {{ menu_item.text }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+
+            {% else %}
+
+                <a class="dropdown-item dropdown-toggle" href="{{ item.url }}">
+                    {{ item.text|t }}
+                </a>
+            {% endif %}
+
+        </li>
+    {% endfor %}
+</ul>

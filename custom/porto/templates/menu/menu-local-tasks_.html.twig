@@ -1,0 +1,160 @@
+{#
+/**
+ * @file
+ * Theme override to display primary and secondary local tasks.
+ *
+ * Available variables:
+ * - primary: HTML list items representing primary tasks.
+ * - secondary: HTML list items representing primary tasks.
+ *
+ * Each item in these variables (primary and secondary) can be individually
+ * themed in menu-local-task.html.twig.
+ */
+#}
+{% if primary %}
+  <style>
+    .menu-mizara {
+      filter: url("#shadowed-goo");
+    }
+
+    .menu-mizara-item, .menu-mizara-open-button {
+      background: #00bcd4;
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+      margin-left: 0px;
+      position: absolute;
+      top: 20px;
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      transform: translate3d(0, 0, 0);
+      transition: transform ease-out 200ms;
+    }
+
+    .menu-mizara-open {
+      display: none;
+    }
+
+    .hamburger {
+      width: 25px;
+      height: 3px;
+      background: white;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -12.5px;
+      margin-top: -1.5px;
+      transition: transform 200ms;
+    }
+
+    .hamburger-1 {
+      transform: translate3d(0, -8px, 0);
+    }
+
+    .hamburger-2 {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .hamburger-3 {
+      transform: translate3d(0, 8px, 0);
+    }
+
+    .menu-mizara-open:checked + .menu-mizara-open-button .hamburger-1 {
+      transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+    .menu-mizara-open:checked + .menu-mizara-open-button .hamburger-2 {
+      transform: translate3d(0, 0, 0) scale(0.1, 1);
+    }
+    .menu-mizara-open:checked + .menu-mizara-open-button .hamburger-3 {
+      transform: translate3d(0, 0, 0) rotate(-45deg);
+    }
+
+
+    .menu-mizara-item:hover {
+      background: white;
+      color: #00bcd4;
+    }
+    .menu-mizara-item:nth-child(3) {
+      transition-duration: 180ms;
+    }
+    .menu-mizara-item:nth-child(4) {
+      transition-duration: 180ms;
+    }
+
+    .menu-mizara-open-button {
+      z-index: 2;
+      transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition-duration: 400ms;
+      transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+      cursor: pointer;
+    }
+
+    .menu-mizara-open-button:hover {
+      transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+    }
+
+    .menu-mizara-open:checked + .menu-mizara-open-button {
+      transition-timing-function: linear;
+      transition-duration: 200ms;
+      transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+    }
+
+    .menu-mizara-open:checked ~ .menu-mizara-item {
+      transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .menu-mizara-open:checked ~ .menu-mizara-item:nth-child(3) {
+      transition-duration: 190ms;
+      transform: translate3d(50px, 0, 0);
+    }
+    .menu-mizara-open:checked ~ .menu-mizara-item:nth-child(4) {
+      transition-duration: 290ms;
+      transform: translate3d(100px, 0, 0);
+    }
+    .menu-float-mizara{
+      position: fixed;
+      bottom: -75px;
+      z-index: 9999;
+      left: 10px;
+    }
+  </style>
+<div class="menu-float-mizara">
+  <nav class="menu-mizara">
+    <input type="checkbox" href="#" class="menu-mizara-open" name="menu-mizara-open" id="menu-mizara-open"/>
+    <label class="menu-mizara-open-button" for="menu-mizara-open">
+      <span class="hamburger hamburger-1"></span>
+      <span class="hamburger hamburger-2"></span>
+      <span class="hamburger hamburger-3"></span>
+    </label>
+    <a href="{{ primary['layout_builder_ui:layout_builder.overrides.node.view']['#link']['url'].toString() }}" class="menu-mizara-item"> Conf </a>
+    <a href="{{ primary['entity.node.edit_form']['#link']['url'].toString() }}" class="menu-mizara-item"> Edit </a>
+  </nav>
+
+  <!-- filters -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+      <filter id="shadowed-goo">
+
+        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+        <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+        <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+        <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+        <feComposite in2="shadow" in="goo" result="goo" />
+        <feComposite in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+        <feComposite in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+    </defs>
+  </svg>
+ </div>
+{% endif %}
+{% if secondary %}
+  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  <ul class="tabs secondary">{{ secondary }}</ul>
+{% endif %}
+</div>

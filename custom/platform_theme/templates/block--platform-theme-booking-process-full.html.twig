@@ -1,0 +1,186 @@
+
+
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+  {% set params = get_parameter() %}
+  {% set total = 0 %}
+  {% set c = block_parser(content) %}
+  {% set car_url = node_url(params['carid']) %}
+  {{ kint(params) }}
+
+<div role="main" class="main shop pb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <ul class="breadcrumb breadcrumb-dividers-no-opacity font-weight-bold text-6 justify-content-center my-5">
+          <li class="text-transform-none me-2">
+            <a href="{{ car_url }}" class="text-decoration-none text-color-dark text-color-hover-primary">Request to book</a>
+          </li>
+          <li class="text-transform-none text-color-dark me-2">
+            <a href="#" class="text-decoration-none text-color-primary">Booking Process</a>
+          </li>
+          <li class="text-transform-none text-color-grey-lighten">
+            <a href="/payment" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Payment</a>
+          </li>
+          <li class="text-transform-none text-color-grey-lighten">
+            <a href="/bookings" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Booking Complete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% if is_login()  %}{% else %}
+    <div class="row">
+      <div class="col">
+        <p class="mb-1">Returning customer? <a href="/user/login" class="text-color-dark text-color-hover-primary text-uppercase text-decoration-none font-weight-bold header-nav-features-toggle" >Login or Sign up</a></p>
+      </div>
+    </div>
+    {% endif %}
+    <form role="form" class="needs-validation" method="get" action="/booking-process" novalidate="novalidate">
+          <input  type="hidden" name="carid" value="{{params.carid}}">
+
+      <div class="row">
+        <div class="col-lg-7 mb-4 mb-lg-0">
+
+          <h2 class="text-color-dark font-weight-bold text-5-5 mb-3">Let’s get a bit of info</h2>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label class="form-label">First Name <span class="text-color-danger">*</span></label>
+              <input type="text" class="form-control h-auto py-2" name="firstName" value="{{ current_user.field_first_name }}" required="">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-label">Last Name <span class="text-color-danger">*</span></label>
+              <input type="text" class="form-control h-auto py-2" name="lastName" value="{{ current_user.field_last_name }}" required="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col">
+              <label class="form-label">Company Name</label>
+              <input type="text" class="form-control h-auto py-2" name="companyName" value="{{ current_user.field_company }}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col">
+              <label class="form-label">Phone <span class="text-color-danger">*</span></label>
+              <input type="number" class="form-control h-auto py-2" name="phone" value="{{ current_user.field_phone }}" required="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col">
+              <label class="form-label">Email Address <span class="text-color-danger">*</span></label>
+              <input type="email" class="form-control h-auto py-2" name="email" value="{{ current_user.mail }}" required="">
+            </div>
+          </div>
+          {% if is_login()  %}{% else %}
+          <div class="row">
+            <div class="form-group col">
+              <div class="custom-checkbox-1">
+                <input id="createAccount" type="checkbox" name="createAccount" value="1">
+                <label for="createAccount">Create an account ?</label>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          <div class="row">
+            <div class="form-group col">
+              <label class="form-label">Notes</label>
+              <textarea class="form-control h-auto py-2" name="bookingNotes" rows="5" placeholder="Let the host know more about your trip "></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 position-relative">
+          <div class="pin-wrapper" style="height: 908px;"><div class="card border-width-3 border-radius-0 border-color-hover-dark" data-plugin-sticky="" data-plugin-options="{'minWidth': 991, 'containerSelector': '.row', 'padding': {'top': 85}}" style="width: 451px;">
+              <div class="card-body">
+                <h4 class="font-weight-bold text-uppercase text-4 mb-3">Your Booking</h4>
+                <table class="shop_table cart-totals mb-3">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates </strong>
+                      <span class="text-1">{{ params["booking-range-date"] }}</span>
+                      <input  type="hidden" name="booking-range-date" value="{{ params["booking-range-date"] }}">
+                    </td>
+                    <td class="text-end align-top">
+                      {% set total = total + params["booking-range"] %}
+                      <span class="font-weight-medium text-color-grey">{{ front_currency(params["booking-range"])|raw }}</span>
+                      <input  type="hidden" name="booking-range" value="{{ params["booking-range"] }}">
+
+                    </td>
+                  </tr>
+                    {% set i = 1 %}
+                  {% for key,item in params %}
+                    {% if key not in ['booking-range', 'booking-range-date', 'carid'] %}
+                      {% set status = true  %}
+
+                      {% if "#####" in  item %}
+                           {% set group =  item|split("#####")%}
+                      {% endif %}
+                      {% if item is numeric and item == 0 %}
+                            {% set status = false  %}
+                      {% endif %}
+                      {% if status %}
+                      <tr>
+                        <td class="border-top-0 pt-0">
+                          <strong class="d-block text-color-dark line-height-1 font-weight-semibold">{{ key|replace({'_':' '}) }} </strong>
+                        </td>
+                        <td class="border-top-0 text-end align-top pt-0">
+                          <span class="amount font-weight-medium text-color-grey">
+                            {% if group %}
+                              {{front_currency(group[1])|raw}}
+                              {% set price = group[1] %}
+                            {% else %}
+                              {{front_currency(item)|raw}}
+                              {% set price = item %}
+                            {% endif %}</span>
+                        </td>
+
+                        <input  type="hidden" name="addon_{{i}}" value="{{key}}">
+                        <input  type="hidden" name="addon_{{i}}_value" value="{{item}}">
+                      </tr>
+                        {% set i = i + 1 %}
+                      {% endif %}
+
+                    {% endif %}
+                    {% set total = total + price %}
+                  {% endfor %}
+                  <tr class="total">
+                    <td>
+                      <strong class="text-color-dark text-3-5">Total</strong>
+                    </td>
+                    <td class="text-end">
+                      <input  type="hidden" name="total" value="{{total}}">
+                      <strong class="text-color-dark"><span class="amount text-color-dark text-5">{{ front_currency(total)|raw}}</span></strong>
+                    </td>
+                  </tr>
+                  <tr class="payment-methods">
+                    <td colspan="2">
+                      <strong class="d-block text-color-dark mb-2">{{"Payment Methods"|t }}</strong>
+                      <div class="d-flex flex-column">
+                        {% for key,item in c.field_list %}
+                        <label class="d-flex align-items-center text-color-grey mb-0" for="payment_method{{ key }}">
+                          <input id="payment_method{{ key }}" type="radio" class="me-2" name="payment_method" value="{{ item }}" checked="">
+                          {{ item|replace({'_':' '}) }}
+                        </label>
+                        {% endfor %}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Book now <i class="fas fa-arrow-right ms-2"></i></button>
+              </div>
+            </div></div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

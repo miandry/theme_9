@@ -1,0 +1,22 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+  {{ attach_library('mz_payment/stripe') }}
+  {{ attach_library('mz_payment/mz_payment') }}
+
+  <form id="stripe-hold" action="/payment/refund" method="POST">
+    <div class="group">
+      <label class="amount-label">
+        <span>Amount</span>
+      </label>
+      <input id="amount" required readonly name="amount" value="{{ amount }}" class="field" placeholder="0.00" /> {{ currency() }}
+    </div>
+    <button type="submit">Refund Confirm</button>
+    <div class="outcome" id="card-errors" role="alert">
+      <div class="error"></div>
+      <div class="success">
+        Success! Your Stripe token is <span class="token"></span>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}

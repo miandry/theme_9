@@ -1,0 +1,11 @@
+<?php
+
+
+/**
+ * @file
+ * Functions to support theming in the porto theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+
