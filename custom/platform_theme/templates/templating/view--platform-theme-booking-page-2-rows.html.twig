@@ -1,0 +1,113 @@
+{% set elements = rows|first["#rows"] %} 
+{% set items = [] %}
+{% for key,item in elements %}
+{% set n = node_parser(item["#node"]) %} 
+
+{% endfor %}
+
+<div  class="container py-2">
+<div class="row">
+        <div class="col">
+          <ul class="breadcrumb breadcrumb-style-2 d-block text-4 mb-4 pt-4 pb-2">
+            <li><a href="#" class="text-color-default text-color-hover-primary text-decoration-none">Home</a></li>
+            <li>My bookings</li>
+          </ul>
+        </div>
+      </div>
+					<div class="row">
+					    <div class="col-lg-3 order-2 order-lg-1">
+                            <div class="d-flex justify-content-center mb-4">
+                                <div class="profile-image-outer-container">
+                                    <div class="profile-image-inner-container bg-color-primary">
+                                                                                    <img src="http://www.sahaza.net/sites/default/files/pictures/2022-09/project-6.jpeg">
+                                                                            </div>
+                                </div>
+                            </div>
+                                <aside class="sidebar">
+                                       <ul class="nav nav-list flex-column sort-source mb-5">
+                                                <li class="nav-item" data-option-value="*">
+                                                  <a class="nav-link" href="/user">Mon profile</a>
+                                                </li>
+                                                <li class="nav-item" data-option-value="*">
+                                                  <a class="nav-link" href="/carts">Votre paniers</a>
+                                                </li>
+                                       </ul>
+                                </aside>
+                        </div>
+						<div class="col-lg-9 order-1 order-lg-2  table-view-porto">
+
+							<div class="row">
+							     	
+								<div class="col pb-3 order-lg-2-custom">
+
+								
+
+									<table class="table">
+										<thead>
+											<tr>
+												<th>
+													#
+												</th>
+												<th>
+													First Name
+												</th>
+												<th>
+													Last Name
+												</th>
+												<th>
+													Username
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													1
+												</td>
+												<td>
+													Mark
+												</td>
+												<td>
+													Otto
+												</td>
+												<td>
+													@mdo
+												</td>
+											</tr>
+											<tr>
+												<td>
+													2
+												</td>
+												<td>
+													Jacob
+												</td>
+												<td>
+													Thornton
+												</td>
+												<td>
+													@fat
+												</td>
+											</tr>
+											<tr>
+												<td>
+													3
+												</td>
+												<td>
+													Larry
+												</td>
+												<td>
+													the Bird
+												</td>
+												<td>
+													@twitter
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
