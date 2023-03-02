@@ -1,0 +1,12 @@
+
+{% extends get_module_path('templating') ~ "/templates/misc/node.html.twig" %}
+{% block templating_content %}
+  {% set n = (node_parser(node)) %}
+  {% set images = n.field_images %}
+  {% if(images) %}
+    <div>
+      <img width="100px" alt="" class="img-fluid" src="{{ images|first.image.url }}"/>
+
+    </div>
+  {% endif %}
+{% endblock %}
