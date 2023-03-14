@@ -4239,3 +4239,13 @@ table.footable-details {
   table.footable-details tbody tr{
     border: none!important;
 }
+.moderation_item{
+  border: 1px solid;
+  text-align: center;
+}
+.mode_draft{
+  color: #dd0000;
+}
+.hidden{
+  display:none!important;
+}

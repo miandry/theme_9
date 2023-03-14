@@ -2,12 +2,10 @@
 
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
 {% block templating_content %}
-  {% set params = get_parameter() %}
+
   {% set total = 0 %}
   {% set c = block_parser(content) %}
   {% set car_url = node_url(params['carid']) %}
-  {{ kint(params) }}
-
 <div role="main" class="main shop pb-4">
   <div class="container">
     <div class="row">
@@ -112,8 +110,8 @@
                     {% if key not in ['booking-range', 'booking-range-date', 'carid'] %}
                       {% set status = true  %}
 
-                      {% if "#####" in  item %}
-                           {% set group =  item|split("#####")%}
+                      {% if "----" in  item %}
+                           {% set group =  item|split("----")%}
                       {% endif %}
                       {% if item is numeric and item == 0 %}
                             {% set status = false  %}

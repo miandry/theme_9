@@ -96,6 +96,11 @@
                               <li><i class="fas fa-check"></i> {{item.title}}</li> {% endfor %} </ul>
                         </div>
 
+                        <div class="section-comments">
+                          {{ content.comment }}
+
+                        </div>
+
                       </div>
                       <div class="col-md-5 position-relative">
                         <div>
@@ -146,7 +151,7 @@
                                                         <select class="Dym form-select form-control h-auto py-2 valid"   name="{{ item.name }}"  aria-invalid="false">
                                                           <option value="0">- None -</option>
                                                           {% for keychild,child in item.list %}
-                                                            <option value="{{ child.name }}#####{{ child.price }}">{{ child.name }} : {{ child.price }} $</option>
+                                                            <option value="{{ child.name }}----{{ child.price }}">{{ child.name }} : {{ child.price }} $</option>
                                                           {% endfor %}
                                                         </select>
                                                       </div>
