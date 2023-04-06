@@ -213,3 +213,4 @@ easepick :
   header: true
   js:
     vendor/easepick/easepick.min.js: {}
+

@@ -332,3 +332,16 @@ div.tabs {
 .user-form-custom .forgot-password-link {
     margin-right: 10px;
 }
+.number-input-custom{
+  width: 8rem;
+}
+input#datepicker {
+  height: 3rem;
+  width: 2.5rem;
+  border-color: rgba(0, 0, 0, 0.09);
+  border-width: 1px;
+  border-radius: 5px;
+  padding-left: 15px;
+  min-width: 250px!important;
+  margin-bottom: 15px;
+}

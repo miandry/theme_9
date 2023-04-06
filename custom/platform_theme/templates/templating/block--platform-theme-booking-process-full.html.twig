@@ -1,8 +1,7 @@
-
-
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
 {% block templating_content %}
-
+  {% set params = storage_get('booking_info') %}
+  {% if params['carid'] is not defined %} {{redirect('/car/details')}} {% endif %}
   {% set total = 0 %}
   {% set c = block_parser(content) %}
   {% set car_url = node_url(params['carid']) %}
@@ -12,7 +11,7 @@
       <div class="col">
         <ul class="breadcrumb breadcrumb-dividers-no-opacity font-weight-bold text-6 justify-content-center my-5">
           <li class="text-transform-none me-2">
-            <a href="{{ car_url }}" class="text-decoration-none text-color-dark text-color-hover-primary">Request to book</a>
+            <a href="{{ car_url }}" class="text-decoration-none text-color-dark text-color-hover-primary">Request to book </a>
           </li>
           <li class="text-transform-none text-color-dark me-2">
             <a href="#" class="text-decoration-none text-color-primary">Booking Process</a>
@@ -37,7 +36,7 @@
           <input  type="hidden" name="carid" value="{{params.carid}}">
 
       <div class="row">
-        <div class="col-lg-7 mb-4 mb-lg-0">
+        <div class="col-lg-6 mb-4" style="margin-bottom: 50px !important">
 
           <h2 class="text-color-dark font-weight-bold text-5-5 mb-3">Let’s get a bit of info</h2>
           <div class="row">
@@ -86,8 +85,11 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5 position-relative">
-          <div class="pin-wrapper" style="height: 908px;"><div class="card border-width-3 border-radius-0 border-color-hover-dark" data-plugin-sticky="" data-plugin-options="{'minWidth': 991, 'containerSelector': '.row', 'padding': {'top': 85}}" style="width: 451px;">
+        <div class="col-lg-1 mb-lg-0">
+
+        </div>
+        <div class="col-lg-5 position-relative" style="margin-top: 50px">
+          <div class="pin-wrapper"><div class="card border-width-3 border-radius-0 border-color-hover-dark"  data-plugin-options="{'minWidth': 991, 'containerSelector': '.row', 'padding': {'top': 85}}" style="width: 451px;">
               <div class="card-body">
                 <h4 class="font-weight-bold text-uppercase text-4 mb-3">Your Booking</h4>
                 <table class="shop_table cart-totals mb-3">
@@ -174,6 +176,7 @@
               </div>
             </div></div>
         </div>
+        
       </div>
     </form>
 

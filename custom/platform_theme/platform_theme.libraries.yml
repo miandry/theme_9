@@ -55,3 +55,10 @@ booking-datepicker:
     js/booking-datepicker.js: { }
   dependencies:
     - porto/easepick
+spinner-form:
+  version: 1.0
+  js:
+    js/bootstrap-input-spinner.js: { }
+  dependencies:
+    - core/jquery
+    - porto/bootstrap

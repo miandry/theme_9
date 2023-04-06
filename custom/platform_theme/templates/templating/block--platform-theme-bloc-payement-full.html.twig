@@ -1,0 +1,83 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+{{ attach_library('mz_payment/stripe') }}
+{{ attach_library('mz_payment/mz_payment') }}
+
+<style>
+.custom-accordion-style-1 > .card .accordion-toggle {
+    background-color: #f4f4f4 !important;
+}
+.custom-bg-color-grey-1 {
+    background-color: #f8f9fb;
+}
+</style>
+{% set params = storage_get('booking_info') %}
+
+
+{% set c = block_parser(content) %}
+          
+<section class="border-0 custom-bg-color-grey-1 custom-el-pos-3 p-relative z-index-1" style="margin-bottom:50px">
+    <div class="container py-5">
+        <div class="row justify-content-between">
+            <div class="col-lg-6 pt-5 pt-lg-0">
+                <h3 class="font-weight-semibold text-9 text-capitalize mb-2">{{c.field_title1}}</h3>
+                <hr class="bg-primary">
+                <div class="divider divider-small mt-0 mb-4">
+                </div>
+                <div class="accordion accordion-modern-status accordion-modern-status-primary" id="accordion100">
+                    <div class="card card-default">
+                        <div class="card-header" id="collapse100HeadingOne">
+                            <h4 class="card-title m-0">
+                                <a class="accordion-toggle bg-light text-color-dark font-weight-bold collapsed" data-bs-toggle="collapse" data-bs-target="#collapse100One" aria-expanded="false" aria-controls="collapse100One">
+                                    {{c.field_subtitle}}
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="collapse" aria-labelledby="collapse100HeadingTwo" data-bs-parent="#accordion100" style="display: block !important;">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    {{c['field_details1'][0]['value']|raw}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="divider divider-small mt-0 mb-4">
+                </div>
+                <div class="bg-light text-center p-5" style="margin-top: 93px">
+                    <div class="py-2 px-md-5">
+                        <h2 class="font-weight-bold text-7 mb-1">{{c.field_title}}</h2>
+                        <p class="text-3-5 mb-5-5"> {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}</p>
+                         <form id="stripe-hold" action="/payment" method="POST">
+                                <div class="group">
+                                <label class="card-number-label">
+                                    <span>Card number</span>     </label>
+                                    <div id="card-element" class="field"></div>
+                                <label class="amount-label">
+                                    <span>Amount</span>
+                                </label>
+                                <input type="hidden" id="booking_id"  name="booking_id" value="{{ params.booking_id }}" class="field"  />
+
+                                <input id="amount" required readonly name="amount" value="{{ params.total }}" class="field" placeholder="0.00" /> {{ currency() }}
+
+                                </div>
+                                <button type="submit">Submit Payment</button>
+                                <div class="outcome" id="card-errors" role="alert">
+                                <div class="error"></div>
+                                <div class="success">
+                                    Success! Your Stripe token is <span class="token"></span>
+                                </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

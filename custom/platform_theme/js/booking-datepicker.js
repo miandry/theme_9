@@ -4,15 +4,14 @@
             // get color_body value with "drupalSettings.mymodule.color_body"
             const bookedDatesInt = drupalSettings.bookedDates;
             const priceList = drupalSettings.priceList;
+            console.log(bookedDatesInt);
             const DateTime = easepick.DateTime;
             const bookedDates = bookedDatesInt.map(d => {
                 if (d instanceof Array) {
                     const start = new DateTime(d[0], 'YYYY-MM-DD');
                     const end = new DateTime(d[1], 'YYYY-MM-DD');
-
                     return [start, end];
                 }
-
                 return new DateTime(d, 'YYYY-MM-DD');
             });
 
@@ -51,9 +50,11 @@
                         let price = 0;
                         while (date <= end) {
                             const datenew = formatDate(new Date(date));
+                            console.log(priceList[datenew]);
                             price = price + parseFloat(priceList[datenew]);
                             date.setDate(date.getDate() + 1);
                         }
+                        console.log(price);
                         jQuery('#datepickerVal').val(price);
                         caluction();
                         jQuery("#btn-booking").removeClass("hidden");
@@ -110,8 +111,8 @@
                     function(index) {
                         var input = $(this);
                         var val = input.val();
-                        if (input.val().includes("#####")) {
-                            let array_val = input.val().split("#####");
+                        if (input.val().includes("----")) {
+                            let array_val = input.val().split("----");
                             val = array_val[1];
                         }
                         if (jQuery.isNumeric(val)) {
@@ -123,9 +124,20 @@
                 document.getElementById('total_prix').innerHTML = total;
             }
 
-          $(document).ready(function(){
-            caluction();
-          });
+            $(document).ready(function() {
+                caluction();
+                $("input[type='number']").inputSpinner({ buttonsOnly: true });
+                $("input[type='number']").on("change", function(event) {
+                    var $valueOnChangeAmount = $(this).parent().parent().find('.qty-input');
+                    var $valueOnChange = $(this).parent().parent().find('.qty-input-display');
+                    var $montant = $(this).parent().parent().find('.qty-montant').val();
+                    var qty = $(event.target).val();
+                    var $total = parseFloat(qty) * parseFloat($montant);
+                    $valueOnChange.html($total);
+                    $valueOnChangeAmount.val($total);
+                    caluction();
+                })
+            });
         }
     };
 })(jQuery, Drupal, drupalSettings);
