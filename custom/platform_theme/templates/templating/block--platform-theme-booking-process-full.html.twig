@@ -109,7 +109,7 @@
                   </tr>
                     {% set i = 1 %}
                   {% for key,item in params %}
-                    {% if key not in ['booking-range', 'booking-range-date', 'carid'] %}
+                    {% if key not in ['booking-range', 'booking-range-date', 'carid'] and not(key ends with '__type')  %}
                       {% set status = true  %}
 
                       {% if "----" in  item %}

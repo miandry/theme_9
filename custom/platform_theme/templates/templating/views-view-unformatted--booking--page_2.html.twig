@@ -29,7 +29,10 @@
         width:35%;
     }
 </style>
-
+  {% set params = get_parameter() %}
+{% if params['new'] %}
+ {{message('We are pleased to inform you that our team is currently preparing your booking, Thanks to choose our services ')}}
+{% endif  %}
 <div  class="container py-2 container-bookings-and">
     <div class="row">
         <div class="col">

@@ -2,7 +2,7 @@
 {% block templating_content %}
 {{ attach_library('platform_theme/booking-datepicker') }}
 {{ attach_library('porto/owl.carousel') }}
-  {{ attach_library('platform_theme/spinner-form') }}
+{{ attach_library('platform_theme/spinner-form') }}
 
   
 {% set n = (node_parser(node)) %}
@@ -308,6 +308,7 @@
                 </td>
               </tr>
               {% for key,item in addons %}
+                <input  type="hidden" value="{{ item.type }}"   name="{{ item.name }}__type" /> 
                 {% if item.type =="addon_with_quantity" %}
                   <tr class="shipping">
                     <td colspan="2">
