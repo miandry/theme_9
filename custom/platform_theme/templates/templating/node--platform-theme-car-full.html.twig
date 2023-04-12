@@ -49,10 +49,22 @@
     .container_and a {
         width: 100%;
     }
+     .container-share{
+      position:relative;
+     }
+   .container-share .social-icons{
+    position: absolute;
+    bottom: 30px;
+    z-index: 230;
+    left: 3%;
+    }
+    .container-share  .social-icons li {
 
+    margin: -2px 5px 0 0!important;
+}
 </style>
 
-
+<div class="container-share">
 {% if(images) %}
 
     {% if imgs_length == 1 %}
@@ -147,6 +159,7 @@
         }
 
       </style>
+     
        <div class="container_and">
         <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
               
@@ -214,7 +227,8 @@
 
 
 {% endif %}
-
+      {{content.addtoany}}
+ </div>     
 
 
 
@@ -255,7 +269,7 @@
                           <h4>{{ 'FEATURE'|t }}</h4>
                       </div>
                   </div>
-                  <div class="col-md-12 list-and" style="padding-bottom: 30px;">
+                  <div class="row" style="padding-bottom: 30px;">
 
                     {% for item in features %}
                           
@@ -326,7 +340,7 @@
                       </div>
                   </div>
 
-                  <div class="col-md-12 list-and" style="padding-bottom: 30px;">
+                  <div class="row" style="padding-bottom: 30px;">
           
                     {% for item in amenities %}
                           
@@ -398,7 +412,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 list-and" style="padding-bottom: 30px;">
+                <div class="row" style="padding-bottom: 30px;">
                             
                     {% for item in specifications %}
                           
@@ -470,7 +484,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 list-and" style="padding-bottom: 30px;">    
+                <div class="row" style="padding-bottom: 30px;">    
                     {% for item in rules %}
                           
                         {% set term = (taxonomy_term_parser(item.term)) %}
