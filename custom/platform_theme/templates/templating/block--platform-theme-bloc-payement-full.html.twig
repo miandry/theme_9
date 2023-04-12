@@ -10,19 +10,18 @@
 .custom-bg-color-grey-1 {
     background-color: #f8f9fb;
 }
+#card-errors{
+  color:red;
+}
 </style>
-{% set params = storage_get('booking_info') %}
+{% set params = storage_get('booking_info_process') %}
 {% set c = block_parser(content) %}
-          
+         
 <section class="border-0 custom-bg-color-grey-1 custom-el-pos-3 p-relative z-index-1" style="margin-bottom:50px">
     <div class="container py-5">
         <div class="row justify-content-between">
             <div class="col-lg-6 pt-5 pt-lg-0">
-                <h3 class="font-weight-semibold text-9 text-capitalize mb-2">{{c.field_title1}}</h3>
-                <hr class="bg-primary">
-                <div class="divider divider-small mt-0 mb-4">
-                </div>
-                <div class="accordion accordion-modern-status accordion-modern-status-primary" id="accordion100">
+                <div class="hidden accordion accordion-modern-status accordion-modern-status-primary" id="accordion100">
                     <div class="card card-default">
                         <div class="card-header" id="collapse100HeadingOne">
                             <h4 class="card-title m-0">
@@ -34,20 +33,20 @@
                     </div>
                     <div class="card card-default">
                         <div class="collapse" aria-labelledby="collapse100HeadingTwo" data-bs-parent="#accordion100" style="display: block !important;">
-                            <div class="card-body">
+                            <div class="card-body" style="height:350px !important; overflow-x: hidden; overflow-y: auto;">
                                 <p class="mb-0">
-                                    {{c['field_details1'][0]['value']|raw}}
+                                    - Date range for a reservation : {{params.booking-range-date}} <br />
+                                    - Total : ${{params.total}} This fee will cover preparing to your rental.<br />
+                                    - Driver type : {{params.with_driver__type}}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="divider divider-small mt-0 mb-4">
-                </div>
-                <div class="bg-light text-center p-5" style="margin-top: 93px">
-                    <div class="py-2 px-md-5">
+            <div class="col-lg-12">
+                <div class="bg-light text-center p-5 my-4">
+                    <div class="py-2 px-md-5 pb-5">
                         <h2 class="font-weight-bold text-7 mb-1">{{c.field_title}}</h2>
                         <p class="text-3-5 mb-5-5"> {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}</p>
                          <form id="stripe-hold" action="/payment" method="POST">
@@ -60,12 +59,12 @@
                                 </label>
                                 <input type="hidden" id="booking_id"  name="booking_id" value="{{ params.booking_id }}" class="field"  />
 
-                                <input id="amount" required readonly name="amount" value="{{ params.total }}" class="field" placeholder="0.00" /> {{ currency() }}
+                                <input id="amount" required readonly name="amount" value="{{params.total}}" class="field" placeholder="0.00" /> {{ front_currency()|raw }}
 
                                 </div>
                                 <button type="submit">Submit Payment</button>
                                 <div class="outcome" id="card-errors" role="alert">
-                                <div class="error"></div>
+                                <div class="error" style="color:red !important"></div>
                                 <div class="success">
                                     Success! Your Stripe token is <span class="token"></span>
                                 </div>

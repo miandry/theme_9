@@ -2,9 +2,11 @@
 {% block templating_content %}
   {% set params = storage_get('booking_info') %}
   {% if params['carid'] is not defined %} {{redirect('/car/details')}} {% endif %}
-  {% set total = 0 %}
+  {% set subtotal = 0 %}
   {% set c = block_parser(content) %}
   {% set car_url = node_url(params['carid']) %}
+  {% set tax =  config('mz_payment.config','tax') %}
+
 <div role="main" class="main shop pb-4">
   <div class="container">
     <div class="row">
@@ -25,13 +27,7 @@
         </ul>
       </div>
     </div>
-    {% if is_login()  %}{% else %}
-    <div class="row">
-      <div class="col">
-        <p class="mb-1">Returning customer? <a href="/user/login" class="text-color-dark text-color-hover-primary text-uppercase text-decoration-none font-weight-bold header-nav-features-toggle" >Login or Sign up</a></p>
-      </div>
-    </div>
-    {% endif %}
+
     <form role="form" class="needs-validation" method="get" action="/booking-process" novalidate="novalidate">
           <input  type="hidden" name="carid" value="{{params.carid}}">
 
@@ -67,16 +63,7 @@
               <input type="email" class="form-control h-auto py-2" name="email" value="{{ current_user.mail }}" required="">
             </div>
           </div>
-          {% if is_login()  %}{% else %}
-          <div class="row">
-            <div class="form-group col">
-              <div class="custom-checkbox-1">
-                <input id="createAccount" type="checkbox" name="createAccount" value="1">
-                <label for="createAccount">Create an account ?</label>
-              </div>
-            </div>
-          </div>
-          {% endif %}
+
 
           <div class="row">
             <div class="form-group col">
@@ -84,6 +71,16 @@
               <textarea class="form-control h-auto py-2" name="bookingNotes" rows="5" placeholder="Let the host know more about your trip "></textarea>
             </div>
           </div>
+
+          <div class="row">
+									<div class="form-group col">
+										<div class="custom-checkbox-1">
+											<input id="termService" type="checkbox" name="termService" required="">
+											<label for="termService"> Agree to </label>  <a target="_blank" href="/conditions-term">Terms and Conditions </a>
+										</div>
+									</div>
+					</div>
+          
         </div>
         <div class="col-lg-1 mb-lg-0">
 
@@ -101,7 +98,7 @@
                       <input  type="hidden" name="booking-range-date" value="{{ params["booking-range-date"] }}">
                     </td>
                     <td class="text-end align-top">
-                      {% set total = total + params["booking-range"] %}
+                      {% set subtotal = subtotal + params["booking-range"] %}
                       <span class="font-weight-medium text-color-grey">{{ front_currency(params["booking-range"])|raw }}</span>
                       <input  type="hidden" name="booking-range" value="{{ params["booking-range"] }}">
 
@@ -138,16 +135,39 @@
                         <input  type="hidden" name="addon_{{i}}_value" value="{{item}}">
                       </tr>
                         {% set i = i + 1 %}
-                      {% endif %}
-
-                    {% endif %}
-                    {% set total = total + price %}
+                       {% endif %}
+                       {% set subtotal = subtotal + price %}
+                    {% endif %}           
                   {% endfor %}
+                    {% set total_tax= ((floatval(subtotal)*tax)/100)|round(2, 'floor')  %}
+                    {% set subtotal = floatval(subtotal)|round(2, 'floor') %}
+                  <tr class="total">
+                    <td>
+                      <strong class="text-color-dark text-3-5">Sub Total</strong>
+                    </td>
+                    <td class="text-end">
+                      <input  type="hidden" name="subtotal" value="{{subtotal}}">
+                      <span class="text-color-dark amount text-color-dark text-3">{{ front_currency(subtotal)|raw}}</span>
+                    </td>
+                  </tr>
+                  <tr class="total">
+                    <td>
+                      <strong class="text-color-dark text-3-5">Tax ({{tax}} %)</strong>
+                    </td>
+                    <td class="text-end">
+                      <input  type="hidden" name="tax" value="{{total_tax}}">
+                     <span class="text-color-dark amount text-color-dark text-3">{{ front_currency(total_tax)|raw}}</span>
+                    </td>
+                  </tr>
                   <tr class="total">
                     <td>
                       <strong class="text-color-dark text-3-5">Total</strong>
                     </td>
                     <td class="text-end">
+                    
+                     {% set total = floatval(subtotal)+total_tax %}
+                     {% set total = total|round(2, 'floor') %}
+                      
                       <input  type="hidden" name="total" value="{{total}}">
                       <strong class="text-color-dark"><span class="amount text-color-dark text-5">{{ front_currency(total)|raw}}</span></strong>
                     </td>

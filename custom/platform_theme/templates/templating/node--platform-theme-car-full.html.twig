@@ -4,7 +4,6 @@
 {{ attach_library('porto/owl.carousel') }}
 {{ attach_library('platform_theme/spinner-form') }}
 
-  
 {% set n = (node_parser(node)) %}
 {% set images = n.field_images %}
 {% set features = n.field_features %}
@@ -30,7 +29,6 @@
    {{storage_set('booking_info',params)}}
    {% set t = redirect('/booking-process') %} 
 {% endif %}
-
 
 <style>
           
@@ -118,6 +116,101 @@
 
     {% endif %}
 
+    {% if imgs_length == 4 %}
+
+      <style>
+
+        .container-grid{
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-self: center;
+        }
+
+        .content-grid {
+          background-size: cover; 
+          background-position: center;
+          position: absolute !important;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          overflow: hidden;
+        }
+
+        .cover {
+          background-size: cover; 
+          background-position: center;
+          position: absolute !important;
+          width: 100%;
+          height: 100%;
+        }
+
+      </style>
+       <div class="container_and">
+        <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+              
+          <div  class="owl-carousel owl-carousel-light manual"  data-dynamic-height="['460px','460px','460px','210px','180px']" style="height: 460px; overflow: hidden;">
+
+                <div class="cover" style="top: 0;">
+                  
+                  <div class="container-grid">
+
+                    <div style="grid-template-columns: repeat(2,1fr); grid-template-rows: 1fr; width: 100%; height: 100%;display: grid;gap: 5px;box-sizing: border-box;">
+                      
+                      
+
+                        <div style="position: relative;">
+                          <a  href="{{ n['field_images'][0]['image'].url }}">
+                            <img src="{{ n['field_images'][0]['image'].url }}"  alt="" style="display: none;"/>
+                            <div class="content-grid" style="background-image: url({{ n['field_images'][0]['image'].url }});">
+                            </div>
+                          </a>
+                        </div>
+
+                        <div style="display: grid;grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;gap: 5px;">
+                          
+                          <div style="display: grid;grid-template-columns: 1fr; grid-template-rows: 1fr 1fr;gap: 5px;">
+                            
+                            <div style="background-color: #35363a;position: relative;">
+                              <a  href="{{ n['field_images'][1]['image'].url }}">
+                                <img src="{{ n['field_images'][1]['image'].url }}"  alt="" style="display: none;"/>
+                                <div class="content-grid" style="background-image: url({{ n['field_images'][1]['image'].url }});"></div>
+                              </a>
+                            </div>
+
+                            <div style="background: #cc6ca5;position: relative;">
+                              <a  href="{{ n['field_images'][2]['image'].url }}">
+                                <img src="{{ n['field_images'][2]['image'].url }}"  alt="" style="display: none;"/>
+                                <div class="content-grid" style="background-image: url({{ n['field_images'][2]['image'].url }});" data="img/anders/project-portfolio-4-4.jpg"></div>
+                              </a>
+                            </div>
+
+                          </div>
+
+                          <div style="position: relative;">
+                            <a  href="{{ n['field_images'][3]['image'].url }}">
+                              <img src="{{ n['field_images'][3]['image'].url }}"  alt="" style="display: none;"/>
+                              <div class="content-grid" style="background-image: url({{ n['field_images'][3]['image'].url }});"></div>
+                            </a>
+                          </div>
+
+                        </div>
+
+                    
+
+                    </div>
+                  </div>
+
+                </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    {% endif %}
+
 
 
 {% endif %}
@@ -153,73 +246,148 @@
                 {{ n.body|first.value|raw }}
             </div>
             <hr> 
+
             <!-- FEATURE -->
-            {% if features %}
-                <div class="row-features" style="padding-top: 20px">
-                <div class="row">
-                    <div class="col">
-                        <h4>{{ 'FEATURE'|t }}</h4>
-                    </div>
-                </div>
-                <div class="col-md-12 list-and" style="padding-bottom: 30px;">
-                             {% for item in features %}
-                                {% if loop.first %}
-                                  <div class="col-md-6">
-                                      <ul class="list list-icons list-icons-style-2 "> 
-                                {% endif %}
-                                  {% if loop.index is divisible by(4) %}
-                                         </ul>
-                                    </div>
-                                     <div class="col-md-6">
-                                         <ul class="list list-icons list-icons-style-2"> 
-                                  {% endif %}
-                               {% set term = (taxonomy_term_parser(item.term)) %}
-                                <li> {% if term.field_media_icon %}<img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />{% endif %} {{item.title}}</li>                             
-                                  {% if loop.last %}
-                                             </ul>
-                                         </div>
-                                  {% endif %}
-                             {% endfor %} 
-                </div>
-                </div>
-                <div class="row"><hr></div>
-            {% endif %}
+              {% if features %}
+                  <div class="row-features" style="padding-top: 20px">
+                  <div class="row">
+                      <div class="col">
+                          <h4>{{ 'FEATURE'|t }}</h4>
+                      </div>
+                  </div>
+                  <div class="col-md-12 list-and" style="padding-bottom: 30px;">
+
+                    {% for item in features %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
+
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %} 
+
+                  </div>
+                  </div>
+                  <div class="row"><hr></div>
+              {% endif %}
             <!-- END FEATURE -->
     
             <!-- Amenities -->
             {% if amenities %}
-            <div class="row-features" style="padding-top: 20px">
-                <div class="row">
-                    <div class="col">
-                        <h4>{{ 'Amenities'|t }}</h4>
-                    </div>
-                </div>
+              <div class="row-features" style="padding-top: 20px">
+                  <div class="row">
+                      <div class="col">
+                          <h4>{{ 'Amenities'|t }}</h4>
+                      </div>
+                  </div>
 
-                <div class="col-md-12 list-and" style="padding-bottom: 30px;">
-                             {% for item in amenities %}
-                                {% if loop.first %}
-                                  <div class="col-md-6">
-                                      <ul class="list list-icons list-icons-style-2 "> 
-                                {% endif %}
-                                  {% if loop.index is divisible by(4) %}
-                                         </ul>
-                                    </div>
-                                     <div class="col-md-6">
-                                         <ul class="list list-icons list-icons-style-2"> 
-                                  {% endif %}
-                               {% set term = (taxonomy_term_parser(item.term)) %}
-                                <li> {% if term.field_media_icon %}<img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />{% endif %} {{item.title}}</li>                             
-                                  {% if loop.last %}
-                                             </ul>
-                                         </div>
-                                  {% endif %}
-                             {% endfor %} 
-                </div>
+                  <div class="col-md-12 list-and" style="padding-bottom: 30px;">
+          
+                    {% for item in amenities %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
 
-            </div>
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %} 
+
+                  </div>
+              </div>
               <div class="row"><hr></div>
             {% endif %}
             <!-- END Amenities -->
+
             <!-- Specifications -->
             {% if specifications %}
 
@@ -231,24 +399,61 @@
                 </div>
 
                 <div class="col-md-12 list-and" style="padding-bottom: 30px;">
-                             {% for item in specifications %}
-                                {% if loop.first %}
-                                  <div class="col-md-6">
-                                      <ul class="list list-icons list-icons-style-2 "> 
-                                {% endif %}
-                                  {% if loop.index is divisible by(4) %}
-                                         </ul>
-                                    </div>
-                                     <div class="col-md-6">
-                                         <ul class="list list-icons list-icons-style-2"> 
-                                  {% endif %}
-                               {% set term = (taxonomy_term_parser(item.term)) %}
-                                <li> {% if term.field_media_icon %}<img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />{% endif %} {{item.title}}</li>                             
-                                  {% if loop.last %}
-                                             </ul>
-                                         </div>
-                                  {% endif %}
-                             {% endfor %} 
+                            
+                    {% for item in specifications %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
+
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %} 
+                             
                 </div>
 
             </div>
@@ -265,25 +470,60 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 list-and" style="padding-bottom: 30px;">
-                             {% for item in rules %}
-                                {% if loop.first %}
-                                  <div class="col-md-6">
-                                      <ul class="list list-icons list-icons-style-2 "> 
-                                {% endif %}
-                                  {% if loop.index is divisible by(4) %}
-                                         </ul>
-                                    </div>
-                                     <div class="col-md-6">
-                                         <ul class="list list-icons list-icons-style-2"> 
-                                  {% endif %}
-                               {% set term = (taxonomy_term_parser(item.term)) %}
-                                <li> {% if term.field_media_icon %}<img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />{% endif %} {{item.title}}</li>                             
-                                  {% if loop.last %}
-                                             </ul>
-                                         </div>
-                                  {% endif %}
-                             {% endfor %} 
+                <div class="col-md-12 list-and" style="padding-bottom: 30px;">    
+                    {% for item in rules %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
+
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %}           
                 </div>
 
             </div>
@@ -483,52 +723,46 @@
 
 
             <!-- REVIEW DESIGN-->
-            <section class="section section-height-3 bg-light border-0 pt-3 pt-lg-0 pb-4 section-review-and">
-                <div class="container container-xl-custom appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300" style="animation-delay: 300ms;">
-                    <div class="row">
-                        <div class="col">
-                            <h4>Customers Reviews</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="owl-carousel owl-theme custom-dots mt-3 mb-0 owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'responsive': {'0': {'items': 1}, '476': {'items': 1}, '768': {'items': 2}, '992': {'items': 2}, '1200': {'items': 2}}, 'margin': 18, 'loop': true, 'nav': false, 'dots': true}" style="height: auto;">
-                            
-                        <div class="owl-stage-outer">
-                                <div class="owl-stage" style="transform: translate3d(-2151px, 0px, 0px); transition: all 0.5s ease 0s; width: 8604px;">
-                               {% for item in comment %}
-                                   {% if item.status == 1 %}
-                      
-                                <div class="owl-item cloned" style="width: 699px; margin-right: 18px;">
-                                        <div class="testimonial testimonial-style-4 custom-testimonial py-4 px-3">
-                                            <blockquote class="px-3 ms-4">
-                                                <p class="mb-0 font-weight-normal"> {{item.comment_body|raw}} </p>
-                                            </blockquote>
-                                            <div class="testimonial-arrow-down">
-
-                                            </div>
-                                            <div class="testimonial-author pb-3 mt-1 ms-5">
-                                                <div class="testimonial-author-thumbnail">
-                                                    <img src="http://booking.mizara.mg/sites/default/files/2022-12/mountain-warehouse-outdoor-clothing-and-camping-goods-store-shop-uk-CC5BDG.jpg" class="img-fluid rounded-circle" alt="">
-                                                </div>
-                                                <p><strong class="font-weight-extra-bold">{{item.field_first_name}}</strong><span class="text-1">{{item.field_last_name}}</span></p>
-                                            </div>
-                                        </div>
-                        
-   
-                              </div>
-                                    {% endif %}
-                                {% endfor %}
-                                        <div>
-
-                         </div>
-                                 
-                          
-                            
-                        </div>
-                    </div>
+            <section class="section border-0 m-0" style="background:#fff !important; padding-top:0; padding-bottom: 0">
+              <div class="container pb-3 my-5">
+                <div class="row pb-3 mb-4">
+                  <div class="col">
+                    <h4 class="font-weight-bold text-color-dark line-height-1 mb-0">Customers Reviews</h4>
+                  </div>
                 </div>
-            </section>
+                <div class="row">
+                  <div class="col">
+                    <div class="owl-carousel nav-outside nav-style-1 nav-dark nav-arrows-thin nav-font-size-lg custom-carousel-box-shadow-1 mb-0" data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 1}, '768': {'items': 2}, '979': {'items': 2}, '1199': {'items': 3}}, 'autoplay': true, 'autoplayTimeout': 5000, 'autoplayHoverPause': true, 'dots': false, 'nav': true, 'loop': true, 'margin': 15, 'stagePadding': '75'}">
+                      
+                      {% for item in comment %}
+                          {% if item.status == 1 %}
+                      <div>
+                        <div class="card custom-border-radius-1">
+                          <div class="card-body">
+                            <div class="custom-testimonial-style-1 testimonial testimonial-style-2 testimonial-with-quotes testimonial-remove-right-quote text-center mb-0">
+                              <blockquote style="padding-top: 30px">
+                                <p class="text-color-dark text-3 font-weight-light px-0 mb-2">
+                                  {{item.comment_body|raw}}
+                                </p>
+                              </blockquote>
+                              <div class="testimonial-author">
+                                <p><strong class="font-weight-extra-bold">{{item.field_first_name}} {{item.field_last_name}}</strong></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                          {% endif %}
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+				    </section>
             <!-- END REVIEW DESIGN-->
+
+           
 
             <div class="post-block mt-5 post-leave-comment">
                 <h4 class="mb-3">Reviews</h4>
@@ -621,25 +855,6 @@
       })(marker, i));
     }
 </script>
-<script src="/core/assets/vendor/jquery/jquery.min.js?v=3.6.3"></script>
-<script>
-    const open_and = document.getElementById("open_and");
-    const close_and = document.getElementById("close_and");
-    const modal_container = document.getElementsByClassName("modal_container");
-    $("#close_and").click(function(){
-        $(".modal_container").hide();
-        $( "body" ).removeClass( "bg_center_and" );
-    })
-
-    $( ".content-grid" ).click(function() {
-        const bg_image =  $(this).attr("data");
-        $(".modal_container").show();
-        $(".modal_container").css({"display":"flex"});
-        $( "body" ).addClass( "bg_center_and" );
-        $("#img_src_and").attr("src",""+bg_image+"");
-    });
-</script>
-
 
 
 {% endblock %}

@@ -1,0 +1,165 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+<!-- HEADER 2-->
+{% set c = block_parser(content) %}
+{% if c.menu %}
+{% set menu_main = simplify_menu(c.menu) %}
+{% set menu_main_length = menu_main|length %}
+{% set user = current_user() %}
+{% endif %}
+
+{% if c.menu2 %}
+{% set menu_account = simplify_menu(c.menu2) %}
+{% set menu_account_length = menu_account|length %}
+{% endif %}
+   <style>
+        .dropdown-menu-and {
+            border: none;
+            box-shadow: 0 1px 2px 1px rgba(0,0,0,.2);
+            box-sizing: content-box;
+            padding: 10px 10px 5px 10px;
+        }
+        .dropdown-menu-and li {
+            margin-bottom: 5px;
+        }
+        .dropdown-menu-and a {
+            border-radius: 2px;
+            color: #7d7d7d;
+            display: block;
+            line-height: 20.8px;
+            line-height: 1.3rem;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-size: .75rem;
+        }
+        .dropdown-menu-and i {
+            margin-right: 11px;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu-and a:hover {
+            background:#0088CC;
+            text-decoration: none;
+            color: #fff;
+        }
+        li  a.main-link:hover {
+            color: #fff!important;
+        }
+            li  a.main-link:hover {
+            color: #fff!important;
+        }
+
+        .dropdown-menu-and span {
+            font-size: 12px;
+            color: #7d7d7d;
+            padding: 10px;
+        }
+
+        .header2-and .header-column .fa-user.fa-user-and::before  {
+            font-size : 1.3em !important;
+            color:#fff !important;
+        }
+
+    </style>
+
+<header id="header" data-plugin-options="{'stickyEnabled': false, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}" class="header2-and">
+<div class="border-top-0 header-body-bottom-border">
+    <div class="header-nav-bar bg-primary" >
+        <div class="header-container container">
+            <div class="header-row">
+
+                <!-- logo -->
+                <div class="header-column">
+                    <div class="header-row">
+                        <div class="header-logo">
+                            <a href="{{base_url()}}/home">
+                                <img alt="Travel Bug USA" class="header-logo-non-sticky" src="{{c['field_image1']['image'].url}}" style="position: relative; left: -35px;height:48px; max-width:243px; width:auto; opacity:1 !important">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End logo -->
+
+                <!--simple menu -->
+                <div class="header-column justify-content-end">
+                    <div class="header-row">
+
+                        <div class="header-nav header-nav-links order-2 order-lg-1 header-nav-light-text">
+                            <div class="header-nav-main header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
+                                <nav class="collapse">
+                                    <ul class="nav nav-pills nav-pills-and " id="mainNav">
+                                        {% for item in menu_main.menu_tree %}
+                                        <li>
+                                            <a class="main-link" href="{{ item.url }}">
+                                                {{ item.text }}
+                                            </a>
+                                        </li>                              
+                                        {% endfor %}
+
+                                        			<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="/user">
+															   <i class="far fa-user fa-user-and"></i>
+														</a>
+														<ul class="dropdown-menu dropdown-menu-and"> 
+                                                                     {% if is_login() %}                   
+                                                            {% for item in menu_account.menu_tree %}
+                                                                {% if  item.url =="/user" %}
+                                                                    {% set ic = "fas fa-user" %}
+                                                                    <li><a role="menuitem" tabindex="-1" href="{{ item.url }}"><i class="{{ic}}"></i>  {{ item.text }} </a></li>
+                                                               
+                                                                {% endif %}
+                                                                    
+                                                                {% if  item.url =="/user/bookings" %}
+                                                                    {% set ic = "fas fa-book-open" %}
+                                                                    <li><a role="menuitem" tabindex="-1" href="{{ item.url }}"><i class="{{ic}}"></i>  {{ item.text }} </a></li>
+                                                               
+                                                                {% endif %}
+                                                                    
+                                                                {% if  item.url =="/admin" %}
+                                                                    {% set ic = "fas fa-chart-bar" %}
+                                                                    <li><a role="menuitem" tabindex="-1" href="{{ item.url }}"><i class="{{ic}}"></i>  {{ item.text }} </a></li>
+                                                               
+                                                                {% endif %}
+                                                                    
+                                                                {% if item.url =="/user/logout" %}
+                                                                    {% set ic = "fas fa-sign-out-alt" %}
+                                                                    <li><a role="menuitem" tabindex="-1" href="{{ item.url }}"><i class="{{ic}}"></i>  {{ item.text }} </a></li>
+                                                               
+                                                                {% endif %}
+                                               
+                                                       
+                                                            {% endfor %}
+                                                                 
+                                                                {% else %}
+                                                                    <li><a role="menuitem" tabindex="-1" href="/signin-signup">  Login </a></li>
+                                                                    <li><a role="menuitem" tabindex="-1" href="/signin-signup">  Sign up </a></li>
+                                                            
+                            
+                                                                {% endif %}
+														</ul>
+													</li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+
+                        
+                    </div>
+                </div>
+
+         
+                <div class="header-column flex-row w-auto header-column">
+                    <button class="btn header-btn-collapse-nav ms-3" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+         
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+<!-- END HEADER 2-->
+
+{% endblock %}

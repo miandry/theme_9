@@ -30,7 +30,7 @@
    
 {% set items = [] %}
 {% for key,item in rows %}
-{{kint(item.columns.nid)}}
+
 {% set n = node_parser(item._entity) %} 
 {% endfor %}
 {{n.field_price_default}}

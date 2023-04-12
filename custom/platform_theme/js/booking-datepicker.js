@@ -3,8 +3,9 @@
         attach: function(context, settings) {
             // get color_body value with "drupalSettings.mymodule.color_body"
             const bookedDatesInt = drupalSettings.bookedDates;
+            const defaultPrice = drupalSettings.priceDefault;
             const priceList = drupalSettings.priceList;
-            console.log(bookedDatesInt);
+            //   console.log(bookedDatesInt);
             const DateTime = easepick.DateTime;
             const bookedDates = bookedDatesInt.map(d => {
                 if (d instanceof Array) {
@@ -50,11 +51,15 @@
                         let price = 0;
                         while (date <= end) {
                             const datenew = formatDate(new Date(date));
-                            console.log(priceList[datenew]);
-                            price = price + parseFloat(priceList[datenew]);
+                            if (priceList[datenew] !== undefined) {
+
+                                price = price + parseFloat(priceList[datenew]);
+                            } else {
+                                price = price + parseFloat(defaultPrice);
+                            }
                             date.setDate(date.getDate() + 1);
                         }
-                        console.log(price);
+                        //   console.log(price);
                         jQuery('#datepickerVal').val(price);
                         caluction();
                         jQuery("#btn-booking").removeClass("hidden");

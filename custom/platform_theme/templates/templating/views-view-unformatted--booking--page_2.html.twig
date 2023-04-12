@@ -28,8 +28,31 @@
     .booking_info{
         width:35%;
     }
+    .badge {
+        display: inline-block;
+        font-weight: 700;
+        border-radius: 0.375rem;
+        text-align: center;
+        padding: 0.35em 0.65em;
+        white-space: nowrap;
+        color: #fff;
+    }
+    .badge-success {
+        background: #47a447;
+        color: #fff;
+    }
+    .badge-warning {
+        background: #ed9c28;
+        color: #fff;
+    }
+    .badge-danger {
+        background: #d2322d;
+        color: #fff;
+    }
 </style>
-  {% set params = get_parameter() %}
+{% set params = get_parameter() %}
+{% set current_user = current_user() %}
+{% set u = user_parser(current_user.uid) %}
 {% if params['new'] %}
  {{message('We are pleased to inform you that our team is currently preparing your booking, Thanks to choose our services ')}}
 {% endif  %}
@@ -48,7 +71,11 @@
             <div class="d-flex justify-content-center mb-4">
                 <div class="profile-image-outer-container">
                     <div class="profile-image-inner-container bg-color-primary">
-                        <img src="http://www.sahaza.net/sites/default/files/pictures/2022-09/project-6.jpeg">
+                             {% if u.user_picture %}
+                                    <img src="{{ u.user_picture.url }}">
+                                {% else %}
+                                    <img src="{{ base_url() }}/{{ directory }}/img/avatars/avatar.jpg">
+                                {% endif %}
                     </div>
                 </div>
             </div>
@@ -120,15 +147,33 @@
                                                     </td>
                                                     <td>{{ n['field_dates'][0].value}} <br> {{ n['field_dates'][0].end_value }}</td>
                                                     <td>{{n.field_price_default}} $ </td>
+                                                    
                                                     <td>
-                                                        <span class="ecommerce-status on-hold">{{state}}</span>
+
+                                                        {% if state == "draft" %}
+                                                            {% set state_text = "in validation" %}
+                                                            {% set badge = "badge-danger" %}
+                                                        {% endif %}
+
+                                                        {% if state == "validate" %}
+                                                            {% set state_text = "booking confirmed" %}
+                                                            {% set badge = "badge-warning" %}
+                                                        {% endif %}
+
+                                                        {% if state == "published" %}
+                                                            {% set state_text = "booking complet" %}
+                                                            {% set badge = "badge-success" %}
+                                                        {% endif %}
+        
+                                                        <span class="ecommerce-status on-hold badge {{badge}}">{{state_text}}</span>
                                                     </td>
+
                                                     <td>
                                                         <div class="btn-group" role="group">
                                                             <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
                                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                <a class="dropdown-item" href="#">Refund</a>
-                                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                                                {# <a class="dropdown-item" href="#">Refund</a> #}
+                                                                <a class="dropdown-item" href="{{base_url()}}/invoice?nid={{n.nid}}">Download Invoice</a>
                                                             </div>
                                                         </div>
                                                     </td>
