@@ -1,13 +1,22 @@
-.container.show{
-  z-index: 9!important;
+.container.show {
+    z-index: 9!important;
 }
+
 .calendar {
-  width: 330px;
+    width: 330px;
 }
+
 .calendar>.days-grid>.day .day-price {
-  font-size: 80%;
-  color: #2196f3;
+    font-size: 80%;
+    color: #3366cc;
+    position: absolute;
+    top: 17px;
 }
+
 .calendar>.days-grid>.day.selected .day-price {
-  color: #fff;
+    color: #fff;
+}
+
+.container.lock-plugin .calendar>.days-grid>.day {
+    position: relative;
 }
