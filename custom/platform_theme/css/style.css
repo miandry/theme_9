@@ -332,16 +332,112 @@ div.tabs {
 .user-form-custom .forgot-password-link {
     margin-right: 10px;
 }
-.number-input-custom{
-  width: 8rem;
+
+.number-input-custom {
+    width: 8rem;
 }
+
 input#datepicker {
-  height: 3rem;
-  width: 2.5rem;
-  border-color: rgba(0, 0, 0, 0.09);
-  border-width: 1px;
-  border-radius: 5px;
-  padding-left: 15px;
-  min-width: 250px!important;
-  margin-bottom: 15px;
+    height: 3rem;
+    width: 2.5rem;
+    border-color: rgba(0, 0, 0, 0.09);
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 15px;
+    min-width: 250px!important;
+    margin-bottom: 15px;
+}
+
+.form-check-addition-price .form-check-input {
+    background-color: gray!important;
+    border-color: gray!important;
+}
+
+
+/*user page*/
+
+form.user-form {
+    margin: 0!important;
+}
+
+form.user-form .collapse-processed>summary:before {
+    float: left;
+    background: none!important;
+}
+
+*,
+ ::after,
+ ::before {
+    box-sizing: border-box !important;
+}
+
+form.user-form .card-form {
+    border: none !important
+}
+
+form.user-form .form-item-mail label,
+form.user-form .form-item-name label,
+form.user-form .form-item-pass-pass1 label,
+form.user-form .js-form-item label {
+    display: inline-block;
+    width: 25%;
+    font-size: .9em !important;
+    color: #777;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+form.user-form input[type="text"],
+form.user-form input[type="email"],
+form.user-form .js-form-item input[type="text"],
+form.user-form .js-form-item input[type="email"],
+form.user-form .js-form-item input[type="password"] {
+    width: 70% !important;
+    line-height: 1.85 !important;
+    border-color: rgba(0, 0, 0, 0.09) !important;
+    color: #555 !important;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+form.user-form .form-item .description,
+form.user-form .password-strength__text,
+form.user-form .password-strength__title,
+form.user-form .js-password-confirm-message {
+    font-size: 0.7em !important;
+}
+
+div.description {
+    margin-bottom: 16px !important;
+}
+
+.confirm-parent,
+.password-parent {
+    max-width: 100% !important;
+}
+
+form.user-form input[type="submit"] {
+    margin-top: 20px;
+    background-color: #006ea6 !important;
+    background-image: none !important;
+    border-color: #006699 #006699 #004466 !important;
+    color: #fff !important;
+}
+
+.container-user-and .card-form {
+    border: none !important;
+}
+
+details a {
+    color: #444 !important
 }

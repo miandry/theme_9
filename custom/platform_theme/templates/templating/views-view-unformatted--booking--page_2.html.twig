@@ -53,6 +53,7 @@
 {% set params = get_parameter() %}
 {% set current_user = current_user() %}
 {% set u = user_parser(current_user.uid) %}
+
 {% if params['new'] %}
  {{message('We are pleased to inform you that our team is currently preparing your booking, Thanks to choose our services ')}}
 {% endif  %}
@@ -92,6 +93,19 @@
         <div class="col-lg-9 order-1 order-lg-2  table-view-porto">
             <div class="row">
                 <div class="col">
+                    <section class="call-to-action call-to-action-primary mb-1">
+								<div class="col-sm-9 col-lg-9">
+									<div class="call-to-action-content">
+										<h3>Please, <strong>Upload </strong> your <strong> your driver license !</strong></h3>
+                                        <p class="mb-0 opacity-7">that is required to validate your booking car </p>
+									</div>
+								</div>
+								<div class="col-sm-3 col-lg-3">
+									<div class="call-to-action-btn">
+										<a href="/user/{{current_user.uid}}" target="_blank" class="btn btn-modern text-2 btn-light border-0"> Click to upload</a>
+									</div>
+								</div>
+					</section>
                     <div class="card card-modern">
                         <div class="card-body">
                             <div class="datatables-header-footer-wrapper">
