@@ -75,8 +75,10 @@
             </aside>
 
           </div>
-          <div class="col-lg-9 card-form">
-            {{ render_form_entity('user','user',u.uid) }}
+          <div class="col-lg-9">
+             {{ render_form_entity('user','user',u.uid) }} 
+
+            {# {{ user_password_forget() }} #}
           </div>
         </div>
 

@@ -5,8 +5,7 @@
   {% set subtotal = 0 %}
   {% set c = block_parser(content) %}
   {% set car_url = node_url(params['carid']) %}
-  {% set tax =  config('mz_payment.config','tax') %}
-  
+  {% set tax_us =  params['tax_us'] %}
 <div role="main" class="main shop pb-4">
   <div class="container">
     <div class="row">
@@ -139,7 +138,7 @@
                        {% set subtotal = subtotal + price %}
                     {% endif %}           
                   {% endfor %}
-                    {% set total_tax= ((floatval(subtotal)*tax)/100)|round(2, 'floor')  %}
+                    {% set total_tax= ((floatval(subtotal)*tax_us)/100)|round(2, 'floor')  %}
                     {% set subtotal = floatval(subtotal)|round(2, 'floor') %}
                   <tr class="total">
                     <td>
@@ -152,7 +151,7 @@
                   </tr>
                   <tr class="total">
                     <td>
-                      <strong class="text-color-dark text-3-5">Tax ({{tax}} %)</strong>
+                      <strong class="text-color-dark text-3-5">Tax ({{tax_us}} %)</strong>
                     </td>
                     <td class="text-end">
                       <input  type="hidden" name="tax" value="{{total_tax}}">
