@@ -584,7 +584,7 @@
                 {% if item.type =="addon_additional_price" %}
                   <tr class="shipping">
                     <td colspan="2">
-                      <div class="form-check">
+                      <div class="form-check form-check-addition-price">
                         <span id="myval" style="display: none" >{{ item.price }}</span>
                         <input class="Dym form-check-input" style="pointer-events: none;"  type="checkbox" value="{{ item.price }}"  checked="true" name="{{ item.name }}" >
                         <label class="form-check-label" for="tabContent9Checkbox">
@@ -623,7 +623,20 @@
                   </tr>
                 {% endif %}
               {% endfor %}
-
+               <tr class="shipping">
+                    <td colspan="2">
+                      <strong class="d-block text-color-dark mb-2">Your region</strong>
+                      <div  class="d-flex flex-column">
+                        {% set tax_us =  json_decode(config('tax_us.config','tax_us'))%}
+                        <select class="form-select form-control h-auto py-2"   name="tax_us"  aria-invalid="false">
+                          <option value="0">- None -</option>
+                          {% for tax in tax_us %}
+                            <option value="{{tax.average_rate.rate}}">{{tax.region}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </td>
+              </tr>
               <tr class="total">
                 <td>
                   <strong class="text-color-dark text-3-5">Total</strong>
@@ -638,10 +651,11 @@
               </tr>
               </tbody>
             </table>
-            {% if is_login() %}
-               <button id="btn-booking" type="submit" class="hidden btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Request to book now <i class="fas fa-arrow-right ms-2"></i></button>
-            {% else %}
+            
+            {% if current_user.isAnonymous() %}
                <a  href="/signin-signup?destination={{current_url_alias()}}" class="btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
+            {% else %}
+              <button id="btn-booking" type="submit" class="hidden btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Request to book now <i class="fas fa-arrow-right ms-2"></i></button>
             {% endif %}
           </form>
         </div>
