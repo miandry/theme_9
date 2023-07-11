@@ -5,7 +5,7 @@
   {% set subtotal = 0 %}
   {% set c = block_parser(content) %}
   {% set car_url = node_url(params['carid']) %}
-  {% set tax_us =  params['tax_us'] %}
+  {% set tax_us =  config('mz_payment.config','tax') %}
 <div role="main" class="main shop pb-4">
   <div class="container">
     <div class="row">
