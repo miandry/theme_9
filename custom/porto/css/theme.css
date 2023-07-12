@@ -1398,7 +1398,7 @@ html.sticky-header-active #header .header-top.header-top-sticky-remove-bottom-bo
 }
 
 html.sticky-header-active #header .header-body {
-	position: fixed;
+	/*position: fixed;*/
 	border-bottom-color: rgba(234, 234, 234, 0.5);
 	box-shadow: 0 0 3px rgba(234, 234, 234, 0.5);
 }

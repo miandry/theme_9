@@ -1,0 +1,165 @@
+  <!-- HEADER -->
+    {% set c = block_parser(content) %}
+    {% set top_menu = simplify_menu(c.menu) %}
+    {% set links = c.link %}
+    {% set links_length = links|length %}
+    {% set paragraphs = c.paragraphs %}
+    {% set links_paragraphs = paragraphs|length %}
+    {% set menu_main = simplify_menu(c.field_menu_main).menu_tree %}
+    {% set menu_main_length = menu_main|length %}
+    {% set user = current_user() %}
+    
+    <header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 148, 'stickySetTop': '-148px', 'stickyChangeLogo': true}">
+        <div class="header-body border-color-primary border-top-0 box-shadow-none">
+    
+            <div class="header-top header-top-default border-bottom-0 border-top-0">
+                <div class="container">
+                    <div class="header-row py-2">
+                        <div class="header-column justify-content-start">
+                            <div class="header-row">
+                                <nav class="header-nav-top">
+                                    <ul class="nav nav-pills text-uppercase text-2">
+                                        {% for item in top_menu.menu_tree %}
+                                            <li class="nav-item nav-item-anim-icon">
+                                                <a class="nav-link" href="{{ item.url }}"><i class="fas fa-angle-right"></i> {{ item.text }}</a>
+                                            </li>                              
+                                        {% endfor %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="header-column justify-content-end">
+                            <div class="header-row">
+                                <ul class="header-social-icons social-icons d-none d-sm-block social-icons-clean">
+                                    {% for size in 0 .. (links_length - 1) %}
+                                        <li class="social-icons-facebook"><a href="{{links[size].url}}" target="_blank" title="{{links[size].title}}"><i class="{{links[size]['options']['attributes']['class'][0]}} {{links[size]['options']['attributes']['class'][1]}}"></i></a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="header-container container z-index-2">
+                <div class="header-row py-2">
+                    <div class="header-column">
+                        <div class="header-row">
+                            <div class="header-logo header-logo-sticky-change header_logo_and">
+                                <a href="#">
+                                    <img class="header-logo-non-sticky" alt="Porto"  src="{{c['media_image']['image'].url}}" style="position: relative; left: -35px;height:48px; max-width:243px; width:auto; opacity:1 !important">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-column justify-content-end">
+                        <div class="header-row">
+                            <ul class="header-extra-info d-flex align-items-center">
+    
+                                {% for size in 0 .. (links_paragraphs - 1) %}
+    
+                                    <li>
+                                        <div class="header-extra-info-icon">
+                                            <i class="{{ paragraphs[size]['field_link']['options']['attributes']['class'][0] }} {{ paragraphs[size]['field_link']['options']['attributes']['class'][1] }} text-color-primary text-4 position-relative"></i>
+                                        </div>
+                                        <div class="header-extra-info-text">
+                                            <label>{{ paragraphs[size].text }}</label>
+                                            <strong><a href="{{ paragraphs[size]['field_link'].url }}" class="text-decoration-none text-color-hover-primary">{{ paragraphs[size]['field_link'].title }}</a></strong>
+                                        </div>
+                                    </li>
+    
+                                {% endfor %}
+    
+                                {% if not is_login() %}
+    
+                                    <li style="margin-left: 50px !important">
+                                        <a href="{{base_url()}}/node/164">
+                                            <div class="header-extra-info-icon">
+                                                <i class="fas fa-user text-color-primary text-4 position-relative bottom-1"></i>
+                                                <style>
+                                                    .fa-user:before {
+                                                        content: "\f007";
+                                                        font-size: 26px;
+                                                        margin-top: -5px;
+                                                        line-height: 42px;
+                                                    }
+                                                    </style>
+                                            </div>
+                                            <div class="header-extra-info-text">
+                                            
+                                            </div>
+                                        </a>
+                                    </li>
+                                                
+                                {% else %}
+                                <li style="margin-left: 50px !important">
+                                    <div class="header-extra-info-text" style="padding-top: 3px">
+                                        <label>LOGOUT</label>
+                                        <strong><a href="{{base_url()}}/user/logout" class="text-decoration-none text-color-hover-primary" style="text-transform: uppercase;">{{ user['name'] }}</a></strong>
+                                    </div>
+                                    <a href="http://draft.mizara.mg/user/logout">
+                                        <div class="header-extra-info-icon">
+                                            <i class="fas fa-sign-out-alt text-color-primary text-4 position-relative bottom-1"></i>
+                                            <style>
+                                                .fa-sign-out-alt:before {
+                                                    content: "\f2f5";
+                                                    font-size: 26px;
+                                                    margin-top: -5px;
+                                                    line-height: 42px;
+                                                    margin-left: 10px;
+                                                }
+                                            </style>
+                                        </div>
+                                        <div class="header-extra-info-text">
+                                        
+                                        </div>
+                                    </a>
+    
+                                </li>
+                                {% endif %}
+    
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    
+    
+            </div>
+    
+            <div class="header-nav-bar bg-primary" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="" data-sticky-header-style-deactive="" style="background-color: #3366cc !important;">
+                <div class="container">
+                    <div class="header-row">
+                        <div class="header-column">
+                            <div class="header-row justify-content-start">
+                                <div class="header-nav header-nav-force-light-text justify-content-start py-2 py-lg-3" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="{'margin-left': '135px'}" data-sticky-header-style-deactive="{'margin-left': '0'}">
+                                    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
+                                        <nav class="collapse">
+                                            <ul class="nav nav-pills" id="mainNav">
+    
+                                                {% for size in 0 .. (menu_main_length - 1) %}
+                                                    <li class="dropdown dropdown-full-color dropdown-light">
+                                                        <a class="dropdown-item dropdown-toggle" href="{{ menu_main[size].url }}">
+                                                            {{ menu_main[size].text }}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+    
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <button class="btn header-btn-collapse-nav my-2" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </header>
+    
+    <!-- END HEADER -->
