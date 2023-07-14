@@ -1,0 +1,75 @@
+/* respo-design by anders */
+/*menu*/
+@media screen and (max-width: 767px) {
+    .cf3sj .cko23 {
+        color: #33333353 !important
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .logo {
+        width: auto;
+        height: 70px;
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 1120px) {
+    h1.cjkol.cn7oz.c67zf.clwnt {
+        margin-top: 95px;
+        font-size: 43px !important;
+        max-width: 611px !important;
+    }
+    .p-and-header {
+        width: 36.8rem !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 38px !important;
+        max-width: 600px !important;
+    }
+    .p-and-header {
+        width: 30.8rem !important;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 32px !important;
+      
+    }
+    .p-and-header {
+         width: 26.8rem !important;
+    }
+    .header-right img {
+        max-width: 490px !important;
+    }
+    header .right, .header-right {
+        width: 249px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    hr.sm {
+        margin:auto !important
+    }
+    .p-and-header {
+        width: 100%;
+        max-width: 100%;
+    }
+    .p-and-header {
+        width: 100%;
+        max-width: 100%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+    .ban-right.cs4ol {
+        text-align: center !important;
+    }
+}
+
+@media screen and (max-width: 423px) {
+    
+}

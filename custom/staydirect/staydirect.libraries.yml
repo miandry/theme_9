@@ -1,0 +1,42 @@
+global-styling:
+  css:
+    theme: 
+      css/main.css : {}
+      css/aos.css : {}
+      css/repo.css : {}
+      css/style.css : {}
+  js:
+    js/alpinejs.min.js : {} 
+    js/aos.js : {} 
+    js/main.js : {} 
+ 
+
+font-styling:
+  css:
+    theme:
+      '//fonts.cdnfonts.com/css/vastine-personal-use?styles=101853': { type: external, minified: true }
+      '//fonts.cdnfonts.com/css/kanit?styles=19865,19860,19858,19861,19863,19866,19854,19856,19852': { type: external, minified: true }
+
+
+sandox:
+  async: true
+  js:
+    js/sandox.js : {}
+
+      
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
