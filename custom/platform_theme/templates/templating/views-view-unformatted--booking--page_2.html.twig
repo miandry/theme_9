@@ -93,6 +93,7 @@
         <div class="col-lg-9 order-1 order-lg-2  table-view-porto">
             <div class="row">
                 <div class="col">
+            {% if u.driver_license %}{% else %}
                     <section class="call-to-action call-to-action-primary mb-1">
 								<div class="col-sm-9 col-lg-9">
 									<div class="call-to-action-content">
@@ -106,6 +107,7 @@
 									</div>
 								</div>
 					</section>
+            {% endif %}        
                     <div class="card card-modern">
                         <div class="card-body">
                             <div class="datatables-header-footer-wrapper">
