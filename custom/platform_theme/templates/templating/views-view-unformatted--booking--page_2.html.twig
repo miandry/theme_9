@@ -94,7 +94,7 @@
             <div class="row">
                 <div class="col">
             {% if u.driver_license %}{% else %}
-                    <section class="call-to-action call-to-action-primary mb-1">
+                   <section class="call-to-action call-to-action-primary mb-1">
 								<div class="col-sm-9 col-lg-9">
 									<div class="call-to-action-content">
 										<h3>Please, <strong>Upload </strong> your <strong> your driver license !</strong></h3>
@@ -158,11 +158,11 @@
                                                     <td class="booking_info">
                                                              <a href="{{node_url(n['field_item'].nid)}}"><b>{{n['field_item'].title}}</b></a><br/>
                                                                {% for  add in n.field_addons %}
-                                                                    <b>{{add.field_name}}</b> : {{add.field_value}} $ <br/>
+                                                                    <b>{{add.field_name}}</b> : ${{add.field_value}}  <br/>
                                                                {% endfor %}
                                                     </td>
                                                     <td>{{ n['field_dates'][0].value}} <br> {{ n['field_dates'][0].end_value }}</td>
-                                                    <td>{{n.field_price_default}} $ </td>
+                                                    <td>${{n.field_price_default}}  </td>
                                                     
                                                     <td>
 
