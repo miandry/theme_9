@@ -3,7 +3,7 @@ global-styling:
     theme: 
       css/main.css : {}
       css/aos.css : {}
-      css/repo.css : {}
+      css/respo.css : {}
       css/style.css : {}
   js:
     js/alpinejs.min.js : {} 

@@ -9,7 +9,5 @@ libraries:
   - 'staydirect/global-styling'
   - 'staydirect/sandox'
 regions:
-  header: 'Header'
   content: 'Content'
-  footer: 'Footer'
   disalbed: 'Disabled'
