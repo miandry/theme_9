@@ -1733,7 +1733,17 @@ function claro_form_install_select_language_form_alter(&$form, FormStateInterfac
  * Allows the profile to alter the site configuration form.
  */
 function claro_form_install_select_profile_form_alter(&$form, FormStateInterface $form_state) {
-    //  echo("prifle");
+
 }
- 
+function claro_form_install_settings_form_alter(&$form, FormStateInterface $form_state) {
+   //var_dump(array_keys($form));
+   $form['#title'] = "HELLO";
+  // var_dump(array_keys($form));
+ //  var_dump(($form['settings']));
+  $form['driver']['#default_value'] = "sqlite";
+  $form['driver']['#attributes'] = ['class' => ['hidden']];
+  //$form['sqlite-database']['#attributes'] = ['class' => ['hidden']];
+   
+}
+
 
