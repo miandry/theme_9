@@ -26,6 +26,7 @@
  * @see template_preprocess_html()
  */
 #}
+
 {%
   set body_classes = [
     logged_in ? 'user-logged-in',
@@ -49,6 +50,13 @@
     {% endif %}
     {% if library_template["js_header"] %}
         {{library_template["js_header"]|raw}}
+    {% endif %}
+    {% if css_install %}
+      <link href="https://fonts.cdnfonts.com/css/vastine-personal-use?styles=101853" rel="stylesheet">
+      <link href="https://fonts.cdnfonts.com/css/kanit?styles=19865,19860,19858,19861,19863,19866,19854,19856,19852" rel="stylesheet">
+      <link rel="stylesheet" media="all" href="{{css_install_main}}">
+      <link rel="stylesheet" media="all" href="{{css_install}}">
+      <link rel="stylesheet" media="all" href="{{css_install_style}}">
     {% endif %}
     <style>{{ css_template|raw }}</style>
     </head>

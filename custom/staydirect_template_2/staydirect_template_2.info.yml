@@ -1,0 +1,9 @@
+name: 'Theme Stay Direct Technology Template 2'
+type: theme
+base theme: false
+description: 'A Drupal theme based on Bootstrap 5 theme design.'
+core_version_requirement: ^8 || ^9
+
+regions:
+  content: 'Content'
+  disalbed: 'Disabled'

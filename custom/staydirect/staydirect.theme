@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function staydirect_preprocess_html(&$variables) {
+    $current_url = ($_SERVER['SCRIPT_NAME']);
+    if($current_url == "/core/install.php"){
+        $variables["css_install"] = '/themes/custom/staydirect/css/repo.css';
+        $variables["css_install_style"] = '/themes/custom/staydirect/css/style.css';
+        $variables["css_install_main"] = '/themes/custom/staydirect/css/main.css';
+    }
+}

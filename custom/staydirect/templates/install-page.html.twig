@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Claro theme implementation to display a Drupal installation page.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_install_page()
+ */
+#}
+{{ attach_library('staydirect/font-styling') }}
+<div class="layout-container">
+
+  {% if page.sidebar_first %}
+    <aside class="layout-sidebar-first" role="complementary">
+      {{ page.sidebar_first }}
+    </aside>{# /.layout-sidebar-first #}
+  {% endif %}
+
+  <main role="main" class="main-content">
+    {% if title %}
+      <h2 class="heading-c">{{ title }}</h2>
+    {% endif %}
+    {{ page.highlighted }}
+    {{ page.content }}
+  </main>
+
+  {% if page.sidebar_second %}
+    <aside class="layout-sidebar-second" role="complementary">
+      {{ page.sidebar_second }}
+    </aside>{# /.layout-sidebar-second #}
+  {% endif %}
+
+  {% if page.page_bottom %}
+    <footer role="contentinfo">
+      {{ page.page_bottom }}
+    </footer>
+  {% endif %}
+
+</div>{# /.layout-container #}

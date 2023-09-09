@@ -1,9 +1,8 @@
 name: 'Theme Stay Direct Technology'
 type: theme
-base theme: false
+base theme: stable
 description: 'A Drupal theme based on Bootstrap 5 theme design.'
 core_version_requirement: ^8 || ^9
-
 libraries:
   - 'staydirect/font-styling'
   - 'staydirect/global-styling'
