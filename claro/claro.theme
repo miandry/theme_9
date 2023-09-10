@@ -1697,53 +1697,28 @@ function claro_system_module_invoked_theme_registry_alter(array &$theme_registry
     }
   }
 }
-/**
- * Implements hook_form_FORM_ID_alter() for install_configure_form().
- *
- * Allows the profile to alter the site configuration form.
- */
-function claro_form_install_select_language_form_alter(&$form, FormStateInterface $form_state) {
- // $form['langcode'] =  'en';                                                                                                                                                                                                                      p                                                                                                                                                                                                                                                                                              cccc                            
-  // $form['complete_projects_radios'] = [
-  //   '#type'          => 'radios',
-  //   '#title'         => t('Project status'),
-  //   '#default_value' => 0,
-  //   '#options'       => [
-  //     0 => t('Current'),
-  //     1 => t('Complete'),
-  //   ],
-  //   // Define the onChange like so:
-  //   // '#attributes'    => [
-  //   //   'onChange' => 'this.form.submit();',
-  //   // ],
-  // ];
-  global $base_url;
-  $path = $base_url.'/core/install.php?rewrite=ok&langcode=en&profile=staydirect&continue=1';
-  $redirect_url = Url::fromUri($path);
-  // Get the external URL.
-  $redirect_url = $redirect_url->toString();
-  // Perform the redirect.
-  $response = new RedirectResponse($redirect_url);
-  $response->send();
-  return ;
-}
-/**
- * Implements hook_form_FORM_ID_alter() for install_configure_form().
- *
- * Allows the profile to alter the site configuration form.
- */
 function claro_form_install_select_profile_form_alter(&$form, FormStateInterface $form_state) {
+  $form['profile']['#default_value'] = "staydirect";
+  //var_dump($form['profile']['#options']);
+  unset($form['profile']['#options']["standard"]);
+  unset($form['profile']['#options']["minimal"]);
+  unset($form['profile']['#options']["demo_umami"]);
 
+
+
+  
+  // Switch to the dynamic database connection.
+  //global $site_variables ;
+  //$site_name = $site_variables['site_name'];
+
+
+  //$form['#title'] = "HELLO123mm";
+ // $form['settings']['mysql']['database']['#default_value'] = 'u739238786_shared';
+  //$form['settings']['mysql']['password']['#type'] = 'textfield';
+ // $form['settings']['mysql']['username']['#default_value']  = 'u739238786_shared';
+ // $form['settings']['mysql']['password']['#default_value']  = 'Staydirect@#009856';
+ // $form['settings']['mysql']['username']['#default_value']  = 'root';
+ // $form['settings']['mysql']['password']['#default_value']  = 'root';
+ // $form['settings']['mysql']['advanced_options']['prefix']['#default_value']   = '123_';
+// $form['driver']['#default_value'] = "sqlite";
 }
-function claro_form_install_settings_form_alter(&$form, FormStateInterface $form_state) {
-   //var_dump(array_keys($form));
-   $form['#title'] = "HELLO";
-  // var_dump(array_keys($form));
- //  var_dump(($form['settings']));
-  $form['driver']['#default_value'] = "sqlite";
-  $form['driver']['#attributes'] = ['class' => ['hidden']];
-  //$form['sqlite-database']['#attributes'] = ['class' => ['hidden']];
-   
-}
-
-
