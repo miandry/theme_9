@@ -3,13 +3,26 @@
 
 @media screen and (max-width: 1342px) {
 
-    .about.img, img.crfle.c6axz.cet3v {
-        height: 487px !important;
-    }
+  
     .tmpl-and .cn3zo.cfqnb {
         padding-top: 0 !important;
     }
 }
+
+@media screen and (max-width: 1300px) {
+
+ 
+    .tmpl-and .cn3zo.cfqnb {
+        padding-top: 0 !important;
+    }
+    #navbar-and, .csk5c {
+        padding-left: 50px !important;
+        padding-right: 50px !important; 
+    }
+
+}
+
+
 
 @media screen and (max-width: 1200px) {
 
@@ -19,9 +32,7 @@
     .cq15i.ttlabt {
         font-size: 15px !important;
     }
-    .about.img, img.crfle.c6axz.cet3v {
-        height: 465px !important;
-    }
+   
     .video-play-img.csk5c.c6axz.c0q32 {
         height: 644px;
     }
@@ -39,9 +50,7 @@
     .cq15i.ttlabt {
       
     }
-    .about.img, img.crfle.c6axz.cet3v {
-        height: 418px !important;
-    }
+    
     .video-play-img.csk5c.c6axz.c0q32 {
         height: 619px;
     }
@@ -55,11 +64,6 @@
     .flsh img, .flsh-end img {
         display: none;
     }
-    .about.img, img.crfle.c6axz.cet3v {
-        height: 330px !important;
-        position: relative;
-        top: 134px;
-    }
     .video-play-img.csk5c.c6axz.c0q32 {
         height: 615px !important;
     }
@@ -72,39 +76,57 @@
     section.about {
         margin-top: 100px !important;
     }
-
+    .ban-right {
+        width: 56% !important;
+    }
+    h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 41px!important;
+    }
+   
 }
+
 
 @media only screen and (min-width: 961px) and  (max-width: 1024px)  {
-    .about.img, img.crfle.c6axz.cet3v { 
-        position: relative;
-        width: 100% !important;
-        height: auto !important;
-        top: 170px;
+    .about {
+        margin-bottom: 100px
+    }
+    .c25h4 {
+        display: none;
+    }
+  
+}
+
+@media screen and (max-width: 1023px) {
+    .ban-right h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 40px !important;
+    }
+    .about {
+        margin-bottom: 100px
+    }
+    .c25h4 {
+        display: none;
     }
 }
+
+
+@media screen and (max-width: 1000px) {
+    .ban-right h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 37px !important;
+    }
+    .p-and-header {
+        padding-right: 20px;
+    }
+}
+
 
 
 @media screen and (max-width: 960px) {
-
-    .about {
-        margin-top: 98px;
+    .ban-right {
+        width: 58% !important;
+        padding: 20px;
     }
-
-    h2.ttl {
-        font-size: 16px !important;
-    }
-
-    .about.img, img.crfle.c6axz.cet3v {
-        height: 300px !important;
-        height: 292px !important;
-        position: relative;
-        top: 107px;
-        left: 30px;
-    }
-
+    
     .ban-right h1.cjkol.cn7oz.c67zf.clwnt {
-        font-size: 38px !important;
         padding-right: 20px;
     }
     .header-right img {
@@ -135,13 +157,91 @@
     .tmpl-and {
         margin-top: -80px;
     }
- 
+    .ban-right h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 35px !important;
+    }
+    .logo {
+        width: 175px;
+       height: auto;
+    }
+    .nav-left-and {
+        margin-left: 5px !important;
+    }
+   
+
+    .btn-about button {
+        margin-left : 20px !important;
+    }
+    #about-us {
+        height: 132px !important;
+    }
+    .about{
+        margin-bottom: 150px;
+    }
+
+}
+
+@media only screen and (min-width: 770px) and  (max-width: 858px)  {
+
+    button.navbar-toggler.ms-auto.icon-md.btn.btn-light.p-0.collapsed.btn.mt-btn-nav, .cwllr.cvcmx.cppm7 {
+        display: none;
+    }
+    .nav-list-respo-and {
+        display: block !important;
+    }
+    .cejlt.cf7ka
+    {
+        display: flex !important;
+    }
+    svg.cko23.cyzmd.cwi8h.c251y.cbk0d {
+        color: #33333353 !important;
+    }
+    .ban-right h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 34px !important;
+    }
+    .ban-right {
+        width: 53% !important;
+        padding: 20px;
+    }
+    .ban-right.c8kpm {
+        min-width: 27rem !important;
+    } 
+    .cvbrt {
+       display: block;
+    } 
+    .crmot.c7baw.cuzj2.cf7ka.cmz8h {
+        position: relative;
+    }
+    .ban-right h1.cjkol.cn7oz.c67zf.clwnt {
+        font-size: 30px !important;
+    }
+    .p-and-header {
+        max-width: 84%;
+        padding-right: 5px;
+    }
+    .ban-right h1.cjkol.cn7oz.c67zf.clwnt {
+        padding-right: 30px;
+    }
+    .btn-about button{
+        max-width: 300px;
+        margin-left : 20px !important;
+        word-wrap: break-word;
+    }
+    h2.ttl {
+        max-width: 300px;
+        margin-left: 0px !important;
+        word-wrap: break-word;
+        font-size: 20px !important;
+    }
+    .about hr.sm{
+        margin-top: 0 !important;
+    }
 }
 
 
-@media screen and (max-width: 768px) {
-    .about.img, img.crfle.c6axz.cet3v {
-        display: none;
+@media screen and (max-width: 769px) {
+    .ban-right {
+        width: 100% !important;
     }
     .c8kpm.cs4ol.culxg.ban-right {
         margin: auto !important;
@@ -160,11 +260,9 @@
         margin: auto;
     }
     /*works*/
-    .blc-header-right {
-        display: none;
-    }
+  
     .hero{
-        padding-bottom: 168px !important;
+        /*padding-bottom: 168px !important;*/
     }
 
     /*price*/
@@ -193,11 +291,9 @@
 
     /*footer*/
     footer img {
-        
         text-align: center;
         margin: auto;
         margin-bottom: 25px;
-    
     }
     .menu-footer {
         width: 500px;
@@ -236,7 +332,7 @@
     }
     
     .menu-footer li a{
-        font-size: 20px !important;
+        font-size: 16px !important;
     }
     footer .logo {
         margin: auto;
@@ -258,7 +354,26 @@
     section.cfo6z.hero.video {
         padding-bottom: 0;
     }
+    .copdj>:not([hidden])~:not([hidden]) {
+        margin-left: 0 !important;
+    }
+    .icon-rs-footer img {
+        top: 11px !important;
+    }
+    footer ul.menu-icn {
+        margin: auto;
+    }
+    footer .cf7ka {
+        margin: auto !important;
+        padding: 25px;
+    }
+    .c8i2c.csk5c.c6axz.crch5 {
+        position: relative;
+    }
 
+    .cevyg.cupyh.cya8o.c309j.cqlx0.aos-init.aos-animate {
+        padding: 0 20px
+    }
 }
 
 @media screen and (max-width: 560px) {
@@ -267,7 +382,7 @@
     }
 }
 
-@media screen and (max-width: 454px) {
+v
     .hero{
         padding-bottom: 8px !important;
     }
@@ -283,7 +398,7 @@
 @media screen and (max-width: 425px) {
     .logo {
         width: auto;
-        height: 70px;
+        height: auto;
         margin-top: 50px;
     }
     .cq15i.csthe.c3qvm.menu-footer {
@@ -317,8 +432,47 @@
     .about {
         margin-top: 0 !important;
     }
+    .price .price-btn {
+        padding: 5px!important;
+    }
 
-    
+}
+
+@media screen and (max-width: 400px) {
+    header {
+        min-height: 894px;
+    }
+    .blc-header-right {
+        margin-top: 0 !important;
+    }
+    .pdlr-86 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #prices {
+        margin-top: 500px;
+    }
+
+}
+
+
+@media screen and (max-width: 350px) {
+
+    section.cfo6z.hero.video h1.cjkol.cn7oz.c67zf.clwnt {
+        margin-top: 30px;
+        font-size: 30px !important;
+    }  
+    h2 {
+        font-size: 30px !important;
+    } 
+  
+    header, section.cfo6z.hero.video {
+        background: linear-gradient(150deg, rgba(217, 217, 217, 0.00) 0%, rgba(217, 217, 217, 0.00) 0.01%, rgba(217, 217, 217, 0.30) 100%) !important;
+    }
+    #prices {
+        margin-top: 490px;
+    }
+
 }
 
 @media screen and (max-width: 320px) {
@@ -334,5 +488,8 @@
     header, section.cfo6z.hero.video {
         background: linear-gradient(150deg, rgba(217, 217, 217, 0.00) 0%, rgba(217, 217, 217, 0.00) 0.01%, rgba(217, 217, 217, 0.30) 100%) !important;
     }
-  
+    #prices {
+        margin-top: 613px;
+    }
+
 }

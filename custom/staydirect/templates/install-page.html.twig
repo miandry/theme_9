@@ -9,33 +9,57 @@
  * @see template_preprocess_install_page()
  */
 #}
-{{ attach_library('staydirect/font-styling') }}
-<div class="layout-container">
+<style>
 
-  {% if page.sidebar_first %}
-    <aside class="layout-sidebar-first" role="complementary">
-      {{ page.sidebar_first }}
-    </aside>{# /.layout-sidebar-first #}
-  {% endif %}
+</style>
+    <div class="header-step">
+      <div class="container container-and">
+        <div class="row row-and">
+          <div class="col-6 themed-grid-col">
+            <div class="top-left">
+              <a href="#">
+                <img src="/themes/custom/staydirect/logo.png" alt="" class="pt-md-4  mt-4 mt-md-5 img-fluid">
+              </a>
+            </div>
+          </div>
+          <div class="col-6 themed-grid-col text-right">
+            <div class="top-right">
+              <div class="step">
+                <a href="#">Step 1</a>
+              </div>
+              <div class="ttl-step">Information</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <main role="main" class="main-content">
-    {% if title %}
-      <h2 class="heading-c">{{ title }}</h2>
-    {% endif %}
-    {{ page.highlighted }}
-    {{ page.content }}
-  </main>
+    <main class="main-step main-step-specification">
+      <div class="container container-and">
+        <div class="row ">
 
-  {% if page.sidebar_second %}
-    <aside class="layout-sidebar-second" role="complementary">
-      {{ page.sidebar_second }}
-    </aside>{# /.layout-sidebar-second #}
-  {% endif %}
+          <div class="sidebar col-md-3 order-sm-first">
+            {{ page.sidebar_first }}
+          </div>
 
-  {% if page.page_bottom %}
-    <footer role="contentinfo">
-      {{ page.page_bottom }}
-    </footer>
-  {% endif %}
+          <div class="col-md-9 p-5">
 
-</div>{# /.layout-container #}
+            <div class="row mb-3">
+                  {% if title %}
+                       <h2 class="mb-3 title-form">{{ title }}</h2>
+                   {% endif %}
+            </div>
+            <div class="row form-payment">
+              <div class="col-md-12 col-lg-12 choosecontent">
+                
+                    {{ page.content }}
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </main>

@@ -1,29 +1,24 @@
 global-styling:
   css:
     theme: 
-      css/main.css : {}
-      css/aos.css : {}
-      css/respo.css : {}
+      css/fonts.css : {}
+      css/theme.css : {}
       css/style.css : {}
+      css/global.css : {}
+      css/reset.css : {}
+      css/step-form.css : {}
   js:
     js/alpinejs.min.js : {} 
     js/aos.js : {} 
     js/main.js : {} 
  
 
-font-styling:
+bootstrap:
   css:
-    theme:
-      '//fonts.cdnfonts.com/css/vastine-personal-use?styles=101853': { type: external, minified: true }
-      '//fonts.cdnfonts.com/css/kanit?styles=19865,19860,19858,19861,19863,19866,19854,19856,19852': { type: external, minified: true }
-
-
-sandox:
-  async: true
+    theme: 
+      vendor/bootstrap/css/bootstrap.min.css : {}
   js:
-    js/sandox.js : {}
-
-      
+    vendor/bootstrap/js/bootstrap.min.js : {}    
 
 
 

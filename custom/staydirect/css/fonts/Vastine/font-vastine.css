@@ -1,0 +1,43 @@
+
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-Thin.otf) format("opentype");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-Hairline.otf) format("opentype");;
+}
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-ExtraLight.otf) format("opentype");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-Light.otf) format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-Medium.otf) format("opentype");
+  color: #333;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-SemiBold.otf) format("opentype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-Bold.otf) format("opentype");
+  font-style:normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Vastine";
+  src: url(Vastine-Regular.otf) format("opentype");;
+}
+

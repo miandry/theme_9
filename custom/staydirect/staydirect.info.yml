@@ -1,12 +1,18 @@
 name: 'Theme Stay Direct Technology'
 type: theme
-base theme: stable
+base theme: claro
 description: 'A Drupal theme based on Bootstrap 5 theme design.'
 core_version_requirement: ^8 || ^9
 libraries:
-  - 'staydirect/font-styling'
   - 'staydirect/global-styling'
-  - 'staydirect/sandox'
+  - 'staydirect/bootstrap'
 regions:
-  content: 'Content'
+  header: 'Header'
+  pre_content: 'Pre-content'
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
   disalbed: 'Disabled'
+
