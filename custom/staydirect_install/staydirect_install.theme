@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Claro theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+
+function staydirect_install_form_install_select_profile_form_alter(&$form, FormStateInterface $form_state) {
+  $form['profile']['#default_value'] = "staydirect";
+  //var_dump($form['profile']['#options']);
+  unset($form['profile']['#options']["standard"]);
+  unset($form['profile']['#options']["minimal"]);
+  unset($form['profile']['#options']["demo_umami"]);
+
+}
