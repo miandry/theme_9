@@ -1,0 +1,50 @@
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.container.container-and, .container-fluid.container-and, .container-lg.container-and, .container-md.container-and, .container-sm.container-and, .container-xl.container-and, .container-xxl.container-and {
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+}
+.row.row-and {
+    margin-right: 0;
+    margin-left: 0;
+}
+.row.row-and>* {
+    padding-right: 0;
+    padding-left: 0;
+}
+.row {
+    margin-right: 0;
+    margin-left: 0
+}
+@media (min-width: 1400px) {
+	.container.container-and, .container-lg.container-and, .container-md.container-and, .container-sm.container-and, .container-xl.container-and, .container-xxl.container-and {
+		/* 1200px + padding-right: 40px + padding-left: 40px */
+		max-width: 1280px;
+	}
+}
+
+
+

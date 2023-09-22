@@ -2,7 +2,12 @@ global-styling:
   version: VERSION
   css:
     theme:
+      vendor/bootstrap/css/bootstrap-grid.min.css : {}
       css/fonts.css: {}
+      css/global.css: {}
+      css/step-form.css: {}
+      css/reset.css: {}
       css/style.css: {}
-
+  js:
+    vendor/bootstrap/js/bootstrap.min.js : {}  
 

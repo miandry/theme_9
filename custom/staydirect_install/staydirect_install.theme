@@ -14,5 +14,4 @@ function staydirect_install_form_install_select_profile_form_alter(&$form, FormS
   unset($form['profile']['#options']["standard"]);
   unset($form['profile']['#options']["minimal"]);
   unset($form['profile']['#options']["demo_umami"]);
-
 }
