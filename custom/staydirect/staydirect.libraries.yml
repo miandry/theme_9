@@ -5,7 +5,6 @@ global-styling:
       css/theme.css : {}
       css/style.css : {}
       css/global.css : {}
-      css/reset.css : {}
       css/step-form.css : {}
   js:
     js/alpinejs.min.js : {} 
@@ -19,6 +18,11 @@ bootstrap:
       vendor/bootstrap/css/bootstrap.min.css : {}
   js:
     vendor/bootstrap/js/bootstrap.min.js : {}    
+
+maintenance:
+  css:
+    theme: 
+      css/maintenance-page.css : {}
 
 
 
