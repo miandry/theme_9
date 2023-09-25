@@ -43,3 +43,12 @@ h1, h2 {
     background: rgba(217, 217, 217, 0.17);
     padding: 34px;
 }
+.task-list li:before {
+    content: none!important;
+}
+#edit-mysql,
+#edit-driver--wrapper,
+#edit-update-notifications,
+.hidden-task{
+    display: none!important;
+}
