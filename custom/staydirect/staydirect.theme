@@ -3,19 +3,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 
-/**
- * Implements hook_preprocess_HOOK() for HTML document templates.
- *
- * Adds body classes if certain regions have content.
- */
-function staydirect_preprocess_html(&$variables) {
-    $current_url = ($_SERVER['SCRIPT_NAME']);
-    if($current_url == "/core/install.php"){
-        $variables["css_install"] = '/themes/custom/staydirect/css/repo.css';
-        $variables["css_install_style"] = '/themes/custom/staydirect/css/style.css';
-        $variables["css_install_main"] = '/themes/custom/staydirect/css/main.css';
-    }
-}
+
 function staydirect_form_install_select_profile_form_alter(&$form, FormStateInterface $form_state) {
     $form['profile']['#default_value'] = "staydirect";
     //var_dump($form['profile']['#options']);
@@ -25,15 +13,6 @@ function staydirect_form_install_select_profile_form_alter(&$form, FormStateInte
   
 }
 
-/**
- * Implements hook_preprocess_install_page().
- */
-function staydirect_preprocess_install_page(&$variables) {
-
-    // Claro has custom styling for the install page.
-    // $variables['#attached']['library'][] = 'staydirect/bootstrap';
-    
-}
 /**
  * Implements hook_maintenance_task_list().
  */
