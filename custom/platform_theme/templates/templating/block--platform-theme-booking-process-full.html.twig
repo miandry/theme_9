@@ -99,17 +99,15 @@
                     </td>
                     <td class="text-end align-top">
                       {% set subtotal = subtotal + params["booking-range"] %}
-                    {{subtotal}}
+            
                       <span class="font-weight-medium text-color-grey">{{ front_currency(params["booking-range"])|raw }}</span>
                       <input  type="hidden" name="booking-range" value="{{ params["booking-range"] }}">
 
                     </td>
                   </tr>
                     {% set i = 1 %}
-                    {}
                   {% for key,item in params %}
                     {% if key not in ['booking-range', 'booking-range-date', 'carid'] and not(key ends with '__type')  %}
-   
                       {% set status = true  %}
                       {% if "----" in  item %}
                            {% set group =  item|split("----")%}
@@ -123,17 +121,17 @@
                                                   
                       <tr>
                         <td class="border-top-0 pt-0">
-                          <strong class="d-block text-color-dark line-height-1 font-weight-semibold">{{ key|replace({'_':' '}) }} </strong>
+                          <strong class="d-block text-color-dark line-height-1 font-weight-semibold">{{ key|replace({'_':' '}) }} </strong> 
                         </td>
                         <td class="border-top-0 text-end align-top pt-0">
                           <span class="amount font-weight-medium text-color-grey">
                          
                             {% if group %}
-                              {{front_currency(group[1])|raw}}
+                              {{front_currency(group[1])|raw}}.  
                               {% set price = group[1] %}
                             {% else %}
                               {{front_currency(item)|raw}}
-                              {% set price = item %}
+                              {% set price = item %}  
                              
                             {% endif %}</span>
                         </td>
@@ -147,8 +145,9 @@
                       
                     {% endif %}           
                   {% endfor %}
+                  
+                  
                     {% set total_tax= ((floatval(subtotal)*tax_us)/100)|round(2, 'floor')  %}
-                    {{subtotal}}
                     {% set subtotal = floatval(subtotal)|round(2, 'floor') %}
                   <tr class="total">
                     <td>

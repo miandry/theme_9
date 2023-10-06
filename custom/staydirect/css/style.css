@@ -627,3 +627,14 @@ button.navbar-toggler.ms-auto.icon-md.btn.btn-light.p-0.collapsed.btn.mt-btn-nav
 }
 
 button.navbar-toggler.ms-auto.icon-md.btn.btn-light.p-0.collapsed.btn.mt-btn-nav.btn-get-star.btn-and {}
+
+.simple-status-messages {
+    bottom: 10px!important;
+    top: auto!important;
+    width: auto!important;
+
+}
+.simple-status-messages .status-messages {
+    border-radius: 10px!important;
+    font-size: 16px!important;
+}

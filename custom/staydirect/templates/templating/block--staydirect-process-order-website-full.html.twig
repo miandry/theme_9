@@ -1,9 +1,13 @@
 {{ attach_library('claro/global-styling') }}
 {{ attach_library('staydirect_install/global-styling') }}
 {{ attach_library('staydirect/maintenance') }}
-
 {% set css = 
-    ' .body-content-order-form .logo { height:auto!important }
+     '.main-content{margin-top: -15px;}
+	  .body-content-order-form  #image-wrapper{border-radius: 30px;padding: 15px;background: rgba(217, 217, 217, 0.17);}
+      .body-content-order-form .logo { height:auto!important }
+	  .body-content-order-form .field--name-st-domain-name, 
+	  .body-content-order-form .field--name-site-name{display:none!important}
+	  .body-content-order-form .field--name-st-domain-name{display:none!important}
       .body-content-order-form .vertical-tabs,
 	  .body-content-order-form .js-form-type-vertical-tabs{display:none!important}
 	  .body-content-order-form .node-site-form input,
@@ -42,12 +46,12 @@
 			<div class="col-4" role="complementary">
 				<ol class="task-list">
 					<li class="is-active">
-						User Information
+						Web site Information
 						<span class="visually-hidden">
 							(active)</span>
 					</li>
 					<li >
-						Web site Information
+						Web site profile
 					</li>
 					<li class="hidden-task">
 						Verify requirements
