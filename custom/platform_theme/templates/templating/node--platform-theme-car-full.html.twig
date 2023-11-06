@@ -16,7 +16,9 @@
 {% set uid = current_user().uid %}
 {% set imgs = n['field_images'] %}
 {% set imgs_length = imgs|length %}
-{% set owner = user_parser(n.field_owner.user) %}
+
+{% set owner = node_parser(n.field_owner.node) %}
+
 {% set nid =  n.nid %}
 {% set params = get_parameter() %}
 {% if params.comment_body %}
@@ -704,9 +706,9 @@
                             <div class="testimonial pb-4 appear-animation animated fadeInRight appear-animation-visible" data-appear-animation="fadeInRight" data-appear-animation-delay="0" style="animation-delay: 0ms; margin-bottom:0px !important">
                                 <div class="testimonial-author" style="margin-left: 0 !important">
                                     <div class="testimonial-author-thumbnail" style=" border-radius: 50%; width: 55px; height: 55px; border: solid 1px #ced2e3">
-                                        <img src="{{owner.user_picture.url}}" class="img-fluid rounded-circle" alt="">
+                                        <img src="{{owner.field_image.url}}" class="img-fluid rounded-circle" alt="">
                                     </div>
-                                    <p><strong style="font-size: 1.5rem;">{{owner.field_first_name}} {{owner.field_last_name}}</strong></p>
+                                    <p><strong style="font-size: 1.5rem;">{{owner.title}} {{owner.field_last_name}}</strong></p>
                                 </div>
                                 <div class="testimonial-arrow-down" style="padding-bottom:9px"></div>
 
@@ -830,8 +832,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoevlYpAgQSQCvqhkRS9IiCfNrhhUrF6k&sensor=false"></script>
