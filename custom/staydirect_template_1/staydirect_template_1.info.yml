@@ -1,9 +1,10 @@
-name: 'Theme Stay Direct Technology Template 1'
+name: 'Theme Stay Direct Technology Template Blue'
 type: theme
 base theme: false
-description: 'A Drupal theme based on Bootstrap 5 theme design.'
+description: 'A Drupal theme based on Bootstrap 5 theme design. Blue Color'
 core_version_requirement: ^8 || ^9
-
 regions:
   content: 'Content'
   disalbed: 'Disabled'
+libraries:
+  - 'staydirect_template_1/global-styling'
