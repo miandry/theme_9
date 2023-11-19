@@ -7,6 +7,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 function staydirect_install_form_install_select_profile_form_alter(&$form, FormStateInterface $form_state) {
   $form['profile']['#default_value'] = "staydirect";
@@ -29,6 +31,33 @@ function staydirect_install_form_alter(&$form, FormStateInterface $form_state, $
           $form['regional_settings']['date_default_timezone']['#title'] = 'US Time Zone';
        break;          
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for install_configure_form.
+ */
+function staydirect_install_form_install_configure_form_alter(&$form, &$form_state) {
+  // Add a custom submit handler to the form.
+  $form['actions']['submit']['#submit'][] = '_staydirect_install_submit';
+}
+
+/**
+ * Custom submit handler for install_configure_form.
+ */
+function _staydirect_install_submit($form, &$form_state) {
+  // $update_manager = \Drupal::service('update.manager');
+  // $update_manager->updatePrepare();
+  // $update_manager->updateDoBatch();
+
+  // Perform custom actions when the form is submitted.
+  // For example, you can access form values using $form_state['values'].
+
+  // Display a message after the form submission.
+  //  $redirect_url = "/update.php/selection";
+    // Perform the redirect.
+  //  $response = new RedirectResponse($redirect_url);
+  //  $response->send();
+  //  return ;
 }
 
 
