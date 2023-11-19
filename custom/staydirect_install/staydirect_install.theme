@@ -58,6 +58,15 @@ function _staydirect_install_submit($form, &$form_state) {
   //  $response = new RedirectResponse($redirect_url);
   //  $response->send();
   //  return ;
+  // Get the module installer service
+  $module_name = 'views';
+$module_installer = \Drupal::service('module_installer');
+
+// Uninstall the module
+$module_installer->uninstall([$module_name]);
+
+// Enable the module
+$module_installer->install([$module_name]);
 }
 
 
