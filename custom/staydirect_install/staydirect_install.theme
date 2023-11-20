@@ -59,14 +59,23 @@ function _staydirect_install_submit($form, &$form_state) {
   //  $response->send();
   //  return ;
   // Get the module installer service
-  $module_name = 'views';
-$module_installer = \Drupal::service('module_installer');
+//   $module_name = 'views';
+//   $module_installer = \Drupal::service('module_installer');
 
-// Uninstall the module
-$module_installer->uninstall([$module_name]);
+//    // Uninstall the module
+//    $module_installer->uninstall([$module_name]);
 
-// Enable the module
-$module_installer->install([$module_name]);
+//      // Enable the module
+//     $module_installer->install([$module_name]);
+//     // Run updates
+// $update_manager = \Drupal::service('update.post_update_registry');
+// $update_manager->applyUpdates();
+
+// // Clear the cache
+// \Drupal::service('cache_tags.invalidator')->invalidateAll();
+
+// echo "Module $module_name reinstalled successfully.";
+
 }
 
 
