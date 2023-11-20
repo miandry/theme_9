@@ -45,6 +45,17 @@ function staydirect_install_form_install_configure_form_alter(&$form, &$form_sta
  * Custom submit handler for install_configure_form.
  */
 function _staydirect_install_submit($form, &$form_state) {
+  
+
+// Specify the URL to redirect to
+$redirectUrl = $base_url."/update.php/selection";
+
+// Send a JavaScript redirect
+echo "<script>window.location.href='$redirectUrl';</script>";
+
+// Make sure to exit or die to prevent further execution
+exit;
+
   // $update_manager = \Drupal::service('update.manager');
   // $update_manager->updatePrepare();
   // $update_manager->updateDoBatch();
