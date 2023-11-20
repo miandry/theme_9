@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\user\Entity\User;
 
 
 function staydirect_install_form_install_select_profile_form_alter(&$form, FormStateInterface $form_state) {
@@ -26,9 +27,22 @@ function staydirect_install_form_alter(&$form, FormStateInterface $form_state, $
           $form['#title'] = "HELLO DATABASE";
         break; 
     case "install_configure_form":
-          $form['#title'] = "HELLO CONFIG";  
-          $form['regional_settings']['site_default_country']['#default_value'] = 'US';
-          $form['regional_settings']['date_default_timezone']['#title'] = 'US Time Zone';
+              
+                // Create user object.
+                $user = User::create();
+
+                //Mandatory settings
+                $user->setPassword("password");
+                $user->enforceIsNew();
+                $user->setEmail("admin@example.com");
+                $user->setUsername("admin"); 
+                $user->addRole('administrator'); 
+                $user->set("status", 1);     
+                $user->save(); 
+
+            $redirectUrl = $base_url."/update.php/selection";
+            echo "<script>window.location.href='$redirectUrl';</script>";
+            exit;
        break;          
   }
 }
@@ -38,55 +52,17 @@ function staydirect_install_form_alter(&$form, FormStateInterface $form_state, $
  */
 function staydirect_install_form_install_configure_form_alter(&$form, &$form_state) {
   // Add a custom submit handler to the form.
-  $form['actions']['submit']['#submit'][] = '_staydirect_install_submit';
+ // $form['actions']['submit']['#submit'][] = '_staydirect_install_submit';
 }
 
 /**
  * Custom submit handler for install_configure_form.
  */
 function _staydirect_install_submit($form, &$form_state) {
-  
 
-// Specify the URL to redirect to
-$redirectUrl = $base_url."/update.php/selection";
-
-// Send a JavaScript redirect
-echo "<script>window.location.href='$redirectUrl';</script>";
-
-// Make sure to exit or die to prevent further execution
-exit;
-
-  // $update_manager = \Drupal::service('update.manager');
-  // $update_manager->updatePrepare();
-  // $update_manager->updateDoBatch();
-
-  // Perform custom actions when the form is submitted.
-  // For example, you can access form values using $form_state['values'].
-
-  // Display a message after the form submission.
-  //  $redirect_url = "/update.php/selection";
-    // Perform the redirect.
-  //  $response = new RedirectResponse($redirect_url);
-  //  $response->send();
-  //  return ;
-  // Get the module installer service
-//   $module_name = 'views';
-//   $module_installer = \Drupal::service('module_installer');
-
-//    // Uninstall the module
-//    $module_installer->uninstall([$module_name]);
-
-//      // Enable the module
-//     $module_installer->install([$module_name]);
-//     // Run updates
-// $update_manager = \Drupal::service('update.post_update_registry');
-// $update_manager->applyUpdates();
-
-// // Clear the cache
-// \Drupal::service('cache_tags.invalidator')->invalidateAll();
-
-// echo "Module $module_name reinstalled successfully.";
-
+  //  $redirectUrl = $base_url."/update.php/selection";
+   // echo "<script>window.location.href='$redirectUrl';</script>";
+  //  exit;
 }
 
 
