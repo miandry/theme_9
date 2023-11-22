@@ -504,6 +504,8 @@
     position: absolute;
     top: 20px;
     right: 0;
+    background: none;
+    border: none;
   }
   .testimonial .btn-slider .left, .testimonial .btn-slider .right {
     width: 50px;
