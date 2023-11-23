@@ -1,212 +1,62 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Khand:wght@500&display=swap');
-*{
-  margin:0;
-  padding: 0;
-  box-sizing: border-box;
+html, body {
+	 margin: 0 auto;
+	 font-family: 'Roboto', sans-serif;
+	 height: 100%;
+	 background: #eeeef4;
+	 font-weight: 100;
+	 user-select: none;
 }
-body  { 
-  height: 100vh;
-  display: flex;
-  font-size: 14px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Khand', sans-serif;   
-}        
-
-.wrapperAlert {
-  width: 500px;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 12px;
-  border: thin solid #ddd;           
+ main {
+	 height: 100%;
+	 display: flex;
+	 margin: 0 20px;
+	 text-align: center;
+	 flex-direction: column;
+	 align-items: center;
+	 justify-content: center;
+   padding: 40px;
 }
-
-.topHalf {
-  width: 100%;
-  color: white;
-  overflow: hidden;
-  min-height: 250px;
-  position: relative;
-  padding: 40px 0;
-  background: rgb(0,0,0);
-  background: -webkit-linear-gradient(45deg, #019871, #a0ebcf);
+ main h1 {
+	  padding: 20px;
+    font-size: 3em!important;
+    font-weight: 100!important;
+    color: #62929E!important;
+    margin: 0;
 }
-
-.topHalf p {
-  margin-bottom: 30px;
+ main h2 {
+	 padding: 20px;
+   font-size: 1.5em!important;
+   font-weight: 100!important;
 }
-svg {
-  fill: white;
+ main h3 {
+   font-size: 1.5em!important;
+   font-weight: 100!important;
+	 padding: 20px;
 }
-.topHalf h1 {
-  font-size: 2.25rem;
-  display: block;
-  font-weight: 500;
-  letter-spacing: 0.15rem;
-  text-shadow: 0 2px rgba(128, 128, 128, 0.6);
-}
-        
-/* Original Author of Bubbles Animation -- https://codepen.io/Lewitje/pen/BNNJjo */
-.bg-bubbles{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;            
-  z-index: 1;
+ main a {
+	 font-size: 1.5em;
+	 font-weight: 300;
+	 color: #62929E;
+	 text-decoration: none;
 }
 
-li{
-  position: absolute;
-  list-style: none;
-  display: block;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.15);/* fade(green, 75%);*/
-  bottom: -160px;
-
-  -webkit-animation: square 20s infinite;
-  animation:         square 20s infinite;
-
-  -webkit-transition-timing-function: linear;
-  transition-timing-function: linear;
-}
-li:nth-child(1){
-  left: 10%;
-}		
-li:nth-child(2){
-  left: 20%;
-
-  width: 80px;
-  height: 80px;
-
-  animation-delay: 2s;
-  animation-duration: 17s;
-}		
-li:nth-child(3){
-  left: 25%;
-  animation-delay: 4s;
-}		
-li:nth-child(4){
-  left: 40%;
-  width: 60px;
-  height: 60px;
-
-  animation-duration: 22s;
-
-  background-color: rgba(white, 0.3); /* fade(white, 25%); */
-}		
-li:nth-child(5){
-  left: 70%;
-}		
-li:nth-child(6){
-  left: 80%;
-  width: 120px;
-  height: 120px;
-
-  animation-delay: 3s;
-  background-color: rgba(white, 0.2); /* fade(white, 20%); */
-}		
-li:nth-child(7){
-  left: 32%;
-  width: 160px;
-  height: 160px;
-
-  animation-delay: 7s;
-}		
-li:nth-child(8){
-  left: 55%;
-  width: 20px;
-  height: 20px;
-
-  animation-delay: 15s;
-  animation-duration: 40s;
-}		
-li:nth-child(9){
-  left: 25%;
-  width: 10px;
-  height: 10px;
-
-  animation-delay: 2s;
-  animation-duration: 40s;
-  background-color: rgba(white, 0.3); /*fade(white, 30%);*/
-}		
-li:nth-child(10){
-  left: 90%;
-  width: 160px;
-  height: 160px;
-
-  animation-delay: 11s;
-}
-
-@-webkit-keyframes square {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-500px) rotate(600deg); }
-}
-@keyframes square {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-500px) rotate(600deg); }
-}
-
-.bottomHalf {
-  align-items: center;
-  padding: 35px;
-}
-.bottomHalf p {
-  font-weight: 500;
-  font-size: 1.05rem;
-  margin-bottom: 20px;
-}
-
-button {
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 12px;            
-  padding: 10px 18px;            
-  background-color: #019871;
-  text-shadow: 0 1px rgba(128, 128, 128, 0.75);
-}
-button:hover {
-  background-color: #85ddbf;
-}
+ 
 </style>
 
-<div class="wrapperAlert">
-
-  <div class="contentAlert">
-
-    <div class="topHalf">
-
-      <p><svg viewBox="0 0 512 512" width="100" title="check-circle">
-        <path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z" />
-        </svg></p>
-      <h1>Congratulations</h1>
-
-     <ul class="bg-bubbles">
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-     </ul>
-    </div>
-
-    <div class="bottomHalf">
-
-      <p>Well Done!, you actually managed to accomplish something today...</p>
-
-      <button id="alertMO">Moving On</button>
-
-    </div>
-
-  </div>        
-
-</div>
+<main>
+  <svg xmlns="http://www.w3.org/2000/svg" width="100" height="70" viewBox="0 0 100 68">
+    <g id="large">
+      <path fill="none" stroke="#62929E" d="M55.8 38.5l6.2-1.2c0-1.8-.1-3.5-.4-5.3l-6.3-.2c-.5-2-1.2-4-2.1-6l4.8-4c-.9-1.6-1.9-3-3-4.4l-5.6 3c-1.3-1.6-3-3-4.7-4.1l2-6A30 30 0 0 0 42 8l-3.3 5.4c-2-.7-4.2-1-6.2-1.2L31.3 6c-1.8 0-3.5.1-5.3.4l-.2 6.3c-2 .5-4 1.2-6 2.1l-4-4.8c-1.6.9-3 1.9-4.4 3l3 5.6c-1.6 1.3-3 3-4.1 4.7l-6-2A32.5 32.5 0 0 0 2 26l5.4 3.3c-.7 2-1 4.2-1.2 6.2L0 36.7c0 1.8.1 3.5.4 5.3l6.3.2c.5 2 1.2 4 2.1 6l-4.8 4c.9 1.6 1.9 3 3 4.4l5.6-3c1.4 1.6 3 3 4.7 4.1l-2 6A30.5 30.5 0 0 0 20 66l3.4-5.4c2 .7 4 1 6.1 1.2l1.2 6.2c1.8 0 3.5-.1 5.3-.4l.2-6.3c2-.5 4-1.2 6-2.1l4 4.8c1.6-.9 3-1.9 4.4-3l-3-5.6c1.6-1.3 3-3 4.1-4.7l6 2A32 32 0 0 0 60 48l-5.4-3.3c.7-2 1-4.2 1.2-6.2zm-13.5 4a12.5 12.5 0 1 1-22.6-11 12.5 12.5 0 0 1 22.6 11z"/>
+      <animateTransform attributeName="transform" begin="0s" dur="3s" from="0 31 37" repeatCount="indefinite" to="360 31 37" type="rotate"/>
+    </g>
+    <g id="small">
+      <path fill="none" stroke="#62929E" d="M93 19.3l6-3c-.4-1.6-1-3.2-1.7-4.8L90.8 13c-.9-1.4-2-2.7-3.4-3.8l2.1-6.3A21.8 21.8 0 0 0 85 .7l-3.6 5.5c-1.7-.4-3.4-.5-5.1-.3l-3-5.9c-1.6.4-3.2 1-4.7 1.7L70 8c-1.5 1-2.8 2-3.9 3.5L60 9.4a20.6 20.6 0 0 0-2.2 4.6l5.5 3.6a15 15 0 0 0-.3 5.1l-5.9 3c.4 1.6 1 3.2 1.7 4.7L65 29c1 1.5 2.1 2.8 3.5 3.9l-2.1 6.3a21 21 0 0 0 4.5 2.2l3.6-5.6c1.7.4 3.5.5 5.2.3l2.9 5.9c1.6-.4 3.2-1 4.8-1.7L86 34c1.4-1 2.7-2.1 3.8-3.5l6.3 2.1a21.5 21.5 0 0 0 2.2-4.5l-5.6-3.6c.4-1.7.5-3.5.3-5.1zM84.5 24a7 7 0 1 1-12.8-6.2 7 7 0 0 1 12.8 6.2z"/>
+      <animateTransform attributeName="transform" begin="0s" dur="2s" from="0 78 21" repeatCount="indefinite" to="-360 78 21" type="rotate"/>
+    </g>
+  </svg>
+  <h1>Under Construction</h1>
+  <h2>Our website will available soon.</h2>
+  <h3>To contact us in the meantime please email:</h3>
+  <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
+</main>
