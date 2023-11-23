@@ -638,3 +638,18 @@ button.navbar-toggler.ms-auto.icon-md.btn.btn-light.p-0.collapsed.btn.mt-btn-nav
     border-radius: 10px!important;
     font-size: 16px!important;
 }
+.btn-template {
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: #62929E;
+    color: white;
+}
+.card-title{
+    text-align: left!important;
+}
+.card-main-template{
+    padding: 10px;
+}
+.btn-template:hover{
+    color: white!important;
+}
