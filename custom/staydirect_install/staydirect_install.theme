@@ -18,6 +18,15 @@ function staydirect_install_form_install_select_profile_form_alter(&$form, FormS
   unset($form['profile']['#options']["minimal"]);
   unset($form['profile']['#options']["demo_umami"]);
 }
+function _root_url(){
+  if(isset($_SERVER['HTTPS'])){
+      $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+  }
+  else{
+      $protocol = 'http';
+  }
+  return $protocol . "://" . $_SERVER['HTTP_HOST'];
+}
 function staydirect_install_form_alter(&$form, FormStateInterface $form_state, $form_id) {
    switch ($form_id) {
     case "install_select_profile_form":
@@ -39,8 +48,8 @@ function staydirect_install_form_alter(&$form, FormStateInterface $form_state, $
                 $user->addRole('administrator'); 
                 $user->set("status", 1);     
                 $user->save(); 
-
-            $redirectUrl = $base_url."/update.php/selection";
+        
+            $redirectUrl = _root_url()."/update.php/selection";
             echo "<script>window.location.href='$redirectUrl';</script>";
             exit;
        break;          
@@ -63,6 +72,7 @@ function _staydirect_install_submit($form, &$form_state) {
   //  $redirectUrl = $base_url."/update.php/selection";
    // echo "<script>window.location.href='$redirectUrl';</script>";
   //  exit;
+
 }
 
 
