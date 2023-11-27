@@ -10,4 +10,4 @@ global-styling:
       css/style.css: {}
   js:
     vendor/bootstrap/js/bootstrap.min.js : {}  
-
+    js/staydirect_install.js : {}

@@ -15,7 +15,7 @@
  */
 #}
 <ol class="task-list">
-{% for task in tasks %}
+{% for task in tasks %}  
   <li{{ task.attributes }}>
     {{ task.item }}
     {% if task.status %}<span class="visually-hidden"> ({{ task.status }})</span>{% endif %}
