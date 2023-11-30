@@ -17,6 +17,8 @@ function staydirect_install_form_install_select_profile_form_alter(&$form, FormS
   unset($form['profile']['#options']["standard"]);
   unset($form['profile']['#options']["minimal"]);
   unset($form['profile']['#options']["demo_umami"]);
+  $form['profile']['#options']['ecommerce_option'] = t('Staydirect E-commerce platform ( under construction )');
+  
 }
 function _root_url(){
   if(isset($_SERVER['HTTPS'])){
@@ -29,8 +31,7 @@ function _root_url(){
 }
 function _term(){
   return '
-  <p>
-  <ol>
+  <ul class=condition_term>
       <li><strong>Booking Process:</strong>
           <ul>
               <li>a. To make a reservation, users must provide accurate and complete information.</li>
@@ -43,12 +44,11 @@ function _term(){
               <li>b. Payments are non-refundable unless otherwise stated in the booking confirmation.</li>
           </ul>
       </li>
-  </ol>
-  </p>
-  <p>
+  </ul>
+  <div>
       By using our booking system, you agree to abide by these terms and conditions. 
       If you do not agree with any part of these terms, please refrain from using our booking services.
-  </p>
+  </div>
 ';
 
 }
@@ -65,6 +65,8 @@ function staydirect_install_form_alter(&$form, FormStateInterface $form_state, $
    switch ($form_id) {
     case "install_select_profile_form":
           $form['#title'] = "SELECT PROFILE";
+       //   var_dump(($form['profile']['standard']));die();
+       //    var_dump(array_keys($form['profile']['#options']));die();
         break;  
     case "install_settings_form":
           $form['#title'] = "Conditions and Terms";
@@ -134,7 +136,7 @@ function  staydirect_install_preprocess_maintenance_task_list(&$variables){
            $variables['tasks'][$key]["item"] = new TranslatableMarkup('User Information');
             break;
         case "install_select_profile":
-           $variables['tasks'][$key]["item"] = new TranslatableMarkup('Web site Information');
+           $variables['tasks'][$key]["item"] = new TranslatableMarkup('Web site profile');
             // Code to execute if expression matches value2
             break;
         case "install_verify_requirements":

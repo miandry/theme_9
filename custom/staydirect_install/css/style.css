@@ -55,3 +55,10 @@ h1, h2 {
 .disable-agree{
     background-color:#c9c5c5!important;
 }
+.condition_term{
+    margin-left: -10px!important;
+}
+#edit-profile-ecommerce-option{
+    pointer-events:none;
+    opacity:0.4;
+}
