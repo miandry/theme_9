@@ -33,9 +33,9 @@
 				<div class="col-6 themed-grid-col text-right">
 					<div class="top-right">
 						<div class="step">
-							<a href="#">Web site</a>
+							<a href="#">Step 3</a>
 						</div>
-						<div class="ttl-step">Building</div>
+						<div class="ttl-step">Installing web site  </div>
 					</div>
 				</div>
 			</div>
@@ -45,19 +45,17 @@
 		<div class="row p-4">
 			<div class="col-4" role="complementary">
 				<ol class="task-list">
-					<li class="is-active">
+					<li>
 						Web site Information
-						<span class="visually-hidden">
-							(active)</span>
 					</li>
 					<li >
 						Web site profile
 					</li>
-					<li class="hidden-task">
-						Verify requirements
-					</li>
-					<li>
+
+					<li class="is-active">
 						Conditions and terms
+                        		<span class="visually-hidden">
+							(active)</span>
 					</li>
 					<li>
 						Installing web site  
@@ -67,13 +65,8 @@
 					</li>
 				</ol>
 			</div>
-			<div role="main" class="main-content col-8 px-5">
-			    {% set id = get_parameter('site_new') %}
-				{% if id["site_new"] %}
-				    {{ render_form_entity('node','site',id["site_new"]) }}
-				{% else %}
-                    {{ render_form_entity('node','site') }}
-				{% endif %}
+			<div role="main" class="main-content col-8 px-5 p-4">
+			     Conditions
 			</div>
 
 		</div>
