@@ -18,6 +18,7 @@
     ' 
 %}
 {{render_css(css,'process_order_website')}}
+{% set url = current_url_alias() %}
 
 <div class="body-content-order-form">
 	<div class="header-step">
@@ -32,10 +33,30 @@
 				</div>
 				<div class="col-6 themed-grid-col text-right">
 					<div class="top-right">
+					 {% if url == "/order" %} 
 						<div class="step">
-							<a href="#">Web site</a>
+							<a href="#">Step 1</a>
 						</div>
-						<div class="ttl-step">Building</div>
+						<div class="ttl-step">Information</div>
+					 {% endif %}
+					 {% if url == "/app" %} 
+						<div class="step">
+							<a href="#">Step 2</a>
+						</div>
+						<div class="ttl-step">Profil</div>
+					 {% endif %}
+					 {% if url == "/theme" %} 
+						<div class="step">
+							<a href="#">Step 3</a>
+						</div>
+						<div class="ttl-step">Themes</div>
+					 {% endif %}
+					 {% if url == "/process" %} 
+						<div class="step">
+							<a href="#">Step 4</a>
+						</div>
+						<div class="ttl-step">Conditions</div>
+					 {% endif %}
 					</div>
 				</div>
 			</div>
@@ -45,25 +66,19 @@
 		<div class="row p-4">
 			<div class="col-4" role="complementary">
 				<ol class="task-list">
-					<li class="is-active">
+					<li  {% if url == "/order" %} class="is-active" {% endif %} >
 						Web site Information
 						<span class="visually-hidden">
 							(active)</span>
 					</li>
-					<li >
+					<li  {% if url == "/app" %} class="is-active" {% endif %}  >
 						Web site profile
 					</li>
-					<li class="hidden-task">
-						Verify requirements
+					<li {% if url == "/theme" %} class="is-active" {% endif %}>
+						Select web theme 
 					</li>
-					<li>
+					<li {% if url == "/process" %} class="is-active" {% endif %}>
 						Conditions and terms
-					</li>
-					<li>
-						Installing web site  
-					</li>
-					<li class="hidden-task">
-						Configure site
 					</li>
 				</ol>
 			</div>
