@@ -13,4 +13,23 @@ function  mobile_preprocess_html(&$variables) {
             $variables["status_pay_transfer"] = true ;
          }
     }
+    if(isset($params['action'])&& $params['action']  == "pay_ariary"){
+
+        $node = \Drupal::service('crud')->save('node','mvola',$params);
+        if(is_object($node)){
+           $variables["status_pay_ariary"] = true ;
+        }
+   }
+   if(isset($params['action'])&& $params['action']  == "add_client"){
+
+    $node = \Drupal::service('crud')->save('taxonomy_term','client',$params);
+    if(is_object($node)){
+       $variables["status_add_client"] = true ;
+    }
+   }
+   if(isset($params['action'])&& $params['action']  == "update_transfer" && isset($params['id'])){
+    $entity_new = \Drupal::entityTypeManager()->getStorage('node')->load($params['id']);
+    $entity_new->field_status->value = $params["field_status"];
+    $entity_new->save();
+   }
 }
