@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+		 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+			<style>
+.ui-selectmenu.ui-popup .ui-input-search {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+.ui-selectmenu.ui-dialog .ui-content {
+	padding-top: 0;
+}
+.ui-selectmenu.ui-dialog .ui-selectmenu-list {
+	margin-top: 0;
+}
+.ui-selectmenu.ui-popup .ui-selectmenu-list li.ui-first-child .ui-btn {
+	border-top-width: 1px;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+.ui-selectmenu.ui-dialog .ui-header {
+	border-bottom-width: 1px;
+}
+	</style>
+	</head>
+
+	{% set transfer = views_result('transfer','page_1',0) %}
+	{% set clients = views_result('clients','page_1',0) %}
+	{% set params = get_parameter() %}
+
+		<body>
+
+		<!-- Start of first page -->
+			<div data-role="page" id="pay"> <div data-role="header">
+				<h1>New payment</h1>
+			</div>
+			<!-- /header -->
+			<div role="main" class="ui-content">
+				<form action="#list-pay" method="post" data-ajax="false">
+					<label for="date">Date:</label>
+					<input type="date" name="field_date" id="date" value="">
+					<select id="filter-menu" name="field_client" data-native-menu="false">
+						{% for item in clients.items %}
+							<option value="{{item.id}}">{{item.label}}</option>
+						{% endfor %}
+					</select>
+					<label for="number-pattern">Montant RMB:</label>
+					<input type="number" name="title" id="number-pattern" value="">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<input type="radio" name="field_status" id="radio-choice-c" value="new" checked="checked">
+						<label for="radio-choice-c">New</label>
+						<input type="radio" name="field_status" id="radio-choice-d" value="payer">
+						<label for="radio-choice-d">Payer</label>
+						<input type="radio" name="field_status" id="radio-choice-e" value="cancel">
+						<label for="radio-choice-e">cancel</label>
+					</fieldset>
+					<input type="hidden" name="action" value="pay_transfer">
+
+					<input type="submit" name="submit" value="Save">
+
+				</form>
+
+			</div>
+			<!-- /content -->
+
+			<div data-role="footer">
+				<a href="#list-pay" class="ui-shadow ui-btn ui-corner-all">Voir list</a>
+			</div>
+			<!-- /footer -->
+		</div>
+		<!-- /page -->
+
+
+		<!-- Start of second page -->
+		<div data-role="page" id="list-pay">
+
+			<div data-role="header">
+				<h1>List pay</h1>
+			</div>
+			<!-- /header -->
+
+			<div role="main" class="ui-content">
+				<a href="#pay" class="ui-shadow ui-btn ui-corner-all">Add Payment</a>
+				<form>
+					<input id="filterTable-input" data-type="search">
+				</form>
+         <button id="save" class="ui-btn">Calcul Sum</button>
+				<table data-role="table" id="table-column-toggle" data-mode="columntoggle" data-filter="true" data-input="#filterTable-input" class="ui-responsive table-stroke">
+					<thead>
+						<tr>
+							<th data-priority="3">Num</th>
+							<th>Client</th>
+							<th data-priority="1">Montant(RMB)</th>
+							<th data-priority="2">
+								<abbr title="Rotten Tomato Rating">Status</abbr>
+							</th>
+							<th data-priority="5">Date</th>
+						</tr>
+						<tr class="info">
+              <td></td>
+              <td></td>
+							<td class="text-total"></td>
+							<td class="total text-right"></td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in transfer.items %}
+							{% set n = (node_parser(item["#entity"])) %}
+							<tr class="subtotal-content">
+								<th>{{loop.index}}</th>
+								<td>
+									<a href="#client_{{item.field_client.id}}" data-rel="external">{{n.field_client.title}}</a>
+								</td>
+								<td data-value="{{n.title}}" class="valor">{{n.title}}</td>
+								<td>{{n.field_status}}</td>
+								<td>{{n.field_date}}</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+			<!-- /content -->
+
+			<div data-role="footer">
+
+			</div>
+			<!-- /footer -->
+		</div>
+		<!-- /page -->
+
+
+		 <script>
+		    {% if status_pay_transfer %} 
+		    jQuery(document).ready(function () {
+		      alert("Payment saved successfully");
+		      // Other initialization code.
+		    });
+		    {% endif %}
+		      
+				function formatTotal(num) {
+		   var parts = num.toString().split(".");
+		   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		   return parts.join(",");
+		}		
+
+		
+		 jQuery(document).ready(function () {
+		var $rows = $("#table-column-toggle tbody tr");
+		var total = 0;
+		$rows.each(function () {
+		    total += parseFloat($(this).find(".valor").text());
+       
+		});
+    	$("#save").click(function () {
+        var total = 0;
+		    $("#table-column-toggle tbody tr:visible").each(function () {
+            if($(this).attr("subtotal-content ui-screen-hidden")){}
+            else{
+               total += parseFloat($(this).find(".valor").text());
+            }
+		       
+		    });
+		    $(".total").html((total));
+        $(".text-total").html("Total");
+		
+		});
+		
+		$("#filterTable-input").keyup(function () {
+		    $(".total").html("");
+        $(".text-total").html("");
+        
+		});
+		
+
+		});
+		
+		
+		
+								    jQuery.mobile.document
+								    // "filter-menu-menu" is the ID generated for the listview when it is created
+								    // by the custom selectmenu plugin. Upon creation of the listview widget we
+								    // want to prepend an input field to the list to be used for a filter.
+								    .on( "listviewcreate", "#filter-menu-menu", function( e ) {
+								        var input,
+								            listbox = $( "#filter-menu-listbox" ),
+								            form = listbox.jqmData( "filter-form" ),
+								            listview = $( e.target );
+								        // We store the generated form in a variable attached to the popup so we
+								        // avoid creating a second form/input field when the listview is
+								        // destroyed/rebuilt during a refresh.
+								        if ( !form ) {
+								            input = jQuery( "<input data-type='search'></input>" );
+								            form = jQuery( "<form></form>" ).append( input );
+								            input.textinput();
+								            jQuery( "#filter-menu-listbox" )
+								                .prepend( form )
+								                .jqmData( "filter-form", form );
+								        }
+								        // Instantiate a filterable widget on the newly created listview and
+								        // indicate that the generated input is to be used for the filtering.
+								        listview.filterable({ input: input });
+								    })
+								    // The custom select list may show up as either a popup or a dialog,
+								    // depending how much vertical room there is on the screen. If it shows up
+								    // as a dialog, then the form containing the filter input field must be
+								    // transferred to the dialog so that the user can continue to use it for
+								    // filtering list items.
+								    //
+								    // After the dialog is closed, the form containing the filter input is
+								    // transferred back into the popup.
+								    .on( "pagebeforeshow pagehide", "#filter-menu-dialog", function( e ) {
+								        var form = $( "#filter-menu-listbox" ).jqmData( "filter-form" ),
+								            placeInDialog = ( e.type === "pagebeforeshow" ),
+								            destination = placeInDialog ? $( e.target ).find( ".ui-content" ) : $( "#filter-menu-listbox" );
+								        form
+								            .find( "input" )
+								            // Turn off the "inset" option when the filter input is inside a dialog
+								            // and turn it back on when it is placed back inside the popup, because
+								            // it looks better that way.
+								            .textinput( "option", "inset", !placeInDialog )
+								            .end()
+								            .prependTo( destination );
+								    });
+							</script>
+	</body>
+</html>

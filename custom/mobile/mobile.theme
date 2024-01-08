@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implements hook_preprocess_HOOK() for html.
+ */
+function  mobile_preprocess_html(&$variables) {
+    $params = \Drupal::request()->request->all();
+    $variables["status_pay_transfer"] = false ;
+    if(isset($params['action'])&& $params['action']  == "pay_transfer"){
+
+         $node = \Drupal::service('crud')->save('node','transfer',$params);
+         if(is_object($node)){
+            $variables["status_pay_transfer"] = true ;
+         }
+    }
+}

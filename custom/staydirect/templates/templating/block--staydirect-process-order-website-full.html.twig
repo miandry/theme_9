@@ -83,9 +83,11 @@
 			</div>
 			<div role="main" class="main-content col-8 px-5">
 			    {% set id = get_parameter('site_new') %}
-				{% if id["site_new"] %}
+				{% if id["site_new"] %}		
+				     edit form		   
 				    {{ render_form_entity('node','site',id["site_new"]) }}
 				{% else %}
+				    insert form
                     {{ render_form_entity('node','site') }}
 				{% endif %}
 			</div>
