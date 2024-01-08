@@ -32,4 +32,8 @@ function  mobile_preprocess_html(&$variables) {
     $entity_new->field_status->value = $params["field_status"];
     $entity_new->save();
    }
+   if(isset($params['action'])&& $params['action']  == "delete_transfer" && isset($params['id'])){
+    $entity_new = \Drupal::entityTypeManager()->getStorage('node')->load($params['id']);
+    $entity_new->delete();
+   }
 }

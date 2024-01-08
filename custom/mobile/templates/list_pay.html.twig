@@ -45,9 +45,10 @@
 					<th>Client</th>
 					<th data-priority="1">Montant</th>
 					<th data-priority="2">
-						<abbr title="Rotten Tomato Rating">Status</abbr>
+						Status
 					</th>
 					<th data-priority="5">Date</th>
+                    <th data-priority="6">Delete</th>
 				</tr>
 				<tr>
 					<td></td>
@@ -79,6 +80,12 @@
                         {% endif %}
 						<td>{{n.field_status}}</td>
 						<td>{{n.field_date}}</td>
+                        <td data-priority="6">
+                        <form action="#list-pay"  method="post" data-ajax="false">   
+                          <input type="hidden" name="action" value="delete_transfer">
+                          <input type="hidden" name="id" value="{{n.nid}}">
+                           <button type="submit" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-notext"></button>
+                        </form></td>
 					</tr>
 				{% endfor %}
 
