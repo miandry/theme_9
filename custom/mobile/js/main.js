@@ -41,16 +41,16 @@ jQuery(document).ready(function () {
         total += parseFloat($(this).find(".valor").text());
       }
     });
-    $(".total").html(total);
-    $(".text-total").html("Total");
+    $(".total").text(total);
+    $(".text-total").text("Total");
     console.log(total);
   });
   $(".total").html(total);
-  $(".text-total").html("Total");
+  $(".text-total").text("Total");
 
   $("#filterTable-input").keyup(function () {
-    $(".total").html("");
-    $(".text-total").html("");
+    $(".total").text("");
+    $(".text-total").text("");
   });
 });
 
