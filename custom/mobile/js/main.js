@@ -45,6 +45,8 @@ jQuery(document).ready(function () {
     $(".text-total").html("Total");
     console.log(total);
   });
+  $(".total").html(total);
+  $(".text-total").html("Total");
 
   $("#filterTable-input").keyup(function () {
     $(".total").html("");
