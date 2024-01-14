@@ -1,0 +1,155 @@
+{% block templating_content %}
+{% set c = block_parser(content) %}
+{% set links= c['field_link1'] %}
+<style>
+    *::after,
+    *::before {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    * {
+        scroll-behavior: smooth;
+    }
+    .btn--resp {
+      padding: 20px 35px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 38px;
+      background: var(--bleu-color);
+      color: #FFF;
+      font-family: "Montserrat";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+    }
+    ul {
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    ul li {
+      list-style-type: none;
+    }
+  .wrapper--resp {
+    margin: auto;
+  } 
+  header .menu-main--resp ul {
+    display: flex;
+    flex-direction: row;
+    gap: 39px;
+  }  
+  header .menu-main--resp ul li a{
+    color: var(--bleumarine-color);
+    font-family: "Montserrat";
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  } 
+  header .menu-main--resp ul li.active a {
+    color: var(--bleu-color);
+  } 
+  header .menu-main--resp ul li.active::after {
+    content: "";
+    width: 29px;
+    height: 3px;
+    background: var(--bleu-color);
+    margin-top: 10px !important;
+    display: block ;
+    margin: auto;
+  }
+  @media (max-width: 499.96px) {
+    .wrapper--resp {
+      width: 100%;
+      max-width: none !important;
+      padding-left: 20px;
+      padding-right:20px
+    }
+    .none-mob {
+      display: none !important;
+    }
+  }
+  @media (min-width: 499.98px) {
+    .wrapper--resp {
+      width: 100%;
+      max-width: none;
+      padding-left: 20px;
+      padding-right:20px;
+    }
+    .none-mob {
+      display: none !important;
+    }
+  }
+  @media (min-width: 767.98px) {
+    .wrapper--resp {
+      width: 100%;
+      max-width: none !important;
+      padding-left: 40px;
+      padding-right:40px
+    }
+    .none-tab {
+      display: none !important;
+    }
+  }
+  @media (min-width: 991.98px) {
+    .wrapper--resp {
+      width: 100%;
+      max-width: none !important;
+      padding-left: 60px;
+      padding-right:60px;
+    }
+    .none-desk, .menu-mobile-effet {
+      display: none !important;
+    }
+
+  }
+  @media (min-width: 1199.98px) {
+    .wrapper--resp {
+      width: 100%;
+      max-width: none !important;
+      padding-left: 60px;
+      padding-right:60px;
+    }
+  }
+  @media (min-width: 1385.98px) {
+      .wrapper--resp {
+        max-width: 1200px !important;
+        padding-left: 0px;
+        padding-right:0px;
+      }
+  }
+  @media (min-width: 1499.98px) {
+    .wrapper--resp {
+      max-width: 1500px;
+      padding-left: 0px;
+      padding-right:0px;
+    }
+  }
+</style>
+<div class="container confort">
+  <div class="row row-and row-confort">
+    <div class="col-md-6 confort-left">
+        <div class="content-confort-left">
+          <div class="bg-confort-right" style="background: url({{c['field_image1']['image'].url}}) no-repeat, url({{c['field_image']['image'].url}}) no-repeat;height: 100%;background-position: right bottom, bottom left;">
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6 confort-right">
+      <div class="content-confort-right">
+        <h2 class="display-5 fw-normal sub-title">{{c.field_title}}</h2>
+        <h1 class="title">{{c.field_subtitle}}</h1>
+        <p>
+          {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+        </p>
+        <p class="no-padding no-margin">
+          <a class="btn night" href="{{c['field_link1'].url}}">{{c['field_link1'].title}}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
