@@ -1,3 +1,6 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
 {{ attach_library('claro/global-styling') }}
 {{ attach_library('staydirect_install/global-styling') }}
 {{ attach_library('staydirect/maintenance') }}
@@ -513,3 +516,5 @@
             }
         </script>
         <!-- End Header -->
+
+{% endblock %}

@@ -1,0 +1,827 @@
+block-content--staydirect-******-full.html
+	{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
+{{ attach_library('claro/global-styling') }}
+{{ attach_library('staydirect_install/global-styling') }}
+{{ attach_library('staydirect/maintenance') }}
+{% set css = 
+     '.main-content{margin-top: -15px;}
+	  .body-content-order-form  #image-wrapper{border-radius: 30px;padding: 15px;background: rgba(217, 217, 217, 0.17);}
+      .body-content-order-form .logo { height:auto!important }
+	  .body-content-order-form .field--name-st-domain-name, 
+	  .body-content-order-form .field--name-site-name{display:none!important}
+	  .body-content-order-form .field--name-st-domain-name{display:none!important}
+      .body-content-order-form .vertical-tabs,
+	  .body-content-order-form .js-form-type-vertical-tabs{display:none!important}
+	  .body-content-order-form .node-site-form input,
+	  .body-content-order-form .node-site-form textarea,
+	  .body-content-order-form .node-site-form select{display:block;margin-top:10px}
+	  .body-content-order-form .node-site-form  .description{font-size: 13px;font-style: italic;font-family:Kanit;padding-top: 5px;font-weight: 200;}
+	  .body-content-order-form .node-site-form .form-item {background: rgba(217, 217, 217, 0.17);padding: 30px;border-radius: 30px;}
+    ' 
+%}     
+{{render_css(css,'process_order_website')}}   
+    <!-- bloc showcase-->
+    {% set c = block_parser(content) %}
+    {% set paragraphs = c['field_paragraph3'] %}
+    {% set paragraphs_length = paragraphs|length %}
+    <style>
+        /*========= respo.css header =======*/
+                *,
+        *::after,
+        *::before {
+            box-sizing: border-box  !important;
+            margin: 0  !important;
+            padding: 0  !important;
+        }
+
+        * {
+            scroll-behavior: smooth  !important;
+        }
+
+        :root {
+            --grey-color: #333333  !important;
+            --whitesmoke6-color: #f5f5f5  !important;
+            --whitesmoke6-color: #F6F6F6  !important;
+            --Charcoal1-color: #434343  !important;
+            --charcoal2-color: #3F3F3F  !important;
+            --white-color: #fbfbfb  !important;
+            --bgwhite-color: #ffffff  !important;
+        }
+        .block {
+            display: block  !important;
+        }
+
+
+        p {
+            color: rgba(51, 51, 51, 0.50)   !important;
+            font-size: 18px  !important;
+            font-family: "Kanit"  !important;
+            font-weight: 400  !important;
+        }
+
+        a {
+            text-decoration: none  !important;
+        }
+
+        .a-btn-resp {
+            color: #333  !important;
+            font-size: 20px  !important;
+            font-family: "Kanit"  !important;
+            font-weight: 600  !important;
+            display: inline-flex  !important;
+            padding: 10px 30px  !important;
+            align-items: center  !important;
+            gap: 10px  !important;
+            border-radius: 10px  !important;
+            border: 1px solid #333  !important;
+        }
+
+        .text-left {
+            text-align: left  !important;
+        }
+        .text-right {
+            text-align: right  !important;
+        }
+
+        .text-center {
+            text-align: center  !important;
+        }
+
+        .auto {
+            margin:auto !important;
+        }
+
+        .no-margin-top {
+            margin-top: 0 !important;
+        }
+        hr {
+            margin: 1rem 0  !important;
+            color: inherit  !important;
+            border: 0  !important;
+            border-top: var(--bs-border-width) solid  !important;
+            opacity: .25  !important;
+        }
+        .hr-title-resp {
+            width: 128px  !important;
+            height: 5px  !important;
+            background: var(--grey-color)   !important;
+            border-radius: 12px  !important;
+            opacity: 1  !important;
+            margin-top: 20px   !important;
+            margin: auto  !important;
+        }
+        li {
+            list-style-type: none  !important;
+        }
+        .bg-center-resp {
+            background-repeat:no-repeat   !important;
+            background-position: center center   !important;
+            background-size: cover   !important;
+
+        }
+        .grow { transition: all .2s ease-in-out  !important; }
+        .grow:hover { transform: scale(1.0025,1.0025)  !important; }
+
+        @media screen and (max-width: 499.96px){ 
+            .container-resp {
+                min-width: 320px   !important;
+                padding-left: 20px  !important;
+                padding-right:20px  !important;
+                margin: auto  !important;
+            }
+            .none-mob {
+                display: none !important;
+            }
+        }
+        @media (min-width: 499.98px) {
+            .container-resp {
+                max-width: 500px  !important;
+                width: 100%   !important;
+                padding-left: 20px   !important;
+                padding-right: 20px   !important;
+                margin: auto  !important;
+            }
+            .none-mob {
+                display: none !important;
+            }
+        }
+        @media (min-width: 539.98px) {
+            .container-resp {
+                max-width: 500px  !important;
+                width: 100%   !important;
+                padding-left: 0px   !important;
+                padding-right: 0px   !important;
+                margin: auto  !important;
+            }
+            .none-tab {
+                display: none !important;
+            }
+        }
+        @media (min-width: 767.98px) {
+            .container-resp {
+                max-width: 768px  !important;
+                width: 100%   !important;
+                padding-left: 40px   !important;
+                padding-right: 40px   !important;
+                margin: auto  !important;
+            }
+            .none-tab {
+                display: none !important;
+            }
+            .none-desk {
+                display: block !important;
+            }
+        }
+        @media (min-width: 847.98px) {
+            .container-resp {
+                max-width: 769px  !important;
+                width: 100%   !important;
+                padding-left: 40px   !important;
+                padding-right: 40px   !important;
+                margin: auto  !important;
+            }
+            .none-tab {
+                display: block !important;
+            }
+            .none-mob {
+                display: block !important;
+            }
+            .none-desk {
+                display: none !important;
+            }
+        }
+        @media (min-width: 991.98px) {
+            .container-resp {
+                max-width: 992px  !important;
+                width: 100%   !important;
+                padding-left: 60px   !important;
+                padding-right: 60px   !important;
+                margin: auto  !important;
+            }
+            .none-desk {
+                display: none !important;
+            }
+        }
+        @media (min-width: 1111.98px) {
+            .container-resp {
+                max-width: 992px   !important;
+                width: 100%   !important;
+                padding-left: 0px   !important;
+                padding-right: 0px   !important;
+                margin: auto  !important;
+            }
+            .none-desk {
+                display: none !important;
+            }
+        }
+        @media (min-width: 1199.98px) {
+            .container-resp {
+                max-width: 1200px   !important;
+                width: 100%   !important;
+                padding-left: 60px   !important;
+                padding-right: 60px   !important;
+                margin: auto  !important;
+            }
+            .none-desk {
+                display: none !important;
+            }
+        }
+        @media (min-width: 1359.98px) {
+            .container-resp {
+                max-width: 1200px   !important;
+                width: 100%   !important;
+                padding-left: 0   !important;
+                padding-right: 0   !important;
+                height: auto  !important;
+                margin: auto  !important;
+            }
+            .none-desk {
+                display: none !important;
+            }
+        }
+    /* ============= end respo.css header ================  */
+    </style> 
+   <style>
+    .showcase-resp {
+        margin-top: 100px  !important;
+    }
+    .showcase-resp .container-resp {
+    
+    }
+    .showcase-resp  .content-showcase-resp-head {
+        text-align: center !important;
+        max-width: 742px !important;
+        margin: auto  !important;
+        margin-bottom: 98px  !important;
+    }
+    .showcase-resp  .content-showcase-resp-head h4 {
+        color: rgba(51, 51, 51, 0.60) !important;
+        text-align: center !important;
+        font-family: "Kanit" !important;
+        font-size: 20px !important;
+        font-style: normal !important;
+        font-weight: 300 !important;
+        line-height: 150% !important; /* 30px */
+        letter-spacing: 3.2px !important;
+        text-transform: uppercase !important;
+    }   
+    .showcase-resp  .content-showcase-resp-head h3 {
+        color: #333 !important;
+        text-align: center !important;
+        font-family: "Vastine" !important;
+        font-size: 50px !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: 150% !important; /* 75px */
+        margin-top: 22px  !important;
+    }
+    .showcase-resp .content-showcase-resp {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: auto  !important;
+    }
+    .showcase-resp .step-resp {
+        width: 286px !important;
+        text-align: center !important;
+    }
+    .showcase-resp .content-step-resp {
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        height: 220px !important;
+        width: 100% !important;
+        border-radius: 20px 20px 0px 0px !important;
+        background:  lightgray 50% / cover no-repeat !important;
+        overflow: hidden !important;
+    }
+    .showcase-resp .icon-step-resp {
+        width: 100px !important;
+        height: 100px !important;
+        border-radius: 20px !important;
+        border: 1px solid rgba(51, 51, 51, 0.30) !important;
+        background: rgba(217, 217, 217, 0.26) !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .showcase-resp .icon-step-resp svg {
+        width: 50px !important;
+        height: 50px !important;
+        fill: #333333 !important;
+    }
+    .showcase-resp .icon-step-resp.active svg
+    {
+        fill: white !important;
+        fill-opacity : 0.8 !important;
+        
+    }
+    .showcase-resp .icon-step-resp.active {
+        background: linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)  !important;
+    }
+    .showcase-resp .content-showcase-resp h5 {
+        color: #333 !important;
+        text-align: center !important;
+        font-family: "Kanit" !important;
+        font-size: 25px !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        line-height: 150% !important; /* 37.5px */
+        margin-top: 31px  !important;
+    }
+    .showcase-resp .content-showcase-resp p {
+        color: rgba(51, 51, 51, 0.40) !important;
+        text-align: center !important;
+        font-family: "Kanit" !important;
+        font-size: 18px !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: 150% !important; /* 27px */
+        margin-top: 10px  !important;
+    }
+    .showcase-resp .bottom-theme-resp{
+        height: 65px !important;
+        width: 100% !important;
+        background-color: #fff !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+        padding: 17px 20px !important;
+        border-radius: 0px 0px 20px 20px !important;
+        border-right: 1px solid rgba(51, 51, 51, 0.30) !important;
+        border-bottom: 1px solid rgba(51, 51, 51, 0.30) !important;
+        border-left: 1px solid rgba(51, 51, 51, 0.30) !important;
+    }
+    .showcase-resp .bottom-theme-resp .left-bottom-theme-resp {
+        color: rgba(51, 51, 51, 0.80) !important;
+        font-family: "Kanit" !important;
+        font-size: 20px !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        line-height: 150% !important; /* 30px */
+    }
+    .showcase-resp .bottom-theme-resp .right-bottom-theme-resp {
+        width: 42px !important;
+        height: 40px !important;
+        border-radius: 40px !important;
+        background: linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%) !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    @media screen and (max-width: 499.96px){ 
+        .showcase-resp .content-showcase-resp {
+            flex-direction: column !important;
+            gap: 50px !important;
+        }
+        .showcase-resp .step-resp {
+            width: 100% !important;
+            text-align: center !important;
+        }
+    
+        .showcase-resp  .content-showcase-resp-head {
+            margin-bottom: 51px  !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h4 {
+        font-size: 18px  !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h3 {
+            font-size: 22px  !important;
+            margin-top: 22px  !important;
+        }
+    }
+    @media (min-width: 499.98px) {
+        .showcase-resp .content-showcase-resp {
+            flex-direction: column !important;
+            gap: 50px !important;
+        }
+        .showcase-resp .step-resp {
+            width: 451px !important;
+            text-align: center !important;
+        }
+        .showcase-resp  .content-showcase-resp-head {
+            margin-bottom: 51px  !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h4 {
+        font-size: 18px  !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h3 {
+            font-size: 30px  !important;
+            margin-top: 22px  !important;
+        }
+    }
+    @media (min-width: 539.98px) {
+        .showcase-resp .content-showcase-resp {
+            flex-direction: column !important;
+            gap: 50px !important;
+        }
+        .showcase-resp .step-resp {
+            width: 451px !important;
+            text-align: center !important;
+        }
+    
+        .showcase-resp  .content-showcase-resp-head {
+            margin-bottom: 61px  !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h4 {
+        font-size: 18px  !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h3 {
+            font-size: 30px  !important;
+            margin-top: 22px  !important;
+        }
+    }
+    @media (min-width: 767.98px) {
+        .showcase-resp .content-showcase-resp {
+            justify-content:center !important;
+            gap: 40px !important;
+            flex-direction: row !important;
+        }
+        .showcase-resp .step-resp {
+            width: 324px !important;
+            text-align: center !important;
+        }
+    
+        .showcase-resp  .content-showcase-resp-head {
+            max-width: 742px !important;
+            margin-bottom: 98px  !important;
+            width: 100% !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h4 {
+            font-size: 20px  !important;
+        }   
+        .showcase-resp  .content-showcase-resp-head h3 {
+            font-size: 48px  !important;
+            margin-top: 22px  !important;
+        }
+    }
+    @media (min-width: 991.98px) {
+        .showcase-resp .step-resp {
+            width: 265px !important;
+        }
+        .showcase-resp .content-showcase-resp {
+            justify-content:space-between !important;
+            gap: 0  !important;
+        }
+        .showcase-resp  .content-showcase-resp-head h3 {
+            font-size: 50px  !important;
+            margin-top: 22px  !important;
+        }
+    }
+    @media (min-width: 1111.98px) {
+        .showcase-resp .content-showcase-resp {
+            justify-content:space-between !important;
+            gap: 0  !important;
+        }
+        .showcase-resp .step-resp {
+            width: 306px !important;
+        }
+    }
+    @media (min-width: 1199.98px) {
+        .showcase-resp .content-showcase-resp {
+            justify-content:space-between !important;
+            gap: auto  !important;
+        }
+        .showcase-resp .step-resp {
+            width: 335px !important;
+        }
+    }
+    @media (min-width: 1359.98px) {
+        .showcase-resp  .content-showcase-resp-head {
+            margin-bottom: 82px  !important;
+        }
+        .showcase-resp .content-showcase-resp {
+            max-width: 100% !important;
+        }
+        .showcase-resp .step-resp {
+            width: 367px !important;
+            height: 285px !important;
+            background-color: #fff !important;
+            border-radius: 20px 20px 0px 0px !important;
+        }
+    }
+    </style>
+
+    <section id="showcase-resp" class="showcase-resp">
+        <div class="container-resp">
+            <div class="content-showcase-resp-head">
+                <h4 class="title-resp">
+                    How it looks like ?
+                </h4>
+                <h3 class="title-resp">
+                    Just following these working steps
+                </h3>
+            </div>
+            <div class="content-showcase-resp step">
+
+                {% for size in 0 .. (paragraphs_length - 1) %}
+
+                <div class="step-1-resp step-resp theme-item-slide gallery-slider-and">
+                    <div class="content-step-1-resp content-step-resp">
+                        <img src="{{paragraphs[size]['field_image1']['image'].url}}" alt="" style="object-fit: contain;" class="img-gallery">
+                    </div>
+                    <div class="bottom-theme-resp">
+                       <div class="left-bottom-theme-resp">
+                            Template third
+                       </div>
+                       <div class="right-bottom-theme-resp">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M18.2667 9.66683C16.5834 5.7585 13.4167 3.3335 10.0001 3.3335C6.58339 3.3335 3.41672 5.7585 1.73339 9.66683C1.6875 9.77197 1.66382 9.88545 1.66382 10.0002C1.66382 10.1149 1.6875 10.2284 1.73339 10.3335C3.41672 14.2418 6.58339 16.6668 10.0001 16.6668C13.4167 16.6668 16.5834 14.2418 18.2667 10.3335C18.3126 10.2284 18.3363 10.1149 18.3363 10.0002C18.3363 9.88545 18.3126 9.77197 18.2667 9.66683ZM10.0001 15.0002C7.35839 15.0002 4.85839 13.0918 3.41672 10.0002C4.85839 6.9085 7.35839 5.00016 10.0001 5.00016C12.6417 5.00016 15.1417 6.9085 16.5834 10.0002C15.1417 13.0918 12.6417 15.0002 10.0001 15.0002ZM10.0001 6.66683C9.34078 6.66683 8.69632 6.86233 8.14816 7.2286C7.59999 7.59487 7.17275 8.11546 6.92046 8.72455C6.66816 9.33364 6.60215 10.0039 6.73077 10.6505C6.85939 11.2971 7.17686 11.891 7.64303 12.3572C8.10921 12.8234 8.70315 13.1408 9.34975 13.2694C9.99636 13.3981 10.6666 13.3321 11.2757 13.0798C11.8848 12.8275 12.4053 12.4002 12.7716 11.8521C13.1379 11.3039 13.3334 10.6594 13.3334 10.0002C13.3334 9.11611 12.9822 8.26826 12.3571 7.64314C11.732 7.01802 10.8841 6.66683 10.0001 6.66683ZM10.0001 11.6668C9.67042 11.6668 9.34819 11.5691 9.07411 11.3859C8.80002 11.2028 8.5864 10.9425 8.46026 10.638C8.33411 10.3334 8.3011 9.99831 8.36541 9.67501C8.42972 9.35171 8.58846 9.05474 8.82154 8.82165C9.05463 8.58856 9.3516 8.42983 9.6749 8.36552C9.99821 8.30121 10.3333 8.33422 10.6379 8.46036C10.9424 8.58651 11.2027 8.80013 11.3858 9.07421C11.569 9.34829 11.6667 9.67053 11.6667 10.0002C11.6667 10.4422 11.4911 10.8661 11.1786 11.1787C10.866 11.4912 10.4421 11.6668 10.0001 11.6668Z" fill="white"/>
+                            </svg>
+                       </div>
+                    </div>
+                </div>
+
+                {% endfor %} 
+
+            </div>
+        </div>
+    </section>
+    <!-- End bloc showcase-->
+
+    <style>
+        .popup-showcase-resp {
+            position: fixed !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 2 !important;
+            width: 100% !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            background: rgba(0,0,0,0.8) !important;
+            transition: all 0.95s ease-out !important;
+
+        }
+        .popup-showcase-resp.hidden {
+            visibility: hidden !important;
+            opacity: 0 !important;
+            transition: all 0.95s linear !important;
+        }
+        .popup-showcase-resp.box {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: all 0.95s ease-out !important;
+        }
+        .theme-item-slide {
+            cursor: pointer !important;
+        }
+        .close {
+            position: absolute !important;
+            right: 35px !important;
+            top: 35px !important;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            border: solid 3px #fff !important;
+            color: #fff !important;
+            opacity: 0.7 !important;
+            background: #000 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 4 !important;
+            cursor: pointer !important;
+        }
+        .container-popup-gallery-slider-and svg {
+            width: 45px !important;
+            height: 45px !important;
+            color: #fff !important;
+        }
+        .container-popup-gallery-slider-and path {
+            color: #fff !important;
+            fill: #fff !important;
+        }
+    </style>
+  
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        * {
+            scroll-behavior: smooth !important;
+        }
+        body, html {
+            width: 100% !important;
+            height: 100% !important;
+            margin: auto !important;
+        }
+        .container-slider-and {
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+        .slider-and {
+            height: 100% !important;
+            display: flex !important;
+            transition: all 0.5s !important;
+        }
+        .gallery-and {
+            width: 100% !important;
+            height: 100% !important;
+            flex-basis: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 20px !important;
+        }
+        .control-slide-left-and {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            left: 50px !important;
+            cursor: pointer !important;
+            z-index: 1 !important;
+        }
+        .control-slide-right-and {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            right: 50px !important;
+            cursor: pointer !important;
+            z-index: 1 !important;
+        }
+        .conroll-round-slide-and {
+            height: 20px !important;
+        
+            position: absolute !important;
+            bottom: 50px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 100% !important;
+            z-index: 2 !important;
+        }
+        .conroll-round-slide-and ul {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
+        }
+        .conroll-round-slide-and ul li {
+            width: 20px !important;
+            height: 20px !important;
+            border-radius: 50% !important;
+            list-style-type: none !important;
+            cursor: pointer !important;
+            background: #fff !important;
+        }
+        .conroll-round-slide-and ul li.active {
+            width: 20px !important;
+            height: 20px !important;
+            border-radius: 50% !important;
+            background: transparent !important;
+            list-style-type: none !important;
+            cursor: pointer !important;
+            border: solid 1px #21171746 !important;
+            border: solid 1px #fff !important;
+        }
+        .body-gallery-slide-and {
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+    </style>
+   
+    <div class="popup-showcase-resp popup container-popup-gallery-slider-and hidden">
+        <div class="body-popup body-gallery-slide-and">
+            <div class="container-popup container-slider-and">
+                <div class="close close-showcase-resp close-gallery-slider-and"> 
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg width="45" height="45" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M14 14L34 34" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 34L34 14" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="control-slide control-slide-and">
+                    <span class="left left-slide-resp control-slide-left-and">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/> </svg> </span>
+                    <span class="right right-slide-resp control-slide-right-and"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/> </svg> </span>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showcase_rate = document.getElementById("showcase-resp");
+        if( document.body.contains(showcase_rate) )  {
+            let indicators = [];
+            let items = document.querySelectorAll(".theme-item-slide");
+            let popup = document.querySelector(".popup-showcase-resp");
+            let leftArrow = document.querySelector(".control-slide-left-and");
+            let rightArrow = document.querySelector(".control-slide-right-and");
+            let slider = document.querySelector(".slider-and");
+            var sectionIndex = 0;
+            let close = document.querySelector(".close")
+            let img_gallerys = document.querySelectorAll(".img-gallery");
+            let nb_item = items.length;
+            let items_length = nb_item; 
+            let width_slider = nb_item * 100;
+            let gallerys = items;
+            let container_slider_and =  document.querySelector(".container-slider-and");
+            let slider_and = document.createElement("div");
+            slider_and.className = "slider-and";
+            container_slider_and.appendChild(slider_and);
+            slider_and.style.cssText = `
+                width: `+ (nb_item*100) +`% !important;
+            `;
+            let width_items = gallerys.length * 100;
+            let conroll_round_slide_and = document.createElement("div");
+            conroll_round_slide_and.className = "conroll-round-slide-and";
+            container_slider_and.appendChild(conroll_round_slide_and);
+            let ul = document.createElement("ul");
+            conroll_round_slide_and.appendChild(ul);
+            var imgArray = new Array(); 
+            gallerys.forEach( function( gallery , index ) {
+                imgArray[index] = img_gallerys[index].getAttribute("src");
+            })
+
+            close.onclick = () => {
+                popup.classList.remove("box");
+                popup.classList.add("hidden");;
+            }
+
+            //create element
+            for (let i = 0; i < nb_item ; i++) {
+                let section$i = document.createElement("section");
+                let li$i =  document.createElement("li");
+                let view_image$i = document.createElement("div")
+                let img$i = document.createElement("img");
+                img$i.setAttribute('src', imgArray[i] );
+                section$i.className = "gallery-and";
+                slider_and.appendChild(section$i);
+                li$i.className = "indicator";
+                slider_and.appendChild(section$i);
+                ul.appendChild(li$i);
+                view_image$i.className = "view_image";
+                section$i.appendChild(view_image$i);
+                view_image$i.appendChild(img$i); 
+            }
+            ul.firstElementChild.className = "indicator active";
+            indicators = document.querySelectorAll(".indicator");
+
+            gallerys.forEach( function( gallery , index ) {
+                gallery.addEventListener( "click", function(){
+                    sectionIndex = index;
+                    ind = sectionIndex;
+                    popup.classList.remove("hidden");
+                    popup.classList.add("box");
+                    document.querySelector(".indicator.active").classList.remove("active");
+                    indicators[index].classList.add("active");
+                    slider_and.style.cssText = `
+                        width: `+ (items_length*100) +`% !important;
+                        transform: translate(` + (ind) * -(100/items_length)  + `%) !important;
+                    `;
+                } );
+            });
+
+            rightArrow.addEventListener('click', function(){
+                sectionIndex = ( sectionIndex < (nb_item-1) ) ? sectionIndex + 1 : (nb_item-1);
+                document.querySelector(".indicator.active").classList.remove("active");
+                indicators[sectionIndex].classList.add("active");
+                slider_and.style.cssText = `
+                    width: `+ (nb_item*100) +`% !important;
+                    transform: translate(` + (sectionIndex) * - (100/nb_item)  + `%) !important;
+                `;
+            });
+
+            leftArrow.addEventListener('click', function(){
+                sectionIndex = ( sectionIndex > 0 ) ? sectionIndex - 1 : 0;
+                document.querySelector(".indicator.active").classList.remove("active");
+                indicators[sectionIndex].classList.add("active");
+                slider_and.style.cssText = `
+                    width: `+ (nb_item*100) +`% !important;
+                    transform: translate(` + (sectionIndex) * - (100/nb_item) + `%) !important;
+                `;
+            });
+
+            indicators.forEach( function( indicator, ind ){
+                indicator.addEventListener('click', function(){
+                    sectionIndex = ind;
+                    document.querySelector(".indicator.active").classList.remove("active");
+                    this.classList.add("active");
+                    slider_and.style.cssText = `
+                        width: `+ (items_length*100) +`% !important;
+                        transform: translate(` + (ind) * -(100/items_length)  + `%) !important;
+                    `;
+                    
+                })   
+            });
+  
+        }
+    
+    </script>
+{% endblock %}
