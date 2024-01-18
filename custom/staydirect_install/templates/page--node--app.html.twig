@@ -9,7 +9,25 @@
 
 {% set step_number = "Step 2" %}
 {% set step_name = "Profiles" %}
-
+<style>
+.site-manager-process{
+    background-color: #F6F6F6;
+    padding: 25px;
+    border-radius: 13px;
+}
+#edit-submit{
+  color:white!important;
+  background-color: #62929E!important;
+}
+#edit-field-profile-ecommerce{
+    pointer-events: none;
+    background-color: #dad9d9;
+}
+.fieldset__label--group {
+    font-size: 21px!important;
+    padding-bottom: 10px!important;
+}
+</style>
 
    {% include 'themes/custom/staydirect_install/templates/inc/header_process.html.twig'  %}
     <main class="main-step main-step-specification main-simple">
@@ -35,7 +53,7 @@
              </div>
           </div>
 
-          <div class="col-md-8 px-5">
+          <div class="col-md-8">
 
             <div class="row form-payment">
               <div class="col-md-12 col-lg-12 choosecontent">
