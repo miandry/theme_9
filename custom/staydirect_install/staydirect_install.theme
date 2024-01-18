@@ -18,3 +18,21 @@ function staydirect_install_theme_suggestions_page_alter(array &$suggestions, ar
     }
   }
 }
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function staydirect_install_page_attachments_alter(array &$attachments) {
+  // Check if the current path is a batch processing page.
+  $current_path = \Drupal::service('path.current')->getPath();
+  if (strpos($current_path, '/batch') === 0) {  
+    // Remove the library if the condition is met.
+    if (isset($attachments['#attached']['library'])) {
+      $libs = $attachments['#attached']['library'];
+      foreach($libs as $key => $lib){
+        if($lib == "staydirect_install/global-styling"){
+          unset($attachments['#attached']['library'][$key]);
+        }        
+      }
+    }
+  }
+}
