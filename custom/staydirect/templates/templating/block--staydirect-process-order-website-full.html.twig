@@ -1,98 +1,63 @@
+{{ attach_library('staydirect/maintenance') }}
 {{ attach_library('claro/global-styling') }}
 {{ attach_library('staydirect_install/global-styling') }}
-{{ attach_library('staydirect/maintenance') }}
-{% set css = 
-     '.main-content{margin-top: -15px;}
-	  .body-content-order-form  #image-wrapper{border-radius: 30px;padding: 15px;background: rgba(217, 217, 217, 0.17);}
-      .body-content-order-form .logo { height:auto!important }
-	  .body-content-order-form .field--name-st-domain-name, 
-	  .body-content-order-form .field--name-site-name{display:none!important}
-	  .body-content-order-form .field--name-st-domain-name{display:none!important}
-      .body-content-order-form .vertical-tabs,
-	  .body-content-order-form .js-form-type-vertical-tabs{display:none!important}
-	  .body-content-order-form .node-site-form input,
-	  .body-content-order-form .node-site-form textarea,
-	  .body-content-order-form .node-site-form select{display:block;margin-top:10px}
-	  .body-content-order-form .node-site-form  .description{font-size: 13px;font-style: italic;font-family:Kanit;padding-top: 5px;font-weight: 200;}
-	  .body-content-order-form .node-site-form .form-item {background: rgba(217, 217, 217, 0.17);padding: 30px;border-radius: 30px;}
-    ' 
-%}
-{{render_css(css,'process_order_website')}}
+{% set logo = path_theme() ~ "/logo.png" %}
 {% set url = current_url_alias() %}
-<div class="body-content-order-form">
-	<div class="header-step">
-		<div class="container container-and">
-			<div class="row row-and">
-				<div class="col-6 themed-grid-col">
-					<div class="top-left">
-						<a href="#">
-							<img src="/themes/custom/staydirect_install/logo.png" alt="" class="logo">
-						</a>
-					</div>
-				</div>
-				<div class="col-6 themed-grid-col text-right">
-					<div class="top-right">
-					 {% if url == "/order" %} 
-						<div class="step">
-							<a href="#">Step 1</a>
-						</div>
-						<div class="ttl-step">Information</div>
-					 {% endif %}
-					 {% if url == "/app" %} 
-						<div class="step">
-							<a href="#">Step 2</a>
-						</div>
-						<div class="ttl-step">Profil</div>
-					 {% endif %}
-					 {% if url == "/theme" %} 
-						<div class="step">
-							<a href="#">Step 3</a>
-						</div>
-						<div class="ttl-step">Themes</div>
-					 {% endif %}
-					 {% if url == "/process" %} 
-						<div class="step">
-							<a href="#">Step 4</a>
-						</div>
-						<div class="ttl-step">Conditions</div>
-					 {% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container main-step">
-		<div class="row p-4">
-			<div class="col-4" role="complementary">
-				<ol class="task-list">
-					<li  {% if url == "/order" %} class="is-active" {% endif %} >
-						Web site Information
-						<span class="visually-hidden">
-							(active)</span>
-					</li>
-					<li  {% if url == "/app" %} class="is-active" {% endif %}  >
-						Web site profile
-					</li>
-					<li {% if url == "/theme" %} class="is-active" {% endif %}>
-						Select web theme 
-					</li>
-					<li {% if url == "/process" %} class="is-active" {% endif %}>
-						Conditions and terms
-					</li>
-				</ol>
-			</div>
-			<div role="main" class="main-content col-8 px-5">
-			    {% set id = get_parameter('site_new') %}
-				{% if id["site_new"] %}		
-				     edit form		   
-				    {{ render_form_entity('node','site',id["site_new"]) }}
-				{% else %}
-				    insert form
-                    {{ render_form_entity('node','site') }}
-				{% endif %}
-			</div>
+<style>
 
-		</div>
-	</div>
-</div>
-{# /.layout-container #}
+.logo {
+    width: auto!important;
+    height: auto!important;
+}
+.main-step .vertical-tabs{
+	display:none!important;
+}
+</style>
+ <div class="header-step">
+      <div class="container container-and">
+        <div class="row row-and">
+          <div class="col-6 themed-grid-col">
+            <div class="top-left">
+              <a href="#">
+                <img src="{{logo}}" alt="" class="logo">
+              </a>
+            </div>
+          </div>
+          <div class="col-6 themed-grid-col text-right">
+            <div class="top-right">
+              <div class="step">
+                <a href="#">Step 1</a>
+              </div>
+              <div class="ttl-step">Information</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main class="main-step main-step-specification main-simple">
+      <div class="container container-and">
+        <div class="row ">
+
+          <div class="sidebar col-md-4 order-sm-first">
+
+            <div class="d-flex active">
+              <p class="mt-3 ms-3">Information</p>
+            </div>
+            <div class="d-flex mt-2">
+                <p class="mt-4 ms-3">Payement</p>
+            </div>
+            <div class="d-flex mt-2">
+                <p class="mt-4 ms-3">Confirmation</p>
+            </div>
+          </div>
+          <div class="col-md-8 px-5">
+            <div class="row form-payment">
+              <div class="col-md-12 col-lg-12 choosecontent">
+                     {{ render_form_entity('node','site') }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>

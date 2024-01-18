@@ -13,9 +13,3 @@ function staydirect_form_install_select_profile_form_alter(&$form, FormStateInte
   
 }
 
-/**
- * Implements hook_maintenance_task_list().
- */
-
-
-  

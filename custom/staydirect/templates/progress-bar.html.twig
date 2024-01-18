@@ -1,6 +1,8 @@
 {{ attach_library('claro/global-styling') }}
 {{ attach_library('staydirect_install/global-styling') }}
 {{ attach_library('staydirect/maintenance') }}
+{{ attach_library('classy/progress') }}
+
 {% set css = 
      '.main-content{margin-top: -15px;}
 	  .body-content-order-form  #image-wrapper{border-radius: 30px;padding: 15px;background: rgba(217, 217, 217, 0.17);}
@@ -18,7 +20,7 @@
     ' 
 %}
 {{render_css(css,'process_order_website')}}
-
+{% set url = current_url_alias() %}
 <div class="body-content-order-form">
 	<div class="header-step">
 		<div class="container container-and">
@@ -32,10 +34,37 @@
 				</div>
 				<div class="col-6 themed-grid-col text-right">
 					<div class="top-right">
+					 {% if url == "/order" %} 
+						<div class="step">
+							<a href="#">Step 1</a>
+						</div>
+						<div class="ttl-step">Information</div>
+					 {% endif %}
+					 {% if url == "/app" %} 
+						<div class="step">
+							<a href="#">Step 2</a>
+						</div>
+						<div class="ttl-step">Profil</div>
+					 {% endif %}
+					 {% if url == "/theme" %} 
 						<div class="step">
 							<a href="#">Step 3</a>
 						</div>
-						<div class="ttl-step">Installing web site  </div>
+						<div class="ttl-step">Themes</div>
+					 {% endif %}
+					 {% if url == "/process" %} 
+						<div class="step">
+							<a href="#">Step 4</a>
+						</div>
+						<div class="ttl-step">Conditions</div>
+                       
+					 {% endif %}
+                	 {% if url == "/batch" %} 
+						<div class="step">
+							<a href="#">Step 5</a>
+						</div>
+						<div class="ttl-step">Installing</div>
+					 {% endif %}
 					</div>
 				</div>
 			</div>
@@ -45,28 +74,32 @@
 		<div class="row p-4">
 			<div class="col-4" role="complementary">
 				<ol class="task-list">
-					<li>
+					<li  {% if url == "/order" %} class="is-active" {% endif %} >
 						Web site Information
-					</li>
-					<li >
-						Web site profile
-					</li>
-
-					<li class="is-active">
-						Conditions and terms
-                        		<span class="visually-hidden">
+						<span class="visually-hidden">
 							(active)</span>
 					</li>
-					<li>
-						Installing web site  
+					<li  {% if url == "/app" %} class="is-active" {% endif %}  >
+						Web site profile
 					</li>
-					<li class="hidden-task">
-						Configure site
+					<li {% if url == "/theme" %} class="is-active" {% endif %}>
+						Select web theme 
+					</li>
+					<li {% if url == "/process" %} class="is-active" {% endif %}>
+						Conditions and terms
+					</li>
+                    <li {% if url == "/batch" %} class="is-active" {% endif %}>
+						Web site installing
 					</li>
 				</ol>
 			</div>
-			<div role="main" class="main-content col-8 px-5 p-4">
-			     Conditions
+			<div role="main" class="main-content col-8 px-5 py-5">
+			   <div class="progress" data-drupal-progress>
+                 <div class="progress__label"> Your Web site Installing </div>
+                 <div class="progress__track"><div class="progress__bar" style="width: {{ percent }}%"></div></div>
+                 <div class="progress__percentage">{{ percent }}%</div>
+                 <div class="progress__description">{{ message }}</div>
+               </div>
 			</div>
 
 		</div>

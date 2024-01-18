@@ -1,166 +1,20 @@
 <?php
 
-/**
- * @file
- * Functions to support theming in the Claro theme.
+  /**
+ * Implements hook_theme_suggestions_HOOK_alter() for page templates.
  */
-
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\user\Entity\User;
-
-
-function staydirect_install_form_install_select_profile_form_alter(&$form, FormStateInterface $form_state) {
-  $form['profile']['#default_value'] = "staydirect";
-  //var_dump($form['profile']['#options']);
-  unset($form['profile']['#options']["standard"]);
-  unset($form['profile']['#options']["minimal"]);
-  unset($form['profile']['#options']["demo_umami"]);
-  $form['profile']['#options']['ecommerce_option'] = t('Staydirect E-commerce platform ( under construction )');
-  
-}
-function _root_url(){
-  if(isset($_SERVER['HTTPS'])){
-      $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+function staydirect_install_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    // Check if the current page is a node page.
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      // Get the content type of the node.
+      $node_type = $node->getType();
+      // Add a suggestion based on the content type.
+      $suggestions[] = 'page__node_' . $node_type;
+      $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
+      if( $alias){
+        $suggestions[] = 'page__node_' .  str_replace('/', '_', $alias);
+      }
+    }
   }
-  else{
-      $protocol = 'http';
-  }
-  return $protocol . "://" . $_SERVER['HTTP_HOST'];
-}
-function _term(){
-  return '
-  <ul class=condition_term>
-      <li><strong>Booking Process:</strong>
-          <ul>
-              <li>a. To make a reservation, users must provide accurate and complete information.</li>
-              <li>b. Bookings are confirmed upon receipt of payment or as otherwise specified in the system.</li>
-          </ul>
-      </li>
-      <li><strong>Payment:</strong>
-          <ul>
-              <li>a. Payment terms, including amounts and methods, are specified during the booking process.</li>
-              <li>b. Payments are non-refundable unless otherwise stated in the booking confirmation.</li>
-          </ul>
-      </li>
-  </ul>
-  <div>
-      By using our booking system, you agree to abide by these terms and conditions. 
-      If you do not agree with any part of these terms, please refrain from using our booking services.
-  </div>
-';
-
-}
-/**
- * Custom validation handler for the form.
- */
-function _agree_form_validate($form, &$form_state) {
-  // Check if the agreement checkbox is checked.
-  if (!$form_state->getValue('checkbox_agreement')) {
-      $form_state->setErrorByName('checkbox_agreement', t('You must agree to the terms and conditions.'));
-  }
-}
-function staydirect_install_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-   switch ($form_id) {
-    case "install_select_profile_form":
-          $form['#title'] = "SELECT PROFILE";
-       //   var_dump(($form['profile']['standard']));die();
-       //    var_dump(array_keys($form['profile']['#options']));die();
-        break;  
-    case "install_settings_form":
-          $form['#title'] = "Conditions and Terms";
-         $term = _term();
-          $form['text'] = [
-            '#type' => 'markup',
-            '#markup' => '<div class="block-title"> '. $term .' </div>',
-          ];
-          $form['checkbox_agreement'] = array(
-            '#type' => 'checkbox',
-            '#title' => t('I agree to the terms and conditions.'),
-            '#required' => TRUE,
-            '#attributes' => array('id' => 'edit-agree')
-          );
-          $form['#validate'][] = '_agree_form_validate';
-
-         
-        break; 
-    case "install_configure_form":
-              
-                // Create user object.
-                $user = User::create();
-
-                //Mandatory settings
-                $user->setPassword("password");
-                $user->enforceIsNew();
-                $user->setEmail("admin@example.com");
-                $user->setUsername("admin"); 
-                $user->addRole('administrator'); 
-                $user->set("status", 1);     
-                $user->save(); 
-        
-            $redirectUrl = _root_url()."/update.php/selection";
-            echo "<script>window.location.href='$redirectUrl';</script>";
-            exit;
-       break;          
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter() for install_configure_form.
- */
-function staydirect_install_form_install_configure_form_alter(&$form, &$form_state) {
-  // Add a custom submit handler to the form.
- // $form['actions']['submit']['#submit'][] = '_staydirect_install_submit';
-}
-
-/**
- * Custom submit handler for install_configure_form.
- */
-function _staydirect_install_submit($form, &$form_state) {
-
-  //  $redirectUrl = $base_url."/update.php/selection";
-   // echo "<script>window.location.href='$redirectUrl';</script>";
-  //  exit;
-
-}
-
-
-function  staydirect_install_preprocess_maintenance_task_list(&$variables){
-
-
-   foreach($variables["tasks"] as $key => $item){
-   
-       switch ($key) {
-        case 'install_select_language':
-           $variables['tasks'][$key]["item"] = new TranslatableMarkup('User Information');
-            break;
-        case "install_select_profile":
-           $variables['tasks'][$key]["item"] = new TranslatableMarkup('Web site profile');
-            // Code to execute if expression matches value2
-            break;
-        case "install_verify_requirements":
-            $attributes = ($variables['tasks'][$key]['attributes']);     
-            $attributes->setAttribute('class', ['hidden-task']);
-            $variables['tasks'][$key]['attributes'] =$attributes;
-            
-            break;    
-        case "install_profile_modules":
-              // Code to execute if expression matches value2
-              $variables['tasks'][$key]["item"] = new TranslatableMarkup('Installing web site');
-            break;    
-        case "install_settings_form":
-          $variables['tasks'][$key]["item"] = new TranslatableMarkup('Conditions and Terms');
-              // Code to execute if expression matches value2
-              
-            break; 
-        case "install_configure_form":
-          $attributes = ($variables['tasks'][$key]['attributes']);     
-          $attributes->setAttribute('class', ['hidden-task']);
-          $variables['tasks'][$key]['attributes'] =$attributes;
-         
-              // Code to execute if expression matches value2
-           break;          
-      }  
-   }
 }
