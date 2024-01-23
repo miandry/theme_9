@@ -1,0 +1,18 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/fonts.css: {}
+      css/bootstrap-5.3.2.css : {}
+      css/swiper-bundle.min.css : {}
+      #css/reset.css: {}
+      css/home.css: {}
+      css/global.css: {}
+      css/style.css: {}
+  js:
+    js/popper-2.11.8.min.js : {}  
+    js/bootstrap-5.3.2.min.js : {} 
+    js/swiper-bundle.min.js : {}
+    js/script.js : {} 
+  dependencies:
+    - core/jquery
