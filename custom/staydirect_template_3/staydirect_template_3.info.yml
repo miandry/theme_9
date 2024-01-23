@@ -3,7 +3,13 @@ type: theme
 base theme: staydirect_template_1
 description: 'A Drupal theme based on Bootstrap 5 theme design.'
 core_version_requirement: ^8 || ^9
-
 regions:
   content: 'Content'
   disalbed: 'Disabled'
+regions:
+  content: 'Content'
+  disalbed: 'Disabled'
+  header: 'Header'
+  footer: 'Footer'
+libraries:
+  - staydirect_template_3/global-styling
