@@ -1,0 +1,373 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+
+{% block templating_content %}
+
+{% set c = block_parser(content) %}
+{% set imgs = c['field_images'] %}
+{% set imgs_length = imgs|length %}
+<div id="section--slider" class="banniere section--slider">
+  <div class="wrapper--resp">
+    <div class="settings" style="display: none;">
+      <div class="content-settings">
+        <div class="setting-color version-bleu active">
+          <svg width="16" height="16" fill="#3498DB" xmlns="http://www.w3.org/2000/svg" svg-inline="" role="presentation" focusable="false"><path d="M10.74 2c2.349 0 3.927 2.235 3.927 4.32C14.667 10.543 8.119 14 8 14c-.118 0-6.667-3.457-6.667-7.68C1.333 4.235 2.911 2 5.26 2 6.607 2 7.49 2.683 8 3.283 8.511 2.683 9.393 2 10.74 2z"></path></svg>
+        </div>
+        <div class="setting-color version-vert">
+            <svg width="16" height="16"  fill="#1ECC71" xmlns="http://www.w3.org/2000/svg" svg-inline="" role="presentation" focusable="false"><path d="M10.74 2c2.349 0 3.927 2.235 3.927 4.32C14.667 10.543 8.119 14 8 14c-.118 0-6.667-3.457-6.667-7.68C1.333 4.235 2.911 2 5.26 2 6.607 2 7.49 2.683 8 3.283 8.511 2.683 9.393 2 10.74 2z"></path></svg>
+        </div>
+        <div class="setting-color version-gris">
+            <svg width="16" height="16" fill="#333" xmlns="http://www.w3.org/2000/svg" svg-inline="" role="presentation" focusable="false"><path d="M10.74 2c2.349 0 3.927 2.235 3.927 4.32C14.667 10.543 8.119 14 8 14c-.118 0-6.667-3.457-6.667-7.68C1.333 4.235 2.911 2 5.26 2 6.607 2 7.49 2.683 8 3.283 8.511 2.683 9.393 2 10.74 2z"></path></svg>
+        </div>
+    </div>
+    </div>
+
+    <style>    
+      .container-slider--resp {
+        width: 100%;
+        position: relative;
+        margin: auto;
+      } 
+      .ctrl--left, .ctrl--right {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 1.6px solid var(--bleu-color);
+        z-index: 3;
+      }
+      .ctrl--slider svg path
+      {
+        fill: var(--bleu-color);
+      }
+      .ctrl--slider svg path
+      {
+        fill: var(--bleu-color);
+      }
+
+      .container-slider--resp {
+        max-width: 100% !important;
+      }
+      .container-slider--resp .swiper-slider--resp .swiper-slide {
+        background: #882525;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .container-slider--resp .swiper-slider--resp .swiper-slide img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+      @media (max-width: 499.96px) {
+        .container-slider--resp {
+          max-width: 100% !important;
+          padding-left: 48px;
+          padding-right: 48px;
+        }
+        .container-slider--resp .slider {
+          background: yellow;
+          height: 288px;
+        }
+        .ctrl--left {
+          left:0px;
+        }
+        .ctrl--right {
+          right:0px;
+        }
+        .ctrl--left, .ctrl--right {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .container-slider--resp  .swiper-slider--resp {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+        }
+        .container-slider--resp  .swiper-slider--resp .swiper-slide {
+          border-radius: 20px;
+          transition: scale .5s;
+          transform: scale(0.8, .7587);
+          
+        }
+        .container-slider--resp .swiper-slide-active, .container-slider--resp .swiper-slide-duplicate-active, .container-slider--resp .swiper-slide-fully-visible .swiper-slide-active {
+            transition: scale .5s;
+            z-index: 4;
+            border-radius: 12px !important;
+            transform: scale(2.10341, 1) !important;
+        }
+      }
+      @media (min-width: 499.98px) {
+        .container-slider--resp {
+          max-width: 100% !important;
+          padding-left: 48px;
+          padding-right: 48px;
+        }
+        .container-slider--resp .slider {
+          background: yellow;
+          height: 373px;
+        }
+        .ctrl--left {
+          left:0px;
+        }
+        .ctrl--right {
+          right:0px;
+        }
+        .ctrl--left, .ctrl--right {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .container-slider--resp  .swiper-slider--resp {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+        }
+        .container-slider--resp  .swiper-slider--resp .swiper-slide {
+          border-radius: 20px;
+          transition: scale .5s;
+          transform: scale(0.8, .7587);
+          
+        }
+        .container-slider--resp .swiper-slide-active, .container-slider--resp .swiper-slide-duplicate-active, .container-slider--resp .swiper-slide-fully-visible .swiper-slide-active {
+            transition: scale .5s;
+            z-index: 4;
+            border-radius: 12px !important;
+            transform: scale(2.10341, 1) !important;
+        }
+      }
+      @media (min-width: 767.98px) {
+        .container-slider--resp {
+          max-width: 100% !important;
+          padding-left: 65px;
+          padding-right: 65px;
+        }
+        .container-slider--resp .slider {
+          background: yellow;
+          height: 339px;
+        }
+        .ctrl--left {
+          left:0px;
+        }
+        .ctrl--right {
+          right:0px;
+        }
+        .ctrl--left, .ctrl--right {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .container-slider--resp  .swiper-slider--resp {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+        }
+        .container-slider--resp  .swiper-slider--resp .swiper-slide {
+          height: 100%;
+          border-radius: 20px;
+          transition: scale .4s;
+          transform: scale(.8265, .83481);
+          z-index: 9 !important;
+        }
+        .container-slider--resp .swiper-slide-active, .container-slider--resp .swiper-slide-duplicate-active, .container-slider--resp .swiper-slide-fully-visible .swiper-slide-active {
+            transition: scale .4s;
+            transform: scale(1.19145, 1) !important;
+            z-index: 10 !important;
+           
+        }
+      }
+      @media (min-width: 991.98px) {
+        .container-slider--resp {
+          max-width: 100%;
+          padding-left: 65px;
+          padding-right: 65px;
+        }
+        .container-slider--resp .slider {
+          background: yellow;
+          height: 339px;
+        }
+        .ctrl--left {
+          left:0px;
+        }
+        .ctrl--right {
+          right:0px;
+        }
+        .ctrl--left, .ctrl--right {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .container-slider--resp .swiper-slider--resp {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+        }
+        .container-slider--resp .swiper-slider--resp .swiper-slide {
+          height: 100%;
+          border-radius: 20px;
+          transition: scale .4s;
+          transform: none;
+        }
+        .container-slider--resp .swiper-slider--resp .swiper-slide {
+          height: 100%;
+          border-radius: 20px;
+         
+        }
+        .container-slider--resp .swiper-slide-active, .container-slider--resp .swiper-slide-duplicate-active, .container-slider--resp .swiper-slide-fully-visible .swiper-slide-active {
+            transition: scale .4s;
+            transform: none !important;
+        }
+      }
+      @media (min-width: 1199.98px) {
+        .container-slider--resp {
+          max-width: 1200px !important;
+          padding-left: 65px;
+          padding-right: 65px;
+        }
+        .container-slider--resp .slider {
+          background: yellow;
+          height: 500px;
+        }
+        .ctrl--left {
+          left:0px;
+        }
+        .ctrl--right {
+          right:0px;
+        }
+        .ctrl--left, .ctrl--right {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .container-slider--resp .swiper-slider--resp {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+        }
+        .container-slider--resp .swiper-slider--resp .swiper-slide {
+          height: 100%;
+          border-radius: 20px;
+        }
+      }
+      @media (min-width: 1385.98px) {
+        .container-slider--resp {
+          max-width: 1200px !important;
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .container-slider--resp .slider {
+          background: yellow;
+          height: 500px;
+        }
+        .ctrl--left {
+          left:-70px;
+        }
+        .ctrl--right {
+          right:-70px;
+        }
+        .ctrl--left, .ctrl--right {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .container-slider--resp .swiper-slider--resp {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+        }
+        .container-slider--resp .swiper-slider--resp .swiper-slide {
+          height: 100%;
+          border-radius: 20px;
+        }
+      }
+      @media (min-width: 1499.98px) {
+        .container-slider--resp {
+          max-width: 1200px !important;
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .container-slider--resp .slider {
+          background: yellow;
+          height: 500px;
+        }
+        .ctrl--left {
+          left:-95px;
+        }
+        .ctrl--right {
+          right:-95px;
+        }
+        .ctrl--left, .ctrl--right {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .container-slider--resp .swiper-slider--resp {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+        }
+        .container-slider--resp .swiper-slider--resp .swiper-slide {
+          height: 100%;
+          border-radius: 20px;
+        }
+      }
+    </style>
+
+    <div class="container-slider--resp">
+        <div class="ctrl--slider">
+            <div class="ctrl--left">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M11.2901 12L14.8301 8.46001C15.0163 8.27265 15.1209 8.0192 15.1209 7.75501C15.1209 7.49082 15.0163 7.23737 14.8301 7.05001C14.7371 6.95628 14.6265 6.88189 14.5046 6.83112C14.3828 6.78035 14.2521 6.75421 14.1201 6.75421C13.9881 6.75421 13.8573 6.78035 13.7355 6.83112C13.6136 6.88189 13.503 6.95628 13.4101 7.05001L9.17007 11.29C9.07634 11.383 9.00194 11.4936 8.95117 11.6154C8.90041 11.7373 8.87427 11.868 8.87427 12C8.87427 12.132 8.90041 12.2627 8.95117 12.3846C9.00194 12.5064 9.07634 12.617 9.17007 12.71L13.4101 17C13.5035 17.0927 13.6143 17.166 13.7362 17.2158C13.858 17.2655 13.9885 17.2908 14.1201 17.29C14.2517 17.2908 14.3821 17.2655 14.504 17.2158C14.6258 17.166 14.7366 17.0927 14.8301 17C15.0163 16.8126 15.1209 16.5592 15.1209 16.295C15.1209 16.0308 15.0163 15.7774 14.8301 15.59L11.2901 12Z"/>
+              </svg>
+            </div>
+            <div class="ctrl--right">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12.7099 12L9.16993 8.46001C8.98368 8.27265 8.87914 8.0192 8.87914 7.75501C8.87914 7.49082 8.98368 7.23737 9.16993 7.05001C9.2629 6.95628 9.3735 6.88189 9.49536 6.83112C9.61722 6.78035 9.74792 6.75421 9.87993 6.75421C10.0119 6.75421 10.1427 6.78035 10.2645 6.83112C10.3864 6.88189 10.497 6.95628 10.5899 7.05001L14.8299 11.29C14.9237 11.383 14.9981 11.4936 15.0488 11.6154C15.0996 11.7373 15.1257 11.868 15.1257 12C15.1257 12.132 15.0996 12.2627 15.0488 12.3846C14.9981 12.5064 14.9237 12.617 14.8299 12.71L10.5899 17C10.4965 17.0927 10.3857 17.166 10.2638 17.2158C10.142 17.2655 10.0115 17.2908 9.87993 17.29C9.74833 17.2908 9.61787 17.2655 9.49603 17.2158C9.37419 17.166 9.26337 17.0927 9.16993 17C8.98368 16.8126 8.87914 16.5592 8.87914 16.295C8.87914 16.0308 8.98368 15.7774 9.16993 15.59L12.7099 12Z"/>
+              </svg>
+            </div>
+        </div>
+        <div class="slider">
+           <div class="swiper swiper-slider--resp swiper-slider--and">
+              <div class="swiper-wrapper">
+                {% for size in 0 .. (imgs_length - 1) %}
+                <div class="swiper-slide swiper-slide2 swippe--item" style="background: url({{ imgs[size]['image'].url}}); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+                  <img src="{{ imgs[size]['image'].url }}" alt="" style="object-fit: cover;">
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
