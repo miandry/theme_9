@@ -64,7 +64,7 @@ h3 {
 
 .site-name,
 .title,
-.content {
+.maintenance--page .content {
   max-width: 34rem;
 }
 
