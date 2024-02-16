@@ -64,7 +64,7 @@ h3 {
 
 .site-name,
 .title,
-.maintenance--page .content {
+.content:has(.maintenance--page) {
   max-width: 34rem;
 }
 
