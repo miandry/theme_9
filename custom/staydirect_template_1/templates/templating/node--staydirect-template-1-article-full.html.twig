@@ -1,13 +1,131 @@
-{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
-
+{% extends get_module_path('templating') ~ "/templates/misc/node.html.twig" %}
 {% block templating_content %}
+{{ attach_library('staydirect_template_1/booking-details') }}
+{{ attach_library('staydirect_template_1/spinner-form') }}
+{% set n = (node_parser(node)) %}
+{% set imgs = n.field_images %}
 
-{{ attach_library('staydirect_template_1/swipper') }}
-{% set c = block_parser(content) %}
-{% set paragraphs = c['field_paragraphs'] %}
-{% set paragraphs_length = paragraphs|length %}
+<style>
+.grid {
+    display: grid;
+    gap: 10px;
+}
+.container-banniere-resp img {
+    width:100%;
+    height: 100%;
+}
+.container-banniere-resp {
+    display: grid;
+    height: 500px;
+    overflow: hidden;
+    gap: 5px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr;
+}
+.banniere-col1 {
+    display: grid;
+    display: grid;
+    height: 100%;
+    grid-template-columns: span 1;
+    background-color: aquamarine;
+}
+.banniere-col2{
+    display: grid;
+    grid-column: span 3;
+    height: 100%;
+    grid-template-rows: repeat(2,1fr);
+}
+.banniere-col2-row1 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 1fr;
+}
+.banniere-col2-row2 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row1-col1 {
+    grid-column: span 1;
+    background-color: #fff;
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row1-col2 {
+    grid-column: span 2;
+    background: rgb(251, 255, 0);
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row2-col1 {
+    grid-column: span 2;
+    background: rgb(251, 255, 0);
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row2-col2 {
+    grid-column: span 1;
+    background: #fff;
+    grid-template-rows: 1fr;
+    height: 100%;
+}
 
-{{ paragraphs_length }}
+
+</style>
+
+<section class="banniere--resp">
+<div class="wrapper--resp">
+    <div class="container-banniere-resp grid">
+
+        <div class="banniere-col1 grid" style="     
+            background: url( {{ imgs[0]['image'].url }} );
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        ">
+           
+        </div>
+        <div class="banniere-col2 grid">
+            <div class="banniere-col2-row1 grid">
+                <div class="grid banniere-col2-row1-col1" style="     
+                background: url({{ imgs[1]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+                   
+                </div>
+                <div class="grid banniere-col2-row1-col2" style="     
+                background: url({{ imgs[2]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+                </div>
+            </div>
+            <div class="banniere-col2-row2 grid">
+                <div class="grid banniere-col2-row2-col1 grid" style="     
+                background: url({{ imgs[3]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+
+                </div>
+                <div class="grid banniere-col2-row2-col2" style="     
+                background: url({{ imgs[4]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
 <style>
     .specification {
         position: relative;
@@ -188,12 +306,78 @@
     }
   }
 </style>
+          <style>
+                .review--booking {
+                  width: 100%;
+                  margin: 20px 0;
+                }
+                .content--review-booking {
+                  height: 300px;
+                  width: 100%;
+                }
+
+                .container--slide-actuality {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  background: #fff;
+                }
+                .container--slide-actuality .swiper {
+                  width: 100%;
+                  height: 100%;
+                }
+                .container--slide-actuality .swiper-slide {
+                  font-size: 18px;
+                  background: #fff;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: justify;
+                }
+                .container--slide-actuality .swiper-slide img {
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+                .swiper--slide-booking {
+                  display: flex;
+                  justify-content: space-between;
+                  flex-wrap: nowrap;
+                  align-items: center;
+                }
+                .swiper--slide-booking .swiper--left {
+                  margin-right: auto;
+                  width: 50%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  text-align: justify;
+                  padding: 0 20px;
+                  overflow: hidden;
+                  background: #FAFAFA
+                }
+                .swiper--slide-booking .swiper--right {
+                  margin-left: auto;
+                  width: 50%;
+                  height: 100%;
+                  justify-content: center;
+                  text-align: justify;
+                  padding: 0 20px;
+                  overflow: hidden;
+                  background: #FAFAFA
+                }
+                .swiper--slide-booking img {
+                  border-radius: 5px;
+                }
+            </style>
 
 <div class="specification">
     <div class="container">
         <div class="row">
-          <div class="col-md-7 col-lg-7 spec-left" bis_skin_checked="1">
-            <div class="header-cnt">
+
+          <div class="col-md-7 col-lg-7 spec-left" bis_skin_checked = "1">
+              <div class="header-cnt">
               <h1> {{n.title}}  </h1>
               <p class="desc-cnt">
                   {{n.body|first.value|raw}}
@@ -296,71 +480,6 @@
               </div>
             </div>
           
-            <style>
-                .review--booking {
-                  width: 100%;
-                  margin: 20px 0;
-                }
-                .content--review-booking {
-                  height: 300px;
-                  width: 100%;
-                }
-
-                .container--slide-actuality {
-                  position: relative;
-                  width: 100%;
-                  height: 100%;
-                  background: #fff;
-                }
-                .container--slide-actuality .swiper {
-                  width: 100%;
-                  height: 100%;
-                }
-                .container--slide-actuality .swiper-slide {
-                  font-size: 18px;
-                  background: #fff;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  text-align: justify;
-                }
-                .container--slide-actuality .swiper-slide img {
-                  display: block;
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                }
-                .swiper--slide-booking {
-                  display: flex;
-                  justify-content: space-between;
-                  flex-wrap: nowrap;
-                  align-items: center;
-                }
-                .swiper--slide-booking .swiper--left {
-                  margin-right: auto;
-                  width: 50%;
-                  height: 100%;
-                  display: flex;
-                  justify-content: center;
-                  text-align: justify;
-                  padding: 0 20px;
-                  overflow: hidden;
-                  background: #FAFAFA
-                }
-                .swiper--slide-booking .swiper--right {
-                  margin-left: auto;
-                  width: 50%;
-                  height: 100%;
-                  justify-content: center;
-                  text-align: justify;
-                  padding: 0 20px;
-                  overflow: hidden;
-                  background: #FAFAFA
-                }
-                .swiper--slide-booking img {
-                  border-radius: 5px;
-                }
-            </style>
             <div class="review--booking" style="margin-top: 30px;">
               <h4 class="mb-3">
                 <i class="icon i-spec">
@@ -448,7 +567,7 @@
                 height: 270px;
                 flex-shrink: 0;
                 border-radius: 20px 20px 0px 0px;
-                background: url( {{c['field_media1']['image'].url}} ) no-repeat;
+                background: url( {{n['field_image']['image'].url}} ) no-repeat;
                 background-color: #D9D9D9;
                 background-size: cover;
               }
@@ -488,20 +607,7 @@
               .specification .spec-right form {
                 margin-top: 10px;
               }
-              .specification .spec-right input {
-                border-radius: 10px;
-                border-bottom: 1px solid rgba(51, 51, 51, 0.32);
-                background: #FAFAFA;
-                max-width: 100%;
-                height: 50px;
-                flex-shrink: 0;
-                color: rgba(51, 51, 51, 0.40);
-                font-family: "Montserrat";
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-              }
+ 
               .specification .spec-right .list-group-foot {
                 margin-top: 31.5px;
               }
@@ -564,7 +670,9 @@
                   width: 100%;
                 }
               }
-              
+              .date_booking .easepick-wrapper{
+                       z-index: 1;
+              }
             </style>
 
             <div class="spec-right">
@@ -573,70 +681,97 @@
               </div>
               <div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px">
                 
-                <ul class="list-group">
+                <ul class="list-group" style="display:none">
                   <li class="list-group list-group-head">
                     <div bis_skin_checked="1">
                       <h6 class="my-0">Hotel Exemple</h6>
                       <small class="text-body-secondary">07008 Palma, Spain</small>
                     </div>
                   </li>
-              </ul>
-
-                <form>
-                  <li class="list-group-item d-flex justify-content-between" style="margin-top: 40px;">
-                    <small>Properties</small>
-                  </li>
-                  <div class="input-group">
-                    <input type="Date" class="form-control" placeholder="Date" style="padding-left: 45px;">
-                  </div>
-            
-                  <div class="input-group">
-                    <select type="text" class="form-control" placeholder="Guest">
-                      <option value="">Guest</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                    </select>
-                  </div>
-
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Room">
-                  </div>
-
-                </form>
-
-                <ul class="list-group">
-                  <hr style="margin-bottom: 0;">
-                  <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div bis_skin_checked="1">
-                      <h6 class="my-0">Date</h6>
-                    </div>
-                    <span class="text-body-secondary">Sept 12, 2023 - Sept 30, 2023</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div bis_skin_checked="1">
-                      <h6 class="my-0">Guest</h6>
-                    </div>
-                    <span class="text-body-secondary">3</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div bis_skin_checked="1">
-                      <h6 class="my-0">Room</h6>
-                    </div>
-                    <span class="text-body-secondary">Living, Kitchen, Garden</span>
-                  </li>
-                
-               
                 </ul>
 
-                <hr style="margin-top: 36px;">
+                <form  class="booking-form">
+                  <li class="list-group-item d-flex justify-content-between" style="margin-top: 40px;">
+                    <small>Dates</small>
+                  </li>
+                  <div class="date_booking input-group">
+                    <input type="hidden" name="nid" value="{{ n.nid }}"/>
+                     <input id="datepickerVal" value="0" class="Dym form-check-input" type="hidden" name="booking-range" />
+                     <input id="datepicker" name="booking-range-date"  required="" placeholder="Select your dates   >"  style="width: 100%"/>
+
+                  </div>
+      {% for key,item in addons %}
+                <input  type="hidden" value="{{ item.type }}"   name="{{ item.name }}__type" /> 
+                {% if item.type =="addon_with_quantity" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="row form-check-with-qty">
+                        <input type="hidden" value="{{ item.price }}" class="qty-montant" />
+                        <div class="col">
+                          <input type="hidden" name="{{ item.name }}" value="0" class="Dym qty-input" />
+                          <div class="form-check-label pt-2" for="tabContent9Checkbox">
+                            {{ item.name }} : $<span class="qty-input-display">{{ item.price }}</span> 
+                          </div>
+                        </div>
+                        <div class="col number-input-custom">
+                          <input class="quantity" min="0"  value="0" type="number">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="addon_additional_price" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="form-check form-check-addition-price">
+                        <span id="myval" style="display: none" >{{ item.price }}</span>
+                        <input class="Dym form-check-input" style="pointer-events: none;"  type="checkbox" value="{{ item.price }}"  checked="true" name="{{ item.name }}" >
+                        <label class="form-check-label" for="tabContent9Checkbox">
+                          {{ item.name }} :  ${{ item.price }}
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="addons" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="form-check">
+                        <span id="myval" style="display: none" >{{ item.price }}</span>
+                        <input class="Dym form-check-input"  value="0" type="checkbox" name="{{ item.name }}" >
+                        <label class="form-check-label" for="tabContent9Checkbox">
+                          {{ item.name }} :  ${{ item.price }}
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="select_addons" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <strong class="d-block text-color-dark mb-2">{{ item.name }}</strong>
+                      <div  class="d-flex flex-column">
+                        <select class="Dym form-select form-control h-auto py-2 valid"   name="{{ item.name }}"  aria-invalid="false">
+                          <option value="0">- None -</option>
+                          {% for keychild,child in item.list %}
+                            <option value="{{ child.name }}----{{ child.price }}">{{ child.name }} : ${{ child.price }} </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+                 <hr style="margin-top: 36px;">
 
                 <ul class="list-group list-group-foot">
                   <li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
-                    <strong>TOTAL</strong>
-                    <span>0 Ar</span>
+                      <strong>TOTAL</strong>
+                      <span id="total_prix">0</span> <span>Ar</span>
                   </li>
                 </ul>
+                </form>
+   
               
               </div>
             </div>
@@ -649,22 +784,6 @@
     </div>
 </div>
 <script>
-    var swiper = new Swiper(".swipper--booking", {
-      spaceBetween: 30,
-      centeredSlides: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      /*pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },*/
-    });
-  </script>
 
+  </script>
 {% endblock %}

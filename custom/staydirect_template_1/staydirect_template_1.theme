@@ -12,22 +12,21 @@ function staydirect_template_1_preprocess_html(&$variables) {
   // Check if the site is in maintenance mode.
 
    global $site_variables;
-   $email = $site_variables["email"];
 
-   $config = \Drupal::config("mz_staydirect.init");
-   $status = $config->get("status_init");
+  // $config = \Drupal::config("mz_staydirect.init");
+  // $status = $config->get("status_init");
 
-   if($status){}else{
+  // if($status){}else{
     
-         $theme_name = "staydirect_".$site_variables["site_theme"];
-         $config_factory = \Drupal::configFactory();
-         $theme_config = $config_factory->getEditable('system.theme');
-         $theme_config->set('default', $theme_name)->save();
-         $status = \Drupal::configFactory()->getEditable("mz_staydirect.init")
-         ->set('status_init', 1)
-         ->save();
+        //  $theme_name = "staydirect_".$site_variables["site_theme"];
+        //  $config_factory = \Drupal::configFactory();
+        //  $theme_config = $config_factory->getEditable('system.theme');
+        //  $theme_config->set('default', $theme_name)->save();
+        //  $status = \Drupal::configFactory()->getEditable("mz_staydirect.init")
+        //  ->set('status_init', 1)
+        //  ->save();
         //  drupal_flush_all_caches();
-   }
+  // }
 
         // $state = \Drupal::state();
         // $state->set('system.maintenance_mode', $enable);

@@ -16,3 +16,36 @@ global-styling:
     js/script.js : {} 
   dependencies:
     - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+
+swiper: 
+  css:
+    theme:
+      css/swiper-bundle.min.css : {}     
+  js:
+    js/swiper-bundle.min.js : {}   
+
+
+booking-details: 
+  js:
+    js/booking-details.js : {} 
+  dependencies:
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings  
+    - staydirect_template_1/easepick 
+    - staydirect_template_1/swipper
+
+spinner-form:
+  version: 1.0
+  js:
+    js/bootstrap-input-spinner.js: { }
+  dependencies:
+    - core/jquery
+easepick :
+  version: 1.2.0
+  header: true
+  js:
+    vendor/easepick/easepick.min.js: {}    

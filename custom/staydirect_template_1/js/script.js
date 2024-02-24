@@ -94,46 +94,46 @@ var swiper = new Swiper(".swiper-feature", {
 
 });
 
-if( document.body.contains(  document.querySelector(".settings") ) ) {
-  let settings_color = document.querySelectorAll(".setting-color");
+// if( document.body.contains(  document.querySelector(".settings") ) ) {
+//   let settings_color = document.querySelectorAll(".setting-color");
 
-  settings_color.forEach( (setting_color,index) => {
-      setting_color.addEventListener( "click", () => {
-          let color = setting_color.getAttribute("class");
-          let vert = color.includes("vert");
-          let bleu = color.includes("bleu");
-          let gris = color.includes("gris");
-          //document.querySelector(".setting-color.active").classList.remove("active");
-          document.querySelector(".setting-color.active").classList.remove("active");
+//   settings_color.forEach( (setting_color,index) => {
+//       setting_color.addEventListener( "click", () => {
+//           let color = setting_color.getAttribute("class");
+//           let vert = color.includes("vert");
+//           let bleu = color.includes("bleu");
+//           let gris = color.includes("gris");
+//           //document.querySelector(".setting-color.active").classList.remove("active");
+//           document.querySelector(".setting-color.active").classList.remove("active");
        
-          if(bleu){
-            document.documentElement.style.setProperty("--bleu-color","#3498DB");
-            document.documentElement.style.setProperty("--bleumarine-color","#124668");
-            document.documentElement.style.setProperty("--lineargradient-color","rgba(18, 70, 104, 0.70)");
-            //document.querySelector(".setting-color.bleu").classList.add("active");
+//           if(bleu){
+//             document.documentElement.style.setProperty("--bleu-color","#3498DB");
+//             document.documentElement.style.setProperty("--bleumarine-color","#124668");
+//             document.documentElement.style.setProperty("--lineargradient-color","rgba(18, 70, 104, 0.70)");
+//             //document.querySelector(".setting-color.bleu").classList.add("active");
           
-            settings_color[index].classList.add("active");
-            console.log(index);
-          }
-          if(vert){
-            document.documentElement.style.setProperty("--bleu-color","#1ECC71");
-            document.documentElement.style.setProperty("--bleumarine-color","#137C46");
-            document.documentElement.style.setProperty("--lineargradient-color","rgba(19, 124, 70, 0.70)");
-            //document.querySelector(".setting-color.vert").classList.add("active");
+//             settings_color[index].classList.add("active");
+//             console.log(index);
+//           }
+//           if(vert){
+//             document.documentElement.style.setProperty("--bleu-color","#1ECC71");
+//             document.documentElement.style.setProperty("--bleumarine-color","#137C46");
+//             document.documentElement.style.setProperty("--lineargradient-color","rgba(19, 124, 70, 0.70)");
+//             //document.querySelector(".setting-color.vert").classList.add("active");
 
-            settings_color[index].classList.add("active");
-            console.log(index);
-          }
-          if(gris){
-            document.documentElement.style.setProperty("--bleu-color","#333");
-            document.documentElement.style.setProperty("--bleumarine-color","#333");
-            document.documentElement.style.setProperty("--lineargradient-color","rgba(51, 51, 51, 0.70)");
-            //document.querySelector(".setting-color.gris").classList.add("active");
-            settings_color[index].classList.add("active");
-            console.log(index);
-          }
-      })
-  })
+//             settings_color[index].classList.add("active");
+//             console.log(index);
+//           }
+//           if(gris){
+//             document.documentElement.style.setProperty("--bleu-color","#333");
+//             document.documentElement.style.setProperty("--bleumarine-color","#333");
+//             document.documentElement.style.setProperty("--lineargradient-color","rgba(51, 51, 51, 0.70)");
+//             //document.querySelector(".setting-color.gris").classList.add("active");
+//             settings_color[index].classList.add("active");
+//             console.log(index);
+//           }
+//       })
+//   })
 
-}
+// }
 });
