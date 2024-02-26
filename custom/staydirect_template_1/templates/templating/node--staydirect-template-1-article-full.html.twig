@@ -4,7 +4,11 @@
 {{ attach_library('staydirect_template_1/spinner-form') }}
 {% set n = (node_parser(node)) %}
 {% set imgs = n.field_images %}
-
+{% set params = get_parameter() %}
+{% if params.nid %}
+     {{storage_set('booking_info',params)}}
+    {% set t = redirect('/booking-process') %} 
+{% endif %}
 <style>
 .grid {
     display: grid;
@@ -674,23 +678,10 @@
                        z-index: 1;
               }
             </style>
-
+         <form  class="booking-form" >
             <div class="spec-right">
-              <div class="spec-top">
-
-              </div>
               <div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px">
-                
-                <ul class="list-group" style="display:none">
-                  <li class="list-group list-group-head">
-                    <div bis_skin_checked="1">
-                      <h6 class="my-0">Hotel Exemple</h6>
-                      <small class="text-body-secondary">07008 Palma, Spain</small>
-                    </div>
-                  </li>
-                </ul>
-
-                <form  class="booking-form">
+                   
                   <li class="list-group-item d-flex justify-content-between" style="margin-top: 40px;">
                     <small>Dates</small>
                   </li>
@@ -767,17 +758,21 @@
                 <ul class="list-group list-group-foot">
                   <li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
                       <strong>TOTAL</strong>
+                     <input type="hidden" id="total_prix_hidden" name="total" value="0"/>
                       <span id="total_prix">0</span> <span>Ar</span>
                   </li>
                 </ul>
-                </form>
+            
    
               
               </div>
             </div>
-
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-        
+            {% if logged_in %}
+                <button  class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+            {% else %}
+               <a  href="/signin-signup?destination={{current_url_alias()}}" class="btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
+            {% endif %}
+             </form>
           </div>
 
         </div>

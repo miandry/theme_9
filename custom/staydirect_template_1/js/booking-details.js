@@ -140,6 +140,7 @@
                     }
                 );
                 document.getElementById('total_prix').innerHTML = total;
+                jQuery("#total_prix_hidden").val(total);
             }
 
             $(document).ready(function() {
