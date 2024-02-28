@@ -5,6 +5,10 @@
 {% set n = (node_parser(node)) %}
 {% set imgs = n.field_images %}
 {% set params = get_parameter() %}
+
+{% set specifications = n['field_specifications'] %}
+{% set specifications_length = specifications|length %}
+
 {% if params.nid %}
      {{storage_set('booking_info',params)}}
     {% set t = redirect('/booking-process') %} 
@@ -399,19 +403,11 @@
     margin-top: 66px;
     display: block;
   }
-  .specification form-check-label-and {
-
-  }
-  .specification .booking-form .btn-outline-secondary {
-
-  }
-
 </style>
 
 <div class="specification">
     <div class="container">
         <div class="row">
-
           <div class="col-md-7 col-lg-7 spec-left" bis_skin_checked = "1">
               <div class="header-cnt">
               <h1> {{n.title}}  </h1>
@@ -774,14 +770,12 @@
               </div>
             </div>
 
-
           </div>
 
 
       
 
           <div class="col-md-5 col-lg-5 order-md-last" bis_skin_checked="1">
-            
             <style>
               .specification .spec-right {
                 max-width: 471px;
@@ -1009,5 +1003,9 @@
     {{kint(n)}}
     -------------
     {{kint(params)}}
+    ------------
+    {% for size in 0 .. (specifications_length - 1) %}
+      {{specifications[size].title}}
+    {% endfor %} 
   </div>
 {% endblock %}
