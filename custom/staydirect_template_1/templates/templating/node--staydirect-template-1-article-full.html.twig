@@ -205,6 +205,12 @@
     .specification form label {
       margin-top: 22px;
     }
+    .specification .input.form-check-input {
+      border-radius: 0 !important;
+    }
+    .specification .input.form-check-input:checked {
+      background: var(--bleu-color) !important;
+    }
 </style>
 <style>
   .specification .content-spec-left {
@@ -308,9 +314,7 @@
       float: none !important;
     }
     .navbar-and-specification .title-specification {
-  
         margin-top: 40px;
-        
     }
   }
 </style>
@@ -395,6 +399,19 @@
     margin-top: 66px;
     display: block;
   }
+
+  .specification .row.form-check-with-qty {
+      display: flex !mportant;
+      margin-bottom: 25px !important;
+      max-width : 116px !important;
+  }
+  .specification form-check-label-and {
+
+  }
+  .specification .booking-form .btn-outline-secondary {
+
+  }
+
 </style>
 
 <div class="specification">
@@ -719,9 +736,9 @@
                     <td colspan="2">
                       <div class="row form-check-with-qty">
                         <input type="hidden" value="{{ item.price }}" class="qty-montant" />
-                        <div class="col">
+                        <div class="col col--with-qty-and">
                           <input type="hidden" name="{{ item.name }}" value="0" class="Dym qty-input" />
-                          <div class="form-check-label pt-2" for="tabContent9Checkbox">
+                          <div class="form-check-label form-check-label-and pt-4" for="tabContent9Checkbox">
                             {{ item.name }} : $<span class="qty-input-display">{{ item.price }}</span> 
                           </div>
                         </div>
