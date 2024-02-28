@@ -75,6 +75,9 @@
     height: 100%;
 }
 
+.quantity-hidden {
+  display: none !important
+}
 
 </style>
 
@@ -722,8 +725,8 @@
                             {{ item.name }} : $<span class="qty-input-display">{{ item.price }}</span> 
                           </div>
                         </div>
-                        <div class="col number-input-custom" style="display:none !important">
-                          <input class="quantity" min="0"  value="0" type="number">
+                        <div class="col number-input-custom">
+                          <input class="quantity quantity-hidden" min="0"  value="0" type="number" style="display: none !important">
                         </div>
                       </div>
                     </td>
