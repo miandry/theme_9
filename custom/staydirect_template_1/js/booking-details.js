@@ -5,7 +5,6 @@
             const bookedDatesInt = drupalSettings.bookedDates;
             const defaultPrice = drupalSettings.priceDefault;
             const priceList = drupalSettings.priceList;
-               console.log(bookedDatesInt);
             const DateTime = easepick.DateTime;
             const bookedDates = bookedDatesInt.map(d => {
                 if (d instanceof Array) {
@@ -19,8 +18,8 @@
             const picker = new easepick.create({
                 element: document.getElementById('datepicker'),
                 css: [
-                    '/themes/custom/porto/vendor/easepick/easepick.min.css',
-                    '/themes/custom/platform_theme/css/booking-form.css'
+                    '/themes/custom/staydirect_template_1/vendor/easepick/easepick.min.css',
+                    '/themes/custom/staydirect_template_1/css/booking-form.css'
                 ],
                 plugins: ['RangePlugin', 'LockPlugin'],
                 RangePlugin: {
@@ -70,13 +69,14 @@
                         const { view, date, target } = evt.detail;
                         const d = date ? date.format('YYYY-MM-DD') : null;
 
-                        // if (view === 'CalendarDay' && priceList[d]) {
-                        //     const span = target.querySelector('.day-price') || document.createElement('span');
-                        //     span.className = 'day-price';
-                        //     span.innerHTML = `$${priceList[d]}`;
+                        if (view === 'CalendarDay' && priceList[d]) {
+            
+                            const span = target.querySelector('.day-price') || document.createElement('span');
+                            span.className = 'day-price';
+                            span.innerHTML = `$${priceList[d]}`;
 
-                        //     target.append(span);
-                        // }
+                            target.append(span);
+                        }
                     });
                 }
             });
