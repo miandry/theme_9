@@ -1,154 +1,15 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
-
 {% block templating_content %}
+
+{% set item_name = 'block--staydirect-template-1-footer-full.html' %} 
+{% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+{% set css = include(path_css) %} 
+{{render_css(css,'block__staydirect_template_1_footer_full')}}
+
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraphs'] %}
 {% set paragraphs_length = paragraphs|length %}
-<style>
-    *::after,
-    *::before {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
 
-    * {
-        scroll-behavior: smooth;
-    }
-    .btn--resp {
-      padding: 20px 35px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      border-radius: 38px;
-      background: var(--bleu-color);
-      color: #FFF;
-      font-family: "Montserrat";
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 800;
-      line-height: normal;
-    }
-    ul {
-      margin-bottom: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
-    ul li {
-      list-style-type: none;
-    }
-  .wrapper--resp {
-    margin: auto;
-  } 
-  header .menu-main--resp ul {
-    display: flex;
-    flex-direction: row;
-    gap: 39px;
-  }  
-  header .menu-main--resp ul li a{
-    color: var(--bleumarine-color);
-    font-family: "Montserrat";
-    font-size: 23px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  } 
-  header .menu-main--resp ul li.active a {
-    color: var(--bleu-color);
-  } 
-  header .menu-main--resp ul li.active::after {
-    content: "";
-    width: 29px;
-    height: 3px;
-    background: var(--bleu-color);
-    margin-top: 10px !important;
-    display: block ;
-    margin: auto;
-  }
-  @media (max-width: 499.96px) {
-    .wrapper--resp {
-      width: 100%;
-      max-width: none !important;
-      padding-left: 20px;
-      padding-right:20px
-    }
-    .none-mob {
-      display: none !important;
-    }
-  }
-  @media (min-width: 499.98px) {
-    .wrapper--resp {
-      width: 100%;
-      max-width: none;
-      padding-left: 20px;
-      padding-right:20px;
-    }
-    .none-mob {
-      display: none !important;
-    }
-  }
-  @media (min-width: 767.98px) {
-    .wrapper--resp {
-      width: 100%;
-      max-width: none !important;
-      padding-left: 40px;
-      padding-right:40px
-    }
-    .none-tab {
-      display: none !important;
-    }
-  }
-  @media (min-width: 991.98px) {
-    .wrapper--resp {
-      width: 100%;
-      max-width: none !important;
-      padding-left: 60px;
-      padding-right:60px;
-    }
-    .none-desk, .menu-mobile-effet {
-      display: none !important;
-    }
-
-  }
-  @media (min-width: 1199.98px) {
-    .wrapper--resp {
-      width: 100%;
-      max-width: none !important;
-      padding-left: 60px;
-      padding-right:60px;
-    }
-  }
-  @media (min-width: 1385.98px) {
-      .wrapper--resp {
-        max-width: 1200px !important;
-        padding-left: 0px;
-        padding-right:0px;
-      }
-  }
-  @media (min-width: 1499.98px) {
-    .wrapper--resp {
-      max-width: 1500px;
-      padding-left: 0px;
-      padding-right:0px;
-    }
-  }
-</style>
-<style>
-  footer i.fab {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--bleu-color);
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.footer-bottom.col-lg-12 {
-  float: none !important;
-}
-</style>
 <footer>
   <div class="footer-top">
     <div class="container">
@@ -200,37 +61,6 @@
 
 </footer>
 
-<style>
-  .nav-to-top-resp {
-      border-radius: 5px;
-      border: 1.6px solid var(--bleu-color);
-      /*background: rgba(217, 217, 217, 0.26);*/
-      background: var(--bleu-color);
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
-      text-align: center;
-      position: fixed;
-      bottom: 50px;
-      right: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 200ms linear, margin-right 0ms;
-      cursor: pointer;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  .nav-to-top-resp svg path {
-      /*fill: var(--bleu-color);*/
-      fill: #fff; 
-  }
-  .nav-to-top-resp.active {
-      opacity: 1;
-      visibility: visible;
-  }
-</style>
 <div id="nav-to-top-ands" class="nav-to-top-and nav-to-top-resp active">
   <!-- 
   <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
