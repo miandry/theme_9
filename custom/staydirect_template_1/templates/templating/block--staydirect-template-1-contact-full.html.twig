@@ -5,7 +5,7 @@
 {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
 {% set css = include(path_css) %} 
 {{render_css(css,'block__staydirect_template_1_contact_full')}}
-
+  
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraphs'] %}
 {% set paragraphs_length = paragraphs|length %}

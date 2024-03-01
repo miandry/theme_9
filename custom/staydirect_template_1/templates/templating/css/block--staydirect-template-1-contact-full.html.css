@@ -259,9 +259,7 @@ header .menu-main--resp ul li.active::after {
 .contact .cont-icon-rs .icon svg {
   margin-top: 8px;
 }
-.contact .col-cont-left-abs {
 
-}
 @media (max-width: 768px) {
   .contact .col-cont-left-abs {
     display: none;
@@ -270,7 +268,7 @@ header .menu-main--resp ul li.active::after {
     width: 100%;
     height: 300px;
     flex-shrink: 0;
-    background:  url( {{c['field_image1']['image'].url}} ) center center;
+    background:  url( https://template.staydirect.cloud/sites/template/files/2023-11/bg-contact-tab.jpg ) center center;
   }
   .contact .col-cont-right {
     max-width: 688px;
