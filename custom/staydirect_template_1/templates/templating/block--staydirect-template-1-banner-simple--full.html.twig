@@ -1,6 +1,11 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
-
 {% block templating_content %}
+
+  {% set item_name = 'block--staydirect-template-1-banner-simple-full.html' %} 
+  {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+  {% set css = include(path_css) %} 
+  {{render_css(css,'block__staydirect_template_1_banner_simple_full')}}
+
 {% set c = block_parser(content) %}
 
 {% if c['field_image1']['image'].url is defined %}
@@ -10,19 +15,7 @@
     {% set bannier_img = "" %} 
 {% endif %}
 
-<style>
-    .candt .simple--banniere {
-        height: 300px;
-        overflow: hidden;   
-        color: #fff !important;
-    }
-    .candt .simple--banniere p {
-        color: #fff;
-        font-weight: 500;
-    }
-</style>
 <main class="container candt">
-
     <div class="p-4 mb-4 rounded text-body-emphasis bg-body-secondary simple--banniere" style="
         background: #f5F5F5;
         {{ bannier_img }};
@@ -39,7 +32,5 @@
             </p>
         </div>
     </div>
-    
-
 </main>
 {% endblock %}
