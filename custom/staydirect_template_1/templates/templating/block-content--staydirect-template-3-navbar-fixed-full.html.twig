@@ -1,0 +1,27 @@
+{% extends get_module_path('templating') ~ "/templates/misc/node.html.twig" %}  
+    {% block templating_content %}
+
+    {% set item_name = 'node--staydirect-template-1-navbar-fixed-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_template_1_navbar_fixed_full')}}
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
+        <div class="navbar--fixed-container">
+            <div class="navbar--fixed-left">
+            <div class="preview--staydirect-logo">
+                <a class="link--staydirect-logo" href="#">StayDirect</a>
+            </div>
+            </div>
+            <div class="navbar--fixed-left">
+                Please this site still demo version
+            </div>
+            <div class="navbar--fixed-right">
+            <div class="preview--action--buy">
+                <a class="header-buy-now btn--3d color--primary" href="#buy">Buy now</a>
+            </div>
+            </div>
+        </div>
+    </nav>
+
+{% endblock %}
