@@ -1,0 +1,468 @@
+.grid {
+    display: grid;
+    gap: 10px;
+}
+.container-banniere-resp img {
+    width:100%;
+    height: 100%;
+}
+.container-banniere-resp {
+    display: grid;
+    height: 500px;
+    overflow: hidden;
+    gap: 5px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr;
+}
+.banniere-col1 {
+    display: grid;
+    display: grid;
+    height: 100%;
+    grid-template-columns: span 1;
+    background-color: aquamarine;
+}
+.banniere-col2{
+    display: grid;
+    grid-column: span 3;
+    height: 100%;
+    grid-template-rows: repeat(2,1fr);
+}
+.banniere-col2-row1 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 1fr;
+}
+.banniere-col2-row2 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row1-col1 {
+    grid-column: span 1;
+    background-color: #fff;
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row1-col2 {
+    grid-column: span 2;
+    background: rgb(251, 255, 0);
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row2-col1 {
+    grid-column: span 2;
+    background: rgb(251, 255, 0);
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+.banniere-col2-row2-col2 {
+    grid-column: span 1;
+    background: #fff;
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+
+.specification {
+    position: relative;
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 85px;
+    position: relative;
+    margin-bottom: 110px;
+}
+.navbar-and-specification .container {
+text-align: center;
+display: block
+}
+.navbar-and-specification .title-specification {
+color: var(--bleumarine-color) !important;
+text-align: center;
+font-family: "Playfair Display" !important;
+font-size: 40px !important; 
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+margin-top: 70px;
+display: inline-block;
+}
+.specification .spec-left {
+}
+.spectification .spec-right {
+background: blue;
+} 
+.specification form {
+max-width: 576px !important;
+}
+.specification label {
+color: rgba(51, 51, 51, 0.80);
+font-family: "Montserrat";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+.specification .form-control {
+border-radius: 10px;
+border:none;
+border-bottom: 1px solid rgba(51, 51, 51, 0.32);
+background: #FAFAFA !important;
+max-width: 100%;
+height: 50px;
+flex-shrink: 0;
+color: rgba(51, 51, 51, 0.50) !important;
+font-family: "Montserrat";
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+width: 263px;
+margin-top: 11px;
+position: relative;
+padding-left: 20px;
+}
+.specification .form-control.form-control-date {
+padding-left: 50px;
+}
+
+.specification h4 {
+display: flex;
+align-items: center;
+}
+
+.specification form label {
+margin-top: 22px;
+}
+</style>
+
+<style>
+.specification .content-spec-left {
+max-width: 576px;
+padding-left: 0;
+padding-right: 0;
+}
+/*
+.specification h4::before {
+content: "";
+width: 60px;
+height: 60px;
+flex-shrink: 0;
+border-radius: 50%;
+background: ;
+display: flex;
+justify-content: center;
+align-items: center;
+background: url(./img/uil_user.png) no-repeat center;
+display: inline-block;
+}
+*/
+.specification h4 {
+width: 293px;
+height: 60px;
+flex-shrink: 0;
+background: linear-gradient(90deg, var(--bleu-color) 34.25%, rgba(52, 152, 219, 0.00) 100%);
+color: #FFF;
+font-family: "Montserrat";
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+border-radius: 60px 0 0 60px;
+margin-bottom: 18px !important;
+}
+.specification h4 i {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+}
+.specification input[type="date"]::-webkit-calendar-picker-indicator {
+background-image: url(./img/uil_calendar-alt.png);
+background-position: center;
+background-repeat: no-repeat;
+background-size: 25px;
+position: absolute;
+left: 13px;
+}
+.specification .select-guests {
+width: 140px;
+height: 50px;
+flex-shrink: 0;
+border-radius: 10px;
+border-bottom: 1px solid rgba(51, 51, 51, 0.32);
+background: #FAFAFA;
+background: url(./img/uil_users-alt.png) no-repeat, url(./img/uil_angle-left.png) no-repeat;
+background-position: left 13px top 13px, right 15px top 13px;
+padding-left: 53px;
+color: rgba(51, 51, 51, 0.50);
+font-family: "Montserrat";
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.specification .specication-ttl-2 {
+margin-top: 63px;
+}
+.specification  .form-control.form-control-textarea {
+border-radius: 10px;
+border: none;
+border-bottom: 1px solid rgba(51, 51, 51, 0.32);
+background: #FAFAFA;
+color: rgba(51, 51, 51, 0.40);
+font-family:"Montserrat";
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+width: 100%;
+height: 120px;
+flex-shrink: 0;
+
+}
+.specification p {
+color: rgba(51, 51, 51, 0.50);
+font-family: "Montserrat";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 180%; /* 25.2px */
+width: 100%;
+margin-top: 20px;
+}
+@media (min-width: 767.98px) {
+.specification .form-control.float-left {
+float: none !important;
+}
+.navbar-and-specification .title-specification {
+
+    margin-top: 40px;
+    
+}
+}
+
+.step--process {
+    margin: 50px 0;
+  }
+  .step--process .round--step {
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ccc ;
+  }
+  .step--process .round--step.active {
+    background-color: var(--bleu-color);
+  }
+  .step--process .trait {
+    height: 10px;
+    width: calc(50% - 63px);
+    position: absolute;
+    top: 8px;
+    background: #ccc;
+  }
+  .step--process .step-1 .trait {
+      left: 49px;
+  }
+  .trait2 {
+      position: absolute;
+      left: calc(50% + 7px);
+      top: 8px;
+      height: 10px;
+      width: calc(50% - 60px);
+      background: #ccc;
+  }
+  .trait2.active {
+      background: var(--bleu-color);
+  }
+  .step-1 .trait.active {
+    background: var(--bleu-color);
+  }
+  .step--process .container-step--process {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  .step--process .step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .step--process .step p {
+    margin-top: 15px;
+  }
+
+  
+  
+  .specification .form-payment {
+    padding: 15px;
+}
+.payement .spec-right {
+    padding-top: 15px;
+}
+.payement .spec-right li {
+    border: none !important;
+    padding: 0;
+    margin-top: 0px;
+}
+.payement .spec-right .list-group-foot strong {
+    color: #333;
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-left: 15px;
+}
+.specification .spec-right .list-group-foot span {
+    text-align: right;
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-right: 15px;
+}
+
+.specification .spec-right {
+    max-width: 471px;
+    margin: auto;
+    border-radius: 20px;
+    border: 1px solid rgba(51, 51, 51, 0.20);
+    background: #FFF;
+}
+.specification .spec-top {
+    max-width: 100%;
+    flex-shrink: 0;
+    border-radius: 20px 20px 0px 0px;
+    background: url(./img/spec-top.jpg) no-repeat;
+    background-color: #D9D9D9;
+    background-size: cover;
+}
+.specification .list-group-head h6 {
+    color: var(--bleumarine-color);
+    font-family: "Montserrat";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 10px !important;
+}
+.specification .list-group small {
+    color: rgba(51, 51, 51, 0.50);
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 14px !important;
+    display: inline-block;
+}
+.specification .spec-right hr {
+    max-width: 401px;
+    height: 1px;
+    background: rgba(51, 51, 51, 0.20);
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 19px;
+    max-width: 401px;
+}
+.specification .spec-right li {
+    border: none !important;
+    padding: 0;
+    margin-top: 20px;
+}
+.specification .spec-right form {
+    margin-top: 10px;
+}
+.specification .spec-right input {
+    border-radius: 10px;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.32);
+    background: #FAFAFA;
+    max-width: 100%;
+    height: 50px;
+    flex-shrink: 0;
+    color: rgba(51, 51, 51, 0.40);
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.specification .spec-right .list-group-foot {
+    margin-top: 31.5px;
+}
+.specification .spec-right .list-group-foot strong {
+    color: #333;
+    font-family: "Montserrat";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.specification .spec-right .list-group-foot span {
+    color: var(--bleu-color);
+    text-align: right;
+    font-family: "Montserrat";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+} 
+.specification .spec-right + button, .spectification .btn {
+    margin:auto;
+    max-width: 471px;
+    height: 60px;
+    flex-shrink: 0;
+    background: var(--bleu-color) !important;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center !important;
+    margin-top: 66px;
+    display: block;
+}
+::placeholder {
+    color: rgba(51, 51, 51, 0.50) !important;
+}
+
+.container--item-booking ul li {
+    margin-top: 20px;
+    }
+    .container--item-booking  .icon-link {
+    color: rgba(51, 51, 51, 0.50);
+    }
+    .container--item-booking .col-6-title .icon-link {
+    color: #000;
+    }
+
+@media screen and (max-device-width: 767.98px){ 
+    .navbar-and-specification .title-specification {
+        margin-top: 30px !important;
+    }
+    .specification .form-control {
+    width: 100%;
+    }
+    .specification .spec-right {
+        max-width: 566px;
+    }
+}
+
+
+@media screen and (max-device-width: 575.98px){
+    .navbar-and-specification .title-specification {
+        margin-top: 10px;
+    } 
+    .specification .form-control {
+    width: 100%;
+    }
+}
+
