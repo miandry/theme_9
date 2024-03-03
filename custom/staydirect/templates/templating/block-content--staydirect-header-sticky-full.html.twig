@@ -1,0 +1,149 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+    {% block templating_content %}
+
+    {% set item_name = 'block--staydirect-template-1-header-sticky-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_template_1_header_sticky_full')}}
+
+    <!-- Header -->
+    {% set c = block_parser(content) %}
+    {% set menu1 = simplify_menu(c.field_menu_1) %}
+    {% set menu1_length = menu1|length %}
+    {% set menu2 = simplify_menu(c.field_menu_2) %}
+    {% set menu2_length = menu2|length %}
+    {% set menu_user = simplify_menu(c.menu_user) %}
+    {% set menu_user_length = menu_user|length %}
+    {% set count = 0 %}
+
+    <div class="header-sticky">
+        <div class="container-resp">
+            <div class="content-header">
+                <div class="logo-header">
+                    <a href="{{base_url()}}">
+                        <img src="{{c['field_logo']['image'].url}}" alt="">
+                    </a>
+                </div>
+                <div class="menu">
+                    <ul>
+                        {% for item in menu1.menu_tree %}
+                            <li><a href="{{ item.url }}"> {{ item.text }} </a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="cta">
+                    <ul>
+                        <li class="btn-login humberger-menu1" style="position: relative;">
+                            {% if not is_login() %}
+                                <a class="" href="#">Login</a>
+                                <div class="menu-mobile-effet1" style="">
+                                    <ul>
+                                        <li>
+                                            <a href="{{base_url()}}/login">Login</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{base_url()}}/register">Register</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            {% else %}  
+                                <a class="" href="#">My account</a>
+                                <div class="menu-mobile-effet1">
+                                    <ul class="list-dropdwn">
+                                        {% for item in menu_user.menu_tree %}
+                                            <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </li>
+                        <li class="btn-begin">
+                            <a class="btn" href="{{base_url()}}/order">Begin</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="icon-menu-mobile menu-mobile">
+                    <div class="menu-humbergers-resp" bis_skin_checked="1">
+                        <div class="rect-humb-resp rh-1-resp" bis_skin_checked="1"></div>
+                        <div class="rect-humb-resp rh-2-resp" bis_skin_checked="1"></div>
+                        <div class="rect-humb-resp rh-3-resp" bis_skin_checked="1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-mobile menu-mobile-effet" bis_skin_checked="1">
+            <ul class="content-menu-mobile">
+                {% for item in menu1.menu_tree %}
+                    <li><a href="{{ item.url }}"> {{ item.text }} </a></li>
+                {% endfor %}
+            </ul>
+            <ul style="text-align: center !important ;">
+                {% if not is_login() %}
+                    <li>
+                        <a href="{{base_url()}}/user/login">Login</a>
+                    </li>
+                {% else %}  
+                    <li><a href="{{base_url()}}/user">User</a></li>
+                    <li><a href="{{base_url()}}/order">My Booking</a></li> 
+                    <li><a href="{{base_url()}}/admin">Dashboard</a></li>
+                    <li><a href="{{base_url()}}/user">Logout</a></li>
+                {% endif %}
+
+                <li>
+                    <a hred="{{base_url()}}/order">Begin</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        /* header */
+        if( document.body.contains(  document.querySelector(".header-sticky") ) ) {
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if(currentScroll >= "300") {
+                    document.querySelector(".header-sticky").style.cssText =  `
+                        display: block; 
+                        position: fixed;
+                        top: 35px;
+                        left: 0;
+                        right: 0;
+                        transform: translate(0px, -35px);
+                        transition: all 300ms ease-in;
+                        z-index: 2;
+                    `;
+                    document.querySelector(".header-sticky").classList.add("shawdow")
+                }else {
+                    document.querySelector(".header-sticky").style.cssText = `
+                        position: relative;
+                        transform: translate(0px, 1px);
+                        transition: all 500ms ease-in;
+                    `;
+                    document.querySelector(".header-sticky").classList.remove("shawdow")
+                }
+            })
+            document.querySelector(".icon-menu-mobile").onclick = () => {
+                document.querySelector(".menu-mobile-effet").classList.toggle("show");
+            }
+        }
+        if( document.body.contains( document.querySelector(".video-play-img") ) ) {
+            document.querySelector(".video-play-img").onclick = () => {
+                document.querySelector(".popup-video").classList.remove("hidden");
+                document.querySelector(".popup-video").classList.add("box");
+                document.querySelector("video").src = vid.getAttribute("src");
+            }
+            document.querySelector(".close-video").onclick = () => {
+                document.querySelector(".popup-video").classList.remove("box");
+                document.querySelector(".popup-video").classList.add("hidden");
+            }
+        }
+    </script>
+    <script>
+        if( document.body.contains(  document.querySelector(".humberger-menu1") ) ) {
+            document.querySelector(".humberger-menu1").onclick = () => {
+                document.querySelector(".menu-mobile-effet1").classList.toggle("show");
+            }
+        }
+    </script>
+    <!-- End Header -->
+
+{% endblock %}
