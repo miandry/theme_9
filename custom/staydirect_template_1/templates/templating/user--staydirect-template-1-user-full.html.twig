@@ -33,7 +33,7 @@
                 <div class="btn--add">
                   <img src="https://template.staydirect.cloud/sites/template/files/2024-01/plus.png" alt="" style="width: 50%;" class="cursor">
                 </div>
-                <img src="https://template.staydirect.cloud/sites/template/files/2024-01/profil-default.png" alt="" style="width: 100%; height: auto; min-height: 100%;"  id="profile-pic">
+                <img src="https://template.staydirect.cloud/sites/template/files/2024-01/profil-default.png" alt="" style="width: 100%; height: auto; min-height: 100%;"  id="profile-pic1">
                 <label for="input-file">update image</label>
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" hidden>
               </div>
@@ -192,7 +192,7 @@
 </script>
 <script>
   var Element = document.querySelector('input[type="file"]');
-  var img = document.querySelector('#profile-pic');
+  var img = document.querySelector('#profile-pic1');
   Element.addEventListener('change', function() {
       var url = URL.createObjectURL(Element.files[0]);
       img.src = url;
