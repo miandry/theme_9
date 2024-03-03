@@ -2,7 +2,7 @@
   {% block templating_content %}
   {{ attach_library('staydirect_template_1/swipper') }}
 
-  {% set item_name = 'node--staydirect-template-1-booking-full.html' %} 
+  {% set item_name = 'block--staydirect-template-1-booking-full.html' %} 
   {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
   {% set css = include(path_css) %} 
   {{render_css(css,'block__staydirect_template_1_booking_full')}}
