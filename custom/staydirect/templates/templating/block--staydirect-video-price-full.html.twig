@@ -5,8 +5,8 @@
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_video_price_full')}}
-
-        {% set c = block_parser(content) %}
+    
+    {% set c = block_parser(content) %}
     {% set links= c['field_link'] %}
     {% set link_price= c['field_link1'] %}
     {% set paragraphs = c['field_paragraph3'] %}
@@ -18,6 +18,7 @@
     {% endif %}
 
     <!-- bloc video -->
+    
     <div class="bloc--video-resp" id="prices"></div>
     <section class="bloc-video-resp {{is_activation_price}}" style="position: relative;">
         <div class="optimax">
@@ -102,5 +103,6 @@
         </div>
     </section>
     <!-- bloc video -->
+
 
 {% endblock %}
