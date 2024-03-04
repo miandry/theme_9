@@ -11,6 +11,228 @@
   {% set paragraphs = c['field_paragraph3'] %}
   {% set paragraphs_length = paragraphs|length %}
 
+  <style>
+      .hero--4-resp {
+          height: 100px  !important;
+      }
+      .hero-4-resp .container-resp {
+      
+      }
+      .hero-4-resp  .content-hero-4-resp-head {
+          text-align: center !important;
+          max-width: 742px !important;
+          margin: auto  !important;
+          margin-bottom: 98px  !important;
+      }
+      .hero-4-resp  .content-hero-4-resp-head h4 {
+          color: rgba(51, 51, 51, 0.60) !important;
+          text-align: center !important;
+          font-family: "Kanit" !important;
+          font-size: 20px !important;
+          font-style: normal !important;
+          font-weight: 300 !important;
+          line-height: 150% !important; /* 30px */
+          letter-spacing: 3.2px !important;
+          text-transform: uppercase !important;
+      }   
+      .hero-4-resp  .content-hero-4-resp-head h3 {
+          color: #333 !important;
+          text-align: center !important;
+          font-family: "Vastine" !important;
+          font-size: 50px !important;
+          font-style: normal !important;
+          font-weight: 400 !important;
+          line-height: 150% !important; /* 75px */
+          margin-top: 22px  !important;
+      }
+      .hero-4-resp .content-hero-4-resp {
+         
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: flex-start !important;
+          flex-wrap: wrap !important;
+          width: 100% !important;
+          max-width: 992px !important;
+          margin: auto  !important;
+      }
+  
+        .hero-4-resp .step-resp {
+          width: 201px !important;
+          text-align: center !important;
+          cursor: pointer;
+      }
+      .hero-4-resp .step-resp:hover .icon-step-resp {
+          width: 105px !important;
+          height: 105px !important;
+          text-align: center !important;
+          cursor: pointer;
+          transition: all linear 100ms;
+      }
+      .hero-4-resp .content-step-resp {
+          text-align: center !important;
+          
+          display: flex !important;
+          justify-content: center !important;
+          flex-direction: column !important;
+          align-items: center !important;
+      }
+      .hero-4-resp .icon-step-resp {
+          width: 100px !important;
+          height: 100px !important;
+          border-radius: 20px !important;
+          border: 1px solid rgba(51, 51, 51, 0.30) !important;
+          background: rgba(217, 217, 217, 0.26) !important;
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+      }
+      .hero-4-resp .icon-step-resp svg {
+          width: 50px !important;
+          height: 50px !important;
+          fill: #333333 !important;
+      }
+      .hero-4-resp .icon-step-resp.active svg
+      {
+          fill: white !important;
+          fill-opacity : 0.8 !important;
+      }
+      .hero-4-resp .icon-step-resp.active {
+          background: linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)  !important;
+      }
+      .hero-4-resp .content-hero-4-resp h5 {
+          color: #333 !important;
+          text-align: center !important;
+          font-family: "Kanit" !important;
+          font-size: 25px !important;
+          font-style: normal !important;
+          font-weight: 700 !important;
+          line-height: 150% !important; /* 37.5px */
+          margin-top: 31px  !important;
+      }
+      .hero-4-resp .content-hero-4-resp p {
+          color: #333 !important;
+          text-align: center !important;
+          font-family: "Kanit" !important;
+          font-size: 20px !important;
+          font-style: normal;
+          font-weight: 500 !important;
+          line-height: 150% !important; /* 30px */
+          margin-top: 31px !important;
+          opacity: 0.5;
+      }
+      @media screen and (max-width: 499.96px){ 
+          .hero-4-resp .content-hero-4-resp {
+              flex-direction: column !important;
+              gap: 110px !important;
+              align-items: center !important;
+          }
+
+          .hero-4-resp  .content-hero-4-resp-head {
+              margin-bottom: 51px  !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h4 {
+          font-size: 18px  !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h3 {
+              font-size: 22px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 499.98px) {
+          .hero-4-resp .content-hero-4-resp {
+              flex-direction: column !important;
+              gap: 110px !important;
+              align-items: center !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head {
+              margin-bottom: 51px  !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h4 {
+          font-size: 18px  !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h3 {
+              font-size: 30px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 539.98px) {
+          .hero-4-resp .content-hero-4-resp {
+              flex-direction: column !important;
+              gap: 110px !important;
+              align-items: center !important;
+          }
+
+          .hero-4-resp  .content-hero-4-resp-head {
+              margin-bottom: 87px  !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h4 {
+          font-size: 18px  !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h3 {
+              font-size: 30px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 767.98px) {
+          .hero-4-resp .content-hero-4-resp {
+              justify-content:center !important;
+              gap: 70px !important;
+              flex-direction: row !important;
+              align-items: flex-start !important;
+          }
+
+          .hero-4-resp  .content-hero-4-resp-head {
+              max-width: 742px !important;
+              margin-bottom: 76px  !important;
+              width: 100% !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h4 {
+              font-size: 20px  !important;
+          }   
+          .hero-4-resp  .content-hero-4-resp-head h3 {
+              font-size: 48px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 991.98px) {
+          .hero-4-resp .step-resp {
+              max-width: 240px !important;
+          }
+          .hero-4-resp .content-hero-4-resp {
+              justify-content:space-between !important;
+              gap: 0  !important;
+          }
+          .hero-4-resp  .content-hero-4-resp-head h3 {
+              font-size: 50px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 1111.98px) {
+          .hero-4-resp .content-hero-4-resp {
+              justify-content:space-between !important;
+              gap: 0  !important;
+          }
+          .hero-4-resp .step-resp {
+              max-width: 256px !important;
+          }
+      }
+      @media (min-width: 1199.98px) {
+          .hero-4-resp  .content-hero-4-resp-head {
+           
+              margin-bottom: 76px  !important;
+           
+          }
+          .hero-4-resp .content-hero-4-resp {
+              justify-content:space-between !important;
+              gap: auto  !important;
+          }
+          .hero-4-resp .step-resp {
+              max-width: 187px !important;
+          }
+      }
+
+  </style>
+
   <div class="hero--4-resp" id="contact"></div>
   <section class="hero-4-resp">
       <div class="container-resp">
