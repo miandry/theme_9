@@ -5,8 +5,7 @@
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_hero_1_full')}}
-
-    hero 1
+    
 <!-- bloc hero 1-->
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraph3'] %}
