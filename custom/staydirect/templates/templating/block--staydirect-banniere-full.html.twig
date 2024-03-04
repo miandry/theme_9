@@ -5,8 +5,7 @@
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_banniere_full')}}
-
-    <!-- Banniere -->
+    
     {% set c = block_parser(content) %}
     {% set links= c['field_link'] %}
 
