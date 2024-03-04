@@ -1,0 +1,106 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+    {% block templating_content %}
+
+    {% set item_name = 'block--staydirect-video-price-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_video_price_full')}}
+
+        {% set c = block_parser(content) %}
+    {% set links= c['field_link'] %}
+    {% set link_price= c['field_link1'] %}
+    {% set paragraphs = c['field_paragraph3'] %}
+    {% set paragraphs_length = paragraphs|length %}
+    {% if c.field_booleen == "1" %}
+        {% set is_activation_price = "" %}
+    {% else %}
+        {% set is_activation_price = "price-activation" %}
+    {% endif %}
+
+    <!-- bloc video -->
+    <div class="bloc--video-resp" id="prices"></div>
+    <section class="bloc-video-resp {{is_activation_price}}" style="position: relative;">
+        <div class="optimax">
+            <div class="clr-bdr" style="position: relative;">
+                <div style="position: absolute;left: 0; right: 0; width: 100%; top:-1px; height: 2px; background: #fff;"></div>
+            </div>
+            <div class="clip-path-resp"></div>
+        
+        </div>
+        <div class="container-resp container-bloc-video-resp">
+            <div class="content-bloc-video-resp">
+                <h3 class="title-resp">
+                    {{c.field_title}}
+                </h3>
+                <hr class="hr-title-resp auto">
+                
+                <div class="pricing-resp">
+                    <div class="pricing-left-resp" style="{{ activation_price }}">
+                        <h5>
+                            {{c.field_subtitle}}
+                        </h5>
+                        <p>
+                            {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+                        </p>
+                        <div class="conteneur-btn-resp">
+                            <a href="{{c['field_link'].url}}" class="header-sticky-btn-resp a-btn-resp">
+                                {{c['field_link'].title}}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pricing-right-resp">
+                        <div class="content-pricing-right-resp">
+                        
+                                <div class="star">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <path d="M36.6666 16.1167C36.5614 15.8118 36.3699 15.544 36.1155 15.3458C35.8611 15.1476 35.5546 15.0275 35.2333 15L25.75 13.6167L21.5 5C21.3635 4.71821 21.1504 4.48057 20.8851 4.31429C20.6198 4.14801 20.3131 4.05981 20 4.05981C19.6869 4.05981 19.3801 4.14801 19.1148 4.31429C18.8495 4.48057 18.6365 4.71821 18.5 5L14.25 13.6L4.76665 15C4.45819 15.0438 4.16819 15.1733 3.92957 15.3736C3.69094 15.5739 3.51325 15.8371 3.41665 16.1333C3.32822 16.4228 3.32029 16.7309 3.3937 17.0245C3.4671 17.3181 3.61908 17.5862 3.83332 17.8L10.7166 24.4667L9.04998 33.9333C8.99048 34.2458 9.02164 34.5688 9.13977 34.8641C9.2579 35.1594 9.45807 35.4148 9.71665 35.6C9.96868 35.7802 10.2659 35.8865 10.5751 35.9071C10.8842 35.9277 11.1929 35.8618 11.4666 35.7167L20 31.2667L28.5 35.7333C28.7339 35.8653 28.9981 35.9342 29.2666 35.9333C29.6197 35.9346 29.964 35.8237 30.25 35.6167C30.5086 35.4314 30.7087 35.1761 30.8269 34.8807C30.945 34.5854 30.9761 34.2625 30.9166 33.95L29.25 24.4833L36.1333 17.8167C36.3739 17.6128 36.5518 17.3448 36.6462 17.0439C36.7406 16.743 36.7477 16.4215 36.6666 16.1167ZM26.4166 22.7833C26.2212 22.9724 26.075 23.2064 25.9907 23.465C25.9065 23.7235 25.8868 23.9987 25.9333 24.2667L27.1333 31.25L20.8666 27.9167C20.6255 27.7883 20.3565 27.7211 20.0833 27.7211C19.8101 27.7211 19.5411 27.7883 19.3 27.9167L13.0333 31.25L14.2333 24.2667C14.2799 23.9987 14.2602 23.7235 14.1759 23.465C14.0917 23.2064 13.9454 22.9724 13.75 22.7833L8.74998 17.7833L15.7666 16.7667C16.0366 16.7291 16.2933 16.6259 16.5141 16.4661C16.735 16.3063 16.9132 16.0947 17.0333 15.85L20 9.5L23.1333 15.8667C23.2534 16.1114 23.4316 16.3229 23.6525 16.4828C23.8733 16.6426 24.13 16.7458 24.4 16.7833L31.4166 17.8L26.4166 22.7833Z" fill="white"/>
+                                    </svg>
+                                </div>
+                        
+                            <h6>{{c.field_title1}}</h6>
+                            <div class="price">
+                                <span class="currency">${{c.field_number}}</span>
+                                <span class="period">{{c.field_text}}</span>
+                            </div>
+                            <div class="items-price">
+                                <ul>
+                                    {% for size in 0 .. (paragraphs_length - 1) %}
+                                    <li>
+                                        <i class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M19.4896 7.51052C19.3927 7.41288 19.2775 7.33539 19.1506 7.2825C19.0237 7.22962 18.8875 7.20239 18.75 7.20239C18.6125 7.20239 18.4763 7.22962 18.3494 7.2825C18.2225 7.33539 18.1072 7.41288 18.0104 7.51052L10.25 15.2813L6.98957 12.0105C6.88903 11.9134 6.77034 11.837 6.64028 11.7858C6.51022 11.7345 6.37135 11.7094 6.23157 11.7118C6.0918 11.7142 5.95388 11.7441 5.82567 11.7999C5.69746 11.8556 5.58149 11.936 5.48436 12.0366C5.38724 12.1371 5.31087 12.2558 5.25962 12.3858C5.20836 12.5159 5.18323 12.6548 5.18565 12.7946C5.18806 12.9343 5.21799 13.0723 5.27371 13.2005C5.32943 13.3287 5.40986 13.4446 5.51041 13.5418L9.51041 17.5418C9.60724 17.6394 9.72245 17.7169 9.84939 17.7698C9.97633 17.8227 10.1125 17.8499 10.25 17.8499C10.3875 17.8499 10.5237 17.8227 10.6506 17.7698C10.7775 17.7169 10.8927 17.6394 10.9896 17.5418L19.4896 9.04177C19.5953 8.94422 19.6797 8.82583 19.7374 8.69406C19.7951 8.56229 19.8249 8.42 19.8249 8.27614C19.8249 8.13228 19.7951 7.98999 19.7374 7.85822C19.6797 7.72645 19.5953 7.60806 19.4896 7.51052Z" fill="#333333"/>
+                                            </svg>
+                                        </i> 
+                                        <span class="block">{{paragraphs[size].field_title}}</span>
+                                    </li>
+                                    {% endfor %} 
+                                </ul>
+                            </div>
+                            <div class="conteneur-btn-resp text-center">
+                                <a href="/order" class="header-sticky-btn-resp a-btn-resp">
+                                    {{c['field_link1'].title}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-resp">
+                    <div class="content-video-resp bg-center-resp grow" 
+                        style="background: url( {{ c['field_media1']['image'].url }} ) !important;
+                                background-position: center !imporant;
+                                background-size: 100% !important;
+                                background-size: cover !important;
+                        ">
+                        <div class="play-video-resp bg-center-resp grow">
+                            <img src="https://staydirect.cloud/sites/default/files/2023-10/icon-play-video.png" alt="" style="min-width: 100%; min-height: 100%; height: auto; width: 100%; border-radius: 50%;">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- bloc video -->
+
+{% endblock %}
