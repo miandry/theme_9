@@ -12,6 +12,9 @@ header .top-left img.logo {
     max-width: 206.28px;
     max-height: 120px;
 }
+.header-step { 
+  height: auto !important;
+}
 .header-step .top-right .step a {
     text-decoration: none;
     color: rgba(51, 51, 51, 0.60);
