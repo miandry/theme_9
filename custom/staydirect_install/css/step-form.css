@@ -25,7 +25,7 @@ header .top-left img.logo {
     text-transform: uppercase;
 }
 .header-step .top-right {
-  margin-top: 91px;
+  margin-top: 91px !important;
 }
 .header-step  .top-right .ttl-step {
     color: #333;
@@ -43,7 +43,7 @@ header .top-left img.logo {
       max-width: 168.28px;
   }
   .header-step .top-right {
-      margin-top: 79px;
+      margin-top: 79px !important;
   }
   .header-step  .top-right .ttl-step {
     font-size: 30px;
@@ -60,13 +60,13 @@ header .top-left img.logo {
       max-width: 148.28px;
   }
   .header-step .top-right {
-      margin-top: 60px;
+      margin-top: 60px !important;
   }
   .header-step  .top-right .ttl-step {
     font-size: 18px;
   }
   .header-step .top-right .step a {
-    font-size: 25px;
+    font-size: 25px !important;
   }
 }
 @media (max-width: 380px) {
@@ -74,13 +74,13 @@ header .top-left img.logo {
     margin-top: 24px
   }
   .header-step .top-right {
-      margin-top: 35px;
+      margin-top: 35px !important;
   }
   header .top-left img.logo {
       max-width: 100px;
   }
   .header-step .top-right .step a {
-    font-size: 14px;
+    font-size: 14px !important;
   }
   .header-step  .top-right .ttl-step {
     font-size: 16px;
@@ -176,7 +176,7 @@ header .top-left img.logo {
         margin-top: 76px;
       }
       .header-step .top-right {
-        margin-top: 59px;
+        margin-top: 59px !important;
       }
       .main-step .px-5 {
         padding-left: 0 !important; ;
@@ -214,7 +214,7 @@ header .top-left img.logo {
           font-size: 12px !important;
       }
       .header-step .top-right {
-        margin-top: 25px;
+        margin-top: 25px !important;
       }
     }
     /*end main step icon */
