@@ -537,17 +537,6 @@
     fill: #fff !important;
 }
 
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0 ;
-}
-
-* {
-    scroll-behavior: smooth !important;
-}
 body, html {
     width: 100% !important;
     height: 100% !important;
