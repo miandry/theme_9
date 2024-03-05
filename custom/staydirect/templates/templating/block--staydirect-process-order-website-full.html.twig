@@ -1,28 +1,21 @@
-{{ attach_library('staydirect/maintenance') }}
-{{ attach_library('claro/global-styling') }}
-{{ attach_library('staydirect_install/global-styling') }}
-{% set logo = path_theme() ~ "/logo.png" %}
-{% set url = current_url_alias() %}
-<style>
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+    
+    {% block templating_content %}
 
-.logo {
-    width: auto!important;
-    height: auto!important;
-}
-.main-step .vertical-tabs{
-	display:none!important;
-}
-.node-site-form{
-    padding: 25px;
-    background-color: #F6F6F6;
-    margin-top: 49px;
-    border-radius: 27px;
-}
-.node-site-form label {
-    display: block!important;
-}
-</style>
- <div class="header-step">
+    {{ attach_library('staydirect/maintenance') }}
+    {{ attach_library('claro/global-styling') }}
+    {{ attach_library('staydirect_install/global-styling') }}
+
+    {% set item_name = 'block--staydirect-process-order-website-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_process_order_website_full')}}
+
+    
+    {% set logo = path_theme() ~ "/logo.png" %}
+    {% set url = current_url_alias() %}
+
+    <div class="header-step">
       <div class="container container-and">
         <div class="row row-and">
           <div class="col-6 themed-grid-col">
@@ -76,3 +69,7 @@
         </div>
       </div>
     </main>
+
+{% endblock %}
+
+ 

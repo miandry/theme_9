@@ -1,0 +1,16 @@
+.logo {
+  width: auto!important;
+  height: auto!important;
+}
+.main-step .vertical-tabs{
+display:none!important;
+}
+.node-site-form{
+  padding: 25px;
+  background-color: #F6F6F6;
+  margin-top: 49px;
+  border-radius: 27px;
+}
+.node-site-form label {
+  display: block!important;
+}
