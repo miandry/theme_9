@@ -3,6 +3,7 @@
   max-width: 80rem!important;
   padding-right: 2.5rem !important;
   padding-left: 2.5rem !important;
+  margin: auto !important;
 }
 header .top-left {
   margin-top: 63px
