@@ -430,8 +430,7 @@
       align-items: center;
       gap: 10px;
   }
-  </style>
-  <style>
+
     /* summary */
     .card-confirmation-summary {
       /*padding-left: 4vw;*/
@@ -502,8 +501,6 @@
       line-height: 150%; /* 27px */
     }
   
-  </style>
-   <style>
     .bloc--payment .col--left {
       padding-left: 50px !important;
       padding-right: 50px !important;
@@ -633,10 +630,7 @@
     .bloc--payment .col--right .form-stripe-pay button {
         width: 49% !important;
     }
-  </style>
-  <style>
-        
-       
+ 
     /*main form*/
   
     .main-step.main-step-specification .row.form-payment {
