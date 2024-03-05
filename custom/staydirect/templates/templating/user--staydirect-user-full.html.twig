@@ -6,6 +6,7 @@
     {% set css = include(path_css) %} 
     {{render_css(css,'user__staydirect_user_full')}}
 
+
 {% set u = user_parser(user) %}
 {% set roles = u['roles'] %}
 {% set roles_length = roles|length %}
