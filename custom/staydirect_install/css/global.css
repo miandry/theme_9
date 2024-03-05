@@ -60,3 +60,6 @@ hr {
     border-top: var(--bs-border-width) solid;
     opacity: .25;
 }
+.container-and {
+    margin :auto !important;
+}
