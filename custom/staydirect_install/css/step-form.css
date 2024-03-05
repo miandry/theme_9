@@ -104,7 +104,7 @@ header .top-left img.logo {
         padding: 3rem!important;
     }
     .main-step {
-      margin-top: 82px;
+      margin-top: 82px !important;
     }
     .main-step .container {
       max-width: 1200px;

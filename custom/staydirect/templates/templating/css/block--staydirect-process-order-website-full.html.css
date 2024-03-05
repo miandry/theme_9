@@ -105,4 +105,8 @@ display:none!important;
   background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%)) !important;
   color: #FFF !important;
 }
+
+.main--step-rectf .node-site-form .form-text {
+  background: #fff !important;
+}
 /* end rectf */
