@@ -11,16 +11,6 @@ main {
     max-width: 1202.53px;
 }
 
-.payment-choose-method nav img.logo{
-    max-width: 206.28px;
-    max-height: 120px;
-}
-.payment-choose-method  .nav-logo {
-    margin-top: 63px;
-}
-.payment-choose-method nav .step {
-    margin-top: 91px;
-}
 .payment-choose-method nav .step a {
     text-decoration: none;
     color: rgba(51, 51, 51, 0.60);
@@ -168,6 +158,7 @@ main {
     padding: 15px 20px;
     margin-top: 15px;
     margin-bottom: 35px;
+    border: none;
 }
 textarea.form-control {
     border-radius: 10px;
@@ -175,6 +166,7 @@ textarea.form-control {
     background: #F6F6F6;
     width: 992px;
     min-height: 150px;
+    border: none;
 }
 .payment-choose-method .btn-lg-and {
     display: flex;
@@ -377,4 +369,5 @@ input::file-selector-button {
     font-style: normal;
     font-weight: 300;
     line-height: 150%;
+    cursor: pointer;
 }
