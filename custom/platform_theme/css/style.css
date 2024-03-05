@@ -368,7 +368,7 @@ form.user-form .collapse-processed>summary:before {
 *,
  ::after,
  ::before {
-    box-sizing: border-box !important;
+    box-sizing: border-box;
 }
 
 form.user-form .card-form {
