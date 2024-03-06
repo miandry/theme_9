@@ -76,7 +76,7 @@ hr {
 }
 
 .btn--std--night {
-    color: #FFF !important;
+    color: #FFF;
     font-family: "Kanit" !important;
     font-style: normal !important;
     font-weight: 600 !important;
