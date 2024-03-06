@@ -12,6 +12,10 @@
 {% set paragraphs = c['field_paragraph3'] %}
 {% set paragraphs_length = paragraphs|length %}
 
+{% if logged_in %}
+   {% set t = redirect('/user') %} 
+{% endif %}
+
 <section id="log-reg-js" class="login-resp login-and log-reg-resp">
     <div class="container-form-resp container-form-resp-fluid">
         <div class="content-register-resp">
