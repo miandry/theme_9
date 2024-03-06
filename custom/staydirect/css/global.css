@@ -60,3 +60,28 @@ hr {
     border-top: var(--bs-border-width) solid;
     opacity: .25;
 }
+
+.btn--std--night  a:hover, .btn--std--night a:focus {
+    color: #333 !important;
+    font-size: 20px !important;
+    font-family: "Kanit" !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    padding: 10px 30px !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-radius: 10px !important;
+    border: 1px solid #333 !important;
+    background: transparent !important;
+}
+
+.btn--std--night {
+    color: #FFF !important;
+    font-family: "Kanit" !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 150% !important;
+    border-radius: 10px !important;
+    background: var(--Dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)) !important;
+    border: none !important;
+}

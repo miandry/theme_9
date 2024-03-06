@@ -402,10 +402,10 @@ input::file-selector-button {
 }
 
 .payment-choose-method.rct--contact--us .form-control::placeholder {
-    color: rgba(51, 51, 51, 0.30) !important;
+    color: rgba(51, 51, 51, 0.62);
     font-size: 18px !important;
     font-style: normal !important;
     font-family: "Kanit" !important;
-    font-weight: 400 !important;
+    font-weight: 700;
     line-height: 27px !important;
 }
