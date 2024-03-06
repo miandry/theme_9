@@ -61,7 +61,7 @@ hr {
     opacity: .25;
 }
 
-.btn--std--night  a:hover, .btn--std--night a:focus {
+.btn--std--night:hover, .btn--std--night:focus {
     color: #333 !important;
     font-size: 20px !important;
     font-family: "Kanit" !important;
