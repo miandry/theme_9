@@ -84,4 +84,5 @@ hr {
     border-radius: 10px !important;
     background: var(--Dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)) !important;
     border: none !important;
+    cursor: pointer;
 }
