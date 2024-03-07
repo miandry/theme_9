@@ -28,9 +28,7 @@
     align-items: center !important ;
     max-width: 100% !important ;
     background: #fff !important ;
-    width: 100% !important ;dd
-    
-    
+    width: 100% !important ;
 }
 .header-sticky .logo-header img {
     width: 100% !important ;
@@ -302,7 +300,6 @@
         width: 100%  !important ;
         padding-left: 40px  !important ;
         padding-right: 40px  !important ;
-    
         margin: auto !important ;
     }
     .header-sticky .logo-header {
@@ -327,15 +324,6 @@
         padding-right: 0px  !important ;
         margin: auto !important ;
     }
-    .header-sticky .logo-header {
-        width: 180px !important ;
-    }
-    .header-sticky .menu {
-        display: block
-    }
-    .header-sticky .menu ul {
-        gap: 16px !important;
-    }
     .header-sticky .cta {
         display: block
     }
@@ -346,9 +334,7 @@
         padding: 7px 0px !important ;
         gap: 20px !important ;
     }
-    .header-sticky .menu ul li a {
-        font-size: 16px !important ;
-    }
+ 
     .header-sticky .cta ul li.btn-begin a {
         font-size: 16px !important ;
         padding: 10px 25px  !important ;
@@ -371,9 +357,35 @@
         padding-bottom: 10px !important;
         display: inline-block;
     }
+
     .header-sticky .content-header {
-        gap: 15px
-    }   
+        align-items: center !important;
+        max-width: 100% !important;
+        gap: 20px;
+    }
+    .header-sticky .menu {
+        display: block;
+        flex-grow: 2;
+        display: block;
+    } 
+    .header-sticky .menu ul {
+        gap: 13px !important;
+    }
+    .header-sticky .menu ul li a {
+        font-size: 12px !important;
+        text-align: center;
+        display: inline-block;
+    }
+    .header-sticky .menu ul li {
+        display: inline-block !important;
+        width: auto;
+        text-align: center;
+    }
+    .header-sticky .logo-header {
+        width: 125px !important;
+    }
+
+
 }
 @media (min-width: 991.98px) {
     .container-resp {
