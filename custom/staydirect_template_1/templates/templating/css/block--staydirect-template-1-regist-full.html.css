@@ -164,9 +164,11 @@
   margin-top: 15px;
   }
   .log-reg form input[type="submit"] {
-  margin-top: 25px;
-  }
-      
+    border-radius: 38px;
+    background: var(--bleu-color) !important;
+    color: #FFF !important;
+    font-weight: 500;
+  } 
   @media (max-width: 500.98px) {
     .log-reg .right {
       display: none;
