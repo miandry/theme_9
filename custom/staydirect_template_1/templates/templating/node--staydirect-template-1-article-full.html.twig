@@ -26,6 +26,10 @@
 {% set amenities = n['field_amenities'] %}
 {% set amenities_length = amenities|length %}
 
+	{% set temp = storage_get('booking_info') %}
+    {% if temp.termService %}
+       {{storage_delete('booking_info')}}
+    {% endif %}
 {% if params.nid %}
      {{storage_set('booking_info',params)}}
     {% set t = redirect('/booking-process') %} 

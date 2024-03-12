@@ -7,6 +7,14 @@
   {{render_css(css,'block--staydirect-template-1-booking-process-full')}}
 	{% set c = block_parser(content) %}
 	{% set params = storage_get('booking_info') %}
+    {% set req = get_parameter() %}
+
+    {% if req.termService %}
+       {% set params_new = params|merge(req) %}
+	   {{storage_set('booking_info',params_new)}}
+       {% set t = redirect('/payment/checkout') %} 
+    {% endif %}
+
   {% set current_user = current_user() %}
   {% set u = user_parser(current_user.uid) %}
 
@@ -36,7 +44,7 @@
 			</div>
 		</div>
 	</div>
-
+<form>
 	<div class="specification">
 		<div class="container">
 			<div class="row">
@@ -60,7 +68,7 @@
 					</div>
 				</div>
 				<div class="col-md-7 col-lg-7 spec-left">
-					<form class="">						
+								
 								<div class="content-spec-left">
 
 									<div class="needs-validation" >
@@ -78,22 +86,20 @@
 										<div class="row gy-3" bis_skin_checked="1">
 
 											<div class="col-sm-6" bis_skin_checked="1">
-												<input type="text" class="form-control" id="cc-name" value="{{u.field_first_name}}" placeholder="First Name" required="">
+												<input type="text" class="form-control" id="cc-name" name="field_first_name" value="{{u.field_first_name}}" placeholder="First Name" required="">
 											</div>
 
 											<div class="col-sm-6 " bis_skin_checked="1">
-												<input type="text" class="form-control float-right" id="cc-number"  value="{{u.field_last_name}}" placeholder="Last Name" required="">
+												<input type="text" class="form-control float-right" id="cc-number"  name="field_last_name" value="{{u.field_last_name}}" placeholder="Last Name" required="">
 
 											</div>
 
 											<div class="w-100 col-md-12" bis_skin_checked="1">
-												<input type="text" value="{{u.mail}}" class="form-control" id="cc-cvv" placeholder="Email" required="" style="width: 100% !important; max-width: 100% !important;">
+												<input type="text" name="mail" value="{{u.mail}}" class="form-control" id="cc-cvv" placeholder="Email" required="" style="width: 100% !important; max-width: 100% !important;">
 											</div>
 
 											<div class="col-sm-6" bis_skin_checked="1">
-
-												<input type="text"  value="{{u.field_phone}}" class="form-control" id="phone" placeholder="### ## ### ##" required="">
-
+												<input type="text"  name="field_phone" value="{{u.field_phone}}" class="form-control" id="phone" placeholder="### ## ### ##" required="">
 											</div>
 
 											<style>
@@ -103,15 +109,9 @@
 												}
 											</style>
 
-											<div class="col-sm-6" bis_skin_checked="1">
-												<select class="form-control float-right form-control-slccuntr" placeholder="Select Country">
-													<option value="US">États unis</option>
-												</select>
-											</div>
 
 											<div class="w-100 col-md-12" bis_skin_checked="1">
-												<textarea class="form-control form-control-textarea" placeholder="Comments" required=""></textarea>
-
+												<textarea name="notes" class="form-control form-control-textarea" placeholder="Notes" ></textarea>
 											</div>
 
 											<p>
@@ -137,7 +137,7 @@
 								</div>
 
 							
-					</form>
+
 				</div>
 				<div class="col-md-5 col-lg-5 order-md-last" bis_skin_checked="1">
 					<div class="spec-right">
@@ -155,8 +155,7 @@
 								<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
 								</strong>
 								<span class="text-1">{{ params["booking-range-date"] }}</span>
-								<input type="hidden" name="booking-range-date" value="{{ params["booking-range-date"] }}">
-
+				
 
 								<hr style="margin-bottom: 0;">
 								{% for key,item in params %}
@@ -209,4 +208,5 @@
 			</div>
 		</div>
 	</div>
+</form>	
 {% endblock %}
