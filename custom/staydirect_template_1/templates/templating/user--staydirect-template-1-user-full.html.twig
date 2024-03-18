@@ -15,10 +15,12 @@
 } %}
 {% set booking = node_parser_by_properties(conditions)%}
 
+ <div style="display: none;">
   {% for item in booking %}
-             {% set n = node_parser(item) %}
-              {{kint(n)}}
+    {% set n = node_parser(item) %}
+    {{kint(n)}}
   {% endfor %}
+</div>
 
 {{die()}}
 <div class="container">
