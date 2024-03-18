@@ -6,198 +6,53 @@
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_bloc-payement_full')}}
 
-    {% set c = block_parser(content) %}
-
-{{c.field_subtitle}}
-{{c['field_details1'][0]['value']|raw}}
-{{c.field_title}}
-{{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
-
-<main class="main-step main-step-specification main-simple bloc--payment bloc--payement-rect">
-    <div class="container container-and">
-      <div class="row ">
-
-      <div class="sidebar col-md-4 order-sm-first">
-
-          <div class="d-flex active">
-            <p class="mt-3 ms-3">User Information</p>
-          </div>
-          <div class="d-flex mt-2">
-              <p class="mt-4 ms-3">Website Profil</p>
-          </div>
-          <div class="d-flex mt-2">
-              <p class="mt-4 ms-3">Website Themes</p>
-          </div>
-          <div class="d-flex mt-2">
-            <p class="mt-4 ms-3">Conditions and Terms</p>
-          </div>
-          <div class="d-flex mt-2">
-              <p class="mt-4 ms-3">Build your website</p>
-          </div>
-
-      </div>
-
-        <div class="col-md-4 col--left px-5 cl--pdtop-pay">
-          <div class="card-confirmation-summary">
-            <h4>YOUR BOOKING</h4>
-            <hr>
-            <div class="recap-summary">
-              <div class="card-right-confirmation recap-summary-tp" bis_skin_checked="1">
-                  <div class="d-flex justify-content-between" bis_skin_checked="1">
-                      <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                          <div class="c-details detail-card-confirmation ttl c-details-left" bis_skin_checked="1">
-                              <p>
-                                  <strong> Selected dates</strong>
-                                  <span class="text-1">2024-02-02 - 2024-02-23</span>
-                              </p>
-                              <p>Security Deposit</p>
-                              <p>Cleaning Fee</p>
-                          </div>
-                      </div>
-                      <div class="c-details detail-card-confirmation info c-details-left-right" bis_skin_checked="1"> 
-                        <p>
-                          <strong>$230</strong>
-                          <span class="text-1">&nbsp;</span>
-                        </p>
-                        <p>$500</p>
-                        <p>$75.00</p>
-                      </div>
-                  </div>
-              </div>
-              <hr>
-              <div class="card-right-confirmation recap-summary-bt" bis_skin_checked="1">
-                  <div class="d-flex justify-content-between total" bis_skin_checked="1">
-                      <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                          <div class="c-details" bis_skin_checked="1">
-                              <h6>Sub Total</h6>
-                              <h6>Fax</h6>
-                          </div>
-                      </div>
-                      <div bis_skin_checked="1"> 
-                          <div><span>$65</span></div>
-                          <div><span>$65</span></div>
-                      </div>
-                  </div>
-              </div>
-            </div>
+   {% set params = get_parameter() %}
+   {% if params.site_id %}
+        {% set site = node_parser(params.site_id) %}
+         {% set site_user = user_parser(site["uid"]["user"]) %}
+   {% endif %}   
   
-          </div>
-        </div>
+    <main class="container">
+        <form action="/payment/checkoutstaydirect" method="get">
+            <!-- Product Details and Payment -->
+            <div class="row col-lg-12">
+               <p class="h2 text-success">web site information </p>  
+               <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"   />
+                <p>Website Name : {{site.title}}</p>
+                 <p>Website : {{site.title}}</p>
+                <p class="text-muted">Profile : {{site.field_profile}}</p>
+                <p> theme : {{site.st_theme}}</p>
+                <p> subdomain : {{site.field_st_domain_name}}</p>
 
-        <div class="col-md-4 col--right px-5 cl--pdtop-pay">
-          <div class="card-confirmation-summary">
-            <h4>Ready to Payment ?</h4>
-            <p>
-              If you are ready to purchase a camping car, the next step is to make the payment      
-            </p>
-            
-            <form class="form-summary">
-              <div class="product">
-                <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                  <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                      <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                      <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                          <h6 class="mb-0">
-                            Card number
-                          </h6> 
-                      </div>
-                  </div>
-                </div>
-                <hr>
+                <p class="h2 text-success">User information </p>  
 
-                <style>
-
-                </style>
-                <div class="frames">
-                  <div class="conteneur-frame">
-                    <div class="card-right-confirmation">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center frame-content-left">
-                                <div class="c-details detail-card-confirmation ttl">
-                                    <h6 class="detail"> 
-                                      <img src="https://staydirecttech.com/sites/default/files/2024-01/card.png" alt="" style="width: auto; height: 25px; display: inline-block !important;"><span>Card number</span></h6>
-                                </div>
-                            </div>
-                            <div class="c-details detail-card-confirmation info frame-content-right details"> 
-                              MM / YY CVC
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="conteneur-frame">
-                    <div class="card-right-confirmation">
-                        <div class="d-flex justify-content-between">
-                        
-                        </div>
-                    </div>
-                 
+                <p class="h4 text-success">Mail </p>  
               
+                <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
+      
+                <p class="h4 text-success">Fisrt name </p>  
+                <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
 
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                  <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                      <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                      <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                          <h6 class="mb-0">
-                            Card number
-                          </h6> 
-                      </div>
-                  </div>
-                </div>
-                <hr>
-                <div class="frames">
-                  <div class="conteneur-frame">
-                    <div class="card-right-confirmation">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center frame-content-left">
-                                <div class="c-details detail-card-confirmation ttl">
-                                    <h6 class="detail"> 
-                                    <span>912</span></h6>
-                                </div>
-                            </div>
-                            <div class="c-details detail-card-confirmation info frame-content-right details"> 
-                              $
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <p class="h4 text-success">Last name </p>  
+                <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
 
-            </form>
+                <p class="h4 text-success">Phone number </p>  
+                <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
 
-            <form class="form-stripe-pay" autocomplete="off" action="checkout-charge.php" method="POST">
-                <div class="d-flex custom-form-control-group-style-1 mb-3">
-                    <input class="form-control" name="c_name" type="text" placeholder="Customer Name" style="margin-right: 7px;">
-                    <input type="text" class="form-control" name="address" placeholder="Address">
-                </div>
-                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_1tOP9ics9ImqKyfmS1imAdMX007Ob54j8t"
-                    data-amount="2233"
-                    data-name="name_stripe"
-                    data-description="desc"
-                    data-image=""
-                    data-currency="usd"
-                    data-locale="auto">
-                </script>
-              
-                <button type="button" onclick="goback()" class="back_btn" style="display:inline-block">Go Back</button>
-            </form>
-            
-            <div class="btn-confirm-paid">
-              <button>
-                Proceed to payment
-              </button>
-            </div>
 
-          </div>
-        </div>
+                <p class="h4 text-success">Month </p>  
+                <input type="text"  class="form-control" name="month" value="12"  required />
 
-      </div>
-    </div>
+                <p class="h4 text-success">Price </p>
+                <input type="text" class="form-control" name="price" value="45"  required />
+
+                    <p class="h4 text-success">Notes </p>
+                <textarea class="form-control" name="notes" value="mynotes" /></textarea>
+                <!-- Payment Form -->
+               <br/><br/>
+
+              <button type="submit" class="btn btn-primary">Pay Now</button>
+       </form>
 </main>
         
   
