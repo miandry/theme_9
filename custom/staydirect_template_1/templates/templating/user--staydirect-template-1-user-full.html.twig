@@ -106,31 +106,46 @@
           <p class="mb-auto">History product booked</p>
           <table class="table table-striped">
             <thead>
+
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">ID</th>
+                <th scope="col">Item</th>
+                <th scope="col">Name</th>
+                <th scope="col">Addons</th>
+                <th scope="col">Dates</th>
+                <th scope="col">Prices (Default)</th>
+                <th scope="col">State</th>
               </tr>
+
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+
+              {% for item in booking %}
+                {% set n = node_parser(item) %}
+                <tr>
+                  <th scope="row">{{ n['nid'] }}</th>
+                  <td>{{ n['field_item'].title }}</td>
+                  <td>{{ n['field_client'].name }}</td>
+                  <td>
+                    {% set addons = n['field_addons'] %}
+                    {% set addons_length = addons|length %}
+                    {% for size in 0 .. (addons_length - 1) %}
+                       <p>{{addons[size].field_name}}</p>
+                    {% endfor %}
+                  </td>
+                  <td>
+                    {{ n['field_dates'][0].value }} - <br>
+                    {{ n['field_dates'][0].end_value }}
+                  </td>
+                  <td>
+                    {{ n['field_price_with_tax'] (n['field_price_default']) }}
+                  </td>
+                  <td>
+                    {{n['field_status']}}
+                  </td>
+                </tr>
+              {% endfor %}
+
             </tbody>
           </table>
         </div>
