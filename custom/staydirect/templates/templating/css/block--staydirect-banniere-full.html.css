@@ -21,7 +21,8 @@
     margin-left: auto !important ;
     flex-shrink: 0 !important ;
     border-radius: 60px 60px 0px 0px !important ;
-    border: 1px solid rgba(199, 199, 199, 0.20) !important ;
+    /*border: 1px solid rgba(199, 199, 199, 0.20) !important ;*/
+    border: none !important;
     padding-top: 19px !important ;
     padding-left: 19px !important ;
     padding-right: 19px !important ;
@@ -119,7 +120,8 @@ h2.title-resp {
     }
     .content-banniere-resp .content-ban-right-resp {
         margin-left: inherit !important ;
-        border: 1px solid rgba(199, 199, 199, 0.20) !important ;
+        /*border: 1px solid rgba(199, 199, 199, 0.20) !important ;*/
+        border: none !important;
         width: 100%  !important ;
         max-width: 100% !important ;
         height: 348px !important ;
@@ -169,7 +171,9 @@ h2.title-resp {
     }
     .content-banniere-resp .content-ban-right-resp {
         margin-left: inherit !important ;
-        border: 1px solid rgba(199, 199, 199, 0.20) !important ;
+        /*border: 1px solid rgba(199, 199, 199, 0.20) !important ;*/
+        border:none !important
+
         width: 100%  !important ;
         max-width: 100% !important ;
         height: 590px !important ;
@@ -206,7 +210,8 @@ h2.title-resp {
     }
     .content-banniere-resp .content-ban-right-resp {
         margin-left: inherit !important ;
-        border: 1px solid rgba(199, 199, 199, 0.20) !important ;
+        /*border: 1px solid rgba(199, 199, 199, 0.20) !important ;*/
+        border:none !important;
         width: 100%  !important ;
         max-width: 100% !important ;
         height: 590px !important ;
