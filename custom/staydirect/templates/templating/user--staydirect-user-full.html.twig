@@ -1,198 +1,360 @@
 {% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
-    {% block templating_content %}
+  
+  {% block templating_content %}
 
-    {% set item_name = 'user--staydirect-user-full.html' %} 
-    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
-    {% set css = include(path_css) %} 
-    {{render_css(css,'user__staydirect_user_full')}}
+  {% set item_name = 'user--staydirect-user-full.html' %} 
+  {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+  {% set css = include(path_css) %} 
+  {{render_css(css,'user__staydirect_user_full')}}
 
+  {% set u = user_parser(user) %}
+  {% set roles = u['roles'] %}
+  {% set roles_length = roles|length %}
 
-{% set u = user_parser(user) %}
-{% set roles = u['roles'] %}
-{% set roles_length = roles|length %}
+  {% set user = current_user() %}
 
-{% set user = current_user() %}
-<div style="display: none;">
-  {{kint(u)}}
-</div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .container--header {
+            padding-top:30px;
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom:30px;
+        }
+        .container--header h1 {
 
-<div class="container container--right std--useradmin container--user">
-  <div class="row mb-2">
-    <div class="col-lg-3">
-      <div class="content--right useradmin--sidebar-right row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="container--profile">
-            <div class="content--profile">
-                <div class="arrow">
-                  <img src="https://template.staydirect.cloud/sites/template/files/2024-01/1063891_arrow_arrow%20left_back_previous_icon.png" alt="" style="width:50%; height: auto;" class="cursor">
-                </div>
-                <div class="btn--add">
-                  <img src="https://template.staydirect.cloud/sites/template/files/2024-01/plus.png" alt="" style="width: 50%;" class="cursor">
-                </div>
-                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/profil-default.png" id="profile-pic" alt="" style="width: 100%;height: auto;min-height: 152px;object-fit: cover !important;">
-                        <label for="input-file">update image</label>
-                        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" hidden>
-                </div>
-            <div class="details--profile">
-              <div class="details--content">
-              
-              </div>
-              <div class="details--content">
-                <span><a href="{{base_url()}}/user">My account</a></span>
-                <span><a href="{{base_url()}}/user/{{u.id}}/edit">Edit profil</a></span>
+        }
+        .container--header h1 a {
+            color: var(--bleumarine-color) !important;
+            font-family: "Playfair Display";
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            font-size: 30px !important;
+        }
         
-             
-                <span><a href="{{base_url()}}/user/logout">Log out</a></span>  
-              </div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-9">
-      <div class="row useradmin--sidebar-left g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static content--right">
-          <p class="mb-auto">User Informations</p>
-          <div class="container--spends">
-            <div class="content--spend">
-                <p>
-                  <img src="https://template.staydirect.cloud/sites/template/files/2024-01/name.png" alt=""> 
-                  Name : {{u.name}}
-                </p>
-            </div>
-            <div class="content--spend">
-                <p>
-                  <img src="https://template.staydirect.cloud/sites/template/files/2024-01/email.png" alt=""> 
-                  Email : {{u.mail}}
-                </p>
-            </div>
-            <div class="content--spend">
-              <p>
-                <img src="https://template.staydirect.cloud/sites/template/files/2024-01/roles.png" alt="">
-                  Roles : 
-                  <span>
-                    {% for size in 0 .. (roles_length - 1) %}
-                    <span> {{roles[size]}} </span>
-                    {% endfor %}
-                  <span>
-              </p>
-            </div>
-            <div class="content--spend">
-              <p>
-                <img src="https://template.staydirect.cloud/sites/template/files/2024-01/timezone.png" alt=""> 
-                  Timezone : {{u.timezone}}
-              </p>
-            </div>
+        .container--profile {
+            padding-right: 50px;
+            padding-bottom: 50px;
+        }
+        .container--profile .content--profile {
+            width: 100%;
+            background: #F1F0F0;
+            background-position: center center;
+            width: 152px;
+            height: 152px;
+            margin: auto;
+            border-radius: 50%;
+            margin-top: 29px;
+            margin-bottom: 30px;
+            padding:10px;
+        }
+        .content--profile {
+            position: relative;
+        }
+        .content--profile .arrow {
+            position: absolute;
+            top: -21px;
+            left: -31px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+        .content--profile .btn--add {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-image: linear-gradient(#ff8a00, #e52e71);
+            position: absolute;
+            top: 101px;
+            right: -38px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .details--content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .details--content p {
+            margin-bottom:  0;
+            display: inline-block;
+            font-weight: bold;
+        } 
+        .details--content span {
+            display: block;
+        }
+        .details--content span a {
+            color: #666;
+        }
+        .details--profile {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            width: 95px;
+            margin: auto;
+        }
+        .container--spends {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+        .content--spend {
+            background: #F6F8FA;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        .content--spend p {
+            margin-bottom: 0;
+            padding: 10px 5px
+        }
+        .std--useradmin .useradmin--sidebar-left img {
+            width: 35px;
+            display: none !important;
+        }
+
+        .container--works {
+            display: flex;
+            flex-direction: row;
+            margin-top: 25px;
+        }
+        .content--work{
+            text-align: center;
+        }
+
+        .mySwiper span {
+            display: block;
+            font-weight: bold;
+        }
+
+        .cursor {
+            cursor: pointer;
+        }
+
+        .content--right {
+            padding-top: 40px !important;
+            padding-bottom: 40px !important;
+        }
         
-          </div>
+        .std--useradmin {
+            margin-top: 75px;
+        }
+        
+        .std--useradmin .useradmin--sidebar-right img {
+            display: inline-block !important;
+        }
+        .std--useradmin a {
+            text-decoration: none !important;
+        }
+        .std--useradmin .logo {
+            width: 250px;
+            height: auto; 
+            max-height: 115px; 
+            margin-top: 0 !important;
+        }
+
+        @media (min-width: 991.98px) {
+            .container--profile {
+                padding-right: 0px;
+                padding-bottom: 50px;
+            }
+            .container--profile .content--profile {
+                width: 115px;
+                height: 115px;
+                border-radius: 50%;
+                margin-top: 29px;
+                margin-bottom: 30px;
+                overflow: hidden;
+            }
+        }
+
+        @media (min-width: 1199.98px) {
+            .container--profile {
+                padding-right: 50px;
+                padding-bottom: 50px;
+            }
+            .container--profile .content--profile {
+                width: 100%;
+                width: 152px;
+                height: 152px;
+                border-radius: 50%;
+                margin-top: 29px;
+                margin-bottom: 30px;
+            }
+        }
+        .container--user label[for="input-file"] {
+            display: block;
+            width: 100%;
+            background: #e3362c;
+            color: #fff;
+            padding: 12px;
+            margin: 10px auto;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 0;
+            height: 100%;
+            opacity: 0 !important;
+        }
+        .container--user input[id="input-file"] {
+            display: none !important;
+        }
+    </style>
+
+    <div class="container container--right std--useradmin container--user">
+    <div class="row mb-2">
+        <div class="col-lg-3">
+        <div class="content--right useradmin--sidebar-right row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="container--profile">
+                <div class="content--profile">
+                    <div class="arrow">
+                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/1063891_arrow_arrow%20left_back_previous_icon.png" alt="" style="width:50%; height: auto;" class="cursor">
+                    </div>
+                    <div class="btn--add">
+                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/plus.png" alt="" style="width: 50%;" class="cursor">
+                    </div>
+                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/profil-default.png" alt="" style="width: 100%; height: auto; min-height: 100%;" id="id--img-profile">
+                    <label for="input-file">update image</label>
+                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" hidden>
+                </div>
+                <div class="details--profile">
+                <div class="details--content">
+                
+                </div>
+                <div class="details--content">
+                    <span><a href="{{base_url()}}/user">My account</a></span>
+                    <span><a href="{{base_url()}}/user/{{u.id}}/edit">Edit profil</a></span>
+                    <span><a href="{{base_url()}}/user/logout">Log out</a></span>  
+                </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static mySwiper">
-          <p class="mb-auto">History product booked</p>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
-      </div>
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="display: none;">
-        <div class="col p-4 d-flex flex-column position-static mySwiper">
-          <p class="mb-auto">Works most with</p>
-          <div class="container--works swiper-wrapper">
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
+        <div class="col-lg-9" id="user-info">
+        <div class="row useradmin--sidebar-left g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static content--right">
+            <p class="mb-auto">User Informations</p>
+            <div class="container--spends">
+                <div class="content--spend">
+                    <p>
+                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/name.png" alt=""> 
+                    Name : {{u.name}}
+                    </p>
+                </div>
+                <div class="content--spend">
+                    <p>
+                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/email.png" alt=""> 
+                    Email : {{u.mail}}
+                    </p>
+                </div>
+                <div class="content--spend">
+                <p>
+                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/roles.png" alt="">
+                    Roles : 
+                    <span>
+                        {% for size in 0 .. (roles_length - 1) %}
+                        <span> {{roles[size]}} </span>
+                        {% endfor %}
+                    <span>
+                </p>
+                </div>
+                <div class="content--spend">
+                <p>
+                    <img src="https://template.staydirect.cloud/sites/template/files/2024-01/timezone.png" alt=""> 
+                    Timezone : {{u.timezone}}
+                </p>
+                </div>
+            
             </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
             </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>  
-          </div>
         </div>
-      </div>
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" id="history-product">
+            <div class="col p-4 d-flex flex-column position-static mySwiper">
+            <p class="mb-auto">History product booked</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="display: none;">
+            <div class="col p-4 d-flex flex-column position-static mySwiper">
+            <p class="mb-auto">Works most with</p>
+            <div class="container--works swiper-wrapper">
+                <div class="content--work swiper-slide">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
+                <span>Joe A</span>
+                </div>
+                <div class="content--work swiper-slide">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
+                <span>Joe A</span>
+                </div>
+                <div class="content--work swiper-slide">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
+                <span>Joe A</span>
+                </div>
+                <div class="content--work swiper-slide">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
+                <span>Joe A</span>
+                </div>
+                <div class="content--work swiper-slide">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
+                <span>Joe A</span>
+                </div>
+                <div class="content--work swiper-slide">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
+                <span>Joe A</span>
+                </div>  
+            </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
     </div>
 
-  </div>
-</div>
+    <script>
+        var Element = document.querySelector('input[type="file"]');
+        var img = document.querySelector('#id--img-profile');
+        Element.addEventListener('change', function() {
+            var url = URL.createObjectURL(Element.files[0]);
+            img.src = url;
+        });
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },
-      1024: {
-        slidesPerView: 5,
-        spaceBetween: 50,
-      },
-      1200: {
-        slidesPerView: 6,
-        spaceBetween: 15,
-      },
-      
-    },
-  });
-</script>
 
-<script>
-  var Element = document.querySelector('input[type="file"]');
-  var img = document.querySelector('#profile-pic');
-  Element.addEventListener('change', function() {
-      var url = URL.createObjectURL(Element.files[0]);
-      img.src = url;
-  });
-</script>
 
 {% endblock %}
