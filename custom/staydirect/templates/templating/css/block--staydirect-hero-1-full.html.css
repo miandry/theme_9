@@ -249,7 +249,7 @@
 .hero-1-resp .content-hero-1-resp {
     display: flex !important;
     justify-content: space-between !important;
-    align-items: center !important;
+    /*align-items: center !important;*/
     flex-wrap: wrap !important;
     width: 100% !important;
     max-width: 992px !important;
