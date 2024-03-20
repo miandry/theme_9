@@ -214,7 +214,7 @@
       }
   /* ============= end respo.css header ================  */
 
-  .hero--1-resp {
+.hero--1-resp {
     height: 124px  !important;
 }
 .hero-1-resp .container-resp {
@@ -254,6 +254,7 @@
     width: 100% !important;
     max-width: 992px !important;
     margin: auto  !important;
+    align-items: flex-start;
 }
 .hero-1-resp .step-resp {
     max-width: 286px !important;
@@ -313,6 +314,7 @@
     .hero-1-resp .content-hero-1-resp {
         flex-direction: column !important;
         gap: 110px !important;
+        align-items: center;
     }
 
     .hero-1-resp  .content-hero-1-resp-head {
@@ -330,6 +332,7 @@
     .hero-1-resp .content-hero-1-resp {
         flex-direction: column !important;
         gap: 110px !important;
+        align-items: center;
     }
     .hero-1-resp  .content-hero-1-resp-head {
         margin-bottom: 51px  !important;
@@ -346,6 +349,7 @@
     .hero-1-resp .content-hero-1-resp {
         flex-direction: column !important;
         gap: 110px !important;
+        align-items: center;
     }
 
     .hero-1-resp  .content-hero-1-resp-head {
@@ -364,6 +368,7 @@
         justify-content:center !important;
         gap: 70px !important;
         flex-direction: row !important;
+        align-items: flex-start;
     }
 
     .hero-1-resp  .content-hero-1-resp-head {
@@ -386,6 +391,7 @@
     .hero-1-resp .content-hero-1-resp {
         justify-content:space-between !important;
         gap: 0  !important;
+        align-items: flex-start;
     }
     .hero-1-resp  .content-hero-1-resp-head h3 {
         font-size: 50px  !important;
@@ -396,6 +402,7 @@
     .hero-1-resp .content-hero-1-resp {
         justify-content:space-between !important;
         gap: 0  !important;
+        align-items: flex-start;
     }
     .hero-1-resp .step-resp {
         max-width: 256px !important;
@@ -405,8 +412,9 @@
     .hero-1-resp .content-hero-1-resp {
         justify-content:space-between !important;
         gap: auto  !important;
+        align-items: flex-start;
     }
     .hero-1-resp .step-resp {
-        max-width: 286px !important;
+        max-width: 286px !important;;
     }
 }
