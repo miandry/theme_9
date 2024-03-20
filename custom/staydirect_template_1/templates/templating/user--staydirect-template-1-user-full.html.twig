@@ -186,43 +186,4 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },
-      1024: {
-        slidesPerView: 5,
-        spaceBetween: 50,
-      },
-      1200: {
-        slidesPerView: 6,
-        spaceBetween: 15,
-      },
-      
-    },
-  });
-</script>
-<script>
-  var Element = document.querySelector('input[type="file"]');
-  var img = document.querySelector('#profile-pic1');
-  Element.addEventListener('change', function() {
-      var url = URL.createObjectURL(Element.files[0]);
-      img.src = url;
-  });
-</script>
-
 {% endblock %}
