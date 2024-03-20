@@ -1,19 +1,36 @@
 {% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
   
-  {% block templating_content %}
+    {% block templating_content %}
 
-  {% set item_name = 'user--staydirect-user-full.html' %} 
-  {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
-  {% set css = include(path_css) %} 
-  {{render_css(css,'user__staydirect_user_full')}}
+    {% set item_name = 'user--staydirect-user-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'user__staydirect_user_full')}}
 
-  {% set u = user_parser(user) %}
-  {% set roles = u['roles'] %}
-  {% set roles_length = roles|length %}
+    {% set u = user_parser(user) %}
+    {% set roles = u['roles'] %}
+    {% set roles_length = roles|length %}
 
-  {% set user = current_user() %}
+    {%  set conditions = {
+            'field_client': u['uid']
+        } 
+    %}
 
-    <div class="container container--right std--useradmin container--user user--profile--rectf">
+    {% set booking = node_parser_by_properties(conditions)%}
+
+    {% set user = current_user() %}
+
+    <div class="container container-resp">
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="container--header">
+                &nbsp;
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-resp container container--right std--useradmin container--user user--profile--rectf">
     <div class="row mb-2">
         <div class="col-lg-3">
         <div class="content--right useradmin--sidebar-right row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
