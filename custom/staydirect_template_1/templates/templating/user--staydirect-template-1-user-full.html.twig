@@ -54,7 +54,7 @@
               </div>
               <div class="details--content">
                 <span><a href="{{base_url()}}/user">My account</a></span>
-                <span><a href="{{base_url()}}/user/{{u.id}}/edit">Edit profil</a></span>
+                <span><a href="{{base_url()}}/user/{{u['uid']}}/edit">Edit profil</a></span>
         
              
                 <span><a href="{{base_url()}}/user/logout">Log out</a></span>  
@@ -67,35 +67,32 @@
     <div class="col-lg-9">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static content--right">
-          <p class="mb-auto">User Informations</p>
           <div class="container--spends">
             <div class="content--spend">
                 <p>
                   
-                  Name : {{u.name}}
+                  Username : {{u.name}}
                 </p>
             </div>
             <div class="content--spend">
-                <p>
-                 
+                <p>                
                   Email : {{u.mail}}
                 </p>
             </div>
             <div class="content--spend">
-              <p>
-               
-                  Roles : 
-                  <span>
-                    {% for size in 0 .. (roles_length - 1) %}
-                      <span> {{roles[size]}} </span>
-                    {% endfor %}
-                  <span>
-              </p>
+               <p>         
+                  Phone number : {{u.field_phone}}
+                </p>
+            </div>
+             <div class="content--spend">
+                <p>         
+                  First name : {{u.field_first_name}}
+                </p>
             </div>
             <div class="content--spend">
-              <p>
-                  Timezone : {{u.timezone}}
-              </p>
+                <p>         
+                  Last name : {{u.field_last_name}}
+                </p>
             </div>
          
           </div>
@@ -103,17 +100,15 @@
       </div>
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static mySwiper">
-          <p class="mb-auto">History product booked</p>
           <table class="table table-striped">
             <thead>
 
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Item</th>
-                <th scope="col">Name</th>
-                <th scope="col">Addons</th>
-                <th scope="col">Dates</th>
-                <th scope="col">Prices (Default)</th>
+                <th scope="col">Details</th>
+                <th scope="col">Dates </th>
+                <th scope="col">Price</th>
                 <th scope="col">State</th>
               </tr>
 
@@ -125,7 +120,6 @@
                 <tr>
                   <th scope="row">{{ n['nid'] }}</th>
                   <td>{{ n['field_item'].title }}</td>
-                  <td>{{ n['field_client'].name }}</td>
                   <td>
                     {% set addons = n['field_addons'] %}
                     {% set addons_length = addons|length %}
@@ -134,11 +128,11 @@
                     {% endfor %}
                   </td>
                   <td>
-                    {{ n['field_dates'][0].value }} - <br>
+                    {{ n['field_dates'][0].value }} To
                     {{ n['field_dates'][0].end_value }}
                   </td>
                   <td>
-                    {{ n['field_price_with_tax'] }} (  {{n['field_price_default'] }} )
+                    $ {{ n['field_price_with_tax'] }}  
                   </td>
                   <td>
                     {{n['field_status']}}
@@ -148,37 +142,6 @@
 
             </tbody>
           </table>
-        </div>
-      </div>
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="display: none;">
-        <div class="col p-4 d-flex flex-column position-static mySwiper">
-          <p class="mb-auto">Works most with</p>
-          <div class="container--works swiper-wrapper">
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>
-            <div class="content--work swiper-slide">
-              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d2999b0a1%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d2999b0a1%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.337499618530273%22%20y%3D%2242.05999994277954%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="rounded-circle">
-              <span>Joe A</span>
-            </div>  
-          </div>
         </div>
       </div>
     </div>
