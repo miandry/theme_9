@@ -12,7 +12,8 @@
         {% set site_user = user_parser(site["uid"]["user"]) %}
    {% endif %}   
 
-       <main class="main-step main-step-specification main-simple main-order main--step-rectf">
+     
+        <main class="main-step main-step-specification main-simple main-order main--step-rectf">
             <div class="container container-and">
                 <div class="row ">
                     <div class="sidebar col-md-4 order-sm-first">
@@ -35,52 +36,12 @@
                     <div class="col-md-8">
                         <div class="row form-payment">
                             <div class="col-md-12 col-lg-12 choosecontent">
-                                 <form action="/payment/checkoutstaydirect" method="get">
-                                    <!-- Product Details and Payment -->
-                                    <div class="row col-lg-12">
-                                        <p class="h2 text-success"> web site information </p>  
-                                        <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
-                                        <p>Website Name : {{site.title}}</p>
-                                            <p>Website : {{site.title}}</p>
-                                        <p class="text-muted">Profile : {{site.field_profile}}</p>
-                                        <p> theme : {{site.st_theme}}</p>
-                                        <p> subdomain : {{site.field_st_domain_name}}</p>
-
-                                        <p class="h2 text-success">User information </p>  
-
-                                        <p class="h4 text-success">Mail </p>  
-                                        
-                                        <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
-                                
-                                        <p class="h4 text-success">Fisrt name </p>  
-                                        <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
-
-                                        <p class="h4 text-success">Last name </p>  
-                                        <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
-
-                                        <p class="h4 text-success">Phone number </p>  
-                                        <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
-
-
-                                        <p class="h4 text-success">Month </p>  
-                                        <input type="text"  class="form-control" name="month" value="12"  required />
-
-                                        <p class="h4 text-success">Price </p>
-                                        <input type="text" class="form-control" name="price" value="45"  required />
-
-                                        <p class="h4 text-success">Notes </p>
-                                        <textarea class="form-control" name="notes" value="mynotes" /></textarea>
-                                        <!-- Payment Form -->
-                                        <br/><br/>
-
-                                        <button type="submit" class="btn btn-primary">Pay Now</button>
-                                </form>
+                                {{ render_form_entity('node','site') }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-    
                        
 {% endblock %}
