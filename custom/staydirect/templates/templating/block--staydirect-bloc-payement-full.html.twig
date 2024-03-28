@@ -40,7 +40,43 @@
                     <div class="col-md-8">
                         <div class="row form-payment">
                             <div class="col-md-12 col-lg-12 choosecontent">
-                                {{ render_form_entity('node','site') }}
+                                    <form action="/payment/checkoutstaydirect" method="get">
+        <!-- Product Details and Payment -->
+   
+        web site information 
+        <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
+        Website Name : {{site.title}}
+        Website : {{site.title}}
+        Profile : {{site.field_profile}}
+        theme : {{site.st_theme}}
+        subdomain : {{site.field_st_domain_name}}
+
+        User information  
+
+        Mail
+        <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
+    
+        Fisrt name 
+        <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
+
+        Last name
+        <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
+
+        Phone number
+        <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
+
+        Month 
+        <input type="text"  class="form-control" name="month" value="12"  required />
+
+        Price
+        <input type="text" class="form-control" name="price" value="45"  required />
+
+        Notes
+        <textarea class="form-control" name="notes" value="mynotes" /></textarea>
+           
+        <button type="submit" class="btn btn-primary">Pay Now</button>
+        
+    </form>
                             </div>
                         </div>
                     </div>
