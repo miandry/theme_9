@@ -12,354 +12,75 @@
         {% set site_user = user_parser(site["uid"]["user"]) %}
    {% endif %}   
 
-   
-  
-      <main class="main-step main-step-specification main-simple bloc--payment rctf--bloc--payment">
-                    <div class="container container-and">
-                        <div class="row ">
-                            <div class="sidebar col-md-4 order-sm-first">
-                                <div class="d-flex active">
-                                <p class="mt-3 ms-3">User Information</p>
-                                </div>
-                                <div class="d-flex mt-2">
-                                    <p class="mt-4 ms-3">Website Profil</p>
-                                </div>
-                                <div class="d-flex mt-2">
-                                    <p class="mt-4 ms-3">Website Themes</p>
-                                </div>
-                                <div class="d-flex mt-2">
-                                <p class="mt-4 ms-3">Conditions and Terms</p>
-                                </div>
-                                <div class="d-flex mt-2">
-                                    <p class="mt-4 ms-3">Build your website</p>
-                                </div>
-                            </div>
+       <main class="main-step main-step-specification main-simple main-order main--step-rectf">
+            <div class="container container-and">
+                <div class="row ">
+                    <div class="sidebar col-md-4 order-sm-first">
+                        <div class="d-flex active">
+                            <p class="mt-3 ms-3">User Information</p>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <p class="mt-4 ms-3">Website Profil</p>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <p class="mt-4 ms-3">Website Themes</p>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <p class="mt-4 ms-3">Conditions and Terms</p>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <p class="mt-4 ms-3">Build your website </p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row form-payment">
+                            <div class="col-md-12 col-lg-12 choosecontent">
+                                 <form action="/payment/checkoutstaydirect" method="get">
+                                    <!-- Product Details and Payment -->
+                                    <div class="row col-lg-12">
+                                        <p class="h2 text-success"> web site information </p>  
+                                        <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
+                                        <p>Website Name : {{site.title}}</p>
+                                            <p>Website : {{site.title}}</p>
+                                        <p class="text-muted">Profile : {{site.field_profile}}</p>
+                                        <p> theme : {{site.st_theme}}</p>
+                                        <p> subdomain : {{site.field_st_domain_name}}</p>
 
-                            <div class="col-md-4 col--left px-5">
+                                        <p class="h2 text-success">User information </p>  
 
-                                <div class="row card-confirmation-summary">
-                                  <h4>WEB SITE INFORMATION</h4>
-                                  <hr>
-                                  <div class="recap-summary">
-                                    <div class="card-right-confirmation recap-summary-tp" bis_skin_checked="1">
-                                        <div class="d-flex justify-content-between" bis_skin_checked="1">
-                                            <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                                                <div class="c-details detail-card-confirmation ttl c-details-left" bis_skin_checked="1">
-                                                    <p>
-                                                        <strong>Website Name : {{site.title}}</strong> 
-                                                    </p>
-                                                    <p>
-                                                        <strong>Website : {{site.title}}</strong>
-                                                    </p>
-                                                    <p>
-                                                        <strong>Profile : {{site.field_profile}}</strong>
-                                                    </p>
-                                                    <p>
-                                                        <strong>Theme : {{site.st_theme}}</strong>
-                                                    </p>
-                                                    <p>
-                                                        <strong>Subdomain : {{site.field_st_domain_name}}</strong>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                                  </div>
-                        
-                                </div>
-                                
-                            </div>
-                    
-                            <div class="col-md-4 col--right px-5">
-                        
-                            <div class="row card-confirmation-summary">
-                                <h4>USER INFORMATION</h4>
-
-                                <form class="form-summary">
-
-                                <div class="product">
-                                    <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                                    <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                                        <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                                        <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                                            <h6 class="mb-0">
-                                                Mail
-                                            </h6> 
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <hr>
-                                    <div class="frames">
-                                    <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center frame-content-left">
-                                                    <div class="c-details detail-card-confirmation ttl">
-                                                        <h6 class="detail">                              
-                                                        <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                                <div class="c-details detail-card-confirmation info frame-content-right details"> 
-                                                MM / YY CVC
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                                    <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                                        <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                                        <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                                            <h6 class="mb-0">
-                                                Name
-                                            </h6> 
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <hr>
-                
-                                    <div class="frames">
-                                    <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center frame-content-left">
-                                                    <div class="c-details detail-card-confirmation ttl">
-                                                    <h6 class="detail"> 
-                                                        <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "  />
-                                                    </h6>
-                                                    </div>
-                                                </div>
-                                                <div class="c-details detail-card-confirmation info frame-content-right details"> 
-                                                <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                                        <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                                            <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                                            <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                                                <h6 class="mb-0">
-                                                    Phone number
-                                                </h6> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-            
-                                    <div class="frames">
-                                        <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center frame-content-left">
-                                                    <div class="c-details detail-card-confirmation ttl">
-                                                        <h6 class="detail">                              
-                                                            <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                                <div class="c-details detail-card-confirmation info frame-content-right details"> 
-                                                    &nbsp;
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                            
-                                            </div>
-                                        </div>
+                                        <p class="h4 text-success">Mail </p>  
                                         
-                                    
-                    
-                                        </div>
-                                    </div>
-                                </div>
+                                        <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
+                                
+                                        <p class="h4 text-success">Fisrt name </p>  
+                                        <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
 
-                                <div class="product">
-                                    <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                                        <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                                            <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                                            <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                                                <h6 class="mb-0">
-                                                    Month 
-                                                </h6> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-            
-                                    <div class="frames">
-                                        <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="">
-                                                    <div class="c-details detail-card-confirmation ttl">
-                                                        <h6 class="detail">                              
-                                                            <select  class="form-control" name="month" required style="width: 60px !important;">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                                <option value="6">6</option>
-                                                                <option value="7">7</option>
-                                                                <option value="8">8</option>
-                                                                <option value="9">9</option>
-                                                                <option value="10">10</option>
-                                                                <option value="11">11</option>
-                                                                <option value="12">12</option>
-                                                            </select>
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                            
-                                            </div>
-                                        </div>
-                                        
-                                    
-                    
-                                        </div>
-                                    </div>
-                                </div>
+                                        <p class="h4 text-success">Last name </p>  
+                                        <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
 
-                                <div class="product">
-                                    <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                                    <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                                        <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                                        <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                                            <h6 class="mb-0">
-                                                Price
-                                            </h6> 
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <hr>
-                                    <div class="frames">
-                                    <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center frame-content-left">
-                                                    <div class="c-details detail-card-confirmation ttl">
-                                                        <h6 class="detail">                              
-                                                            <input type="text" class="form-control" name="price" value="45"  required />
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                                <div class="c-details detail-card-confirmation info frame-content-right details"> 
-                                                &nbsp;
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="d-flex justify-content-between">
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <p class="h4 text-success">Phone number </p>  
+                                        <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
 
-                                    </div>
-                                </div>
 
-                                <div class="product">
-                                    <div class="d-flex justify-content-between content-product-name" bis_skin_checked="1">
-                                    <div class="d-flex flex-row align-items-center" bis_skin_checked="1">
-                                        <div class="icon" bis_skin_checked="1"> <i class="bx bxl-mailchimp"></i> </div>
-                                        <div class="c-details" style="margin-left: 15px;" bis_skin_checked="1">
-                                            <h6 class="mb-0">
-                                                Notes
-                                            </h6> 
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <hr>
-                                    <div class="frames">
-                                    <div class="conteneur-frame">
-                                        <div class="card-right-confirmation">
-                                            <div class="">
-                                                <div class="">
-                                                    <div class="c-details detail-card-confirmation ttl">
-                                                        <h6 class="detail">                              
-                                                            <textarea class="form-control" name="notes" value="mynotes" /></textarea>
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                                <div class="c-details detail-card-confirmation info frame-content-right details"> 
-                                                    &nbsp;
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                              
+                                        <p class="h4 text-success">Month </p>  
+                                        <input type="text"  class="form-control" name="month" value="12"  required />
 
-                                    </div>
-                                </div>
+                                        <p class="h4 text-success">Price </p>
+                                        <input type="text" class="form-control" name="price" value="45"  required />
 
-                                <style>
-                                    .btn.btn-confirm-paid {
-                                        width: 100%;
-                                    }
-                                    .btn-confirm-paid button {
-                                        display: flex;
-                                        width: 100%;
-                                        padding: 20px 40px;
-                                        justify-content: center;
-                                        align-items: center;
-                                        gap: 10px;
-                                        border: none !important;
-                                        border-radius: 10px;
-                                        background: var(--Dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%));
-                                        color: #FFF;
-                                        font-family: "Kanit";
-                                        font-size: 1em;
-                                        font-style: normal;
-                                        font-weight: 600;
-                                        line-height: 150%;
-                                    }
-                                    @media (max-width: 767.98px) { 
-                                        .btn-confirm-paid button {
-                                        font-size: calc(2vw + 3px);
-                                        }
-                                    }
-                                </style>
-                                <div class="btn-confirm-paid">
-                                <button type="submit">
-                                    Pay Now
-                                </button>
-                                </div>
-                
+                                        <p class="h4 text-success">Notes </p>
+                                        <textarea class="form-control" name="notes" value="mynotes" /></textarea>
+                                        <!-- Payment Form -->
+                                        <br/><br/>
+
+                                        <button type="submit" class="btn btn-primary">Pay Now</button>
                                 </form>
-        
-                            </div>
                             </div>
                         </div>
                     </div>
-                </main>
-        
+                </div>
+            </div>
+        </main>
+    
+                       
 {% endblock %}
