@@ -135,9 +135,17 @@
             if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
                 let step_header_title1 =  document.querySelector(".step a");
                 let step_header_title2 =  document.querySelector(".ttl-step");
+                let select_month = document.querySelector("input[name='month']");
+                let price = document.querySelector("input[name='price']");
+                let site_ready = document.querySelector("input[name='site_id_ready']");
                 step_header_title1.innerHTML = "Process";
                 step_header_title2.innerHTML = "Payment";
+                select_month.onchange = () => {
+                    let priceCurrent = parseInt(select_month.value) * parseInt(site_ready.value);
+                    price.value = priceCurrent;
+                }
+
+                
             }
-      </script>
-                       
+      </script>        
 {% endblock %}
