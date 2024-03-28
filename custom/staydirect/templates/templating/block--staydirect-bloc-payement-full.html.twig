@@ -38,61 +38,92 @@
                         </div>
                     </div>
                     <div class="col-md-8">
+
+                        <div class="row text-center row-feature-head">
+                        <div class="col-6 themed-grid-col text-left">
+                            <span class="features">Web site information</span>
+                        </div>
+                        <div class="col-6 themed-grid-col text-right ">
+                          &nbsp;
+                        </div>
+                        </div>
                         <div class="row form-payment">
-                            <div class="col-md-12 col-lg-12 choosecontent">
-                                    <form class="node-site-form node-form " action="/payment/checkoutstaydirect" method="get">
-        <!-- Product Details and Payment -->
-   
-        web site information 
-        <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
-        Website Name : {{site.title}}
-        Website : {{site.title}}
-        Profile : {{site.field_profile}}
-        theme : {{site.st_theme}}
-        subdomain : {{site.field_st_domain_name}}
+                        <div class="col-md-12 col-lg-12 choosecontent">
+                            <form class="needs-validation" novalidate="">
+                                <div class="row">
+                                    Website Name : {{site.title}}
+                                    Website : {{site.title}}
+                                    Profile : {{site.field_profile}}
+                                    theme : {{site.st_theme}}
+                                    subdomain : {{site.field_st_domain_name}}
+                                </div>
+                            </form>
+                        </div>
+                        </div>
 
-        User information  
-
-        Mail
-        <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
-    
-        Fisrt name 
-        <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
-
-        Last name
-        <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
-
-        Phone number
-        <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
-
-        Month 
-        <input type="text"  class="form-control" name="month" value="12"  required />
-        <select name="month" class="form-select form-input form-select-lg mb-3" aria-label="Large select example">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12" selected="selected">12</option>
-        </select>
-
-        Price
-        <input type="text" class="form-control" name="price" value="45"  required />
-
-        Notes
-        <textarea class="form-control" name="notes" value="mynotes" /></textarea>
-           
-        <input  type="submit" value="Pay Now" class="button button--primary js-form-submit form-submit">
-        
-    </form>
+                        <div class="row text-center row-feature-head">
+                            <div class="col-6 themed-grid-col text-left">
+                                <span class="features">User information</span>
+                            </div>
+                            <div class="col-6 themed-grid-col text-right ">
+                                <span class="ad-nw"> Add New  </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                <path d="M23.75 13.75H16.25V6.25C16.25 5.91848 16.1183 5.60054 15.8839 5.36612C15.6495 5.1317 15.3315 5 15 5C14.6685 5 14.3505 5.1317 14.1161 5.36612C13.8817 5.60054 13.75 5.91848 13.75 6.25V13.75H6.25C5.91848 13.75 5.60054 13.8817 5.36612 14.1161C5.1317 14.3505 5 14.6685 5 15C5 15.3315 5.1317 15.6495 5.36612 15.8839C5.60054 16.1183 5.91848 16.25 6.25 16.25H13.75V23.75C13.75 24.0815 13.8817 24.3995 14.1161 24.6339C14.3505 24.8683 14.6685 25 15 25C15.3315 25 15.6495 24.8683 15.8839 24.6339C16.1183 24.3995 16.25 24.0815 16.25 23.75V16.25H23.75C24.0815 16.25 24.3995 16.1183 24.6339 15.8839C24.8683 15.6495 25 15.3315 25 15C25 14.6685 24.8683 14.3505 24.6339 14.1161C24.3995 13.8817 24.0815 13.75 23.75 13.75Z" fill="#333333" fill-opacity="0.8"/>
+                                </svg>
                             </div>
                         </div>
+                        <div class="row form-payment">
+                            <div class="col-md-12 col-lg-12 choosecontent">
+                                <form class="node-site-form node-form " action="/payment/checkoutstaydirect" method="get">
+                                    <!-- Product Details and Payment -->
+                            
+                                
+                                    <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
+
+
+                                    User information  
+
+                                    Mail
+                                    <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
+                                
+                                    Fisrt name 
+                                    <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
+
+                                    Last name
+                                    <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
+
+                                    Phone number
+                                    <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
+
+                                    Month 
+                                    <input type="text"  class="form-control" name="month" value="12"  required />
+                                    <select name="month" class="form-select form-input form-select-lg mb-3" aria-label="Large select example">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12" selected="selected">12</option>
+                                    </select>
+
+                                    Price
+                                    <input type="text" class="form-control" name="price" value="45"  required />
+
+                                    Notes
+                                    <textarea class="form-control" name="notes" value="mynotes" /></textarea>
+                                    
+                                    <input  type="submit" value="Pay Now" class="button button--primary js-form-submit form-submit">
+                                    
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
