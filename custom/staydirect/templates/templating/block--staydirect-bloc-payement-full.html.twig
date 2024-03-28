@@ -20,24 +20,8 @@
         <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
             <div class="container container-and">
                 <div class="row ">
-                    <div class="sidebar col-md-4 order-sm-first">
-                        <div class="d-flex active">
-                            <p class="mt-3 ms-3">User Information</p>
-                        </div>
-                        <div class="d-flex mt-2">
-                            <p class="mt-4 ms-3">Website Profil</p>
-                        </div>
-                        <div class="d-flex mt-2">
-                            <p class="mt-4 ms-3">Website Themes</p>
-                        </div>
-                        <div class="d-flex mt-2">
-                            <p class="mt-4 ms-3">Conditions and Terms</p>
-                        </div>
-                        <div class="d-flex mt-2">
-                            <p class="mt-4 ms-3">Build your website </p>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
+           
+                    <div class="col-lg-6">
 
                         <div class="row text-center row-feature-head">
                             <div class="col-6 themed-grid-col text-left">
@@ -61,6 +45,11 @@
                                 </form>
                             </div>
                         </div>
+                   
+                    </div>
+
+                      <div class="col-lg-6">
+
                    
 
                         <div class="row text-center row-feature-head">
@@ -113,10 +102,20 @@
                                         <option value="12" selected="selected">12</option>
                                     </select>
 
+                                    <div class="input-group mb-3 input--group--order">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text btn--moins">-</span>
+                                        </div>
+                                        <input value="12" type="number" min="1" max="12" class="form-control" disabled aria-label="Amount (to the nearest dollar)" style="width:auto !important; border-radius: 0 !important;">
+                                        <div class="input-group-append">
+                                          <span class="input-group-text btn--plus">+</span>
+                                        </div>
+                                    </div>
+
                                     <input type="hidden" value="15" />
 
                                     Price
-                                    <input type="text" class="form-control" name="price" value="45"  required />
+                                    <input type="text" class="form-control" name="price" value="45"  required  style="width: auto !important" />
 
                                     Notes
                                     <textarea class="form-control" name="notes" value="mynotes" /></textarea>
@@ -128,6 +127,7 @@
                         </div>
 
                     </div>
+
                 </div>
             </div>
         </main>
@@ -135,15 +135,54 @@
             if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
                 let step_header_title1 =  document.querySelector(".step a");
                 let step_header_title2 =  document.querySelector(".ttl-step");
-                let select_month = document.querySelector(".select-mounth");
+                let select_mounth = document.querySelector(".select-mounth");
                 let price = document.querySelector("input[name='price']");
                 let site_ready = document.querySelector("input[name='site_id_ready']");
+                let month_number = document.querySelector("input[type='number']")
                 step_header_title1.innerHTML = "Process";
                 step_header_title2.innerHTML = "Payment";
-                select_month.onchange = () => {
-                    let priceCurrent = parseInt(select_month.value) * parseInt(site_ready.value);
+
+
+                select_mounth.onchange = () => {
+                    let priceCurrent = parseInt(select_mounth.value) * parseInt(site_ready.value);
+                    price.value = priceCurrent;
+                    
+                }
+
+                let btn_moins = document.querySelector(".btn--moins");
+                let btn_plus = document.querySelector(".btn--plus");
+
+
+                btn_plus.addEventListener("click", logKey);
+                btn_moins.addEventListener("click", logKeym);
+
+               
+
+                function logKey(e) {
+                    month_current = parseInt(month_number.value) + 1;
+                    month_number.value = month_current;
+                    if( month_current >= 12) {
+                        month_number.value = 12
+                    }
+                    if( month_current <= 0 ) {
+                        month_number.value = 0
+                    }
+                    let priceCurrent = month_current * parseInt(site_ready.value);
                     price.value = priceCurrent;
                 }
+                function logKeym(e) {
+                    month_current = parseInt(month_number.value) - 1;
+                    month_number.value = month_current;
+                    if( month_current >= 12) {
+                        month_number.value = 12
+                    }
+                    if( month_current <= 0 ) {
+                        month_number.value = 0
+                    }
+                    let priceCurrent = month_current * parseInt(site_ready.value);
+                    price.value = priceCurrent;
+                }
+
             }
-      </script>        
+      </script>       
 {% endblock %}
