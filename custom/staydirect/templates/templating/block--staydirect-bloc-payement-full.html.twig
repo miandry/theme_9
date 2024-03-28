@@ -165,7 +165,8 @@
                         month_number.value = 12
                     }
                     if( month_current <= 0 ) {
-                        month_number.value = 0
+                        month_number.value = 0;
+                          price.value = 0;
                     }
                     let priceCurrent = month_current * parseInt(site_ready.value);
                     price.value = priceCurrent;
@@ -177,7 +178,8 @@
                         month_number.value = 12
                     }
                     if( month_current <= 0 ) {
-                        month_number.value = 0
+                        month_number.value = 0;
+                        price.value = 0;
                     }
                     let priceCurrent = month_current * parseInt(site_ready.value);
                     price.value = priceCurrent;
