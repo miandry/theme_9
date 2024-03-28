@@ -1,6 +1,10 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
     {% block templating_content %}
 
+    {{ attach_library('staydirect/maintenance') }}
+    {{ attach_library('claro/global-styling') }}
+    {{ attach_library('staydirect_install/global-styling') }}
+
     {% set item_name = 'block--staydirect-bloc-payement-full.html' %} 
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
