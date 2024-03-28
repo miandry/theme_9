@@ -110,23 +110,16 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Addons</th>
+                    <th scope="col">Booking info</th>
                     <th scope="col">Dates</th>
                     <th scope="col">Prices (Default)</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Pay now</th>
-                    <th scope="col">Download Invoice</th>
+                    <th scope="col">Status</th>
                 </tr>
                 </thead>
                 <tbody>
                     {% for item in booking %}
                         {% set n = node_parser(item) %}
                         <tr>
-                            <th scope="row">{{ n['nid'] }}</th>
-                            <td>{{ n['field_item'].title }}</td>
-                        
                             <td>
                                 {% set addons = n['field_addons'] %}
                                 {% set addons_length = addons|length %}
@@ -135,20 +128,14 @@
                                 {% endfor %}
                             </td>
                             <td>
-                                {{ n['field_dates'][0].value }} - <br>
+                                {{ n['field_dates'][0].value }} <br>
                                 {{ n['field_dates'][0].end_value }}
                             </td>
                             <td>
-                                {{ n['field_price_with_tax'] }} (  {{n['field_price_default'] }} )
+                                ${{ n['field_price_with_tax'] }} (  ${{n['field_price_default'] }} )
                             </td>
                             <td>
                                 {{n['field_status']}}
-                            </td>
-                            <td>
-                                Pay now
-                            </td>
-                            <td>
-                               Download Invoice
                             </td>
                         </tr>
                     {% endfor %}
