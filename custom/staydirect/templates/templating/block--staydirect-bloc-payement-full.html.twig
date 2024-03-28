@@ -17,7 +17,7 @@
    {% endif %}   
 
      
-        <main class="main-step main-step-specification main-simple main-order main--step-rectf">
+        <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
             <div class="container container-and">
                 <div class="row ">
                     <div class="sidebar col-md-4 order-sm-first">
@@ -129,5 +129,13 @@
                 </div>
             </div>
         </main>
+        <script>
+            if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
+                let step_header_title1 =  document.querySelector(".step a");
+                let step_header_title2 =  document.querySelector(".ttl-step");
+                step_header_title1.innerHTML = "Process";
+                step_header_title2.innerHTML = "Payment";
+            }
+      </script>
                        
 {% endblock %}
