@@ -17,6 +17,7 @@ bootstrap:
     theme: 
       vendor/bootstrap/css/bootstrap.min.css : {}
   js:
+    vendor/popper/popper.min.js : {}  
     vendor/bootstrap/js/bootstrap.min.js : {}    
 
 maintenance:

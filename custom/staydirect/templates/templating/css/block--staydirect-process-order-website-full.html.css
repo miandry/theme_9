@@ -109,3 +109,11 @@ display:none!important;
 .main--step-rectf .node-site-form .form-text {
   background: #fff !important;
 }
+
+.main--step-rectf form  .sitename-container input {
+  width: 220px!important;
+}
+.descriptionsitename{
+  margin-top: -28px;
+  font-size: 13px;
+}
