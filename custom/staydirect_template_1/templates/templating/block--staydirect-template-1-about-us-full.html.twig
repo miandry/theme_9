@@ -25,7 +25,7 @@
             {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
             </p>
             <p class="no-padding no-margin">
-            <a class="btn night" href="{{c['field_link1'].url}}">{{c['field_link1'].title}}</a>
+            <a class="btn night" href="{{base_url()}}{{c['field_link1'].url}}">{{c['field_link1'].title}}</a>
             </p>
         </div>
         </div>
