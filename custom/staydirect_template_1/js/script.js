@@ -1,6 +1,6 @@
 
 jQuery(document).ready(function() {
-    Your code to run when the DOM is ready
+   
   console.log('DOM is ready!');
 
   
