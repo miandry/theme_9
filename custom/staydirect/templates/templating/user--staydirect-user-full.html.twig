@@ -146,9 +146,11 @@
 							<thead>
 								<tr>
 									<th scope="col">ID</th>
-									<th scope="col">Item</th>
-									<th scope="col">Details</th>
-									<th scope="col">Dates
+									<th scope="col">Site </th>
+									<th scope="col">Period</th>
+                                    <th scope="col">created on
+									</th>
+									<th scope="col">Expired on
 									</th>
 									<th scope="col">Price</th>
 									<th scope="col">State</th>
@@ -161,26 +163,28 @@
 									{% set site = node_parser(n.field_item['#object']) %}
 									<tr>
 										<th scope="row">{{n.nid}}</th>
-										<td>{{ site.label_site}}</td>
-										<td>
-											<p>
-												<a href={{ site.field_st_domain_name}}>view site
-												</a>
-											</p>
-
-										</td>
+										<td>{{ site.label_site}} ( <a href={{ site.field_st_domain_name}}>view site
+												</a> )</td>
+                                        <td>	{{n.months}} </td>
+                                        <td>	
+                                        	{% set dates = n.field_dates|first %}
+                                            {% if dates.value %}
+											{{ dates.value}}
+                                            {% else %}
+                                               - 
+                                            {% endif %}
+                                        </td>
 										<td>
 											{% set dates = n.field_dates|first %}
-											{{ dates.value}}
-											To
+                                            {% if dates.value %}
 											{{ dates.end_value}}
-											(
-											{{n.months}}
-											months )
+                                            {% else %}
+                                               - 
+                                            {% endif %}
 										</td>
 										<td>
 											$
-											{{n.field_price_with_tax}}
+											{{n.field_price_with_tax}} ({{n.moderation_state}})
 										</td>
 										<td>
 											{% if n.moderation_state == "validate" %}
@@ -199,7 +203,7 @@
 
 										</td>
 										<td>
-                                        <a class="dropdown-item" href="{{base_url}}/invoice?id={{n.nid}}">Download Invoice</a>
+                                        <a class="dropdown-item" href="{{base_url}}/invoice?id={{n.nid}}">Get Invoice</a>
 											{# <div class="dropdown">
 												<div class="dropdown">
 													<button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
