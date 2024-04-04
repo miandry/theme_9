@@ -1,4 +1,5 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+
     {% block templating_content %}
 
     {{ attach_library('staydirect/maintenance') }}
@@ -10,181 +11,174 @@
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_bloc-payement_full')}}
 
-   {% set params = get_parameter() %}
-   {% if params.site_id %}
-        {% set site = node_parser(params.site_id) %}
-        {% set site_user = user_parser(site["uid"]["user"]) %}
-   {% endif %}   
+    {% set params = get_parameter() %}
+    {% if params.site_id %}
+            {% set site = node_parser(params.site_id) %}
+            {% set site_user = user_parser(site["uid"]["user"]) %}
+    {% endif %}   
 
-     
-        <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
-            <div class="container container-and">
-                <div class="row ">
-           
+    <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
+        <div class="container container-and">
+            <div class="row ">
+        
+                <div class="col-lg-6">
+
+                    <div class="row text-center row-feature-head">
+                        <div class="col-6 themed-grid-col text-left">
+                            <span class="features"> web site information   </span>
+                        </div>
+                        <div class="col-6 themed-grid-col text-right ">
+                            <span class="ad-nw"> &nbsp;  </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                            
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="row form-payment">
+                        <div class="col-md-12 col-lg-12 choosecontent">
+                            <form class="node-site-form node-form">
+                                <p>Website Name : {{site.title}}</p>
+                                <p>Website : {{site.title}}</p>
+                                <p class="text-muted">Profile : {{site.field_profile}}</p>
+                                <p> theme : {{site.st_theme}}</p>
+                                <p> subdomain : {{site.field_st_domain_name}}</p>
+                            </form>
+                        </div>
+                    </div>
+                
+                </div>
+
                     <div class="col-lg-6">
 
-                        <div class="row text-center row-feature-head">
-                            <div class="col-6 themed-grid-col text-left">
-                                <span class="features"> web site information   </span>
-                            </div>
-                            <div class="col-6 themed-grid-col text-right ">
-                                <span class="ad-nw"> &nbsp;  </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                               
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="row form-payment">
-                            <div class="col-md-12 col-lg-12 choosecontent">
-                                <form class="node-site-form node-form">
-                                   <p>Website Name : {{site.title}}</p>
-                                    <p>Website : {{site.title}}</p>
-                                    <p class="text-muted">Profile : {{site.field_profile}}</p>
-                                    <p> theme : {{site.st_theme}}</p>
-                                    <p> subdomain : {{site.field_st_domain_name}}</p>
-                                </form>
-                            </div>
-                        </div>
-                   
-                    </div>
+                
 
-                      <div class="col-lg-6">
-
-                   
-
-                        <div class="row text-center row-feature-head">
-                            <div class="col-6 themed-grid-col text-left">
-                                <span class="features">  User information  </span>
-                            </div>
-                            <div class="col-6 themed-grid-col text-right ">
-                                <span class="ad-nw"> &nbsp;  </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                
-                                </svg>
-                            </div>
+                    <div class="row text-center row-feature-head">
+                        <div class="col-6 themed-grid-col text-left">
+                            <span class="features">  User information  </span>
                         </div>
-                        <div class="row form-payment">
-                            <div class="col-md-12 col-lg-12 choosecontent">
-                                <form class="node-site-form node-form " action="/payment/checkoutstaydirect" method="get">
-                                    <!-- Product Details and Payment -->
+                        <div class="col-6 themed-grid-col text-right ">
+                            <span class="ad-nw"> &nbsp;  </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                             
-                                
-                                    <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
-
-
-                                    User information  
-
-                                    Mail
-                                    <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
-                                
-                                    Fisrt name 
-                                    <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
-
-                                    Last name
-                                    <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
-
-                                    Phone number
-                                    <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
-
-                                    Month 
-                                    <select name="month" class="form-select form-input form-select-lg mb-3 select-mounth" aria-label="Large select example" style="display:none">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12" selected="selected">12</option>
-                                    </select>
-
-                                    <div class="input-group mb-3 input--group--order">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text btn--moins">-</span>
-                                        </div>
-                                        <input value="12" type="number" min="1" max="12" class="form-control" disabled aria-label="Amount (to the nearest dollar)" style="width:auto !important; border-radius: 0 !important;">
-                                        <div class="input-group-append">
-                                          <span class="input-group-text btn--plus">+</span>
-                                        </div>
-                                    </div>
-
-                                    <input type="hidden" value="15" />
-
-                                    Price
-                                    <input type="text" class="form-control" name="price" value="5213"  required  />
-
-                                    Notes
-                                    <textarea class="form-control" name="notes" value="mynotes" /></textarea>
-                                    
-                                    <input  type="submit" value="Pay Now" class="button button--primary js-form-submit form-submit">
-                                    
-                                </form>
-                            </div>
+                            </svg>
                         </div>
+                    </div>
+                    <div class="row form-payment">
+                        <div class="col-md-12 col-lg-12 choosecontent">
+                            <form class="node-site-form node-form " action="/payment/checkoutstaydirect" method="get">
+                                <!-- Product Details and Payment -->
+                        
+                            
+                                <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
 
+
+                                User information  
+
+                                Mail
+                                <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
+                            
+                                Fisrt name 
+                                <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
+
+                                Last name
+                                <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
+
+                                Phone number
+                                <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
+
+                                Month 
+                                <select name="month" class="form-select form-input form-select-lg mb-3 select-mounth" aria-label="Large select example" style="display:none">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12" selected="selected">12</option>
+                                </select>
+
+                                <div class="input-group mb-3 input--group--order">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text btn--moins">-</span>
+                                    </div>
+                                    <input value="12" type="number" min="1" max="12" class="form-control" disabled aria-label="Amount (to the nearest dollar)" style="width:auto !important; border-radius: 0 !important;">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text btn--plus">+</span>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" value="15" />
+
+                                Price
+                                <input type="text" class="form-control" name="price" value="5213"  required  />
+
+                                Notes
+                                <textarea class="form-control" name="notes" value="mynotes" /></textarea>
+                                
+                                <input  type="submit" value="Pay Now" class="button button--primary js-form-submit form-submit">
+                                
+                            </form>
+                        </div>
                     </div>
 
                 </div>
+
             </div>
-        </main>
-        <script>
-            if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
-                let step_header_title1 =  document.querySelector(".step a");
-                let step_header_title2 =  document.querySelector(".ttl-step");
-                let select_mounth = document.querySelector(".select-mounth");
-                let price = document.querySelector("input[name='price']");
-                let site_ready = document.querySelector("input[name='site_id_ready']");
-                let month_number = document.querySelector("input[type='number']")
-                step_header_title1.innerHTML = "Process";
-                step_header_title2.innerHTML = "Payment";
+        </div>
+    </main>
 
+    <script>
 
-                select_mounth.onchange = () => {
-                    let priceCurrent = parseInt(select_mounth.value) * parseInt(site_ready.value);
-                    price.value = priceCurrent;
-                    
-                }
-
-                let btn_moins = document.querySelector(".btn--moins");
-                let btn_plus = document.querySelector(".btn--plus");
-
-
-                btn_plus.addEventListener("click", logKey);
-                btn_moins.addEventListener("click", logKeym);
-
-               
-
-                function logKey(e) {
-                    month_current = parseInt(month_number.value) + 1;
-                    month_number.value = month_current;
-                    if( month_current >= 12) {
-                        month_number.value = 12
-                    }
-                    if( month_current <= 0 ) {
-                        month_number.value = 0;
-                          price.value = 0;
-                    }
-                    let priceCurrent = month_current * parseInt(site_ready.value);
-                    price.value = priceCurrent;
-                }
-                function logKeym(e) {
-                    month_current = parseInt(month_number.value) - 1;
-                    month_number.value = month_current;
-                    if( month_current >= 12) {
-                        month_number.value = 12
-                    }
-                    if( month_current <= 0 ) {
-                        month_number.value = 0;
-                        price.value = 0;
-                    }
-                    let priceCurrent = month_current * parseInt(site_ready.value);
-                    price.value = priceCurrent;
-                }
-
+        if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
+            let step_header_title1 =  document.querySelector(".step a");
+            let step_header_title2 =  document.querySelector(".ttl-step");
+            let select_mounth = document.querySelector(".select-mounth");
+            let price = document.querySelector("input[name='price']");
+            let site_ready = document.querySelector("input[name='site_id_ready']");
+            let month_number = document.querySelector("input[type='number']");
+            let btn_moins = document.querySelector(".btn--moins");
+            let btn_plus = document.querySelector(".btn--plus");
+            step_header_title1.innerHTML = "Process";
+            step_header_title2.innerHTML = "Payment";
+        
+            select_mounth.onchange = () => {
+                let priceCurrent = parseInt(select_mounth.value) * parseInt(site_ready.value);
+                price.value = priceCurrent;  
             }
-      </script>       
+
+            btn_plus.addEventListener("click", logKey);
+            btn_moins.addEventListener("click", logKeym);
+
+            function logKey(e) {
+                month_current = parseInt(month_number.value) + 1;
+                month_number.value = month_current;
+                if( month_current <= 0 ) {
+                    month_number.value = 0;
+                    price.value = 0;
+                }
+                let priceCurrent = month_current * parseInt(site_ready.value);
+                price.value = priceCurrent;
+            }
+            function logKeym(e) {
+                month_current = parseInt(month_number.value) - 1;
+                month_number.value = month_current;
+                if( month_current <= 0 ) {
+                    month_number.value = 0;
+                    price.value = 0;
+                    btn_moins.disabled = true;
+                }
+                if( month_current > 0 ) {
+                    btn_moins.disabled = false;
+                }
+                let priceCurrent = month_current * parseInt(site_ready.value);
+                price.value = priceCurrent;
+            }
+        }
+    </script> 
+
 {% endblock %}
