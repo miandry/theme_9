@@ -366,8 +366,9 @@
     right: 0; 
     z-index: 1;
 }
-.user--container--table .user--info .affiche--dashboard .history--product.overflow-hiddenn {
-    overflow-x: hidden !important;
+
+.user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
+    overflow-x: scroll !important;
     overflow-y: hidden !important;
 }
 @media screen and (max-width: 499.96px){ 
@@ -383,7 +384,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 18px;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: scroll !important;
         overflow-y: hidden !important;
     }
@@ -401,7 +402,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 15px !important;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: scroll !important;
         overflow-y: hidden !important;
     }
@@ -419,7 +420,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 18px !important;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: scroll !important;
         overflow-y: hidden !important;
     }
@@ -437,7 +438,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 18px !important;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: hidden !important;
         overflow-y: hidden !important;
     }
@@ -455,7 +456,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 18px !important;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: hidden !important;
         overflow-y: hidden !important;
     }
@@ -473,7 +474,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 16px !important;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: hidden !important;
         overflow-y: hidden !important;
     }
@@ -491,7 +492,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 17px !important;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: hidden !important;
         overflow-y: hidden !important;
     }
@@ -509,7 +510,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 18px !important;
     }
-     .user--container--table .user--info .history--product.overflow-hiddenn {
+     .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: hidden !important;
         overflow-y: hidden !important;
     }
@@ -527,7 +528,7 @@
     .user--container--table .user--info .affiche--dashboard p {
         font-size: 18px !important;
     }
-    .user--container--table .user--info .history--product.overflow-hiddenn {
+    .user--container--table .user--info .history--product.overflow-hiddenn .content--table--history--booking {
         overflow-x: hidden !important;
         overflow-y: hidden !important;
     }
