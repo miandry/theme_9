@@ -2,10 +2,10 @@
 {% block templating_content %}
 
 
-{% set item_name = 'user--staydirect-template-1-user-full.html' %} 
+{% set item_name = 'user--staydirect-template-3-user-full.html' %} 
 {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
 {% set css = include(path_css) %} 
-{{render_css(css,'user__staydirect_template_1_user_full')}}
+{{render_css(css,'user__staydirect_template_3_user_full')}}
 
 {% set u = user_parser(user) %}
 {% set roles = u['roles'] %}

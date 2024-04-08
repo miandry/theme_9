@@ -1,11 +1,11 @@
 {% extends get_module_path('templating') ~ "/templates/misc/node.html.twig" %}
 {% block templating_content %}
-{{ attach_library('staydirect_template_1/booking-details') }}
-{{ attach_library('staydirect_template_1/spinner-form') }}
+{{ attach_library('staydirect_template_3/booking-details') }}
+{{ attach_library('staydirect_template_3/spinner-form') }}
 
 
 
-  {% set item_name = 'node--staydirect-template-1-article-full.html' %} 
+  {% set item_name = 'node--staydirect-template-3-article-full.html' %} 
   {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
   {% set css = include(path_css) %} 
   {{render_css(css,'node__staydirect_template')}}

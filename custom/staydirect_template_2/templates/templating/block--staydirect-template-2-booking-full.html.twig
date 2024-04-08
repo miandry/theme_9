@@ -1,11 +1,11 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
   {% block templating_content %}
-  {{ attach_library('staydirect_template_1/swipper') }}
+  {{ attach_library('staydirect_template_2/swipper') }}
 
-  {% set item_name = 'block--staydirect-template-1-booking-full.html' %} 
+  {% set item_name = 'block--staydirect-template-2-booking-full.html' %} 
   {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
   {% set css = include(path_css) %} 
-  {{render_css(css,'block__staydirect_template_1_booking_full')}}
+  {{render_css(css,'block__staydirect_template_2_booking_full')}}
 
 
   {% set c = block_parser(content) %}
