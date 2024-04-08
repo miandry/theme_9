@@ -1,0 +1,106 @@
+<?php
+    use Drupal\Core\Entity\EntityStorageException;
+    use Drupal\user\Entity\User;
+    use Drupal\Core\Routing\TrustedRedirectResponse;
+    use Drupal\Core\Session\AccountInterface;
+    use Symfony\Component\HttpFoundation\RedirectResponse;
+    
+ /**
+ * Implements hook_preprocess_HOOK() for html file.
+ */
+function staydirect_template_1_preprocess_html(&$variables) {
+  // Check if the site is in maintenance mode.
+
+   global $site_variables;
+
+  // $config = \Drupal::config("mz_staydirect.init");
+  // $status = $config->get("status_init");
+
+  // if($status){}else{
+    
+        //  $theme_name = "staydirect_".$site_variables["site_theme"];
+        //  $config_factory = \Drupal::configFactory();
+        //  $theme_config = $config_factory->getEditable('system.theme');
+        //  $theme_config->set('default', $theme_name)->save();
+        //  $status = \Drupal::configFactory()->getEditable("mz_staydirect.init")
+        //  ->set('status_init', 1)
+        //  ->save();
+        //  drupal_flush_all_caches();
+  // }
+
+        // $state = \Drupal::state();
+        // $state->set('system.maintenance_mode', $enable);
+        // \Drupal::service('cache.config')->invalidate('variables');
+
+        // $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+        // $users = $user_storage->loadByProperties(['mail' => $email]);
+        // if(!empty($users)){
+        //   $user = $users[0];
+        //   if ($user instanceof AccountInterface) {
+        //     user_login_finalize($user);
+        //     $response = new TrustedRedirectResponse('user/' . $user->id());
+        //     $response->send();
+        //   }
+        // }
+
+
+   /// $variables['is_maintenance_mode'] = true ;
+     //var_dump($site_variables);
+    // 1 - set up  themes
+      // if(isset($site_variables["site_theme"])){
+      //   $theme_name = "staydirect_".$site_variables["site_theme"];
+      //   $config_factory = \Drupal::configFactory();
+      //   $theme_config = $config_factory->getEditable('system.theme');
+      //   $theme_config->set('default', $theme_name)->save();
+      // }
+
+   
+    // 2 - create account user
+      // if(isset($site_variables["email"])){
+
+      //   $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+      //   $users = $user_storage->loadByProperties(['mail' => $email]);
+      //   var_dump(  $users);die();
+      //    if(empty($users)){
+      //     $user = User::create();
+      //     $user->setUsername($site_variables["name"]);
+      //     $user->setEmail($email);
+      //     $user->setPassword('123456'); 
+      //     $user->addRole('content_editor');  
+      //     $user->activate();
+      //     try {
+      //       $user->save();
+      //       \Drupal::logger('mz_staydirect')->notice(t('User account created for @name.', ['@name' => $user->getAccountName()]));
+      //     } catch (EntityStorageException $e) {
+      //       \Drupal::logger('mz_staydirect')->error(t('User account creation failed: %error', ['%error' => $e->getMessage()]));
+      //     }
+      //    }
+
+
+      // }  
+
+
+    // 3 - add description and logo 
+    
+    // 4 - set up config status to demo_ready
+    // $status = \Drupal::configFactory()->getEditable("mz_staydirect.init")
+    // ->set('status_init', 1)
+    // ->save();
+
+
+  // Check if the current user has the "content_editor" role.
+  $current_user = \Drupal::currentUser();
+  $roles = $current_user->getRoles();
+  if (in_array('content_editor', $roles)) {
+    // Add inline CSS for the content_editor role.
+    $variables['#attached']['html_head'][] = [
+      [
+        '#tag' => 'style',
+        '#value' => '.layout-builder__link--configure,.layout-builder__link--remove,.layout-builder__add-block,.layout-builder__add-section{display:none!important;}.contextual-region .contextual ul.contextual-links li:not(:first-child){display:none!important;}.contextual-region .contextual ul.contextual-links li:first-child a::after{content:"(Edit Block)";color:black;}
+        ',
+      ],
+      'content-editor-styles',
+    ];
+  }
+
+}
