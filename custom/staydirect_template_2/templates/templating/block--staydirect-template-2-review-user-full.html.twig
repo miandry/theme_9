@@ -1,10 +1,10 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
 {% block templating_content %}
 
-{% set item_name = 'block--staydirect-template-1-review-user-full.html' %} 
+{% set item_name = 'block--staydirect-template-2-review-user-full.html' %} 
 {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
 {% set css = include(path_css) %} 
-{{render_css(css,'block__staydirect_template_1_review_user_full')}}
+{{render_css(css,'block__staydirect_template_2_review_user_full')}}
 
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraphs'] %}

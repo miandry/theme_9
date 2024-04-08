@@ -2,9 +2,9 @@
 
 {% block templating_content %}
 
-  {% set path_css = directory ~ '/templates/templating/css/block--staydirect-template-1-booking-process-full.html.css' %}
+  {% set path_css = directory ~ '/templates/templating/css/block--staydirect-template-2-booking-process-full.html.css' %}
   {% set css = include(path_css) %} 
-  {{render_css(css,'block--staydirect-template-1-booking-process-full')}}
+  {{render_css(css,'block--staydirect-template-2-booking-process-full')}}
 	{% set c = block_parser(content) %}
 	{% set params = storage_get('booking_info') %}
     {% set req = get_parameter() %}
