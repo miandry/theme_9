@@ -11,3 +11,9 @@ global-styling:
   js:
     vendor/bootstrap/js/bootstrap.min.js : {}  
     js/staydirect_install.js : {}
+
+popup:
+  js:
+    js/popup.js : {}  
+  dependencies:
+    - staydirect/jquery-confirm

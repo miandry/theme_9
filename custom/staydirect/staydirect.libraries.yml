@@ -26,8 +26,14 @@ maintenance:
       css/maintenance-page.css : {}
 
 
-
-
+jquery-confirm:
+  css:
+    theme: 
+      vendor/jquery-confirm/dist/jquery-confirm.min.css : {}
+  js:
+    vendor/jquery-confirm/dist/jquery-confirm.min.js : {}  
+  dependencies:
+    - core/jquery
 
       
 
