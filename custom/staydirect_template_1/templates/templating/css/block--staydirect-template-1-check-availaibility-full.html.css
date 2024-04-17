@@ -125,3 +125,8 @@ margin: auto;
   padding-right:0px;
 }
 }
+.container-book-form #datepicker {
+  height: 40px;
+  padding: 15px;
+  margin-bottom: 10px;
+}

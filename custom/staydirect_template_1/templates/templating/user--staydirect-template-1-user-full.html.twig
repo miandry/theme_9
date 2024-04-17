@@ -3,7 +3,7 @@
 
 
 {% set item_name = 'user--staydirect-template-1-user-full.html' %} 
-{% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+{% set path_css = ''/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
 {% set css = include(path_css) %} 
 {{render_css(css,'user__staydirect_template_1_user_full')}}
 

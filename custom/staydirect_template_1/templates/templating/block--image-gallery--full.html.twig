@@ -1,0 +1,67 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
+{% set item_name = 'block--staydirect-template-1-image-gallery-full.html' %} 
+{% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+{% set css = include(path_css) %} 
+{{render_css(css,'block__staydirect_template_1_image_gallery_full')}}
+
+{% set c = block_parser(content) %}
+{% set imgs = c['field_images'] %}
+{% set imgs_length = imgs|length %}
+
+<section class="banniere--resp">
+<div class="wrapper--resp">
+
+    <div class="container-banniere-resp grid">
+        <div class="banniere-col1 grid" style="     
+            background: url( {{ imgs[0]['image'].url }} );
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        ">
+           
+        </div>
+        <div class="banniere-col2 grid">
+            <div class="banniere-col2-row1 grid">
+                <div class="grid banniere-col2-row1-col1" style="     
+                background: url({{ imgs[1]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+                   
+                </div>
+                <div class="grid banniere-col2-row1-col2" style="     
+                background: url({{ imgs[2]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+                    
+                </div>
+            </div>
+            <div class="banniere-col2-row2 grid">
+                <div class="grid banniere-col2-row2-col1 grid" style="     
+                background: url({{ imgs[3]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+
+                </div>
+                <div class="grid banniere-col2-row2-col2" style="     
+                background: url({{ imgs[4]['image'].url }});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            ">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+{% endblock %}
