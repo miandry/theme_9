@@ -666,16 +666,20 @@
                             </div>
                         </li>
                     {% else %} 
-                        <li style="position: relative;" class="humberger-menu1">
+                        <li style="position: relative;z-index: 99;" class="humberger-menu1">
                             <a href="#">
                                 My account
                             </a>
                             <div class="menu-mobile-effet1">
                                 <ul class="list-dropdwn" style="color:#fff">
-                                    <li><a href="{{base_url()}}/user">User</a></li>
-                                    <li><a href="{{base_url()}}/booking">My Booking</a></li> 
+                                    <li><a href="{{base_url()}}/user">User profil</a></li>
+                                    {% set current_user = current_user() %}
+                                    {% set uid = (current_user.uid) %}
+                                    {% if hasRole('webmaster',uid) %}
                                     <li><a href="{{base_url()}}/admin">Dashboard</a></li>
-                                    <li><a href="{{base_url()}}/user">Logout</a></li>
+                                    {% endif%}
+
+                                    <li><a href="{{base_url()}}/user/logout">Logout</a></li>
                                 </ul>
                             </div>
                         </li>  
