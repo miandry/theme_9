@@ -197,8 +197,7 @@ header .menu-main--resp ul li.active::after {
   border-bottom: 1px solid rgba(51, 51, 51, 0.32);
   background: #FAFAFA;
   height: 100px;
-  flex-shrink: 0;
-  color: rgba(51, 51, 51, 0.40);
+  color:black!important;
   font-family: "Montserrat";
   font-size: 15px;
   font-style: normal;
