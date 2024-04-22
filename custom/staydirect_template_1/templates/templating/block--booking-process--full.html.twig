@@ -6,14 +6,21 @@
   {% set css = include(path_css) %} 
   {{render_css(css,'block--staydirect-template-1-booking-process-full')}}
 	{% set c = block_parser(content) %}
-	{% set params = storage_get('booking_info') %}
-    {% set req = get_parameter() %}
+	{% set req = get_parameter() %}
 
-    {% if req.termService %}
-       {% set params_new = params|merge(req) %}
-	   {{storage_set('booking_info',params_new)}}
-       {% set t = redirect('/payment/checkout') %} 
+	{% if req.action and req.action == 'guest' %}
+	     {% set params = req %}   
+
+    {% else %}
+	    {% set params = storage_get('booking_info') %}
+	{% endif %}
+
+	 {% if req.termService %}
+		{% set params_new = params|merge(req) %}
+		{{storage_set('booking_info',params_new)}}
+		{% set t = redirect('/payment/checkout') %} 
     {% endif %}
+
 
   {% set current_user = current_user() %}
   {% set u = user_parser(current_user.uid) %}
@@ -45,6 +52,9 @@
 		</div>
 	</div>
 <form>
+	{% if params.action and params.action == 'guest' %}
+	   <input type="hidden"  name="action" value="guest" class="form-control" />
+	{% endif %}						
 	<div class="specification">
 		<div class="container">
 			<div class="row">
@@ -158,14 +168,15 @@
 				
 
 								<hr style="margin-bottom: 0;">
+								
 								{% for key,item in params %}
-
-									{% if key not in ['nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
-
+                          
+									{% if key not in ['action','nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
 
 										{% set status = true  %}
 										{% if "----" in  item %}
 											{% set group =  item|split("----")%}
+								
 										{% endif %}
 
 										{% if item is numeric and item == 0 %}
@@ -179,13 +190,13 @@
 												<h6 class="my-0">{{ key|replace({'_':' '}) }}</h6>
 											</div>
 											<span class="text-body-secondary">   {% if group %}
-                              $ {{front_currency(group[1])|raw}} 
-                              {% set price = group[1] %}
-                            {% else %}
-                              $ {{front_currency(item)|raw}}
-                              {% set price = item %}  
-                             
-                            {% endif %}</span>
+												$ {{front_currency(group[1])|raw}} 
+												{% set price = group[1] %}
+												{% else %}
+												$ {{front_currency(item)|raw}}
+												{% set price = item %}  
+                                                {% endif %}
+											 </span>
 										</li>
 
 									{% endif %}
