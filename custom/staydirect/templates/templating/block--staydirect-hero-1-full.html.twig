@@ -6,28 +6,28 @@
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_hero_1_full')}}
     
-<!-- bloc hero 1-->
-{% set c = block_parser(content) %}
-{% set paragraphs = c['field_paragraph3'] %}
-{% set paragraphs_length = paragraphs|length %}
+    <!-- bloc hero 1-->
+    {% set c = block_parser(content) %}
+    {% set paragraphs = c['field_paragraph3'] %}
+    {% set paragraphs_length = paragraphs|length %}
 
-  <div class="hero--1-resp" id="simple-setup"></div>
-  <section class="hero-1-resp">
-      <div class="container-resp">
-          <div class="content-hero-1-resp-head">
-              <h4 class="title-resp">
-                   {{c.field_title}}
-              </h4>
-              <h3 class="title-resp">
-                  {{c.field_subtitle}}
-              </h3>
-          </div>
-          <div class="content-hero-1-resp step">
+    <div class="hero--1-resp" id="simple-setup"></div>
+    <section class="hero-1-resp">
+        <div class="container-resp">
+            <div class="content-hero-1-resp-head">
+                <h4 class="title-resp">
+                    {{c.field_title}}
+                </h4>
+                <h3 class="title-resp">
+                    {{c.field_subtitle}}
+                </h3>
+            </div>
+            <div class="content-hero-1-resp step">
                 {% for size in 0 .. (paragraphs_length - 1) %}
                     {% if paragraphs[size].field_active %}
                         {% set active = "active" %}
                     {% else %}
-                        {% set active = "" %}
+                        {% set active = "" %}   
                     {% endif %}
                     <div class="step-2-resp step-resp">
                         <div class="content-step-2-resp content-step-resp">
@@ -48,9 +48,9 @@
                         </div>
                     </div>
                 {% endfor %} 
-          </div>
-      </div>
-  </section>
-  <!-- End bloc hero 1-->
+            </div>
+        </div>
+    </section>
+    <!-- End bloc hero 1-->
 
 {% endblock %}
