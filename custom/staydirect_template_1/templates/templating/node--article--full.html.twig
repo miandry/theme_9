@@ -26,14 +26,10 @@
 {% set amenities = n['field_amenities'] %}
 {% set amenities_length = amenities|length %}
 
-	{% set temp = storage_get('booking_info') %}
-    {% if temp.termService %}
-       {{storage_delete('booking_info')}}
-    {% endif %}
-{% if params.nid %}
-     {{storage_set('booking_info',params)}}
-    {% set t = redirect('/booking-process', params) %} 
-{% endif %}
+      
+  {% if params.nid %}
+      {% set t = redirect('/booking-process', params) %} 
+  {% endif %}
 
 <style>
  .btn-checkout {
@@ -358,6 +354,7 @@
                      <input id="datepicker" required name="booking-range-date"  required="" placeholder="Select your dates   >"  style="width: 100%"/>
 
                   </div>
+             
       {% for key,item in addons %}
                 <input  type="hidden" value="{{ item.type }}"   name="{{ item.name }}__type" /> 
                 {% if item.type =="addon_with_quantity" %}
@@ -372,7 +369,7 @@
                           </div>
                         </div>
                         <div class="col number-input-custom">
-                          <input class="quantity quantity-hidden" min="0"  value="0" type="number" style="display: none !important">
+                          <input class="quantity quantity-hidden" min="0"   type="number" style="display: none !important">
                         </div>
                       </div>
                     </td>
@@ -410,7 +407,7 @@
                       <strong class="d-block text-color-dark mb-2">{{ item.name }}</strong>
                       <div  class="d-flex flex-column">
                         <select class="Dym form-select form-control h-auto py-2 valid"   name="{{ item.name }}"  aria-invalid="false">
-                          <option value="0">- None -</option>
+                          <option>- None -</option>
                           {% for keychild,child in item.list %}
                             <option value="{{ child.name }}----{{ child.price }}">{{ child.name }} : ${{ child.price }} </option>
                           {% endfor %}
@@ -440,7 +437,7 @@
             {% else %}
               <div class="row px-2 py-4">
                    <div class="col-md-6">
-                       <a  href="/signin-signup?destination={{current_url_alias()}}" class="btn  btn-checkout    border-radius-0 ">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
+                       <a  href="/register?destination={{current_url_alias()}}" class="btn  btn-checkout    border-radius-0 ">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
                    </div>                
                    <div class="col-md-6">
                        <button  name="action" class="btn btn-checkout   border-radius-0 " value="guest" type="submit">Checkout as Guest </button> </div>  
