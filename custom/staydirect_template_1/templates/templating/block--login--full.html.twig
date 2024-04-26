@@ -9,15 +9,26 @@
   {% set c = block_parser(content) %}
 
   {% if not is_login() %}
-    <div class="log-reg template--staydirect--login log--reg--rect--resp">
+    <div class="log-reg">
       <div class="container-resp">
         <div class="left ">
           <div class="container-left reg--container-left">
-            <h1  onclick='location.href="{{base_url()}}"'>
-              Hotel rental
+            <h1  onclick='location.href="https://template.staydirect.cloud/"'>
+              Hotel rental user
             </h1>   
-            <div class="content-left reg--content-left">
+            <div class="content-left reg--content-left" style="position: relative;">
               {{user_login()}}
+              <style>
+        
+              </style>
+              <div class="description--register-forget">
+                  <span>
+                      <a href="{{base_url()}}/register"> Register </a>
+                  </span>
+                  <span>
+                      <a href="{{base_url()}}/user/password">Forget Password</a> 
+                  </span>
+              </div>
             </div>
           </div>
         </div>
@@ -29,7 +40,7 @@
           background-repeat: no-repeat;
           background-size: cover;">
             <div class="container--right-login">
-                <h2 style="color: #fff; cursor: pointer; text-align: center;" onclick='location.href="{{base_url()}}"'>
+                <h2 style="color: #fff; cursor: pointer; text-align: center;" onclick='location.href="https://template.staydirect.cloud/"'>
                     Go to <br> Hotel rental
                 </h2>
             </div>
