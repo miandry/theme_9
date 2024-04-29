@@ -568,7 +568,9 @@ margin-bottom: 67px;
 .badge-paid {
   background: #28a745;
 }
-
+.badge-published,.badge-cancel {
+  background: #949191;
+}
 .user--container--table .dropdown-menu {
   width: 90% !important;
   border-radius: 0 !important;

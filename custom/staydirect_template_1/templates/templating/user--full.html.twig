@@ -99,11 +99,9 @@
 							<thead>
 								<tr>
 									<th scope="col">ID</th>
-									<th scope="col">Site </th>
-									<th scope="col">Period</th>
-                                    <th scope="col">created on
-									</th>
-									<th scope="col">Expired on
+									<th scope="col">Name </th>
+									<th scope="col">Details</th>
+                                    <th scope="col">Dates
 									</th>
 									<th scope="col">Price</th>
 									<th scope="col">State</th>
@@ -112,32 +110,26 @@
 							</thead>
 							<tbody>
 								{% for item in booking|reverse %}
+								
 									{% set n = node_parser(item) %}
-									{% set site = node_parser(n.field_item['#object']) %}
+									{% set article = node_parser(n.field_item['#object']) %}
+
 									<tr>
 										<th scope="row">{{n.nid}}</th>
-										<td>{{ site.label_site}} ( <a href={{ site.field_st_domain_name}}>view site
-												</a> )</td>
-                                        <td>	{{n.months}} </td>
+										<td>{{ article.title}}</td>
+                                        <td>	
+										   	{% for item in n.field_addons %}
+											   {{item.field_name}} <br/>
+											{% endfor %}
+										 </td>
                                         <td>	
                                         	{% set dates = n.field_dates|first %}
-                                            {% if dates.value %}
-											{{ dates.value}}
-                                            {% else %}
-                                               - 
-                                            {% endif %}
-                                        </td>
-										<td>
-											{% set dates = n.field_dates|first %}
-                                            {% if dates.value %}
-											{{ dates.end_value}}
-                                            {% else %}
-                                               - 
-                                            {% endif %}
+                                            Start on {% if dates.value %}{{ dates.value}}{% else %} - {% endif %} <br/>
+											Finished on {% if dates.end_value %}{{ dates.end_value}}{% else %} - {% endif %}
 										</td>
 										<td>
-											$
-											{{n.field_price_with_tax}} ({{n.moderation_state}})
+											$ {{n.field_price_default}} 
+											{{n.moderation_state }}
 										</td>
 										<td>
 											{% if n.moderation_state == "validate" %}
@@ -150,8 +142,11 @@
 											{% if n.moderation_state == "init" %}
 												<span class="badge badge-inpaid">wait for payment</span>
 											{% endif %}
-											{% if n.moderation_state == "published" %}
-												<span class="badge badge-inpaid">Archived</span>
+											{% if n.moderation_state == "published"  %}
+												<span class="badge badge-published">Archived</span>
+											{% endif %}
+											{% if n.moderation_state == "canceled_booking"  %}
+												<span class="badge badge-cancel">Booking canceled</span>
 											{% endif %}
 
 										</td>
@@ -173,6 +168,7 @@
 										</td>
 									</tr>
 								{% endfor %}
+
 
 							</tbody>
 						</table>
