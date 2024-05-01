@@ -104,3 +104,4 @@ function staydirect_template_1_preprocess_html(&$variables) {
   }
 
 }
+

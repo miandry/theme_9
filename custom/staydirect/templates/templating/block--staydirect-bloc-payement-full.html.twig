@@ -16,62 +16,41 @@
             {% set site = node_parser(params.site_id) %}
             {% set site_user = user_parser(site["uid"]["user"]) %}
     {% endif %}   
+   <style>
+     .main-form-payment{
+         border: 1px solid #716d6d;
+         border-radius: 20px;
+         padding: 15px;
+     }
+     .right-pay-form{}
+     .main-step p{
+    color: white !important;
+     }
+    .form-payment-1 .node-site-form{
+            background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%)) !important;
+    }
+   </style>
 
     <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
         <div class="container container-and">
-            <div class="row ">
-        
-                <div class="col-lg-6">
-
-                    <div class="row text-center row-feature-head">
-                        <div class="col-6 themed-grid-col text-left">
-                            <span class="features"> web site information   </span>
-                        </div>
-                        <div class="col-6 themed-grid-col text-right ">
-                            <span class="ad-nw"> &nbsp;  </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="row form-payment">
-                        <div class="col-md-12 col-lg-12 choosecontent">
-                            <form class="node-site-form node-form">
-                                <p>Website Name : {{site.title}}</p>
-                                <p>Website : {{site.title}}</p>
+            <div class="row main-form-payment">
+                <form class="node-site-form node-form " action="/payment/checkoutstaydirect" method="get">
+                      
+               <div class="col-lg-12">
+                    <div class="row form-payment-1">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="node-site-form node-form">
+                                <h4> Web site information </h4>
+                                <p> Website Label : {{site.label_site}}</p>
                                 <p class="text-muted">Profile : {{site.field_profile}}</p>
-                                <p> theme : {{site.st_theme}}</p>
-                                <p> subdomain : {{site.field_st_domain_name}}</p>
-                            </form>
-                        </div>
-                    </div>
-                
-                </div>
-
-                    <div class="col-lg-6">
-
-                
-
-                    <div class="row text-center row-feature-head">
-                        <div class="col-6 themed-grid-col text-left">
-                            <span class="features">  User information  </span>
-                        </div>
-                        <div class="col-6 themed-grid-col text-right ">
-                            <span class="ad-nw"> &nbsp;  </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            
-                            </svg>
+                                <p> Theme : {{site.st_theme}}</p>
+                                <p> Website URL : https://{{site.field_st_domain_name}}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="row form-payment">
-                        <div class="col-md-12 col-lg-12 choosecontent">
-                            <form class="node-site-form node-form " action="/payment/checkoutstaydirect" method="get">
-                                <!-- Product Details and Payment -->
-                        
-                            
-                                <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>
-
-
+                        <div class="col-md-6 col-lg-6 choosecontent">
+                            <div class="node-site-form node-form">
                                 User information  
 
                                 Mail
@@ -86,55 +65,43 @@
                                 Phone number
                                 <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
 
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 right-pay-form">
+                        <div class="node-site-form node-form">
+                              <!-- Product Details and Payment -->                          
+                                <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>                    
                                 Month 
-                                <select name="month" class="form-select form-input form-select-lg mb-3 select-mounth" aria-label="Large select example" style="display:none">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12" selected="selected">12</option>
-                                </select>
-
-                                <div class="input-group mb-3 input--group--order">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text btn--moins">-</span>
-                                    </div>
-                                    <input value="12" type="number" min="1" max="12" class="form-control" disabled aria-label="Amount (to the nearest dollar)" style="width:auto !important; border-radius: 0 !important;">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text btn--plus">+</span>
-                                    </div>
-                                </div>
-
-                                <input type="hidden" value="15" />
-
-                                Price
-                                <input type="text" class="form-control" name="price" value="5213"  required  />
+                                <input type="number" class="form-control" id="mounth" name="month" value="12"  required  />
+                                Price 
+                                <input type="text" class="form-control" id="price" name="price" readonly value="{{params.site_id * 12 }}"  required  />
 
                                 Notes
                                 <textarea class="form-control" name="notes" value="mynotes" /></textarea>
                                 
                                 <input  type="submit" value="Pay Now" class="button button--primary js-form-submit form-submit">
-                                
-                            </form>
+                        </div>
                         </div>
                     </div>
 
                 </div>
-
+      </form>
             </div>
         </div>
     </main>
 
     <script>
+    // Get references to the input elements
+            var input1 = document.getElementById('mounth');
+            var input2 = document.getElementById('price');
+            var site_ready = document.querySelector("input[name='site_id_ready']");
+            // Add an event listener to input1 for the 'input' event
+            input1.addEventListener('input', function() {
+                // When input1 changes, update the value of input2
+                input2.value = parseInt(site_ready.value)*input1.value; // You can put any logic here to calculate the value
+            });
 
-        if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
+        {# if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
             let step_header_title1 =  document.querySelector(".step a");
             let step_header_title2 =  document.querySelector(".ttl-step");
             let select_mounth = document.querySelector(".select-mounth");
@@ -146,10 +113,13 @@
             step_header_title1.innerHTML = "Process";
             step_header_title2.innerHTML = "Payment";
         
-            select_mounth.onchange = () => {
+            select_mounth.oninput = () => {
                 let priceCurrent = parseInt(select_mounth.value) * parseInt(site_ready.value);
                 price.value = priceCurrent;  
             }
+            select_mounth.addEventListener("change", updateValue);
+
+          
 
             btn_plus.addEventListener("click", logKey);
             btn_moins.addEventListener("click", logKeym);
@@ -178,7 +148,8 @@
                 let priceCurrent = month_current * parseInt(site_ready.value);
                 price.value = priceCurrent;
             }
-        }
+        } #}
+
     </script> 
 
 {% endblock %}
