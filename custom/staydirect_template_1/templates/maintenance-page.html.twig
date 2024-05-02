@@ -69,8 +69,6 @@ html, body {
           display: inline-block
         }  
 </style>
-
-
 <main class="maintenance--page">
   <svg xmlns="http://www.w3.org/2000/svg" width="100" height="70" viewBox="0 0 100 68">
     <g id="large">
@@ -82,11 +80,16 @@ html, body {
       <animateTransform attributeName="transform" begin="0s" dur="2s" from="0 78 21" repeatCount="indefinite" to="-360 78 21" type="rotate"/>
     </g>
   </svg>
-  <h1>Under Construction OKOKOK  {{config("mz_payement.status","status")}} </h1>
-  <h2>Our website will be available soon.</h2>
-  <h3>To contact us in the meantime please email:</h3>
-  <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
-  <div class="md-mtnc">
-    <a href="https://staydirecttech.com/user/login">Login</a>
-  </div>
+{% set status = config("mz_payement.status","status") %}
+{{status}}
+  {% if status == 'in_process' %}
+    <h1>Under Process Payment validation </h1>
+    <h2>Our website will be available soon.</h2>
+    <h3>To contact us in the meantime please email:</h3>
+    <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
+    <div class="md-mtnc">
+      <a href="https://staydirecttech.com/user/login"> Login to StayDirect to see details</a>
+    </div>
+  {% endif %}  
+
 </main>
