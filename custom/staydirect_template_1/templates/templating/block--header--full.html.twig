@@ -82,8 +82,30 @@
     } 
 
   </style>
+  {% set status = config("mz_payement.status","status") %}
+{% set sites = config("mz_payement.status","site_variables") %}
+
   {% set site_id = site_variables["site_id"] %} 
  {% set parent_site = site_variables["parent_site"] %} 
+ {% if status== 'confirmed' %}
+   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
+      <div class="navbar--fixed-container">
+        <div class="navbar--fixed-left">
+          <div class="preview--staydirect-logo">
+            <a class="link--staydirect-logo" href="#">StayDirect</a>
+          </div>
+        </div>
+        <div class="navbar--fixed-left">
+            Please setup your bank account for payment process
+        </div>
+        <div class="navbar--fixed-right">
+          <div class="preview--action--buy">
+            <a class="header-buy-now btn--3d color--primary" href="/user/login?destination=/admin/bank/setup">Start Setup</a>
+          </div>
+        </div>
+      </div>
+  </nav>
+ {% else %}
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
       <div class="navbar--fixed-container">
         <div class="navbar--fixed-left">
@@ -96,11 +118,12 @@
         </div>
         <div class="navbar--fixed-right">
           <div class="preview--action--buy">
-            <a class="header-buy-now btn--3d color--primary" href="{{parent_site }}/pay?site_id={{site_id}}">Buy now</a>
+            <a class="header-buy-now btn--3d color--primary" href="/parent-action?action=start_payment&site_id={{site_id}}&parent={{parent_site }}">Buy now</a>
           </div>
         </div>
       </div>
   </nav>
+{% endif %}  
 <style>
     *,
     *::after,
