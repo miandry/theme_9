@@ -118,7 +118,12 @@
         </div>
         <div class="navbar--fixed-right">
           <div class="preview--action--buy">
-            <a class="header-buy-now btn--3d color--primary" href="/parent-action?action=start_payment&site_id={{site_id}}&parent={{parent_site }}">Buy now</a>
+            <form>
+                <input type="hidden" name="action" value="start_payment" />
+                <input type="hidden" name="site_id" value="{{site_id}}" />
+                <input type="hidden" name="parent" value="{{parent_site }}" />
+                <button type="submit" class="header-buy-now btn--3d color--primary" >Buy now</button>
+            </form>
           </div>
         </div>
       </div>
