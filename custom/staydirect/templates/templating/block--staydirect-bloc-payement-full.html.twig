@@ -13,8 +13,8 @@
 
     {% set params = get_parameter() %}
     {% if params.site_id %}
-            {% set site = node_parser(params.site_id) %}
-            {% set site_user = user_parser(site["uid"]["user"]) %}
+        {% set site = node_parser(params.site_id) %}
+        {% set site_user = user_parser(site["uid"]["user"]) %}
     {% endif %}   
    <style>
      .main-form-payment{
@@ -24,13 +24,13 @@
      }
      .right-pay-form{}
      .main-step p{
-    color: white !important;
+         color: white !important;
      }
     .form-payment-1 .node-site-form{
             background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%)) !important;
     }
    </style>
-
+    
     <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
         <div class="container container-and">
             <div class="row main-form-payment">
@@ -42,9 +42,9 @@
                             <div class="node-site-form node-form">
                                 <h4> Web site information </h4>
                                 <p> Website Label : {{site.label_site}}</p>
-                                <p class="text-muted">Profile : {{site.field_profile}}</p>
-                                <p> Theme : {{site.st_theme}}</p>
-                                <p> Website URL : https://{{site.field_st_domain_name}}</p>
+                                <p class="text-muted">Profile :  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
+                                <p> Theme : {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_2" %} Monochrome Elegance {% endif %} </p>
+                                <p> Website URL : {{site.field_st_domain_name}}</p>
                             </div>
                         </div>
                     </div>
