@@ -16,6 +16,8 @@
         {% set site = node_parser(params.site_id) %}
         {% set site_user = user_parser(site["uid"]["user"]) %}
     {% endif %}   
+    {% set price_booking_system = config("mz_payment.config","price") %}
+    
    <style>
      .main-form-payment{
          border: 1px solid #716d6d;
@@ -71,10 +73,12 @@
                         <div class="node-site-form node-form">
                               <!-- Product Details and Payment -->                          
                                 <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>                    
+                                 <input type="hidden"  class="form-control" name="price_unity" value="{{price_booking_system}}"/>                    
                                 Month 
                                 <input type="number" class="form-control" id="mounth" name="month" value="12"  required  />
                                 Price 
-                                <input type="text" class="form-control" id="price" name="price" readonly value="{{params.site_id * 12 }}"  required  />
+
+                                <input type="text" class="form-control" id="price" name="price" readonly value="{{price_booking_system * 12 }}"  required  />
 
                                 Notes
                                 <textarea class="form-control" name="notes" value="mynotes" /></textarea>
@@ -94,11 +98,11 @@
     // Get references to the input elements
             var input1 = document.getElementById('mounth');
             var input2 = document.getElementById('price');
-            var site_ready = document.querySelector("input[name='site_id_ready']");
+            var price_unity = document.querySelector("input[name='price_unity']");
             // Add an event listener to input1 for the 'input' event
             input1.addEventListener('input', function() {
                 // When input1 changes, update the value of input2
-                input2.value = parseInt(site_ready.value)*input1.value; // You can put any logic here to calculate the value
+                input2.value = parseInt(price_unity.value)*input1.value; // You can put any logic here to calculate the value
             });
 
         {# if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
