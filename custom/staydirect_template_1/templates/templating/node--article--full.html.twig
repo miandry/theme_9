@@ -340,6 +340,14 @@
               .date_booking .easepick-wrapper{
                        z-index: 1;
               }
+            .need_set_up  {
+                    border: 1px solid #cac6c6;
+    padding: 15px;
+    margin: 5px 0px;
+    text-align: center;
+    border-radius: 20px;
+    color: red;
+              }
             </style>
          <form id="mytemplatebooking" onsubmit="return checkFormEmpty();" class="booking-form" >
             <div class="spec-right">
@@ -431,19 +439,24 @@
               
               </div>
             </div>
-            {% if logged_in %}
-               <button  class="w-100 btn btn-primary btn-sm" type="submit">Continue to checkout</button>        
+           {% set account_bank = config("mz_payement.stripe","account") %}
+           {% if account_bank %} 
+                {% if logged_in %}
+                  <button  class="w-100 btn btn-primary btn-sm" type="submit">Continue to checkout</button>        
 
-            {% else %}
-              <div class="row px-2 py-4">
-                   <div class="col-md-6">
-                       <a  href="/register?destination={{current_url_alias()}}" class="btn  btn-checkout    border-radius-0 ">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
-                   </div>                
-                   <div class="col-md-6">
-                       <button  name="action" class="btn btn-checkout   border-radius-0 " value="guest" type="submit">Checkout as Guest </button> </div>  
+                {% else %}
+                  <div class="row px-2 py-4">
+                      <div class="col-md-6">
+                          <a  href="/register?destination={{current_url_alias()}}" class="btn  btn-checkout    border-radius-0 ">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
+                      </div>                
+                      <div class="col-md-6">
+                          <button  name="action" class="btn btn-checkout   border-radius-0 " value="guest" type="submit">Checkout as Guest </button> </div>  
+                      </div>
                   </div>
-              </div>
-            {% endif %}
+                {% endif %}
+          {% else %}
+               <div class="need_set_up"><b>For now , This website not availaible for booking , Thanks for your understanding</b></div>      
+          {% endif %} 
              </form>
           </div>
 

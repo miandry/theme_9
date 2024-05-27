@@ -1,23 +1,26 @@
 <?php
     use Drupal\Core\Entity\EntityStorageException;
-    use Drupal\user\Entity\User;
+  
     use Drupal\Core\Routing\TrustedRedirectResponse;
     use Drupal\Core\Session\AccountInterface;
     use Symfony\Component\HttpFoundation\RedirectResponse;
     
 
 function staydirect_template_1_preprocess_html(&$variables) {
+        // Check if the URL has been accessed before.
   // Get the current URL.
   $current_path = \Drupal::service('path.current')->getPath();
   $current_path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+
+
   $service_helper = \Drupal::service('drupal.helper');
   $params = $service_helper->helper->get_parameter();
   //if($current_path_alias == "/parent-action"){
     $service_booking = \Drupal::service('mz_payment.booking');
-
     // start click buy now in template
     if(isset($params["site_id"])  && isset($params["parent"]) && isset($params["action"]) 
     && $params["action"] =="start_payment"){
+   
           $service_booking->staydirectPaymentInit($params);
     }  
 
@@ -52,5 +55,6 @@ function staydirect_template_1_preprocess_html(&$variables) {
       ];
     }
     
- // }
- }
+}
+
+

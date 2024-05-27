@@ -90,7 +90,7 @@ html, body {
 {% set status = config("mz_payement.status","status") %}
 {% set sites = config("mz_payement.status","site_variables") %}
 
-{{status}}
+
 
   {% if status == 'start_payment' %}
     <h1>Please finished your payment </h1>
@@ -113,8 +113,8 @@ html, body {
   {% endif %}  
 
     {% if status == 'confirmed' %}
-    <h1>Under Process Payment validation </h1>
-    <h2>Our website will be available soon.</h2>
+    <h1>your Payment is confirmed </h1>
+    <h2>Please set up your bank account for .</h2>
     <h3>To contact us in the meantime please email:</h3>
     <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
     <div class="md-mtnc">
