@@ -10,32 +10,32 @@ global-styling:
       css/global.css: {}
       css/style.css: {}
   js:
-    js/popper-2.11.8.min.js : {}  
-    js/bootstrap-5.3.2.min.js : {} 
+    js/popper-2.11.8.min.js : {}
+    js/bootstrap-5.3.2.min.js : {}
     js/swiper-bundle.min.js : {}
-    js/script.js : {} 
+    js/script.js : {}
   dependencies:
     - core/jquery
     - core/drupal.ajax
     - core/drupal
     - core/drupalSettings
 
-swiper: 
+swiper:
   css:
     theme:
-      css/swiper-bundle.min.css : {}     
+      css/swiper-bundle.min.css : {}
   js:
-    js/swiper-bundle.min.js : {}   
+    js/swiper-bundle.min.js : {}
 
 
-booking-details: 
+booking-details:
   js:
-    js/booking-details.js : {} 
+    js/booking-details.js : {}
   dependencies:
     - core/drupal.ajax
     - core/drupal
-    - core/drupalSettings  
-    - staydirect_template_1/easepick 
+    - core/drupalSettings
+    - staydirect_template_1/easepick
     - staydirect_template_1/swipper
 
 spinner-form:
@@ -48,4 +48,18 @@ easepick :
   version: 1.2.0
   header: true
   js:
-    vendor/easepick/easepick.min.js: {}    
+    vendor/easepick/easepick.min.js: {}
+
+gamma:
+  js:
+    js/modernizr.custom.70736.js: {}
+    js/jquery.masonry.min.js: {}
+    js/jquery.history.js: {}
+    js/js-url.min.js: {}
+    js/jquerypp.custom.js: {}
+    js/gamma.js: {}
+  dependencies:
+    - core/jquery
+  css:
+    theme:
+      css/gamma.css: {}
