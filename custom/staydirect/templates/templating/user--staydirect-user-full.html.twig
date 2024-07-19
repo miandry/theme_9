@@ -147,10 +147,7 @@
 								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">Site </th>
-									<th scope="col">Period</th>
                                     <th scope="col">created on
-									</th>
-									<th scope="col">Expired on
 									</th>
 									<th scope="col">Price</th>
 									<th scope="col">State</th>
@@ -165,26 +162,11 @@
 										<th scope="row">{{n.nid}}</th>
 										<td>{{ site.label_site}} ( <a href={{ site.field_st_domain_name}}>view site
 												</a> )</td>
-                                        <td>	{{n.months}} </td>
-                                        <td>	
-                                        	{% set dates = n.field_dates|first %}
-                                            {% if dates.value %}
-											{{ dates.value}}
-                                            {% else %}
-                                               - 
-                                            {% endif %}
-                                        </td>
-										<td>
-											{% set dates = n.field_dates|first %}
-                                            {% if dates.value %}
-											{{ dates.end_value}}
-                                            {% else %}
-                                               - 
-                                            {% endif %}
-										</td>
+                                        <td>	{{n.created|date("Y-m-d")}} </td>
+
 										<td>
 											$
-											{{n.field_price_with_tax}} ({{n.moderation_state}})
+											{{n.field_price_with_tax}} 
 										</td>
 										<td>
 											{% if n.moderation_state == "validate" %}
