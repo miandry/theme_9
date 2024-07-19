@@ -47,6 +47,7 @@
                                 <p class="text-muted">Profile :  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
                                 <p> Theme : {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_2" %} Monochrome Elegance {% endif %} </p>
                                 <p> Website URL : {{site.field_st_domain_name}}</p>
+                                  <p> Price per Month  : {{price_booking_system}} USD </p>
                             </div>
                         </div>
                     </div>
@@ -64,26 +65,21 @@
                                 Last name
                                 <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
 
-                                Phone number
-                                <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
-
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 right-pay-form">
                         <div class="node-site-form node-form">
                               <!-- Product Details and Payment -->                          
                                 <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>                    
-                                 <input type="hidden"  class="form-control" name="price_unity" value="{{price_booking_system}}"/>                    
-                                Month 
-                                <input type="number" class="form-control" id="mounth" name="month" value="12"  required  />
-                                Price 
+                                 <input type="hidden"  class="form-control" name="price" value="{{price_booking_system}}"/>                    
 
-                                <input type="text" class="form-control" id="price" name="price" readonly value="{{price_booking_system * 12 }}"  required  />
+                                Phone number
+                                <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
 
                                 Notes
                                 <textarea class="form-control" name="notes" value="mynotes" /></textarea>
                                 
-                                <input  type="submit" value="Pay Now" class="button button--primary js-form-submit form-submit">
+                                <input  type="submit" value="Subscribe Now" class="button button--primary js-form-submit form-submit">
                         </div>
                         </div>
                     </div>
@@ -96,14 +92,7 @@
 
     <script>
     // Get references to the input elements
-            var input1 = document.getElementById('mounth');
-            var input2 = document.getElementById('price');
-            var price_unity = document.querySelector("input[name='price_unity']");
-            // Add an event listener to input1 for the 'input' event
-            input1.addEventListener('input', function() {
-                // When input1 changes, update the value of input2
-                input2.value = parseInt(price_unity.value)*input1.value; // You can put any logic here to calculate the value
-            });
+  
 
         {# if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
             let step_header_title1 =  document.querySelector(".step a");
