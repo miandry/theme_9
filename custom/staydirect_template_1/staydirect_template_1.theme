@@ -20,7 +20,6 @@ function staydirect_template_1_preprocess_html(&$variables) {
     // start click buy now in template
     if(isset($params["site_id"])  && isset($params["parent"]) && isset($params["action"]) 
     && $params["action"] =="start_payment"){
-   
           $service_booking->staydirectPaymentInit($params);
     }  
 
