@@ -9,6 +9,7 @@
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraphs'] %}
 {% set paragraphs_length = paragraphs|length %}
+{% include START_EDITOR with {'c': c}  %}
 
 <footer>
   <div class="footer-top">
@@ -88,5 +89,6 @@
     })
   }
 </script>
+{% include END_EDITOR with {'c': c}  %}
 
 {% endblock %}

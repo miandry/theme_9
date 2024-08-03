@@ -15,7 +15,8 @@
   {% else %}
     {% set img_bg = c['field_image1']['image'].url %}
   {% endif %}
-  
+  {% include START_EDITOR with {'c': c}  %}
+
   <div class="aminitie" style="background: url({{img_bg}});"></div>
   
   <div class="container">
@@ -77,5 +78,6 @@
       </div>
     </div>
   </div>
-        
+     {% include END_EDITOR with {'c': c}  %}
+   
 {% endblock %}

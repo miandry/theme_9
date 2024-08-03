@@ -1,0 +1,45 @@
+{% set myuser = current_user() %}
+{% set is_editor = hasRole('content_editor',myuser.uid) %}
+{% set is_admin = hasRole('administrator',myuser.uid) %}
+{% set is_web = hasRole('webmaster',myuser.uid) %}
+
+
+
+{% if is_editor or is_admin or  is_web %}
+<style>
+.edit_block_custom_container{
+  position:relative;
+}
+.edit_block_custom_container:hover .edit_block_custom_layout{
+  display:block
+}
+.edit_block_custom_layout:hover{
+  display:block
+}
+.edit_block_custom_layout{
+    display:none ;
+    border: 1px dashed;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.edit_block_custom_btn{
+   background-color: #f44336;
+    border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  z-index:9999;
+}
+.menu-float-mizara{
+  display:none!important ;
+}
+</style>
+<div class="edit_block_custom_container">
+<div class="edit_block_custom_layout">
+<a  class="edit_block_custom_btn" target="_blank" href="/block/{{c.id}}?destination={{current_url()}}"> Edit {{c.info}}</a>
+</div>
+{% endif %}

@@ -5,7 +5,14 @@
     use Drupal\Core\Session\AccountInterface;
     use Symfony\Component\HttpFoundation\RedirectResponse;
     
-
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function staydirect_template_1_preprocess_block(array &$variables) {
+ 
+    $variables['START_EDITOR'] = 'themes/custom/staydirect_template_1/templates/inc/start-include--editor.html.twig';
+    $variables['END_EDITOR'] = 'themes/custom/staydirect_template_1/templates/inc/end-include--editor.html.twig';
+  }
 function staydirect_template_1_preprocess_html(&$variables) {
         // Check if the URL has been accessed before.
   // Get the current URL.

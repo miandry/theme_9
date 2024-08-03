@@ -16,6 +16,15 @@
 {% set links= c['field_link'] %}
 
 <style>
+    .edit_block_custom_btn_header{
+        position:absolute;
+        top: 0px;
+        display:none!important;
+    }
+    .header-sticky:hover  .edit_block_custom_btn_header{
+        display:block!important;
+    }
+       
     @import url('https://fonts.cdnfonts.com/css/valentine-2');
     .header-sticky.shawdow {
         margin-top: 53px !important;
@@ -637,6 +646,14 @@
     }
 </style>
 <header class="header-sticky header--sticky-htl">
+    {% set myuser = current_user() %}
+{% set is_editor = hasRole('content_editor',myuser.uid) %}
+{% set is_admin = hasRole('administrator',myuser.uid) %}
+{% set is_web = hasRole('webmaster',myuser.uid) %}
+
+{% if is_editor or is_admin or  is_web %}
+     <a  class="edit_block_custom_btn_header edit_block_custom_btn" target="_blank" href="/block/{{c.id}}?destination={{current_url()}}"> Edit {{c.info}}</a>
+{% endif %}
     <div class="wrapper--resp">
     <div class="container-header--resp">
         <div class="content-header-left--resp">

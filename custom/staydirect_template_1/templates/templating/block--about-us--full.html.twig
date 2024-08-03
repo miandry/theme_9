@@ -9,6 +9,8 @@
     {% set c = block_parser(content) %}
     {% set links= c['field_link1'] %}
 
+{% include START_EDITOR with {'c': c}  %}
+
     <div class="container confort">
     <div class="row row-and row-confort">
         <div class="col-md-6 confort-left">
@@ -32,4 +34,5 @@
     </div>
     </div>
 
+{% include END_EDITOR with {'c': c}  %}
 {% endblock %}
