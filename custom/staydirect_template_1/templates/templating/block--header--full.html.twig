@@ -89,7 +89,9 @@
         text-align: center !important;
         text-transform: uppercase;
     } 
-
+    .text_demo{
+        font-size:12px ;
+    }
   </style>
   {% set status = config("mz_payement.status","status") %}
 {% set sites = config("mz_payement.status","site_variables") %}
@@ -104,7 +106,7 @@
             <a class="link--staydirect-logo" href="#">StayDirect</a>
           </div>
         </div>
-        <div class="navbar--fixed-left">
+        <div class="navbar--fixed-left text_demo">
             Please setup your bank account for payment process
         </div>
         <div class="navbar--fixed-right">
@@ -123,7 +125,7 @@
           </div>
         </div>
         <div class="navbar--fixed-left">
-            Please this site still demo version
+            Please this site still demo version. username: demo / password: demo 
         </div>
         <div class="navbar--fixed-right">
           <div class="preview--action--buy">
