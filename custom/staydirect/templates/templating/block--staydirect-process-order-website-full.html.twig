@@ -10,15 +10,20 @@
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_process_order_website_full')}}
-  <style>
-  .main-step .login_process form input{
-  border: 1px solid !important;    
-}
-
-  .main-step .login_process {
-      background-color: #F6F6F6!important;
-  }
-  </style>
+      <style>
+          .main-step .login_process form input{
+              border: 1px solid !important;    
+            }
+        
+          .main-step .login_process {
+              background-color: #F6F6F6!important;
+          }
+          
+          .login_process #edit-name--description,
+          .login_process #edit-pass--description {
+              display: none;
+          }
+      </style>
     <main class="main-step main-step-specification main-simple main-order main--step-rectf">
         <div class="container container-and">
             <div class="row mb-5">

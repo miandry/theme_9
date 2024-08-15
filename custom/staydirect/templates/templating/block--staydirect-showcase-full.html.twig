@@ -5,176 +5,93 @@
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_showcase_full')}}
+        <!-- bloc showcase-->
 
-    <!-- bloc showcase-->
+        {% set c = block_parser(content) %}
+        {% set paragraphs = c['field_paragraph3'] %}
+        {% set paragraphs_length = paragraphs|length %}
 
-    {% set c = block_parser(content) %}
-    {% set paragraphs = c['field_paragraph3'] %}
-    {% set paragraphs_length = paragraphs|length %}
-
-    <div class="template--resp" id="template"></div>
-    <section id="showcase-resp" class="showcase-resp">
-        <div class="container-resp">
-            <div class="content-showcase-resp-head">
-                <h4 class="title-resp">
-                    How it looks like ?
-                </h4>
-                <h3 class="title-resp">
-                    Just following these working steps
-                </h3>
-            </div>
-            <div class="content-showcase-resp step">
-
-                {% for size in 0 .. (paragraphs_length - 1) %}
-
-                <div class="step-1-resp step-resp theme-item-slide gallery-slider-and">
-                    <div class="content-step-1-resp content-step-resp">
-                        <img src="{{paragraphs[size]['field_image1']['image'].url}}" alt="" style="object-fit: contain;" class="img-gallery">
-                    </div>
-                    <div class="bottom-theme-resp">
-                       <div class="left-bottom-theme-resp">
-                            Template third
-                       </div>
-                       <div class="right-bottom-theme-resp">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path d="M18.2667 9.66683C16.5834 5.7585 13.4167 3.3335 10.0001 3.3335C6.58339 3.3335 3.41672 5.7585 1.73339 9.66683C1.6875 9.77197 1.66382 9.88545 1.66382 10.0002C1.66382 10.1149 1.6875 10.2284 1.73339 10.3335C3.41672 14.2418 6.58339 16.6668 10.0001 16.6668C13.4167 16.6668 16.5834 14.2418 18.2667 10.3335C18.3126 10.2284 18.3363 10.1149 18.3363 10.0002C18.3363 9.88545 18.3126 9.77197 18.2667 9.66683ZM10.0001 15.0002C7.35839 15.0002 4.85839 13.0918 3.41672 10.0002C4.85839 6.9085 7.35839 5.00016 10.0001 5.00016C12.6417 5.00016 15.1417 6.9085 16.5834 10.0002C15.1417 13.0918 12.6417 15.0002 10.0001 15.0002ZM10.0001 6.66683C9.34078 6.66683 8.69632 6.86233 8.14816 7.2286C7.59999 7.59487 7.17275 8.11546 6.92046 8.72455C6.66816 9.33364 6.60215 10.0039 6.73077 10.6505C6.85939 11.2971 7.17686 11.891 7.64303 12.3572C8.10921 12.8234 8.70315 13.1408 9.34975 13.2694C9.99636 13.3981 10.6666 13.3321 11.2757 13.0798C11.8848 12.8275 12.4053 12.4002 12.7716 11.8521C13.1379 11.3039 13.3334 10.6594 13.3334 10.0002C13.3334 9.11611 12.9822 8.26826 12.3571 7.64314C11.732 7.01802 10.8841 6.66683 10.0001 6.66683ZM10.0001 11.6668C9.67042 11.6668 9.34819 11.5691 9.07411 11.3859C8.80002 11.2028 8.5864 10.9425 8.46026 10.638C8.33411 10.3334 8.3011 9.99831 8.36541 9.67501C8.42972 9.35171 8.58846 9.05474 8.82154 8.82165C9.05463 8.58856 9.3516 8.42983 9.6749 8.36552C9.99821 8.30121 10.3333 8.33422 10.6379 8.46036C10.9424 8.58651 11.2027 8.80013 11.3858 9.07421C11.569 9.34829 11.6667 9.67053 11.6667 10.0002C11.6667 10.4422 11.4911 10.8661 11.1786 11.1787C10.866 11.4912 10.4421 11.6668 10.0001 11.6668Z" fill="white"/>
-                            </svg>
-                       </div>
-                    </div>
+        <div class="template--resp" id="template-preview"></div>
+        <section id="showcase-resp" class="showcase-resp">
+            <div class="container-resp">
+                <div class="content-showcase-resp-head">
+                    <h4 class="title-resp">
+                        {{c['field_title1']}}
+                    </h4>
+                    <h3 class="title-resp">
+                        {{c['field_subtitle']}}
+                    </h3>
                 </div>
+                <div class="content-showcase-resp step">
 
-                {% endfor %} 
+                    {% for size in 0 .. (paragraphs_length - 1) %}
 
+                    <div class="step-1-resp step-resp theme-item-slide gallery-slider-and" onclick="openRequestedPopup()" style="cursor: pointer;">
+                        <div class="content-step-1-resp content-step-resp">
+                            <img src="{{paragraphs[size]['field_image1']['image'].url}}" alt="" style="object-fit: contain;" class="img-gallery">
+                        </div>
+                        <div class="bottom-theme-resp">
+                        <div class="left-bottom-theme-resp">
+                                {{ paragraphs[size]['field_title'] }}
+                        </div>
+                        <div class="right-bottom-theme-resp">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M18.2667 9.66683C16.5834 5.7585 13.4167 3.3335 10.0001 3.3335C6.58339 3.3335 3.41672 5.7585 1.73339 9.66683C1.6875 9.77197 1.66382 9.88545 1.66382 10.0002C1.66382 10.1149 1.6875 10.2284 1.73339 10.3335C3.41672 14.2418 6.58339 16.6668 10.0001 16.6668C13.4167 16.6668 16.5834 14.2418 18.2667 10.3335C18.3126 10.2284 18.3363 10.1149 18.3363 10.0002C18.3363 9.88545 18.3126 9.77197 18.2667 9.66683ZM10.0001 15.0002C7.35839 15.0002 4.85839 13.0918 3.41672 10.0002C4.85839 6.9085 7.35839 5.00016 10.0001 5.00016C12.6417 5.00016 15.1417 6.9085 16.5834 10.0002C15.1417 13.0918 12.6417 15.0002 10.0001 15.0002ZM10.0001 6.66683C9.34078 6.66683 8.69632 6.86233 8.14816 7.2286C7.59999 7.59487 7.17275 8.11546 6.92046 8.72455C6.66816 9.33364 6.60215 10.0039 6.73077 10.6505C6.85939 11.2971 7.17686 11.891 7.64303 12.3572C8.10921 12.8234 8.70315 13.1408 9.34975 13.2694C9.99636 13.3981 10.6666 13.3321 11.2757 13.0798C11.8848 12.8275 12.4053 12.4002 12.7716 11.8521C13.1379 11.3039 13.3334 10.6594 13.3334 10.0002C13.3334 9.11611 12.9822 8.26826 12.3571 7.64314C11.732 7.01802 10.8841 6.66683 10.0001 6.66683ZM10.0001 11.6668C9.67042 11.6668 9.34819 11.5691 9.07411 11.3859C8.80002 11.2028 8.5864 10.9425 8.46026 10.638C8.33411 10.3334 8.3011 9.99831 8.36541 9.67501C8.42972 9.35171 8.58846 9.05474 8.82154 8.82165C9.05463 8.58856 9.3516 8.42983 9.6749 8.36552C9.99821 8.30121 10.3333 8.33422 10.6379 8.46036C10.9424 8.58651 11.2027 8.80013 11.3858 9.07421C11.569 9.34829 11.6667 9.67053 11.6667 10.0002C11.6667 10.4422 11.4911 10.8661 11.1786 11.1787C10.866 11.4912 10.4421 11.6668 10.0001 11.6668Z" fill="white"/>
+                                </svg>
+                        </div>
+                        </div>
+                    </div>
+
+                    {% endfor %} 
+
+                </div>
+            </div>
+        </section>
+        
+        <iframe class="hidden"
+            src="https://staydirecttech.com/template1">
+        </iframe>
+        <!-- End bloc showcase-->
+
+        <div class="container--popup--showcase hidden">
+            <div class="close--popup--showcase" onclick="closePopup()"> 
+                <!--?xml version="1.0" encoding="UTF-8"?-->
+                <svg width="45" height="45" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path d="M14 14L34 34" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 34L34 14" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
         </div>
-    </section>
-    <!-- End bloc showcase-->
-   
-    <div class="popup-showcase-resp popup container-popup-gallery-slider-and hidden">
-        <div class="body-popup body-gallery-slide-and">
-            <div class="container-popup container-slider-and">
-                <div class="close close-showcase-resp close-gallery-slider-and"> 
-                    <?xml version="1.0" encoding="UTF-8"?>
-                    <svg width="45" height="45" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M14 14L34 34" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 34L34 14" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <div class="control-slide control-slide-and">
-                    <span class="left left-slide-resp control-slide-left-and">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/> </svg> </span>
-                    <span class="right right-slide-resp control-slide-right-and"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/> </svg> </span>
-                </div>
-            
-            </div>
-        </div>
-    </div>
 
-    <script>
+
+        <script>
+        
         let showcase_rate = document.getElementById("showcase-resp");
         if( document.body.contains(showcase_rate) )  {
-            let indicators = [];
-            let items = document.querySelectorAll(".theme-item-slide");
-            let popup = document.querySelector(".popup-showcase-resp");
-            let leftArrow = document.querySelector(".control-slide-left-and");
-            let rightArrow = document.querySelector(".control-slide-right-and");
-            let slider = document.querySelector(".slider-and");
-            var sectionIndex = 0;
-            let close = document.querySelector(".close")
-            let img_gallerys = document.querySelectorAll(".img-gallery");
-            let nb_item = items.length;
-            let items_length = nb_item; 
-            let width_slider = nb_item * 100;
-            let gallerys = items;
-            let container_slider_and =  document.querySelector(".container-slider-and");
-            let slider_and = document.createElement("div");
-            slider_and.className = "slider-and";
-            container_slider_and.appendChild(slider_and);
-            slider_and.style.cssText = `
-                width: `+ (nb_item*100) +`% !important;
-            `;
-            let width_items = gallerys.length * 100;
-            let conroll_round_slide_and = document.createElement("div");
-            conroll_round_slide_and.className = "conroll-round-slide-and";
-            container_slider_and.appendChild(conroll_round_slide_and);
-            let ul = document.createElement("ul");
-            conroll_round_slide_and.appendChild(ul);
-            var imgArray = new Array(); 
-            gallerys.forEach( function( gallery , index ) {
-                imgArray[index] = img_gallerys[index].getAttribute("src");
-            })
+            
+            let items_theme = document.querySelectorAll(".gallery-slider-and");
+            let popup = document.querySelector(".container--popup--showcase");
+            let iframe = document.querySelector("iframe");
+            let close = document.querySelector(".close--popup--showcase");
 
-            close.onclick = () => {
-                popup.classList.remove("box");
-                popup.classList.add("hidden");;
-            }
-
-            //create element
-            for (let i = 0; i < nb_item ; i++) {
-                let section$i = document.createElement("section");
-                let li$i =  document.createElement("li");
-                let view_image$i = document.createElement("div")
-                let img$i = document.createElement("img");
-                img$i.setAttribute('src', imgArray[i] );
-                section$i.className = "gallery-and";
-                slider_and.appendChild(section$i);
-                li$i.className = "indicator";
-                slider_and.appendChild(section$i);
-                ul.appendChild(li$i);
-                view_image$i.className = "view_image";
-                section$i.appendChild(view_image$i);
-                view_image$i.appendChild(img$i); 
-            }
-            ul.firstElementChild.className = "indicator active";
-            indicators = document.querySelectorAll(".indicator");
-
-            gallerys.forEach( function( gallery , index ) {
-                gallery.addEventListener( "click", function(){
-                    sectionIndex = index;
-                    ind = sectionIndex;
+            items_theme.forEach( function( item_theme , index ) {
+                item_theme.addEventListener( "click", function(){
+                    sectionIndex = index + 1;
                     popup.classList.remove("hidden");
-                    popup.classList.add("box");
-                    document.querySelector(".indicator.active").classList.remove("active");
-                    indicators[index].classList.add("active");
-                    slider_and.style.cssText = `
-                        width: `+ (items_length*100) +`% !important;
-                        transform: translate(` + (ind) * -(100/items_length)  + `%) !important;
-                    `;
+                    popup.classList.add("show");
+                    iframe.setAttribute('src', "{{base_url}}/template"+sectionIndex);
+                    setTimeout(() => {
+                        iframe.classList.remove("hidden");
+                        iframe.classList.add("show");
+                    }, 1000);
+                
                 } );
             });
-
-            rightArrow.addEventListener('click', function(){
-                sectionIndex = ( sectionIndex < (nb_item-1) ) ? sectionIndex + 1 : (nb_item-1);
-                document.querySelector(".indicator.active").classList.remove("active");
-                indicators[sectionIndex].classList.add("active");
-                slider_and.style.cssText = `
-                    width: `+ (nb_item*100) +`% !important;
-                    transform: translate(` + (sectionIndex) * - (100/nb_item)  + `%) !important;
-                `;
+            close.addEventListener('click', function(){
+                popup.classList.add("hidden");
+                popup.classList.remove("show");
+                iframe.classList.remove("show");
+                iframe.classList.add("hidden");
             });
-
-            leftArrow.addEventListener('click', function(){
-                sectionIndex = ( sectionIndex > 0 ) ? sectionIndex - 1 : 0;
-                document.querySelector(".indicator.active").classList.remove("active");
-                indicators[sectionIndex].classList.add("active");
-                slider_and.style.cssText = `
-                    width: `+ (nb_item*100) +`% !important;
-                    transform: translate(` + (sectionIndex) * - (100/nb_item) + `%) !important;
-                `;
-            });
-
-            indicators.forEach( function( indicator, ind ){
-                indicator.addEventListener('click', function(){
-                    sectionIndex = ind;
-                    document.querySelector(".indicator.active").classList.remove("active");
-                    this.classList.add("active");
-                    slider_and.style.cssText = `
-                        width: `+ (items_length*100) +`% !important;
-                        transform: translate(` + (ind) * -(100/items_length)  + `%) !important;
-                    `;
-                    
-                })   
-            });
-  
         }
-    
-    </script>
+
+        </script>
 
 {% endblock %}

@@ -2,113 +2,123 @@
     .header-step {
       height: auto !important;
     }
+
     .container-and {
-        margin: auto;
+      margin: auto;
     }
-    /*
-    .header-step .logo {
-      width: 207px;
-      height: auto !important;
-      max-height: 95px;
-      margin-top: 0 !important;
-    }
-    header .top-left img.logo {
-      max-width: 206.28px;
-      max-height: 120px;
-    }
-    */
+
     .header--rect .logo {
       width: 250px !important;
       height: auto !important;
       max-height: 115px !important;
       max-width: 250px !important;
     }
+
     .container-and {
-        max-width: 80rem!important;
-        padding-right: 2.5rem !important;
-        padding-left: 2.5rem !important;
+      max-width: 80rem !important;
+      padding-right: 2.5rem !important;
+      padding-left: 2.5rem !important;
     }
+
     header .top-left {
       margin-top: 63px
     }
-   
-      .header-step .top-right .step a {
-          text-decoration: none;
-          color: rgba(51, 51, 51, 0.60);
-          text-align: center;
-          font-size: 25px;
-          font-family: "Kanit";
-          font-style: normal;
-          font-weight: 300;
-          line-height: 150%;
-          letter-spacing: 4px;
-          text-transform: uppercase;
-      }
-      .header-step .top-right {
-        margin-top: 91px;
-      }
-      .header-step  .top-right .ttl-step {
-          color: #333;
-          text-align: right;
-          line-height: 150%;
-          font-size: 50px;
-          font-family: "Vastine";
-          font-weight: 400;
+
+    .header-step .top-right .step a {
+      text-decoration: none;
+      color: rgba(51, 51, 51, 0.60);
+      text-align: center;
+      font-size: 25px;
+      font-family: "Kanit";
+      font-style: normal;
+      font-weight: 300;
+      line-height: 150%;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .header-step .top-right {
+      margin-top: 91px;
+    }
+
+    .header-step .top-right .ttl-step {
+      color: #333;
+      text-align: right;
+      line-height: 150%;
+      font-size: 50px;
+      font-family: "Vastine";
+      font-weight: 400;
+    }
+
+    .header-step .top-right .step {
+      text-align: right !important;
+    }
+
+    @media (max-width: 768px) {
+      header .top-left {
+        margin-top: 44px
       }
 
-      .header-step .top-right .step {
-        text-align: right !important;
+      header .top-left img.logo {
+        max-width: 168.28px;
       }
-      @media (max-width: 768px) {
-        header .top-left {
-          margin-top: 44px
-        }
-        header .top-left img.logo {
-            max-width: 168.28px;
-        }
-        .header-step .top-right {
-            margin-top: 79px;
-        }
-        .header-step  .top-right .ttl-step {
-          font-size: 30px;
-        }
-        .header-step .top-right .step a {
-          font-size: 20px;
-        }
+
+      .header-step .top-right {
+        margin-top: 79px;
       }
-      @media (max-width: 500px) {
-        header .top-left {
-          margin-top: 34px
-        }
-        header .top-left img.logo {
-            max-width: 148.28px;
-        }
-        .header-step .top-right {
-            margin-top: 60px;
-        }
-        .header-step  .top-right .ttl-step {
-          font-size: 18px;
-        }
-        .header-step .top-right .step a {
-          font-size: 25px;
-        }
+
+      .header-step .top-right .ttl-step {
+        font-size: 30px;
       }
-      @media (max-width: 380px) {
-        header .top-left {
-          margin-top: 24px
-        }
-        .header-step .top-right {
-            margin-top: 35px;
-        }
-        header .top-left img.logo {
-            max-width: 100px;
-        }
-        .header-step .top-right .step a {
-          font-size: 14px;
-        }
-        .header-step  .top-right .ttl-step {
-          font-size: 16px;
-        }
-        
+
+      .header-step .top-right .step a {
+        font-size: 20px;
       }
+    }
+
+    @media (max-width: 500px) {
+      header .top-left {
+        margin-top: 34px
+      }
+
+      header .top-left img.logo {
+        max-width: 148.28px;
+      }
+
+      .header-step .top-right {
+        margin-top: 60px;
+      }
+
+      .header-step .top-right .ttl-step {
+        font-size: 18px;
+      }
+
+      .header-step .top-right .step a {
+        font-size: 25px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      header .top-left {
+        margin-top: 24px
+      }
+
+      .header-step .top-right {
+        margin-top: 35px;
+      }
+
+      header .top-left img.logo {
+        max-width: 100px;
+      }
+
+      .header-step .top-right .step a {
+        font-size: 14px;
+      }
+
+      .header-step .top-right .ttl-step {
+        font-size: 16px;
+      }
+
+    }
+
     /*end header*/
