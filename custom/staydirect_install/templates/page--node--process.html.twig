@@ -67,6 +67,19 @@ html, body {
             opacity: 0.5;
             pointer-events: none;
         }
+       
+.centered1 {
+    width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: lightyellow;
+    border-radius: 8px;
+}
+
+#container1 {
+    height: 100vh;
+    display:none;
+}
  
 </style>
 
@@ -87,6 +100,12 @@ html, body {
   <!-- Loader element -->
    
 </main>
+<div id="container1">
+    <div class="centered1">
+     <h2 > The website is currently being built. Please wait a moment.</h2>
+    </div>
+</div>
+
 <div class="loader" id="loader"></div>
 <script>
    // JavaScript to show loader on form submission
@@ -94,7 +113,7 @@ html, body {
         // Show the loader
         document.getElementById('loader').style.display = 'block';
         document.getElementById('loader_max').style.display = 'none';
-
+        document.getElementById('container1').style.display = 'block';
         // Optionally, add a class to the form to indicate loading state
         document.getElementById('site-manager-process').classList.add('loading');
 
