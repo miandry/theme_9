@@ -548,3 +548,7 @@
     border: none !important;
     padding: 10px 30px !important;
 }
+
+.mz-bg-primary {
+    background: #62929E;
+}

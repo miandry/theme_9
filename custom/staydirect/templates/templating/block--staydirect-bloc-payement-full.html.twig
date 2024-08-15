@@ -42,8 +42,8 @@
                     <div class="row form-payment-1">
                         <div class="col-md-12 col-lg-12">
                             <div class="node-site-form node-form">
-                                <h4> Web site information </h4>
-                                <p> Website Label : {{site.label_site}}</p>
+                                <h4> Website information </h4>
+                                <p> Website name : {{site.label_site}}</p>
                                 <p class="text-muted">Profile :  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
                                 <p> Theme : {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_2" %} Monochrome Elegance {% endif %} </p>
                                 <p> Website URL : {{site.field_st_domain_name}}</p>
@@ -54,9 +54,7 @@
                     <div class="row form-payment">
                         <div class="col-md-6 col-lg-6 choosecontent">
                             <div class="node-site-form node-form">
-                                User information  
-
-                                Mail
+                                Email
                                 <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
                             
                                 Fisrt name 
@@ -79,7 +77,7 @@
                                 Notes
                                 <textarea class="form-control" name="notes" value="mynotes" /></textarea>
                                 
-                                <input  type="submit" value="Subscribe Now" class="button button--primary js-form-submit form-submit">
+                                <input  type="submit" value="Proceed to payment" class="button button--primary js-form-submit form-submit">
                         </div>
                         </div>
                     </div>
@@ -89,60 +87,5 @@
             </div>
         </div>
     </main>
-
-    <script>
-    // Get references to the input elements
-  
-
-        {# if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
-            let step_header_title1 =  document.querySelector(".step a");
-            let step_header_title2 =  document.querySelector(".ttl-step");
-            let select_mounth = document.querySelector(".select-mounth");
-            let price = document.querySelector("input[name='price']");
-            let site_ready = document.querySelector("input[name='site_id_ready']");
-            let month_number = document.querySelector("input[type='number']");
-            let btn_moins = document.querySelector(".btn--moins");
-            let btn_plus = document.querySelector(".btn--plus");
-            step_header_title1.innerHTML = "Process";
-            step_header_title2.innerHTML = "Payment";
-        
-            select_mounth.oninput = () => {
-                let priceCurrent = parseInt(select_mounth.value) * parseInt(site_ready.value);
-                price.value = priceCurrent;  
-            }
-            select_mounth.addEventListener("change", updateValue);
-
-          
-
-            btn_plus.addEventListener("click", logKey);
-            btn_moins.addEventListener("click", logKeym);
-
-            function logKey(e) {
-                month_current = parseInt(month_number.value) + 1;
-                month_number.value = month_current;
-                if( month_current <= 0 ) {
-                    month_number.value = 0;
-                    price.value = 0;
-                }
-                let priceCurrent = month_current * parseInt(site_ready.value);
-                price.value = priceCurrent;
-            }
-            function logKeym(e) {
-                month_current = parseInt(month_number.value) - 1;
-                month_number.value = month_current;
-                if( month_current <= 0 ) {
-                    month_number.value = 0;
-                    price.value = 0;
-                    btn_moins.disabled = true;
-                }
-                if( month_current > 0 ) {
-                    btn_moins.disabled = false;
-                }
-                let priceCurrent = month_current * parseInt(site_ready.value);
-                price.value = priceCurrent;
-            }
-        } #}
-
-    </script> 
 
 {% endblock %}

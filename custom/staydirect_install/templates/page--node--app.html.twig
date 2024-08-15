@@ -8,7 +8,7 @@
 {{ attach_library('staydirect/maintenance') }}
 
 {% set step_number = "Website" %}
-{% set step_name = "Choose profile" %}
+{% set step_name = "Choose a profile" %}
 
 <style>
 .site-manager-process{
@@ -36,7 +36,7 @@
         <div class="row ">
 
           <div class="sidebar col-md-4 order-sm-first">
-           {% set active_user = 'active' %} 
+           {% set active_profile = 'active' %} 
            
            {% include 'themes/custom/staydirect_install/templates/inc/menu_process.html.twig'  %}
            </div>
