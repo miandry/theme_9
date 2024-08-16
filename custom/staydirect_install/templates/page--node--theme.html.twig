@@ -49,6 +49,10 @@
 	    border-radius:5px;
 		border: 5px solid #585454 !important;
 	}
+
+	.mz-disabled {
+		cursor: not-allowed;
+	}
 </style>
 {% set param = get_parameter() %}
 {% set param = get_parameter() %}
@@ -74,7 +78,7 @@
 				<div class="row form-payment">
 					<div class="col-md-12 col-lg-12 choosecontent">
 						<h2 class="pb-2 border-bottom">
-							Choose one theme below and click on save and continue
+							Themes
 						</h2>
 						<div class="col-md-12 element" id="template_1">
 							<div class="content_row row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -118,14 +122,22 @@
 
 					</div>
                  	<div class="col-md-12"> 
-					    <input  type="submit" id="edit-submit" name="op" value="Save and continue" class="button js-form-submit form-submit">
+					    <input  type="submit" id="edit-submit" name="op" value="Save and continue"
+							class="button js-form-submit form-submit mz-disabled" disabled>
 					</div>
 				</div>
 			  </form>
-			</div>
-
-
-	
+			</div>	
 		</div>
 	</div>
 </main>
+
+<script>
+    const elements = document.querySelectorAll('#template_1, #template_2, #template_3');
+    elements.forEach(function(element) {
+        element.addEventListener('click', function() {
+			document.getElementById('edit-submit').classList.remove('mz-disabled');
+			document.getElementById('edit-submit').disabled = false;
+        });
+    });
+</script>

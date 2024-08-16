@@ -28,7 +28,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="container-resp container container--right std--useradmin container--user user--profile--rectf user--container--table user--profile--rectf user--container--table--resp">
 		<div class="row mb-2">
 
@@ -38,8 +37,12 @@
 					<div class="col p-4 d-flex flex-column position-static border rounded content--affiche--dashboard mz-bg-primary">
 						<div class="container--spends">
 							<div class="content--spend--affiche--dashboard">
-								<h2 class="text-white text-start">Welcome {{user.name}}</h2>
-								<p  class="text-white">Ready to start building website with StayDirect Technology ?</p>
+								<h2  class="text-white text-start">
+								    Welcome, <span class="text-capitalize">{{user.name}}</span>
+								</h2>
+								<p class="text-white">
+								    Ready to start building your website with StayDirect Technologies?
+								</p>
 							</div>
 						</div>
 					</div>
@@ -52,37 +55,32 @@
     						<div class="container--spends">
     							<div class="content--spend">
     								<p>
-    									Username :
-    									{{user.name}}
+    									Username: <span class="text-capitalize">{{user.name}}</span>
     								</p>
     							</div>
     							<div class="content--spend">
     								<p>
-    									Email :
-    									{{u.mail}}
+    									Email: {{u.mail}}
     								</p>
     							</div>
     							{% if u.field_first_name %}
     								<div class="content--spend">
     									<p>
-    										Fisrt name :
-    										{{u.field_first_name}}
+    										Fisrt name: <span class="text-capitalize">{{u.field_first_name}}</span>
     									</p>
     								</div>
     							{% endif %}
     							{% if u.field_last_name %}
     								<div class="content--spend">
     									<p>
-    										Last name :
-    										{{u.field_last_name}}
+    										Last name: <span class="text-capitalize">{{u.field_last_name}}</span>
     									</p>
     								</div>
     							{% endif %}
     							{% if u.field_phone %}
     								<div class="content--spend">
     									<p>
-    										Phone number :
-    										{{u.field_phone}}
+    										Phone number: {{u.field_phone}}
     									</p>
     								</div>
     							{% endif %}
@@ -90,7 +88,7 @@
     								<br/>
     								<p>
     									<a href="/user/{{u.uid}}/edit?destination=/user" class="btn-grey">
-    										Edit profil
+    										Edit profile
     									</a>
     								</p>
     							</div>
@@ -149,10 +147,10 @@
             								<tr>
             									<th scope="col">ID</th>
             									<th scope="col">Site </th>
-                                                <th scope="col">created on
+                                                <th scope="col">Created on
             									</th>
             									<th scope="col">Price</th>
-            									<th scope="col">State</th>
+            									<th scope="col">Status</th>
             									<th scope="col"></th>
             								</tr>
             							</thead>
@@ -191,7 +189,7 @@
             
             										</td>
             										<td>
-                                                    	<a class="dropdown-item" href="{{base_url}}/invoice?id={{n.nid}}">Get Invoice</a>
+                                                    <a class="text-decoration-underline" href="{{base_url}}/invoice?id={{n.nid}}">Get Invoice</a>
             										</td>
             									</tr>
             								{% endfor %}

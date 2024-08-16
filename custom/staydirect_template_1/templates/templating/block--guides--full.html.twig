@@ -1,24 +1,18 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
 {% block templating_content %}
 
-  {% set item_name = 'block--staydirect-template-1-guides-full.html' %} 
-  {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
-  {% set css = include(path_css) %} 
-  {{render_css(css,'block__staydirect_template_1_guides_full')}}
+
+{% set item_name = 'block--staydirect-template-1-guides-full.html' %} 
+{% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+{% set css = include(path_css) %} 
+{{render_css(css,'block__staydirect_template_1_guides_full')}}
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraphs'] %}
 {% set paragraphs_length = paragraphs|length %}
 
-
-{% if  c['field_image1']['image'].url is defined %}
-  {% set img_bg = "https://template.staydirect.cloud/sites/template/files/2023-11/aminities.png" %}
-{% else %}
-  {% set img_bg = c['field_image1']['image'].url %}
-{% endif %}
-<div class="aminitie" style="background: url({{img_bg}});"></div>
+<div class="aminitie" style="background: url({{ c.field_image1["image"].url }});"></div>
 <div class="container">
-    <div  class="row justify-content-end">
-      <div class="container-aminitie">
+  <div class="container-aminitie">
         <div class="col-md-12 auto">
           <h2 class="text-body-emphasis">{{c.field_title}}</h2>
           <p>{{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}</p>
@@ -75,8 +69,8 @@
           </div>
         </div>
       </div>
-    </div>
 </div>
     
+
 
 {% endblock %}

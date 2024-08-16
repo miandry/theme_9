@@ -70,7 +70,7 @@ html, body {
           width: 100%;
               padding: 10px 20px;
         }  
-        .md-mtnc a.login{
+        .md-mtnc a:hover{
             background: white !important;
             color: #62929E !important;
             border: 2px solid;
@@ -93,22 +93,22 @@ html, body {
 
 
   {% if status == 'start_payment' %}
-    <h1>Please finished your payment </h1>
-    <h3>To contact us for more information please email:</h3>
+    <h1>Please finish your payment.</h1>
+    <h3>For more information, contact us at:</h3>
     <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
     <div class="md-mtnc">
-       <a href="{{sites.parent_site}}/pay?site_id={{sites.site_id}}"> Click to process on your payment </a>
-       <a class="login" href="{{sites.parent_site}}/user/login"> Login to StayDirect to see details</a>
+       <a href="{{sites.parent_site}}/pay?site_id={{sites.site_id}}">Click here to process your payment</a>
+       <a href="{{sites.parent_site}}/user/login">Log in to StayDirect for more details</a>
     </div>
   {% endif %}
 
   {% if status == 'in_process' %}
-    <h1>Under Process Payment validation </h1>
-    <h2>Our website will be available soon.</h2>
-    <h3>To contact us in the meantime please email:</h3>
+    <h1>Payment under validation</h1>
+    <h2>Your website will be available after validation of your payment.</h2>
+    <h3>For more information, please contact us at:</h3>
     <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
     <div class="md-mtnc">
-      <a  href="{{sites.parent_site}}/user/login"> Login to StayDirect to see details</a>
+      <a  href="{{sites.parent_site}}/user/login">Log in to StayDirect for more details</a>
     </div>
   {% endif %}  
 
@@ -118,7 +118,7 @@ html, body {
     <h3>To contact us in the meantime please email:</h3>
     <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
     <div class="md-mtnc">
-      <a  href="{{sites.parent_site}}/user/login"> Login to StayDirect to see details</a>
+      <a  href="{{sites.parent_site}}/user/login">Log in to StayDirect for more details</a>
     </div>
   {% endif %}  
 

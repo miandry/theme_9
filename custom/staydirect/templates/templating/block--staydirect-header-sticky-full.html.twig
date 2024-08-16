@@ -58,7 +58,9 @@
                             {% endif %}
                         </li>
                         <li class="btn-begin">
-                            <a class="btn" href="{{base_url()}}/order">Begin</a>
+                            <a class="btn" href="{{base_url()}}/order"
+                                style="padding: 5px !important; font-size: 15px !important;">
+                                Build your website</a>
                         </li>
                     </ul>
                 </div>
@@ -71,28 +73,36 @@
                 </div>
             </div>
         </div>
-        <div class="menu-mobile menu-mobile-effet" bis_skin_checked="1">
-            <ul class="content-menu-mobile">
-                {% for item in menu1.menu_tree %}
-                    <li><a href="{{ item.url }}"> {{ item.text }} </a></li>
-                {% endfor %}
-            </ul>
-            <ul style="text-align: center !important ;">
-                {% if not is_login() %}
+        <div class="menu-mobile menu-mobile-effet" style="background: transparent !important;"
+            bis_skin_checked="1">
+            <div class="mz-mobile-nav-menu bg-white">
+                <ul class="content-menu-mobile">
+                    {% for item in menu1.menu_tree %}
+                        <li><a class="mz-color-secondary" href="{{ item.url }}"> {{ item.text }} </a></li>
+                    {% endfor %}
+                </ul>
+                <ul style="text-align: center !important ;">
+                    {% if not is_login() %}
+                        <li>
+                            <a class="mz-color-secondary" href="{{base_url()}}/user/login">Login</a>
+                        </li>
+                    {% else %}  
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/user">User</a></li>
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/order">My Booking</a></li> 
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/admin">Dashboard</a></li>
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/user">Logout</a></li>
+                    {% endif %}
+    
                     <li>
-                        <a href="{{base_url()}}/user/login">Login</a>
+                        <div class="w-75 mx-auto fw-bold text-white rounded-pill p-3"
+                        style="background: #62929ecc">
+                            <a  id="mz-begin-mobile" class="mz-color-secondary"
+                            style="padding: 5px !important; font-size: 15px !important;"
+                            href="{{base_url()}}/order">Build your website</a>
+                        </div>
                     </li>
-                {% else %}  
-                    <li><a href="{{base_url()}}/user">User</a></li>
-                    <li><a href="{{base_url()}}/order">My Booking</a></li> 
-                    <li><a href="{{base_url()}}/admin">Dashboard</a></li>
-                    <li><a href="{{base_url()}}/user">Logout</a></li>
-                {% endif %}
-
-                <li>
-                    <a hred="{{base_url()}}/order">Begin</a>
-                </li>
-            </ul>
+                </ul>
+            </div>
         </div>
     </div>
     <script>
