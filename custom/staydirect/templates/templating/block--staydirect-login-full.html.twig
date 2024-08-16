@@ -12,215 +12,156 @@
 {% set paragraphs = c['field_paragraph3'] %}
 {% set paragraphs_length = paragraphs|length %}
 
-{% if logged_in %}
-   {% set t = redirect('/user') %} 
-{% endif %}
-
-<section id="log-reg-js" class="login-resp login-and log-reg-resp">
-    <div class="container-form-resp container-form-resp-fluid">
-        <div class="content-register-resp">
-            <div class="left-register-resp">
-                <div class="container-left-register-resp">
-                    <div class="content-left-top-resp content-left-top-and">
-                        <div>
-                        <a href="{{base_url()}}">
-                            <img src="{{c['field_image1']['image'].url}}" alt="">
-                        </a>
-                        </div>
-                        <div class="content-top-header-and">
-                            <h4>Login</h4>
-                            <h5 class="subttl-form">Welcome back</h5>
-                        </div>
-                    </div>
-                    <div class="content-left-bottom-resp">
-                        <div class="container-form-left">
-                            <div class="container-form-left-and">
-
-                            
-                                <div class="container-form-login-tab tab-content-left show">
-                                    {{user_login()}}
-                                </div>
-                            
-                                <div class="container-form-register-tab tab-content-left">
-                                    {{user_register()}}
-                                </div>
-                                <!-- end register -->
-
-                            
-                                <div class="container-btn-valid-tab container-btn-valid container-btn-valid-login show">
-
-                                    <div class="trait-separator">
-                                        <span>Or continue with</span>
-                                        <hr />
-                                    </div>
-                                    
-                                    <div class="d-flex justify-content-around mb-3 btn-valide btn-valide-resp">
-                                        {% for size in 0 .. (paragraphs_length - 1) %}
-                                        <button type="submit" class="btn btn-rounded   ">
-                                            <img src="{{paragraphs[size]['field_image1']['image'].url}}" alt="">
-                                            <span class="none-tab none-desk">{{kint(paragraphs[size].field_title)}}</span>
-                                        </button>
-                                        {% endfor %} 
-                                    </div>
-
-                                </div>
-
-                                <div class="container-btn-valid-tab container-btn-valid container-btn-valid-register">
-
-                                    <div class="trait-separator">
-                                        <span>Or continue with</span>
-                                        <hr />
-                                    </div>
-                                    
-                                    <div class="d-flex justify-content-around mb-3 btn-valide btn-valide-resp">
-                                
-                                        {% for size in 0 .. (paragraphs_length - 1) %}
-                                        <button type="submit" class="btn btn-rounded   ">
-                                            <img src="{{paragraphs[size]['field_image1']['image'].url}}" alt="">
-                                            <span class="none-tab none-desk">{{kint(paragraphs[size].field_title)}}</span>
-                                        </button>
-                                        {% endfor %} 
-                                    
-                                    </div>
-
-                                </div>
-
-                                <div class="btn-tab-login-register-resp">
-                                    <div class="tab_btn active tab_btn_login">
-                                        login
-                                    </div>
-                                    <div class="tab_btn tab_btn_signup">
-                                        sign up
-                                    </div>
-                                </div>
-                              
-
+    {% if logged_in %}
+    {% set t = redirect('/user') %}
+    {% endif %}
+    <section id="log-reg-js" class="login-resp login-and log-reg-resp">
+        <div class="container-form-resp container-form-resp-fluid">
+            <div class="content-register-resp">
+                <div class="left-register-resp">
+                    <div class="container-left-register-resp">
+                        <div class="content-left-top-resp content-left-top-and">
+                            <div>
+                            <a href="{{base_url()}}">
+                                <img src="{{c['field_image1']['image'].url}}" alt="">
+                            </a>
+                            </div>
+                            <div class="content-top-header-and">
+                                <h4>Login</h4>
+                                <h5 class="subttl-form">Welcome back</h5>
                             </div>
                         </div>
-                        <div class="desc--forgt-passwd">
-                            <a href="{{base_url()}}/password">Forgot your password?</a>
+                        <div class="content-left-bottom-resp">
+                            <div class="container-form-left">
+                                <div class="container-form-left-and">
+
+                                
+                                    <div class="container-form-login-tab tab-content-left show">
+                                        {{user_login()}}
+                                    </div>
+
+                                    <div class="btn-tab-login-register-resp">
+                                        <div class="tab_btn active tab_btn_login">
+                                            login
+                                        </div>
+                                        <a class="tab_btn tab_btn_signup" href="{{base_url()}}/register">
+                                            <span style="color: rgba(51, 51, 51, 0.82);">
+                                                sign up</span>
+                                        </a>
+                                    </div>
+                                
+
+                                </div>
+                            </div>
+                            <div class="desc--forgt-passwd">
+                                <a href="{{base_url()}}/password">Forgot your password?</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-    
+        
 
-            <div class="right-register-resp">
-                <div class="content-right-register-resp tab-content-right tab-content-right-login show" 
-                    style="background: url({{c['field_media1']['image'].url}}); 
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                            background-position: center center;
-                            flex-wrap: wrap;
-                            width: 100%;
-                            height: 100%;
-                    ">
-                    
-                </div>
-                <div class="content-right-register-resp tab-content-right tab-content-right-register" 
-                    style=" background: url({{c['field_media2']['image'].url}});
-                             background-size: cover;
-                            background-repeat: no-repeat;
-                            background-position: center center;
-                            flex-wrap: wrap;
-                            width: 100%;
-                            height: 100%;
-                    ;">
-                    
+                <div class="right-register-resp">
+                    <div class="content-right-register-resp tab-content-right tab-content-right-login show" 
+                        style="background: url({{c['field_media1']['image'].url}}); 
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: center center;
+                                flex-wrap: wrap;
+                                width: 100%;
+                                height: 100%;
+                        ">
+                        
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<script>
-let form_logreg = document.getElementById("log-reg-js");
-if( document.body.contains(form_logreg) )  {
-    let js_formpass = document.querySelectorAll(".js-form-type-password");
-    let inputs = document.querySelectorAll("#log-reg-js input[type='text'], #log-reg-js input[type='password'], #log-reg-js input[type='email']");
-    let labels = document.querySelectorAll(".js-form-item label");
-    let js_formpassinput = document.querySelectorAll(".js-form-type-password input");
-    let tabs = document.querySelectorAll(".tab_btn");
-    let tabs_content_left = document.querySelectorAll(".tab-content-left");
-    let tabs_content_right = document.querySelectorAll(".tab-content-right");
-    let container_btn_valid_tabs = document.querySelectorAll(".container-btn-valid-tab");
+    </section>
 
-    js_formpass.forEach( function( js_formpas, index ){
-        let divjscreate_password_resp = document.createElement("div");
-        divjscreate_password_resp.className = "jscreate-password-resp";
-        js_formpas.appendChild(divjscreate_password_resp);
-        let img = document.createElement("img");
-        img.className = "img-pass-no";
-        img.setAttribute("src", "https://staydirect.cloud/sites/default/files/2023-10/cache_pass.png" );
-        divjscreate_password_resp.appendChild(img);
-    });
+    <script>
+        let form_logreg = document.getElementById("log-reg-js");
+        if( document.body.contains(form_logreg) )  {
+            let js_formpass = document.querySelectorAll(".js-form-type-password");
+            let inputs = document.querySelectorAll("#log-reg-js input[type='text'], #log-reg-js input[type='password'], #log-reg-js input[type='email']");
+            let labels = document.querySelectorAll(".js-form-item label");
+            let js_formpassinput = document.querySelectorAll(".js-form-type-password input");
+            let tabs = document.querySelectorAll(".tab_btn");
+            let tabs_content_left = document.querySelectorAll(".tab-content-left");
+            let tabs_content_right = document.querySelectorAll(".tab-content-right");
+            let container_btn_valid_tabs = document.querySelectorAll(".container-btn-valid-tab");
 
-    let password_btns = document.querySelectorAll(".jscreate-password-resp");
-    let img_pass = document.querySelectorAll(".img-pass-no");
-    let js_formpass_show = document.querySelectorAll(".js-form-type-password.show input");
-    password_btns.forEach( function( password_btn, index ){
-        password_btn.addEventListener("click", function() {
-            js_formpass[index].classList.toggle('show');
-            let input_password_current = js_formpass[index].querySelector("input");
-            let img_password_current = js_formpass[index].querySelector("img");
-            console.log(input_password_current.type);
-            if (input_password_current.type === "password") {
-                input_password_current.type = "text";
-                img_password_current.src = "https://staydirect.cloud/sites/default/files/2023-10/show.png";
-            } else {
-                input_password_current.type = "password";
-                img_password_current.src = "https://staydirect.cloud/sites/default/files/2023-10/cache_pass.png";
-            }
-        })
-    })
+            js_formpass.forEach( function( js_formpas, index ){
+                let divjscreate_password_resp = document.createElement("div");
+                divjscreate_password_resp.className = "jscreate-password-resp";
+                js_formpas.appendChild(divjscreate_password_resp);
+                let img = document.createElement("img");
+                img.className = "img-pass-no";
+                img.setAttribute("src", "https://staydirect.cloud/sites/default/files/2023-10/cache_pass.png" );
+                divjscreate_password_resp.appendChild(img);
+            });
 
-    tabs.forEach( (tab,index) => {
-        tab.addEventListener( "click", () => {
-            tabs.forEach( tab => { tab.classList.remove("active") });  
-            tab.classList.add("active");
-            tabs_content_left.forEach( tab_content_left => { tab_content_left.classList.remove("show") });
-            tabs_content_right.forEach( tab_content_right => { tab_content_right.classList.remove("show") });
-            container_btn_valid_tabs.forEach( container_btn_valid_tab => { container_btn_valid_tab.classList.remove("show") });
-            tabs_content_left[index].classList.add("show");
-            tabs_content_right[index].classList.add("show");
-            container_btn_valid_tabs[index].classList.add("show");
-        } )
-    })
+            let password_btns = document.querySelectorAll(".jscreate-password-resp");
+            let img_pass = document.querySelectorAll(".img-pass-no");
+            let js_formpass_show = document.querySelectorAll(".js-form-type-password.show input");
+            password_btns.forEach( function( password_btn, index ){
+                password_btn.addEventListener("click", function() {
+                    js_formpass[index].classList.toggle('show');
+                    let input_password_current = js_formpass[index].querySelector("input");
+                    let img_password_current = js_formpass[index].querySelector("img");
+                    console.log(input_password_current.type);
+                    if (input_password_current.type === "password") {
+                        input_password_current.type = "text";
+                        img_password_current.src = "https://staydirect.cloud/sites/default/files/2023-10/show.png";
+                    } else {
+                        input_password_current.type = "password";
+                        img_password_current.src = "https://staydirect.cloud/sites/default/files/2023-10/cache_pass.png";
+                    }
+                })
+            })
 
-    inputs.forEach( (input,index) => {
-        input.addEventListener("focus", () => {
-            labels[index].style.cssText = `
-                display:none;
-            `;
-        });
-        input.addEventListener("blur", () => {
-            if (input.value==="") {
-                labels[index].style.cssText = `
-                    display:block;
-                `;
-            }else {
-                labels[index].style.cssText = `
-                    display:none;
-                `;
-            }
-        })
-    });
+            inputs.forEach( (input,index) => {
+                input.addEventListener("focus", () => {
+                    labels[index].style.cssText = `
+                        display:none;
+                    `;
+                });
+                input.addEventListener("blur", () => {
+                    if (input.value==="") {
+                        labels[index].style.cssText = `
+                            display:block;
+                        `;
+                    }else {
+                        labels[index].style.cssText = `
+                            display:none;
+                        `;
+                    }
+                })
+            });
 
 
-    let parent_form_login = document.querySelector(".container-form-login-tab form");
-    let parent_form_register  = document.querySelector(".container-form-register-tab form");
+            let parent_form_login = document.querySelector(".container-form-login-tab form");
+            let parent_form_register  = document.querySelector(".container-form-register-tab form");
 
-    let container_btn_valide_login = document.querySelector(".container-btn-valid-login");
-    let container_btn_valide_register = document.querySelector(".container-btn-valid-register");
+            let container_btn_valide_login = document.querySelector(".container-btn-valid-login");
+            let container_btn_valide_register = document.querySelector(".container-btn-valid-register");
 
-    let login = document.querySelector(".container-form-login-tab .form-actions");
-    let register = document.querySelector(".container-form-register-tab .form-actions");
+            let login = document.querySelector(".container-form-login-tab .form-actions");
+            let register = document.querySelector(".container-form-register-tab .form-actions");
 
-    parent_form_register.insertBefore(container_btn_valide_register,register);
-    parent_form_login.insertBefore(container_btn_valide_login,login);
-    
-}
-</script>
+            parent_form_register.insertBefore(container_btn_valide_register,register);
+            parent_form_login.insertBefore(container_btn_valide_login,login);
+            
+        }
+    </script>
+
+    <script>
+        if( document.body.contains( document.querySelector("#log-reg-js form .std--useradmin.container--user-edit.container--user")) ) {
+            document.querySelector("#log-reg-js form .std--useradmin.container--user-edit.container--user").classList.remove("container");
+            document.querySelector("#log-reg-js form .std--useradmin.container--user-edit.container--user #user-info").classList.remove("col-lg-9")
+            document.querySelector("#log-reg-js form.user-register-form.user-form .useradmin--sidebar-left.position-relative").classList.remove("position-relative");
+        }
+    </script> 
 
 
 {% endblock %}

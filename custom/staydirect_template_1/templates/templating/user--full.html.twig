@@ -1,6 +1,5 @@
 {% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
 {% block templating_content %}
-
 {% set item_name = 'user--staydirect-template-1-user-full.html' %} 
 {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
 {% set css = include(path_css) %} 
@@ -32,9 +31,10 @@
 					<div class="col p-4 d-flex flex-column position-static border rounded content--affiche--dashboard">
 						<div class="container--spends">
 							<div class="content--spend--affiche--dashboard">
-								<h2>Welcome
-									{{user.name}}</h2>
-								<p>Ready to start your day with StayDirect Technology ?</p>
+								<h2>Welcome, <span class="text-capitalize">{{user.name}}</span></h2>
+								<p>
+								    Ready to start building your website with StayDirect Technologies?
+								</p>
 							</div>
 						</div>
 					</div>
@@ -48,37 +48,38 @@
         						<div class="container--spends">
         							<div class="content--spend">
         								<p>
-        									Username :
-        									{{user.name}}
+        									Username:
+        									<span class="text-capitalize">
+        									    {{user.name}}</span>
         								</p>
         							</div>
         							<div class="content--spend">
         								<p>
-        									Email :
-        									{{u.mail}}
+        									Email: {{u.mail}}
         								</p>
         							</div>
         							{% if u.field_first_name %}
         								<div class="content--spend">
         									<p>
-        										Fisrt name :
-        										{{u.field_first_name}}
+        										Fisrt name: 
+        										<span class="text-capitalize">
+        										    {{u.field_first_name}}</span>
         									</p>
         								</div>
         							{% endif %}
         							{% if u.field_last_name %}
         								<div class="content--spend">
         									<p>
-        										Last name :
-        										{{u.field_last_name}}
+        										Last name: 
+        										<span class="text-capitalize">
+        										    {{u.field_last_name}}</span>
         									</p>
         								</div>
         							{% endif %}
         							{% if u.field_phone %}
         								<div class="content--spend">
         									<p>
-        										Phone number :
-        										{{u.field_phone}}
+        										Phone number: {{u.field_phone}}
         									</p>
         								</div>
         							{% endif %}
@@ -86,7 +87,7 @@
         								<br/>
         								<p>
         									<a href="/user/{{u.uid}}/edit?destination=/user" class="btn-grey">
-        										Edit profil
+        										Edit profile
         									</a>
         								</p>
         							</div>
@@ -107,7 +108,7 @@
                                             <th scope="col">Dates
         									</th>
         									<th scope="col">Price</th>
-        									<th scope="col">State</th>
+        									<th scope="col">Status</th>
         									<th scope="col"></th>
         								</tr>
         							</thead>
@@ -127,7 +128,7 @@
         										 </td>
                                                 <td>	
                                                 	{% set dates = n.field_dates|first %}
-                                                    Start on {% if dates.value %}{{ dates.value}}{% else %} - {% endif %} <br/>
+                                                    Started on {% if dates.value %}{{ dates.value}}{% else %} - {% endif %} <br/>
         											Finished on {% if dates.end_value %}{{ dates.end_value}}{% else %} - {% endif %}
         										</td>
         										<td>
@@ -153,7 +154,10 @@
         
         										</td>
         										<td>
-                                                	<a class="dropdown-item" href="{{base_url}}/invoice?id={{n.nid}}">Get Invoice</a>
+                                                	<a
+                                                	    class="text-decoration-underline"
+                                                	    href="{{base_url}}/invoice?id={{n.nid}}">
+                                                	    Get Invoice</a>
         										</td>
         									</tr>
         								{% endfor %}
@@ -167,6 +171,5 @@
 			</div>
 		</div>
 	</div>
-
 
 {% endblock %}
