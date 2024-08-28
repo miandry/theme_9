@@ -121,3 +121,16 @@ display:none!important;
       padding-left: 0 !important;
   }
 }
+
+.main-step .login_process form input{
+  border: 1px solid !important;    
+}
+
+.main-step .login_process {
+  background-color: #F6F6F6!important;
+}
+
+.login_process #edit-name--description,
+.login_process #edit-pass--description {
+  display: none;
+}

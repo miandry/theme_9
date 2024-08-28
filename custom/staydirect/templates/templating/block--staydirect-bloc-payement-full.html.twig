@@ -1,7 +1,6 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
 
     {% block templating_content %}
-
     {{ attach_library('staydirect/maintenance') }}
     {{ attach_library('claro/global-styling') }}
     {{ attach_library('staydirect_install/global-styling') }}
@@ -17,75 +16,98 @@
         {% set site_user = user_parser(site["uid"]["user"]) %}
     {% endif %}   
     {% set price_booking_system = config("mz_payment.config","price") %}
-    
-   <style>
-     .main-form-payment{
-         border: 1px solid #716d6d;
-         border-radius: 20px;
-         padding: 15px;
-     }
-     .right-pay-form{}
-     .main-step p{
-         color: white !important;
-     }
-    .form-payment-1 .node-site-form{
-            background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%)) !important;
-    }
-   </style>
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
     <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
         <div class="container container-and">
             <div class="row main-form-payment">
-                <form class="node-site-form node-form " action="/payment/checkoutstaydirect" method="get">
-                      
-               <div class="col-lg-12">
-                    <div class="row form-payment-1">
-                        <div class="col-md-12 col-lg-12">
-                            <div class="node-site-form node-form">
-                                <h4> Website information </h4>
-                                <p> Website name : {{site.label_site}}</p>
-                                <p class="text-muted">Profile :  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
-                                <p> Theme : {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_2" %} Monochrome Elegance {% endif %} </p>
-                                <p> Website URL : {{site.field_st_domain_name}}</p>
-                                  <p> Price per Month  : {{price_booking_system}} USD </p>
+                <form class="node-site-form node-form" id="proceed-to-pay-form" action="/payment/checkoutstaydirect" method="get">   
+                    <div class="col-lg-12">
+                        <div class="row form-payment-1">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="node-site-form node-form">
+                                    <h4> Website information </h4>
+                                    <p> Website name: {{site.label_site}}</p>
+                                    <p class="text-muted">Profile:  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
+                                    <p> Theme: {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_2" %} Monochrome Elegance {% endif %} </p>
+                                    <p> Website URL: {{site.field_st_domain_name}}</p>
+                                    <p> Price per month: {{price_booking_system}} USD </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row form-payment">
-                        <div class="col-md-6 col-lg-6 choosecontent">
-                            <div class="node-site-form node-form">
-                                Email
-                                <input type="text"  class="form-control" name="mail" value="{{site_user.mail}} "  required />
-                            
-                                Fisrt name 
-                                <input type="text"  class="form-control" name="field_first_name" value="{{site_user.field_first_name}} "   />
-
-                                Last name
-                                <input type="text"  class="form-control" name="field_last_name" value="{{site_user.field_last_name}} "   />
-
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 right-pay-form">
-                        <div class="node-site-form node-form">
-                              <!-- Product Details and Payment -->                          
-                                <input type="hidden"  class="form-control" name="site_id_ready" value="{{params.site_id}}"/>                    
-                                 <input type="hidden"  class="form-control" name="price" value="{{price_booking_system}}"/>                    
-
-                                Phone number
-                                <input type="text"  class="form-control" name="field_phone" value="{{site_user.field_phone}} "  required />
-
-                                Notes
-                                <textarea class="form-control" name="notes" value="mynotes" /></textarea>
+                        <div class="row form-payment">
+                            <div class="col-md-6 col-lg-6 choosecontent">
+                                <div class="node-site-form node-form">
+                                    Email
+                                    <input type="text"  class="form-control" name="mail"
+                                        value="{{site_user.mail|trim}}" required />
                                 
-                                <input  type="submit" value="Proceed to payment" class="button button--primary js-form-submit form-submit">
-                        </div>
+                                    Fisrt name 
+                                    <input type="text"  class="form-control" name="field_first_name"
+                                        value="{{site_user.field_first_name|trim|capitalize}}" required/>
+
+                                    Last name
+                                    <input type="text"  class="form-control" name="field_last_name"
+                                        value="{{site_user.field_last_name|trim|capitalize}}" required/>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 right-pay-form">
+                                <div class="node-site-form node-form">
+                                    <!-- Product Details and Payment -->                          
+                                        <input type="hidden"  class="form-control" name="site_id_ready"
+                                            value="{{params.site_id}}"/>                    
+                                        <input type="hidden"  class="form-control" name="price"
+                                            value="{{price_booking_system}}"/>                    
+                                        <div id="p-wrapper">
+                                            Phone number
+                                            <input type="text"  class="form-control" name="field_phone"
+                                                value="{{site_user.field_phone}}" id="phone-number"
+                                                style="margin: 10px auto 5px auto!important;" required />
+                                                <small class="text-danger d-none">
+                                                    Invalid phone number</small>
+                                        </div>
+
+                                        Notes
+                                        <textarea class="form-control" name="notes"
+                                            value="mynotes" /></textarea>
+                                        
+                                        <input  type="submit" value="Proceed to payment" id="proceed-to-payment" class="button button--primary js-form-submit form-submit">
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                </div>
-      </form>
+                </form>
             </div>
         </div>
     </main>
 
+    
+    <script>
+    
+        function validatePhoneNumber(phoneNumber) {
+            const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+            return cleanedPhoneNumber.length === 10;
+        }
+        $(document).ready(function(){
+            $('#phone-number').inputmask("(999) 999-9999");
+            
+            $('#proceed-to-payment').click(function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                const phoneNumber = $('#phone-number').val();
+                const isValid = validatePhoneNumber(phoneNumber);
+    
+                if (isValid) {
+                    $('#proceed-to-pay-form').trigger( "submit" );
+                } else {
+                    $('#phone-number').each(function() {
+                        this.style.setProperty('border', '1px solid red', 'important');
+                    });
+                    $('#p-wrapper small').removeClass("d-none")
+                }
+            });
+        });
+    </script>
 {% endblock %}
