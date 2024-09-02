@@ -653,10 +653,8 @@ header .content-header-right--resp {
 }
 
 .navbar--fixed--top .navbar--fixed-container .navbar--fixed-right .btn--3d {
-    -webkit-box-shadow: 0 2px 0 #6f9a37;
-    box-shadow: 0 2px 0 #6f9a37;
     position: relative;
-    background: var(--Dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)) !important;
+    background: #ff8900 !important;
     font-size: 14px;
     padding: 5px 20px;
     line-height: 1.5;
