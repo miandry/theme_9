@@ -33,7 +33,7 @@
             </div>
             <div class="navbar--fixed-right">
             <div class="preview--action--buy">
-                <a class="header-buy-now btn--3d color--primary" href="/user/login?destination=/admin/bank/setup">Start Setup </a>
+                <a class="header-buy-now btn--3d color--primary shadow-none" href="/user/login?destination=/admin/bank/setup">Start Setup </a>
             </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                     <input type="hidden" name="action" value="start_payment" />
                     <input type="hidden" name="site_id" value="{{site_id}}" />
                     <input type="hidden" name="parent" value="{{parent_site }}" />
-                    <button type="submit" class="header-buy-now btn--3d color--primary" >Buy now</button>
+                    <button type="submit" class="header-buy-now btn--3d color--primary shadow-none" >Buy now</button>
                 </form>
             </div>
             </div>
@@ -227,6 +227,7 @@
         /*end header*/
     </script>
     <script>
+    alert('teste')
         if( document.body.contains(  document.querySelector(".humberger-menu1") ) ) {
             document.querySelector(".humberger-menu1").onclick = () => {
                 document.querySelector(".menu-mobile-effet1").classList.toggle("show");
