@@ -178,3 +178,8 @@
         max-width: 100%;
     }
   }
+
+  .log-reg #edit-name--description,
+  .log-reg #edit-mail--description {
+    display: none;
+  }
