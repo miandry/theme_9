@@ -1,10 +1,12 @@
+    <!-- done -->
+    <!-- bloc footer-->
+    {% set c = block_parser(content) %}
+    {% set menu3 = simplify_menu(c.field_menu_1) %}
+    {% set paragraphs = c['field_paragraphs'] %}
+    {% set paragraphs_length = paragraphs|length %}
+    <style>
         /*========= respo.css header =======*/
-        .container-resp {
-            min-width: 320px   !important;
-            padding-left: 20px  !important;
-            padding-right:20px  !important;
-            margin: auto  !important;
-        }       
+            
         @media screen and (max-width: 499.96px){ 
             .container-resp {
                 min-width: 320px   !important;
@@ -123,7 +125,9 @@
             }
         }
     /* ============= end respo.css header ================  */
-         footer {
+    </style>
+    <style>
+        footer {
             margin-bottom: 45px !important;
             width: 100% !important;
             overflow: hidden !important;
@@ -428,3 +432,96 @@
                 height: 25px !important;
             }
         }
+    </style>
+    <footer>
+        <div class="container-resp">
+
+            <div style="width: 100%; overflow: hidden;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="2" viewBox="0 0 1202 2" fill="none">
+                    <path d="M1 1H1201" stroke="#333333" stroke-opacity="0.11" stroke-linecap="round"/>
+                </svg>
+            </div>
+        
+            <div class="content-footer-resp">
+                <div class="footer-left-resp">
+                    <ul>
+                        {% for item in menu3.menu_tree %}
+                        <li>
+                            <a href="{{ item.url }}" target="_blank">  {{ item.text }} </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="footer-right-resp">
+                    <ul>
+                        {% for size in 0 .. (paragraphs_length - 1) %}
+                        <li>
+                            <img src="{{paragraphs[size]['field_image1']['image'].url}}" alt="" class="auto" style="text-align: center;">
+                        </li>
+                        {% endfor %} 
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-copyright" style="margin-top: -15px;">
+                <p class="text-center">
+                    {{ c['field_text1'] }}
+                </p>
+            </div>
+
+        </div>
+    </footer>
+     <!-- end bloc footer-->
+    <style>
+        .nav-to-top-resp {
+            border-radius: 5px;
+            border: 1.6px solid var(--bleu-color);
+            /* background: rgba(217, 217, 217, 0.26); */
+            background: var(--bleu-color);
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            text-align: center;
+            position: fixed;
+            bottom: 50px;
+            right: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 200ms linear, margin-right 0ms;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--Dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)) !important;
+        }
+        .nav-to-top-resp svg path {
+            /*fill: var(--bleu-color);*/
+            fill: #fff; 
+        }
+        .nav-to-top-resp.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <div id="nav-to-top-and" class="nav-to-top-and nav-to-top-resp active">
+        <svg width="20" height="20" viewBox="-8.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <title>angle-double-top</title>
+            <path d="M13.72 17.68c-0.2 0-0.44-0.080-0.6-0.24l-5.84-5.84-5.84 5.84c-0.32 0.32-0.84 0.32-1.2 0-0.32-0.32-0.32-0.84 0-1.2l6.44-6.44c0.32-0.32 0.88-0.32 1.2 0l6.44 6.44c0.32 0.32 0.32 0.84 0 1.2-0.16 0.16-0.4 0.24-0.6 0.24zM13.72 22.44c-0.2 0-0.44-0.080-0.6-0.24l-5.84-5.88-5.84 5.88c-0.32 0.32-0.84 0.32-1.2 0-0.32-0.32-0.32-0.84 0-1.2l6.44-6.44c0.32-0.32 0.88-0.32 1.2 0l6.44 6.44c0.32 0.32 0.32 0.84 0 1.2-0.16 0.16-0.4 0.24-0.6 0.24z"></path>
+        </svg>
+    </div>
+   <script>
+    if( document.body.contains(  document.getElementById("nav-to-top-and") ) ) {
+       let nav_to_top =  document.querySelector("#nav-to-top-and");
+       window.addEventListener('scroll', function() {
+           if( window.pageYOffset >= 800 ) {
+               nav_to_top.classList.add("active");
+           }else {
+               nav_to_top.classList.remove("active");
+           }
+       });
+       nav_to_top.addEventListener("click", function(){
+           document.documentElement.scrollTop = 0;
+        })
+    }
+</script>

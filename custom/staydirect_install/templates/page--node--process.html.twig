@@ -1,4 +1,8 @@
 
+{% set inc_ = include_template("include-process") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
 <style>
 html, body {
 	 margin: 0 auto;
@@ -119,3 +123,4 @@ html, body {
         // The form will still submit normally, and the loader will be shown
     });
 </script>
+   {% endif %}

@@ -1,3 +1,7 @@
+{% set inc_ = include_template("include-process-condition") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
 
 {% set id  = id_by_url() %}
 {% set n = node_parser(id) %}
@@ -53,3 +57,5 @@
         </div>
       </div>
     </main>
+
+    {% endif }

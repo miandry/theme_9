@@ -1,9 +1,8 @@
 
-   {% set inc_login_form = include_template("include-invoice") %}
-   {% if (inc_login_form["status"]) %}
-      {{inc_login_form}}
-   {% else %}
-
+{% set inc_ = include_template("include-invoice") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
 
 <!DOCTYPE html>
 <html lang="en"><head>

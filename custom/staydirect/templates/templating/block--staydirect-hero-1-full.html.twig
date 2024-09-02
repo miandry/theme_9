@@ -1,32 +1,351 @@
-{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
-    {% block templating_content %}
-    {% set item_name = 'block--staydirect-hero-1-full.html' %} 
-    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
-    {% set css = include(path_css) %} 
-    {{render_css(css,'block__staydirect_hero_1_full')}}
-    
-    <!-- bloc hero 1-->
-    {% set c = block_parser(content) %}
-    {% set paragraphs = c['field_paragraph3'] %}
-    {% set paragraphs_length = paragraphs|length %}
+{% extends get_module_path("templating") ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+{% set path_css = directory ~ "/templates/templating/css/block--staydirect-hero-1-full.html.css" %}
+{% set css = include(path_css) %}
+{{render_css(css,"block--staydirect-hero-1-full_html_twig")}}
+<!-- done -->
+<!-- bloc hero 1-->
+{% set c = block_parser(content) %}
+{% set paragraphs = c['field_paragraph3'] %}
+{% set paragraphs_length = paragraphs|length %}
 
-    <div class="hero--1-resp" id="simple-setup"></div>
-    <section class="hero-1-resp">
-        <div class="container-resp">
+  <style>
+      /*========= respo.css header =======*/
+
+      @media screen and (max-width: 499.96px){ 
+          .container-resp {
+              min-width: 320px   !important;
+              padding-left: 20px  !important;
+              padding-right:20px  !important;
+              margin: auto  !important;
+          }
+          .none-mob {
+              display: none !important;
+          }
+      }
+      @media (min-width: 499.98px) {
+          .container-resp {
+              max-width: 500px  !important;
+              width: 100%   !important;
+              padding-left: 20px   !important;
+              padding-right: 20px   !important;
+              margin: auto  !important;
+          }
+          .none-mob {
+              display: none !important;
+          }
+      }
+      @media (min-width: 539.98px) {
+          .container-resp {
+              max-width: 500px  !important;
+              width: 100%   !important;
+              padding-left: 0px   !important;
+              padding-right: 0px   !important;
+              margin: auto  !important;
+          }
+          .none-tab {
+              display: none !important;
+          }
+      }
+      @media (min-width: 767.98px) {
+          .container-resp {
+              max-width: 768px  !important;
+              width: 100%   !important;
+              padding-left: 40px   !important;
+              padding-right: 40px   !important;
+              margin: auto  !important;
+          }
+          .none-tab {
+              display: none !important;
+          }
+          .none-desk {
+              display: block !important;
+          }
+      }
+      @media (min-width: 847.98px) {
+          .container-resp {
+              max-width: 769px  !important;
+              width: 100%   !important;
+              padding-left: 40px   !important;
+              padding-right: 40px   !important;
+              margin: auto  !important;
+          }
+          .none-tab {
+              display: block !important;
+          }
+          .none-mob {
+              display: block !important;
+          }
+          .none-desk {
+              display: none !important;
+          }
+      }
+      @media (min-width: 991.98px) {
+          .container-resp {
+              max-width: 992px  !important;
+              width: 100%   !important;
+              padding-left: 60px   !important;
+              padding-right: 60px   !important;
+              margin: auto  !important;
+          }
+          .none-desk {
+              display: none !important;
+          }
+      }
+      @media (min-width: 1111.98px) {
+          .container-resp {
+              max-width: 992px   !important;
+              width: 100%   !important;
+              padding-left: 0px   !important;
+              padding-right: 0px   !important;
+              margin: auto  !important;
+          }
+          .none-desk {
+              display: none !important;
+          }
+      }
+      @media (min-width: 1199.98px) {
+          .container-resp {
+              max-width: 1200px   !important;
+              width: 100%   !important;
+              padding-left: 60px   !important;
+              padding-right: 60px   !important;
+              margin: auto  !important;
+          }
+          .none-desk {
+              display: none !important;
+          }
+      }
+      @media (min-width: 1359.98px) {
+          .container-resp {
+              max-width: 1200px   !important;
+              width: 100%   !important;
+              padding-left: 0   !important;
+              padding-right: 0   !important;
+              height: auto  !important;
+              margin: auto  !important;
+          }
+          .none-desk {
+              display: none !important;
+          }
+      }
+  /* ============= end respo.css header ================  */
+  </style> 
+  <style>
+      .hero--1-resp {
+          height: 124px  !important;
+      }
+      .hero-1-resp .container-resp {
+      }
+      .hero-1-resp  .content-hero-1-resp-head {
+          text-align: center !important;
+          max-width: 742px !important;
+          margin: auto  !important;
+          margin-bottom: 98px  !important;
+      }
+      .hero-1-resp  .content-hero-1-resp-head h4 {
+          color: rgba(51, 51, 51, 0.60) !important;
+          text-align: center !important;
+          font-family: "Kanit" !important;
+          font-size: 20px !important;
+          font-style: normal !important;
+          font-weight: 300 !important;
+          line-height: 150% !important; /* 30px */
+          letter-spacing: 3.2px !important;
+          text-transform: uppercase !important;
+      }   
+      .hero-1-resp  .content-hero-1-resp-head h3 {
+          color: #333 !important;
+          text-align: center !important;
+          font-family: "Vastine" !important;
+          font-size: 50px !important;
+          font-style: normal !important;
+          font-weight: 400 !important;
+          line-height: 150% !important; /* 75px */
+          margin-top: 22px  !important;
+      }
+      .hero-1-resp .content-hero-1-resp {
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          flex-wrap: wrap !important;
+          width: 100% !important;
+          max-width: 992px !important;
+          margin: auto  !important;
+      }
+      .hero-1-resp .step-resp {
+          max-width: 286px !important;
+          text-align: center !important;
+      }
+      .hero-1-resp .content-step-resp {
+          text-align: center !important;
+          display: flex !important;
+          justify-content: center !important;
+          flex-direction: column !important;
+          align-items: center !important;
+      }
+      .hero-1-resp .icon-step-resp {
+          width: 100px !important;
+          height: 100px !important;
+          border-radius: 20px !important;
+          border: 1px solid rgba(51, 51, 51, 0.30) !important;
+          background: rgba(217, 217, 217, 0.26) !important;
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+      }
+      .hero-1-resp .icon-step-resp img {
+          width: 50px !important;
+          height: 50px !important;
+          background: none !important;
+      }
+      .hero-1-resp .icon-step-resp.active img
+      {
+          background: none !important;
+          opacity : 0.8 !important;
+      }
+      .hero-1-resp .icon-step-resp.active {
+          background: linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)  !important;
+      }
+      .hero-1-resp .content-hero-1-resp h5 {
+          color: #333 !important;
+          text-align: center !important;
+          font-family: "Kanit" !important;
+          font-size: 25px !important;
+          font-style: normal !important;
+          font-weight: 700 !important;
+          line-height: 150% !important; /* 37.5px */
+          margin-top: 31px  !important;
+      }
+      .hero-1-resp .content-hero-1-resp p {
+          color: rgba(51, 51, 51, 0.40) !important;
+          text-align: center !important;
+          font-family: "Kanit" !important;
+          font-size: 18px !important;
+          font-style: normal !important;
+          font-weight: 400 !important;
+          line-height: 150% !important; /* 27px */
+          margin-top: 10px  !important;
+      }
+      @media screen and (max-width: 499.96px){ 
+          .hero-1-resp .content-hero-1-resp {
+              flex-direction: column !important;
+              gap: 110px !important;
+          }
+
+          .hero-1-resp  .content-hero-1-resp-head {
+              margin-bottom: 51px  !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h4 {
+          font-size: 18px  !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h3 {
+              font-size: 22px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 499.98px) {
+          .hero-1-resp .content-hero-1-resp {
+              flex-direction: column !important;
+              gap: 110px !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head {
+              margin-bottom: 51px  !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h4 {
+          font-size: 18px  !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h3 {
+              font-size: 30px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 539.98px) {
+          .hero-1-resp .content-hero-1-resp {
+              flex-direction: column !important;
+              gap: 110px !important;
+          }
+
+          .hero-1-resp  .content-hero-1-resp-head {
+              margin-bottom: 87px  !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h4 {
+          font-size: 18px  !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h3 {
+              font-size: 30px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 767.98px) {
+          .hero-1-resp .content-hero-1-resp {
+              justify-content:center !important;
+              gap: 70px !important;
+              flex-direction: row !important;
+          }
+
+          .hero-1-resp  .content-hero-1-resp-head {
+              max-width: 742px !important;
+              margin-bottom: 98px  !important;
+              width: 100% !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h4 {
+              font-size: 20px  !important;
+          }   
+          .hero-1-resp  .content-hero-1-resp-head h3 {
+              font-size: 48px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 991.98px) {
+          .hero-1-resp .step-resp {
+              max-width: 240px !important;
+          }
+          .hero-1-resp .content-hero-1-resp {
+              justify-content:space-between !important;
+              gap: 0  !important;
+          }
+          .hero-1-resp  .content-hero-1-resp-head h3 {
+              font-size: 50px  !important;
+              margin-top: 22px  !important;
+          }
+      }
+      @media (min-width: 1111.98px) {
+          .hero-1-resp .content-hero-1-resp {
+              justify-content:space-between !important;
+              gap: 0  !important;
+          }
+          .hero-1-resp .step-resp {
+              max-width: 256px !important;
+          }
+      }
+      @media (min-width: 1199.98px) {
+          .hero-1-resp .content-hero-1-resp {
+              justify-content:space-between !important;
+              gap: auto  !important;
+          }
+          .hero-1-resp .step-resp {
+              max-width: 286px !important;
+          }
+      }
+  </style>
+  <div class="hero--1-resp" id="simple-setup"></div>
+  <section class="hero-1-resp">
+      <div class="container-resp">
             <div class="content-hero-1-resp-head">
-                <h4 class="title-resp">
-                    {{c.field_title}}
-                </h4>
-                <h3 class="title-resp">
-                    {{c.field_subtitle}}
-                </h3>
+              <h4 class="title-resp">
+                   {{c.field_title}}
+              </h4>
+              <h3 class="title-resp">
+                  {{c.field_subtitle}}
+              </h3>
             </div>
             <div class="content-hero-1-resp step">
                 {% for size in 0 .. (paragraphs_length - 1) %}
                     {% if paragraphs[size].field_active %}
                         {% set active = "active" %}
                     {% else %}
-                        {% set active = "" %}   
+                        {% set active = "" %}
                     {% endif %}
                     <div class="step-2-resp step-resp">
                         <div class="content-step-2-resp content-step-resp">
@@ -47,9 +366,8 @@
                         </div>
                     </div>
                 {% endfor %} 
-            </div>
-        </div>
-    </section>
-    <!-- End bloc hero 1-->
-
+          </div>
+      </div>
+  </section>
+  <!-- End bloc hero 1-->
 {% endblock %}
