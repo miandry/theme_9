@@ -28,7 +28,7 @@ header .top-left img.logo {
     text-transform: uppercase;
 }
 .header-step .top-right {
-  margin-top: 91px !important;
+  margin-top: 31px !important;
 }
 .header-step  .top-right .ttl-step {
     color: #333;
@@ -91,15 +91,6 @@ header .top-left img.logo {
   
 }
 /*end header*/
-
-    /*main step icon*/
-    .main-step .sidebar p{
-   
-    }
-    .main-step .sidebar {
-      /* padding-top: 3rem !important;
-      padding-right: 74px !important;*/
-    }
     .main-step .px-5 {
       padding-left: 3rem !important;
     }
@@ -401,8 +392,6 @@ header .top-left img.logo {
         border-radius: 3px;
         color: rgba(51, 51, 51, 0.50);
         text-align: center;
-        leading-trim: both;
-        text-edge: cap;
         font-size: 16px;
         font-family: "Kanit";
         font-style: normal;
