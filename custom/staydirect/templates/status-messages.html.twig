@@ -19,10 +19,7 @@
  *   - class: HTML classes.
  */
 #}
-{% set inc_ = include_template("include-messages") %}
-{% if (inc_["status"]) %}
-      {{inc_}}
-{% else %}
+
 <div class="simple-status-messages">
   {% block messages %}
     {% for type, messages in message_list %}
@@ -60,4 +57,3 @@
     {% endfor %}
   {% endblock messages %}
 </div>
-{% endif %}
