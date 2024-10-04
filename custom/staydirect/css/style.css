@@ -632,6 +632,8 @@ button.navbar-toggler.ms-auto.icon-md.btn.btn-light.p-0.collapsed.btn.mt-btn-nav
 .simple-status-messages .status-messages {
     border-radius: 10px!important;
     font-size: 14px!important;
+    padding-left: 15px !important;
+    background-image: none!important;
 }
 .btn-template {
     padding: 5px 20px;
