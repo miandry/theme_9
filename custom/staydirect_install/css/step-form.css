@@ -28,7 +28,7 @@ header .top-left img.logo {
     text-transform: uppercase;
 }
 .header-step .top-right {
-  margin-top: 31px !important;
+  margin-top: 31px ;
 }
 .header-step  .top-right .ttl-step {
     color: #333;
