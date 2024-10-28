@@ -36,14 +36,13 @@ function staydirect_template_1_preprocess_html(&$variables) {
         && $params["status"] == "in_process"
         && $params["pay_action"] =="submit_payed"){
           $service_booking->staydirectAfterPayment($params);
-
     }  
 
     // payment validated
     if(isset($params["pay_validation"])
     && isset($params["status"]) 
     && $params["status"] == "confirmed"
-    && $params["pay_validation"] =="confirmed"){
+    && $params["pay_validation"] =="confirmed" && $params["parent"]){
       $service_booking->staydirectAfterPaymentConfirmed($params);
     }
 
