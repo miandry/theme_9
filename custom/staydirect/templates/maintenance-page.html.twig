@@ -1,3 +1,7 @@
+{% set inc_ = include_template("include-maintenance-page") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
 <style>
 html, body {
 	 margin: 0 auto;
@@ -89,3 +93,4 @@ html, body {
     <a href="https://staydirecttech.com/user/login">Login</a>
   </div>
 </main>
+{% endif %}
