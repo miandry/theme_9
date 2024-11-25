@@ -634,6 +634,8 @@ button.navbar-toggler.ms-auto.icon-md.btn.btn-light.p-0.collapsed.btn.mt-btn-nav
     font-size: 14px!important;
     padding-left: 15px !important;
     background-image: none!important;
+    padding-top: 10px !important;
+    padding-bottom : 10px !important;
 }
 .btn-template {
     padding: 5px 20px;

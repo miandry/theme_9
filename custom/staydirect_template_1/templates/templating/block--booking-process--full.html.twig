@@ -2,7 +2,7 @@
 
 {% block templating_content %}
 
-	{% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/block--staydirect-template-1-booking-process-full.html.css' %}
+{% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/block--staydirect-template-1-booking-process-full.html.css' %}
 	{% set css = include(path_css) %}
 	{{render_css(css,'block--staydirect-template-1-booking-process-full')}}
 	{% set c = block_parser(content) %}
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 	</div>
-	<form>
+	<form id="proceed-to-pay-form">
 		{% for key,item in params %}
 			<input type="hidden" name="{{key}}" value="{{item}}" class="form-control"/>
 		{% endfor %}
@@ -110,9 +110,13 @@
 										<input type="text" name="mail" value="{{u.mail}}" class="form-control" id="cc-cvv" placeholder="Email" required="" style="width: 100% !important; max-width: 100% !important;">
 									</div>
 
-									<div class="col-sm-6" bis_skin_checked="1">
-										<input type="text" name="field_phone" value="{{u.field_phone}}" class="form-control" id="phone" placeholder="### ## ### ##" required="">
+									<div class="col-sm-12" id="p-wrapper" bis_skin_checked="1">
+										<input type="text" name="field_phone" value="{{u.field_phone}}" class="form-control" id="phone" placeholder="Phone number" required="" style="width: 100% !important;">
+										<small class="text-danger d-none">
+                                            Invalid phone number</small>
 									</div>
+									
+                                </div>
 
 									<style>
 										.specification .form-control-slccuntr {
@@ -122,14 +126,14 @@
 									</style>
 
 
-									<div class="w-100 col-md-12" bis_skin_checked="1">
+									<div class="w-100 col-md-12 mt-4 px-0" bis_skin_checked="1">
 										<textarea name="notes" class="form-control form-control-textarea" placeholder="Notes"></textarea>
 									</div>
 
-									<p>
+									<p class="d-none">
 										This site is protected by reCAPTCHA and the Google privacy policy and Terms of Service apply.
 									</p>
-									<div class="row">
+									<div class="row pt-3">
 										<div class="form-group col">
 											<div class="custom-checkbox-1">
 												<input id="termService" type="checkbox" name="termService" required="">
@@ -149,7 +153,7 @@
 						</div>
 
 
-					</div>
+					<!--</div>-->
 					<div class="col-md-5 col-lg-5 order-md-last" bis_skin_checked="1">
 						<div class="spec-right">
 							<div class="spec-top" style="
@@ -219,11 +223,48 @@
 
 							</div>
 						</div>
-						<button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+	<script>
+    
+        function validatePhoneNumber(phoneNumber) {
+            const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+            return cleanedPhoneNumber.length === 10;
+        }
+        $(document).ready(function(){
+            $('#phone').inputmask("(999) 999-9999");
+            
+            $('#btn-checkout').click(function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                const phoneNumber = $('#phone').val();
+                const isValid = validatePhoneNumber(phoneNumber);
+    
+                if (isValid) {
+                    $('#phone').each(function() {
+                        this.style.removeProperty('border');
+                    });
+                    $('#p-wrapper small').addClass("d-none");
+                    if ($('#termService').is(':checked')) {
+                      $('#proceed-to-pay-form').trigger( "submit" );
+                    } else {
+                        alert('Please accept terms and conditions')
+                    }
+                } else {
+                    $('#phone').each(function() {
+                        this.style.setProperty('border', '1px solid red', 'important');
+                    });
+                    $('#p-wrapper small').removeClass("d-none")
+                }
+            });
+        });
+    </script>   
+
 {% endblock %}

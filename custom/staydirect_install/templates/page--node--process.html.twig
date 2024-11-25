@@ -1,18 +1,16 @@
-
 {% set inc_ = include_template("include-process") %}
 {% if (inc_["status"]) %}
       {{inc_}}
 {% else %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <style>
-html, body {
-	 margin: 0 auto;
-	 font-family: 'Roboto', sans-serif;
-	 height: 100%;
-	 background: #eeeef4;
-	 font-weight: 100;
-	 user-select: none;
-}
- main {
+    body {
+        background-color: #eeeef4; color: #62929E!important;
+    }    
+    #loader_container{
+        display:none; 
+    }    
+     main {
 	 height: 100%;
 	 display: flex;
 	 margin: 0 20px;
@@ -45,47 +43,11 @@ html, body {
 	 color: #62929E;
 	 text-decoration: none;
 }
-
-        .loader {
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #3498db;
-            width: 60px;
-            height: 60px;
-            animation: spin 2s linear infinite;
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000; /* Make sure the loader is on top */
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Optional: Disable the form's submit button while loading */
-        .loading .submit-button {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-       
-.centered1 {
-    width: 700px;
-    margin: 0 auto;
-    padding: 20px;
+#loader_container{
+    margin-top:50px;
 }
-
-#container1 {
-    height: 100vh;
-    display:none;
-}
- 
-</style>
-
-<main id="loader_max">
+    </style>
+   <main id="loader_max">
   <svg xmlns="http://www.w3.org/2000/svg" width="100" height="70" viewBox="0 0 100 68">
     <g id="large">
       <path fill="none" stroke="#62929E" d="M55.8 38.5l6.2-1.2c0-1.8-.1-3.5-.4-5.3l-6.3-.2c-.5-2-1.2-4-2.1-6l4.8-4c-.9-1.6-1.9-3-3-4.4l-5.6 3c-1.3-1.6-3-3-4.7-4.1l2-6A30 30 0 0 0 42 8l-3.3 5.4c-2-.7-4.2-1-6.2-1.2L31.3 6c-1.8 0-3.5.1-5.3.4l-.2 6.3c-2 .5-4 1.2-6 2.1l-4-4.8c-1.6.9-3 1.9-4.4 3l3 5.6c-1.6 1.3-3 3-4.1 4.7l-6-2A32.5 32.5 0 0 0 2 26l5.4 3.3c-.7 2-1 4.2-1.2 6.2L0 36.7c0 1.8.1 3.5.4 5.3l6.3.2c.5 2 1.2 4 2.1 6l-4.8 4c.9 1.6 1.9 3 3 4.4l5.6-3c1.4 1.6 3 3 4.7 4.1l-2 6A30.5 30.5 0 0 0 20 66l3.4-5.4c2 .7 4 1 6.1 1.2l1.2 6.2c1.8 0 3.5-.1 5.3-.4l.2-6.3c2-.5 4-1.2 6-2.1l4 4.8c1.6-.9 3-1.9 4.4-3l-3-5.6c1.6-1.3 3-3 4.1-4.7l6 2A32 32 0 0 0 60 48l-5.4-3.3c.7-2 1-4.2 1.2-6.2zm-13.5 4a12.5 12.5 0 1 1-22.6-11 12.5 12.5 0 0 1 22.6 11z"/>
@@ -102,25 +64,31 @@ html, body {
   <!-- Loader element -->
    
 </main>
-<div id="container1">
-    <div class="centered1">
-     <b> The website is currently being built.</b><br/>
-     <b> Please wait a moment.</b>
+    <div id="loader_container" class="row align-items-center justify-content-center g-0" style="height: 93vh;">
+        <div class="col text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100" height="70" viewBox="0 0 100 68">
+              <g id="large">
+                <path fill="none" stroke="#62929E" d="M55.8 38.5l6.2-1.2c0-1.8-.1-3.5-.4-5.3l-6.3-.2c-.5-2-1.2-4-2.1-6l4.8-4c-.9-1.6-1.9-3-3-4.4l-5.6 3c-1.3-1.6-3-3-4.7-4.1l2-6A30 30 0 0 0 42 8l-3.3 5.4c-2-.7-4.2-1-6.2-1.2L31.3 6c-1.8 0-3.5.1-5.3.4l-.2 6.3c-2 .5-4 1.2-6 2.1l-4-4.8c-1.6.9-3 1.9-4.4 3l3 5.6c-1.6 1.3-3 3-4.1 4.7l-6-2A32.5 32.5 0 0 0 2 26l5.4 3.3c-.7 2-1 4.2-1.2 6.2L0 36.7c0 1.8.1 3.5.4 5.3l6.3.2c.5 2 1.2 4 2.1 6l-4.8 4c.9 1.6 1.9 3 3 4.4l5.6-3c1.4 1.6 3 3 4.7 4.1l-2 6A30.5 30.5 0 0 0 20 66l3.4-5.4c2 .7 4 1 6.1 1.2l1.2 6.2c1.8 0 3.5-.1 5.3-.4l.2-6.3c2-.5 4-1.2 6-2.1l4 4.8c1.6-.9 3-1.9 4.4-3l-3-5.6c1.6-1.3 3-3 4.1-4.7l6 2A32 32 0 0 0 60 48l-5.4-3.3c.7-2 1-4.2 1.2-6.2zm-13.5 4a12.5 12.5 0 1 1-22.6-11 12.5 12.5 0 0 1 22.6 11z"/>
+                <animateTransform attributeName="transform" begin="0s" dur="3s" from="0 31 37" repeatCount="indefinite" to="360 31 37" type="rotate"/>
+              </g>
+              <g id="small">
+                <path fill="none" stroke="#62929E" d="M93 19.3l6-3c-.4-1.6-1-3.2-1.7-4.8L90.8 13c-.9-1.4-2-2.7-3.4-3.8l2.1-6.3A21.8 21.8 0 0 0 85 .7l-3.6 5.5c-1.7-.4-3.4-.5-5.1-.3l-3-5.9c-1.6.4-3.2 1-4.7 1.7L70 8c-1.5 1-2.8 2-3.9 3.5L60 9.4a20.6 20.6 0 0 0-2.2 4.6l5.5 3.6a15 15 0 0 0-.3 5.1l-5.9 3c.4 1.6 1 3.2 1.7 4.7L65 29c1 1.5 2.1 2.8 3.5 3.9l-2.1 6.3a21 21 0 0 0 4.5 2.2l3.6-5.6c1.7.4 3.5.5 5.2.3l2.9 5.9c1.6-.4 3.2-1 4.8-1.7L86 34c1.4-1 2.7-2.1 3.8-3.5l6.3 2.1a21.5 21.5 0 0 0 2.2-4.5l-5.6-3.6c.4-1.7.5-3.5.3-5.1zM84.5 24a7 7 0 1 1-12.8-6.2 7 7 0 0 1 12.8 6.2z"/>
+                <animateTransform attributeName="transform" begin="0s" dur="2s" from="0 78 21" repeatCount="indefinite" to="-360 78 21" type="rotate"/>
+              </g>
+            </svg>
+          <h1 class="mt-4">The website is currently being built.</h1>
+          <h5 class="mt-3 text-dark">Please don't close your browser, wait a moment...</h5>
+        </div>
     </div>
-</div>
-
-<div class="loader" id="loader"></div>
-<script>
+    <script>
    // JavaScript to show loader on form submission
     document.getElementById('site-manager-process').addEventListener('submit', function(e) {
         // Show the loader
-        document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader_container').style.display = 'block';
         document.getElementById('loader_max').style.display = 'none';
-        document.getElementById('container1').style.display = 'block';
         // Optionally, add a class to the form to indicate loading state
-        document.getElementById('site-manager-process').classList.add('loading');
 
         // The form will still submit normally, and the loader will be shown
     });
 </script>
-   {% endif %}
+{% endif %}

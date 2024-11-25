@@ -1,6 +1,6 @@
 {% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
 {% block templating_content %}
-{% set item_name = 'user--staydirect-template-1-user-full.html' %} 
+   {% set item_name = 'user--staydirect-template-1-user-full.html' %} 
 {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
 {% set css = include(path_css) %} 
 {{render_css(css,'user__staydirect_template_1_user_full')}}
@@ -29,12 +29,12 @@
 
 				<div class="row useradmin--sidebar-left g-0  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative affiche--dashboard">
 					<div class="col p-4 d-flex flex-column position-static border rounded content--affiche--dashboard"
-						style="background: #3498db;">
+					    style="background: #3498db;">
 						<div class="container--spends">
 							<div class="content--spend--affiche--dashboard">
 								<h2>Welcome, <span class="text-capitalize">{{user.name}}</span></h2>
 								<p>
-								    Ready to start building your website with StayDirect Technologies?
+								    Ready to start with us?
 								</p>
 							</div>
 						</div>
@@ -87,9 +87,10 @@
         							<div>
         								<br/>
         								<p>
-        									<a href="/user/{{u.uid}}/edit?destination=/user"
-												style="background: #3498db !important;"
-												class="btn-grey">
+        									<a 
+        									href="/user/{{u.uid}}/edit?destination=/user"
+        									class="btn-grey"
+        									style="background: #3498db !important;">
         										Edit profile
         									</a>
         								</p>
@@ -99,6 +100,18 @@
         					</div>
         				</div>
     				</div>
+    				{% if booking is empty %}
+    				<div class="col-12 col-sm-12 col-md-8 pt-5">
+    				    <p class="text-muted text-center fs-4">
+    				        Your booking list is empty. Start booking now!
+    				    </p>
+    				    <div class="text-center mt-3">
+    				        <a class="btn--resp night plrfsz mt-4 w-50 mx-auto d-block"
+    				            href="{{base_url()}}/booking">
+    				            Book Now</a>
+    				    </div>
+    				</div>
+    				{% else %}
                     <div class="col-12 col-sm-12 col-md-8">
         				<div class="mx-1 row g-0 border rounded overflow-hiddenn flex-md-row mb-4 shadow-sm h-md-250 position-relative history--product" id="history-product">
         					<div class="col p-4 d-flex flex-column position-static mySwiper content--table--history--booking" style="overflow-x: scroll !important;">
@@ -120,7 +133,6 @@
         								
         									{% set n = node_parser(item) %}
         									{% set article = node_parser(n.field_item['#object']) %}
-        
         									<tr>
         										<th scope="row">{{n.nid}}</th>
         										<td>{{ article.title}}</td>
@@ -157,7 +169,7 @@
         
         										</td>
         										<td>
-                                                	<a
+                                                	<a target="_blank"
                                                 	    class="text-decoration-underline"
                                                 	    href="{{base_url}}/invoice?id={{n.nid}}">
                                                 	    Get Invoice</a>
@@ -169,6 +181,7 @@
         					</div>
         				</div>
     				</div>
+    				{% endif %}
 				</div>
 
 			</div>

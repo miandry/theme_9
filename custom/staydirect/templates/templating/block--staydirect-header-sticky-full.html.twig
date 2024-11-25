@@ -1,7 +1,7 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
     {% block templating_content %}
-
-    {% set item_name = 'block--staydirect-header-sticky-full.html' %} 
+<!-- done -->
+{% set item_name = 'block--staydirect-header-sticky-full.html' %} 
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_header_sticky_full')}}
@@ -15,7 +15,30 @@
     {% set menu_user = simplify_menu(c.menu_user) %}
     {% set menu_user_length = menu_user|length %}
     {% set count = 0 %}
+    <style>
+        .block--class--block-contact-feedback.contextual-region {
+            display: none !important;
+        }
+        .header-sticky .cta ul li {
+            display: block !important;
+        }
+        .mz-mobile-nav-menu {
+            height: 85vh;
+            overflow: scroll;
+        }
+        
+        #mz-begin-mobile {
+            color: white !important;
+            font-weight: bold !important;
+            padding: 20px 80px !important;
+        }
 
+        .mz-color-secondary {
+            color: rgba(51, 51, 51, 0.60) !important;
+        }
+        
+    </style>
+    {% set params = get_parameter() %}
     <div class="header-sticky">
         <div class="container-resp">
             <div class="content-header">
@@ -58,7 +81,7 @@
                             {% endif %}
                         </li>
                         <li class="btn-begin">
-                            <a class="btn" href="{{base_url()}}/order"
+                            <a class="btn" href="{{base_url()}}/order" id="mz-build"
                                 style="padding: 5px !important; font-size: 15px !important;">
                                 Build your website</a>
                         </li>
@@ -105,6 +128,12 @@
             </div>
         </div>
     </div>
+    {% if params.suggestion or params.email %}
+        <div class="alert alert-success col-12 col-md-10 mx-auto px-4 py-2 {{ class_mail }}"
+            role="alert">
+          The email message has been sent
+        </div>
+    {% endif %}
     <script>
         /* header */
         if( document.body.contains(  document.querySelector(".header-sticky") ) ) {
@@ -155,5 +184,4 @@
         }
     </script>
     <!-- End Header -->
-
 {% endblock %}

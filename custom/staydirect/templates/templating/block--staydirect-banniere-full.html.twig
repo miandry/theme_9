@@ -1,6 +1,7 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
     {% block templating_content %}
 
+       <!-- done -->
     {% set item_name = 'block--staydirect-banniere-full.html' %} 
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
@@ -8,7 +9,6 @@
     
     {% set c = block_parser(content) %}
     {% set links= c['field_link'] %}
-
     <section class="banniere-resp">
         <div class="container-resp">
             <div class="container-banniere-resp">
@@ -39,5 +39,4 @@
         </div>
     </section>
     <!-- End Banniere -->
-    
 {% endblock %}

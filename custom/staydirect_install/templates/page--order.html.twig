@@ -15,6 +15,10 @@
 {% set step_name = "Information" %}
 
 <style>
+.descriptionsitename {
+    margin-top: -15px;
+    font-size: 12px;
+}
 .layout-region--node-main, .layout-region--node-footer {
         width: 100%!important;
 
@@ -22,9 +26,7 @@
 .main-step form input,.main-step form textarea {
   color:#232429 !important
 }
-.descriptionsitename{
-   margin-top: -30px;color: rgba(51, 51, 51, 0.50);
-}
+
 
 .layout-region--node-secondary{
     display:none!important;
@@ -157,13 +159,6 @@ display:none!important;
   background: #fff !important;
 }
 
-.main--step-rectf form  .sitename-container input {
-  width: 220px!important;
-}
-.descriptionsitename{
-  margin-top: -28px;
-  font-size: 13px;
-}
 @media only screen and (max-width: 765px) {
   #mz-ps-0{
       padding-left: 0 !important;
@@ -181,6 +176,16 @@ display:none!important;
 .login_process #edit-name--description,
 .login_process #edit-pass--description {
   display: none;
+}
+
+.main-order .divider {
+ display: none;
+}
+
+@media (max-width: 768px) {
+.main-step .col-md-8 {
+    padding-left: 0 !important;
+}
 }
 </style>
    

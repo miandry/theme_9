@@ -1,6 +1,8 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
 
-    {% block templating_content %}
+{% block templating_content %}
+
+        <!-- done -->
     {{ attach_library('staydirect/maintenance') }}
     {{ attach_library('claro/global-styling') }}
     {{ attach_library('staydirect_install/global-styling') }}
@@ -16,69 +18,85 @@
         {% set site_user = user_parser(site["uid"]["user"]) %}
     {% endif %}   
     {% set price_booking_system = config("mz_payment.config","price") %}
-
+    
+   <style>
+     .main-form-payment{
+         border: 1px solid #716d6d;
+         border-radius: 20px;
+         padding: 15px;
+     }
+     .right-pay-form{}
+     .main-step p{
+         color: white !important;
+     }
+    .form-payment-1 .node-site-form{
+            background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%)) !important;
+    }
+   </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
     <main class="main-step main-step-specification main-simple main-order main--step-rectf bloc--payement--addjs">
         <div class="container container-and">
-            <div class="row main-form-payment">
-                <form class="node-site-form node-form" id="proceed-to-pay-form" action="/payment/checkoutstaydirect" method="get">   
-                    <div class="col-lg-12">
-                        <div class="row form-payment-1">
-                            <div class="col-md-12 col-lg-12">
-                                <div class="node-site-form node-form">
-                                    <h4> Website information </h4>
-                                    <p> Website name: {{site.label_site}}</p>
-                                    <p class="text-muted">Profile:  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
-                                    <p> Theme: {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_2" %} Monochrome Elegance {% endif %} </p>
-                                    <p> Website URL: {{site.field_st_domain_name}}</p>
-                                    <p> Price per month: {{price_booking_system}} USD </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-payment">
-                            <div class="col-md-6 col-lg-6 choosecontent">
-                                <div class="node-site-form node-form">
-                                    Email
-                                    <input type="text"  class="form-control" name="mail"
-                                        value="{{site_user.mail|trim}}" required />
-                                
-                                    Fisrt name 
-                                    <input type="text"  class="form-control" name="field_first_name"
-                                        value="{{site_user.field_first_name|trim|capitalize}}" required/>
-
-                                    Last name
-                                    <input type="text"  class="form-control" name="field_last_name"
-                                        value="{{site_user.field_last_name|trim|capitalize}}" required/>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6 right-pay-form">
-                                <div class="node-site-form node-form">
-                                    <!-- Product Details and Payment -->                          
-                                        <input type="hidden"  class="form-control" name="site_id_ready"
-                                            value="{{params.site_id}}"/>                    
-                                        <input type="hidden"  class="form-control" name="price"
-                                            value="{{price_booking_system}}"/>                    
-                                        <div id="p-wrapper">
-                                            Phone number
-                                            <input type="text"  class="form-control" name="field_phone"
-                                                value="{{site_user.field_phone}}" id="phone-number"
-                                                style="margin: 10px auto 5px auto!important;" required />
-                                                <small class="text-danger d-none">
-                                                    Invalid phone number</small>
-                                        </div>
-
-                                        Notes
-                                        <textarea class="form-control" name="notes"
-                                            value="mynotes" /></textarea>
-                                        
-                                        <input  type="submit" value="Proceed to payment" id="proceed-to-payment" class="button button--primary js-form-submit form-submit">
-                                </div>
+            <div class="row main-form-payment p-1">
+                <form class="node-site-form node-form rounded-4" id="proceed-to-pay-form" action="/payment/checkoutstaydirect" method="get">
+                      
+               <div class="col-lg-12">
+                    <div class="row form-payment-1">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="node-site-form node-form">
+                                <h4> Website information </h4>
+                                <p> Website name: {{site.label_site}}</p>
+                                <p class="text-muted">Profile:  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
+                                <p> Theme: {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_3" %} Monochrome Elegance {% endif %} </p>
+                                <p> Website URL: {{site.field_st_domain_name}}</p>
+                                  <p> Price per month: {{price_booking_system}} USD </p>
                             </div>
                         </div>
                     </div>
-                </form>
+                    <div class="row form-payment">
+                        <div class="col-md-6 col-lg-6 choosecontent">
+                            <div class="node-site-form node-form">
+                                Email
+                                <input type="text"  class="form-control" name="mail"
+                                    value="{{site_user.mail|trim}}" required />
+                            
+                                Fisrt name 
+                                <input type="text"  class="form-control" name="field_first_name"
+                                    value="{{site_user.field_first_name|trim|capitalize}}" required/>
+
+                                Last name
+                                <input type="text"  class="form-control" name="field_last_name"
+                                    value="{{site_user.field_last_name|trim|capitalize}}" required/>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 right-pay-form">
+                        <div class="node-site-form node-form">
+                              <!-- Product Details and Payment -->                          
+                                <input type="hidden"  class="form-control" name="site_id_ready"
+                                    value="{{params.site_id}}"/>                    
+                                 <input type="hidden"  class="form-control" name="price"
+                                    value="{{price_booking_system}}"/>                    
+                                <div id="p-wrapper">
+                                    Phone number
+                                    <input type="text"  class="form-control" name="field_phone"
+                                        value="{{site_user.field_phone}}" id="phone-number"
+                                        style="margin: 10px auto 5px auto!important;" required />
+                                        <small class="text-danger d-none">
+                                            Invalid phone number</small>
+                                </div>
+
+                                Notes
+                                <textarea class="form-control" name="notes"
+                                    value="mynotes" /></textarea>
+                                
+                                <input  type="submit" value="Proceed to payment" id="proceed-to-payment" class="button button--primary js-form-submit form-submit">
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+      </form>
             </div>
         </div>
     </main>
@@ -110,4 +128,60 @@
             });
         });
     </script>
+
+    <script>
+    // Get references to the input elements
+  
+
+        {# if( document.body.contains(  document.querySelector(".bloc--payement--addjs") ) ) {
+            let step_header_title1 =  document.querySelector(".step a");
+            let step_header_title2 =  document.querySelector(".ttl-step");
+            let select_mounth = document.querySelector(".select-mounth");
+            let price = document.querySelector("input[name='price']");
+            let site_ready = document.querySelector("input[name='site_id_ready']");
+            let month_number = document.querySelector("input[type='number']");
+            let btn_moins = document.querySelector(".btn--moins");
+            let btn_plus = document.querySelector(".btn--plus");
+            step_header_title1.innerHTML = "Process";
+            step_header_title2.innerHTML = "Payment";
+        
+            select_mounth.oninput = () => {
+                let priceCurrent = parseInt(select_mounth.value) * parseInt(site_ready.value);
+                price.value = priceCurrent;  
+            }
+            select_mounth.addEventListener("change", updateValue);
+
+          
+
+            btn_plus.addEventListener("click", logKey);
+            btn_moins.addEventListener("click", logKeym);
+
+            function logKey(e) {
+                month_current = parseInt(month_number.value) + 1;
+                month_number.value = month_current;
+                if( month_current <= 0 ) {
+                    month_number.value = 0;
+                    price.value = 0;
+                }
+                let priceCurrent = month_current * parseInt(site_ready.value);
+                price.value = priceCurrent;
+            }
+            function logKeym(e) {
+                month_current = parseInt(month_number.value) - 1;
+                month_number.value = month_current;
+                if( month_current <= 0 ) {
+                    month_number.value = 0;
+                    price.value = 0;
+                    btn_moins.disabled = true;
+                }
+                if( month_current > 0 ) {
+                    btn_moins.disabled = false;
+                }
+                let priceCurrent = month_current * parseInt(site_ready.value);
+                price.value = priceCurrent;
+            }
+        } #}
+
+    </script> 
+
 {% endblock %}

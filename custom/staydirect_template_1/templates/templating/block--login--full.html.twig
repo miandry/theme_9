@@ -5,50 +5,50 @@
   {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
   {% set css = include(path_css) %} 
   {{render_css(css,'block__staydirect_template_1_login_full')}}
-
-  {% set c = block_parser(content) %}
-  {% if not is_login() %}
-    <div class="log-reg">
-      <div class="container-resp">
-        <div class="left ">
-          <div class="container-left reg--container-left">
-            <h1  onclick='location.href="{{base_url()}}"'>
-              Hotel rental user
-            </h1>   
-            <div class="content-left reg--content-left" style="position: relative;">
-              {{user_login()}}
-              <style>
-        
-              </style>
-              <div class="description--register-forget">
-                  <span>
-                      <a href="{{base_url()}}/register"> Register </a>
-                  </span>
-                  <span>
-                      <a href="{{base_url()}}/user/password">Forget Password</a> 
-                  </span>
-              </div>
-            </div>
+ {% set c = block_parser(content) %}
+{% if not is_login() %}
+<div class="log-reg">
+  <div class="container-resp">
+    <div class="left ">
+      <div class="container-left reg--container-left">
+        <h1 onclick='location.href="{{base_url()}}"'>
+          Hotel rental user
+        </h1>   
+        <div class="content-left reg--content-left" style="position: relative;">
+          {{user_login()}}
+          <style>
+    
+          </style>
+          <div class="description--register-forget">
+              <span>
+                  <a href="{{base_url()}}/register"> Register </a>
+              </span>
+              <span>
+                  <a href="{{base_url()}}/user/password">Forget Password</a> 
+              </span>
           </div>
-        </div>
-        <div class="right" style="     
-          width: 41%;
-          height: 100vh;
-          background-image: url(  {{ c['field_media1']['image'].url }} );
-          background-position: center center;
-          background-repeat: no-repeat;
-          background-size: cover;">
-            <div class="container--right-login">
-                <h2 style="color: #fff; cursor: pointer; text-align: center;" onclick='location.href="{{base_url()}}"'>
-                    Go to <br> Hotel rental
-                </h2>
-            </div>
         </div>
       </div>
     </div>
-  {% else %} 
+    <div class="right" style="     
+      width: 41%;
+      height: 100vh;
+      background-image: url(  {{ c['field_media1']['image'].url }} );
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;">
+        <div class="container--right-login">
+            <h2 style="color: #fff; cursor: pointer; text-align: center;" 
+                onclick='location.href="{{base_url()}}"'>
+                Go to <br> Hotel rental
+            </h2>
+        </div>
+    </div>
+  </div>
+</div>
+{% else %} 
     {% set url = '' ~ base_url() ~ '/user' %}
     {% do redirect(url) %}
-  {% endif %}
-
+{% endif %}
+  
 {% endblock %}

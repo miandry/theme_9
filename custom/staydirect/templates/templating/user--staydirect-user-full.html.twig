@@ -1,7 +1,8 @@
 {% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
 
 {% block templating_content %}
-	    {{ attach_library('staydirect/bootstrap') }}
+	       <!-- done -->
+    {{ attach_library('staydirect/bootstrap') }}
 
 	{% set item_name = 'user--staydirect-user-full.html' %}
 	{% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
@@ -9,15 +10,251 @@
 	{{render_css(css,'user__staydirect_user_full')}}
 
 	{% set user = current_user() %}
-	{% set u = user_parser(user['uid']) %}
+	{% set uid = get_id_by_url('user') %}
+	{% set u = user_parser(uid) %}
 
 	{%  set conditions = {
-            'field_client': user['uid']
+            'field_client': uid
         } 
     %}
 
 	{% set booking = node_parser_by_properties(conditions)%}
-
+	
+    <style>
+        .mz-bg-primary {
+            background: #62929E;
+        }
+                
+        .container--header {
+            padding-top:30px;
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom:30px;
+        }
+        .container--header h1 {
+        
+        }
+        .container--header h1 a {
+            color: var(--bleumarine-color) !important;
+            font-family: "Playfair Display";
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            font-size: 30px !important;
+        }
+        
+        .container--profile {
+            padding-right: 50px;
+            padding-bottom: 50px;
+        }
+        .content--profile {
+            position: relative;
+        }
+        .content--profile .arrow {
+            position: absolute;
+            top: -21px;
+            left: -31px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+        .content--profile .btn--add {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-image: linear-gradient(#ff8a00, #e52e71);
+            position: absolute;
+            top: 101px;
+            right: -38px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .details--content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .details--content p {
+            margin-bottom:  0;
+            display: inline-block;
+            font-weight: bold;
+        } 
+        .details--content span {
+            display: block;
+        }
+        .details--content span a {
+            color: #666;
+        }
+        .details--profile {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            width: 95px;
+            margin: auto;
+        }
+        .container--spends {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+        .content--spend {
+            background: #F6F8FA;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        .content--spend p {
+            margin-bottom: 0;
+            padding: 10px 5px
+        }
+        .std--useradmin .useradmin--sidebar-left img {
+            width: 35px;
+            display: none !important;
+        }
+        
+        .container--works {
+            display: flex;
+            flex-direction: row;
+            margin-top: 25px;
+        }
+        .content--work{
+            text-align: center;
+        }
+        
+        .mySwiper span {
+            display: block;
+            font-weight: bold;
+        }
+        
+        .cursor {
+            cursor: pointer;
+        }
+        
+        .content--right {
+            padding-top: 40px !important;
+            padding-bottom: 40px !important;
+        }
+        
+        .std--useradmin {
+            margin-top: 75px;
+        }
+        
+        .std--useradmin .useradmin--sidebar-right img {
+            display: inline-block !important;
+        }
+        .std--useradmin a {
+            text-decoration: none !important;
+        }
+        .std--useradmin .logo {
+            width: 250px;
+            height: auto; 
+            max-height: 115px; 
+            margin-top: 0 !important;
+        }
+        
+        @media (min-width: 991.98px) {
+            .container--profile {
+                padding-right: 0px;
+                padding-bottom: 50px;
+            }
+            .container--profile .content--profile {
+                width: 115px;
+                height: 115px;
+                border-radius: 50%;
+                margin-top: 29px;
+                margin-bottom: 30px;
+                overflow: hidden;
+            }
+        }
+        
+        @media (min-width: 1199.98px) {
+            .container--profile {
+                padding-right: 50px;
+                padding-bottom: 50px;
+            }
+            .container--profile .content--profile {
+                width: 100%;
+                width: 152px;
+                height: 152px;
+                border-radius: 50%;
+                margin-top: 29px;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (min-width: 539.98px) {
+            .container-resp {
+                max-width: 590px !important;
+                width: 100% !important;
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+                margin: auto !important;
+            }
+        }
+        .container--user label[for="input-file"] {
+            display: block;
+            width: 100%;
+            background: #e3362c;
+            color: #fff;
+            padding: 12px;
+            margin: 10px auto;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 0;
+            height: 100%;
+            opacity: 0 !important;
+        }
+        .container--user input[id="input-file"] {
+            display: none !important;
+        }
+        .user--profile--rectf {
+          margin-bottom: 67px !important;
+        }
+        .container--profile .content--profile {
+            width: 100%;
+            background: #F1F0F0;
+            background-position: center center;
+            width: 152px;
+            height: 152px;
+            margin: auto;
+            border-radius: 50%;
+            margin-top: 29px;
+            margin-bottom: 30px;
+            padding: 10px;
+            overflow: hidden;
+        }
+        
+        .bg-grey {
+            background-color: #6c757d12;
+        }
+        
+        .container-resp.container--user .row.mb-2 {
+            margin-left: 200px !important;
+        }
+        
+        @media (max-width: 763px) {
+            .container-resp.container--user .row.mb-2 {
+                margin-left: 0 !important;
+            }
+            
+            footer {
+                display: block;
+            }
+        }
+        
+        footer {
+            display: none;
+        }
+        
+    </style>
 
 	<div class="container container-resp">
 		<div class="row">
@@ -29,7 +266,7 @@
 		</div>
 	</div>
 	<div class="container-resp container container--right std--useradmin container--user user--profile--rectf user--container--table user--profile--rectf user--container--table--resp">
-		<div class="row mb-2">
+		<div class="row mb-2 ms-2">
 
 			<div class="col-lg-12 user--info" id="user-info">
 
@@ -49,58 +286,75 @@
 					<img class="img--affiche--dashboard" src="/themes/custom/staydirect/img/affiche-dashboarod.png">
 				</div>
                 <div class="row">
-    				<div class="col-12 col-sm-12 col-md-4">
+    				<div class="col-12 col-sm-12 col-lg-4 pe-md-3">
+						<div class="mb-3">
+						    <p class="text-dark">Your information</p>
+						</div>
     				    <div class="mx-1 row useradmin--sidebar-left g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
     					    <div class="col p-4 d-flex flex-column position-static content--right">
-    						<div class="container--spends">
-    							<div class="content--spend">
-    								<p>
-    									Username: <span class="text-capitalize">{{user.name}}</span>
-    								</p>
-    							</div>
-    							<div class="content--spend">
-    								<p>
-    									Email: {{u.mail}}
-    								</p>
-    							</div>
-    							{% if u.field_first_name %}
-    								<div class="content--spend">
-    									<p>
-    										Fisrt name: <span class="text-capitalize">{{u.field_first_name}}</span>
-    									</p>
-    								</div>
-    							{% endif %}
-    							{% if u.field_last_name %}
-    								<div class="content--spend">
-    									<p>
-    										Last name: <span class="text-capitalize">{{u.field_last_name}}</span>
-    									</p>
-    								</div>
-    							{% endif %}
-    							{% if u.field_phone %}
-    								<div class="content--spend">
-    									<p>
-    										Phone number: {{u.field_phone}}
-    									</p>
-    								</div>
-    							{% endif %}
-    							<div>
-    								<br/>
-    								<p>
-    									<a href="/user/{{u.uid}}/edit?destination=/user" class="btn-grey">
-    										Edit profile
-    									</a>
-    								</p>
-    							</div>
-    
+    						<div>
+    						    <div class="mb-3">
+                                  <input type="text" class="form-control bg-grey p-3 border-0" id="username" placeholder="Username"
+                                        value="{{u.name}}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                  <input type="email" class="form-control bg-grey p-3 border-0" id="email" placeholder="Email address"
+                                        value="{{u.mail}}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                  <input type="text" class="form-control bg-grey p-3 border-0" id="first-name" placeholder="First name"
+                                        value="{{u.field_first_name}}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                  <input type="text" class="form-control bg-grey p-3 border-0" id="last-name" placeholder="Last name"
+                                        value="{{u.field_last_name}}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                  <input type="text" class="form-control bg-grey p-3 border-0" id="phone-number" placeholder="222-222-2222"
+                                        value="{{u.field_phone}}" disabled>
+                                </div>
+                                <div class="">
+                                  <a class="btn btn-outline-secondary w-100 p-3 mt-3"
+                                        href="/user/{{u.uid}}/edit?destination=/user">
+                                      Edit profile
+                                  </a>
+                                </div>
     						</div>
     					</div>
-    					</div>
     				</div>
-    
-    				<div class="col-12 col-sm-12 col-md-8">
+    				</div>
+                    {% if booking is empty %}
+                    	<div class="col-12 col-sm-12 col-lg-8 text-center p-5">
+                    	      <p>Your website list is empty. Start your build your website now!</p><br/>
+                               <a class="btn" href="/order" style="padding: 5px !important; font-size: 15px !important;">
+                                Start Building</a>
+                    	</div>
+                    {% else %}
+     
+    				<div class="col-12 col-sm-12 col-lg-8 ps-md-3">
+                        <div class="mb-3">
+                            <p class="text-dark">Overview</p>
+                        </div>
+                        <div class="row justify-content-between mb-3">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class=" text-center bg-grey rounded border-2 me-md-3 p-3 mb-3">
+                                    <p class="fs-1 fw-bold">5</p>
+                                    <p>Booking</p>
+                                    <p class="fw-bold">completed</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class=" text-center bg-grey rounded border-2 ms-md-3 p-3 mb-3">
+                                    <p class="fs-1 fw-bold">5</p>
+                                    <p>Booking</p>
+                                    <p class="fw-bold">in progress</p>
+                                </div>
+                            </div>
+                        </div>
     				    <div class="mx-1 row g-0 border rounded overflow-hiddenn flex-md-row mb-4 shadow-sm h-md-250 position-relative history--product" id="history-product">
-        					<div class="col p-4 d-flex flex-column position-static mySwiper content--table--history--booking" style="overflow-x: scroll !important;">
+        					<div
+        					    class="col p-4 d-flex flex-column position-static mySwiper content--table--history--booking"
+        					    style="overflow-x: scroll !important;min-height: 170px;">
             						<style>
             							.badge {
             								display: inline-block;
@@ -123,24 +377,10 @@
             							.badge-paid {
             								background: #28a745;
             							}
-            
-            							.user--container--table .dropdown-menu {
-            								width: 90% !important;
-            								border-radius: 0 !important;
-            								padding-top: 8px !important;
-            								padding-bottom: 8px !important;
-            								position: absolute;
-            								transform: translate3d(0px, 35px, 0px);
-            								top: 5px !important;
-            								left: -64px !important;
-            								will-change: transform;
-            								font-size: 13px !important;
+            							.badge-info {
+            								background: #62929E;
             							}
-            							.user--container--table .btn {
-            								padding: 5px14px5px15px !important;
-            								width: 90% !important;
-            
-            							}
+            							
             						</style>
             						<table class="table table-striped">
             							<thead>
@@ -151,7 +391,7 @@
             									</th>
             									<th scope="col">Price</th>
             									<th scope="col">Status</th>
-            									<th scope="col"></th>
+            									<th scope="col">Action</th>
             								</tr>
             							</thead>
             							<tbody>
@@ -159,12 +399,17 @@
             									{% set n = node_parser(item) %}
             									{% set site = node_parser(n.field_item['#object']) %}
             									<tr>
-            										<th scope="row">{{n.nid}}</th>
-            										<td>{{ site.label_site}} ( <a href={{ site.field_st_domain_name}}>view site
-            												</a> )</td>
-                                                    <td>	{{n.created|date("Y-m-d")}} </td>
+            										<th scope="row" class="py-1">{{n.nid}}</th>
+            										<td  class="py-1">
+            										    {{ site.label_site}} 
+            										    ( <a href={{ site.field_st_domain_name}}>
+            										        view site </a> )
+            										</td>
+                                                    <td  class="py-1">
+                                                        {{n.created|date("Y-m-d")}}
+                                                    </td>
             
-            										<td>
+            										<td  class="py-1">
             											{% if n.moderation_state == "init" %}
             												<p class="text-center text-black">-</p>
             											{% else %}
@@ -172,33 +417,60 @@
             											    {{n.field_price_with_tax}} 
             											{% endif %}
             										</td>
-            										<td>
+            										<td  class="py-1">
             											{% if n.moderation_state == "validate" %}
-            												<span class="badge badge-paid">Booking Confirmed</span>
+            												<span class="badge badge-paid p-1">
+            												    Booking Confirmed</span>
             											{% endif %}
             
             											{% if n.moderation_state == "draft" %}
-            												<span class="badge badge-pending">Booking request validation</span>
+            												<span class="badge badge-pending p-1">
+            												    Booking request validation</span>
             											{% endif %}
             											{% if n.moderation_state == "init" %}
-            												<span class="badge badge-inpaid">wait for payment</span>
+            												<span class="badge badge-inpaid p-1">
+            												    wait for payment</span>
             											{% endif %}
             											{% if n.moderation_state == "published" %}
-            												<span class="badge badge-inpaid">Archived</span>
+            												<span class="badge badge-inpaid p-1">
+            												    Archived</span>
             											{% endif %}
             
             										</td>
-            										<td>
-                                                    <a class="text-decoration-underline" href="{{base_url}}/invoice?id={{n.nid}}">Get Invoice</a>
+            										<td  class="py-1">
+            										    <div class="dropdown text-center"
+            										        style="cursor: pointer;">
+                                                          <span
+                                                            class="dropdown-toggle badge badge-info p-1 ms-2"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            Action
+                                                          </span>
+                                                          <ul class="dropdown-menu rounded-0">
+                                                            <li>
+                                                                <a class="dropdown-item p-2"
+                                                                    href="{{base_url}}/invoice?id={{n.nid}}"
+                                                                    target="_blank">
+                                                                    Get Invoice
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item p-2" href="#">
+                                                                    Unsubscribe
+                                                                </a>
+                                                            </li>
+                                                          </ul>
+                                                        </div>
             										</td>
             									</tr>
             								{% endfor %}
-            
             							</tbody>
             						</table>
         					</div>
         				</div>
     				</div>
+    				
+    		        {% endif %}
                 </div>
 			</div>
 		</div>

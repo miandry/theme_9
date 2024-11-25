@@ -99,7 +99,7 @@
                   background-repeat: no-repeat;
                   background-size: cover;
                   background-position: center center;
-              ">
+              "  id="form-booking">
                       
                   </div>
               </div>
@@ -108,11 +108,11 @@
   </div>
 </section>
 <div class="specification">
-    <div class="container">
+    <div class="container" id="form-booking">
         <div class="row">
           <div class="col-md-7 col-lg-7 spec-left" bis_skin_checked = "1">
               <div class="header-cnt">
-              <h1> {{n.title}}  </h1>
+              <h1>{{n.title}}</h1>
               <p class="desc-cnt">
                   {{n.body|first.value|raw}}
               </p>
@@ -134,10 +134,10 @@
                             <ul class="list-unstyled ps-0">
                               <li>
                                 <a class="icon-link">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
-                                    <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
+                                        <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                    {{specifications[size].title}}
                                 </a>
                               </li>
@@ -164,10 +164,10 @@
                         <ul class="list-unstyled ps-0">
                           <li>
                             <a class="icon-link">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
-                                <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
+                                    <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                {{amenities[size].title}}
                             </a>
                           </li>
@@ -202,10 +202,10 @@
                         <ul class="list-unstyled ps-0">
                           <li>
                             <a class="icon-link">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
-                                <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
+                                    <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                 {{features[size].title}}
                             </a>
                           </li>
@@ -332,25 +332,25 @@
               }
               
 
-              @media screen and (max-device-width: 575.98px){
-                .navbar-and-specification .title-specification {
-                    margin-top: 10px;
-                  } 
-                .specification .form-control {
-                  width: 100%;
-                }
-              }
-              .date_booking .easepick-wrapper{
-                z-index: 1;
-              }
-              .need_set_up  {
-                  border: 1px solid #cac6c6;
-                  padding: 15px;
-                  margin: 5px 0px;
-                  text-align: center;
-                  border-radius: 20px;
-                  color: red;
-                }
+                  @media screen and (max-device-width: 575.98px){
+                    .navbar-and-specification .title-specification {
+                        margin-top: 10px;
+                      } 
+                    .specification .form-control {
+                      width: 100%;
+                    }
+                  }
+                  .date_booking .easepick-wrapper{
+                           z-index: 1;
+                  }
+                .need_set_up  {
+                        border: 1px solid #cac6c6;
+                        padding: 15px;
+                        margin: 5px 0px;
+                        text-align: center;
+                        border-radius: 20px;
+                        color: red;
+                  }
             </style>
          <form id="mytemplatebooking" onsubmit="return checkFormEmpty();" class="booking-form" >
             <div class="spec-right">
@@ -434,7 +434,7 @@
                   <li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
                       <strong>TOTAL</strong>
                      <input type="hidden" id="total_prix_hidden" name="total" value="0"/>
-                      <span id="total_prix">0</span> <span>Ar</span>
+                      <span id="total_prix">0</span> <span>$</span>
                   </li>
                 </ul>
             
@@ -466,6 +466,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}
