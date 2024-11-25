@@ -442,8 +442,10 @@
               
               </div>
             </div>
-           {% set account_bank = config("mz_payement.stripe","account") %}
-           {% if account_bank %} 
+          {% set account_bank = config("mz_payement.stripe","account") %}
+          {% set account_status = config("mz_payement.stripe","status") %}
+ 
+          {% if  account_status=='complet' and account_bank  %} 
                 {% if logged_in %}
                   <button  class="w-100 btn btn-primary btn-sm" type="submit">Continue to checkout</button>        
 
