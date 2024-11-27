@@ -1274,6 +1274,9 @@
             margin-top: 0 !important;
         }
     }
+   .custom-login-form-wrapper .description--register-forget {
+          display: none;
+    }
 </style>
 
 
@@ -1343,7 +1346,18 @@
         </div>
     </div>
 </section>
+<style>
+   .custom-login-form-wrapper {
+          background-color: transparent !important;
+    }
 
+   .custom-login-form-wrapper input {
+         border: none !important;
+    }
+  .container-form-login-tab #edit-actions input {
+            margin: 0 !important;
+   }
+</style>
 <script>
     let form_logreg = document.getElementById("log-reg-js");
     if( document.body.contains(form_logreg) )  {

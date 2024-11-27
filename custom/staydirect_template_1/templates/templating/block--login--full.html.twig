@@ -46,6 +46,11 @@
     </div>
   </div>
 </div>
+<style>
+   .custom-login-form-wrapper {
+          background-color: transparent !important;
+    }
+</style>
 {% else %} 
     {% set url = '' ~ base_url() ~ '/user' %}
     {% do redirect(url) %}
