@@ -8,6 +8,8 @@
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraphs'] %}
 {% set paragraphs_length = paragraphs|length %}
+{% include START_EDITOR with {'c': c}  %}
+
 
 <div class="aminitie" style="background: url({{ c.field_image1["image"].url }});"></div>
 <div class="container">
@@ -72,4 +74,5 @@
     
 
 
+{% include END_EDITOR  %}
 {% endblock %}
