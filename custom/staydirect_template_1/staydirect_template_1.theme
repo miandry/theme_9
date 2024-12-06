@@ -27,14 +27,15 @@ function staydirect_template_1_preprocess_html(&$variables) {
     if(isset($params["site_id"])  && isset($params["parent"]) && isset($params["action"]) 
     && $params["action"] =="start_payment"){
           $service_booking->staydirectPaymentInit($params);
-    }  
 
+    }  
     // set status in process , wait for validation
     if(isset($params["pay_action"])
         && isset($params["status"]) 
         && $params["status"] == "in_process"
         && $params["pay_action"] =="submit_payed"){
           $service_booking->staydirectAfterPayment($params);
+          
 
     }  
 
