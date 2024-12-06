@@ -12,13 +12,12 @@ function staydirect_template_1_preprocess_block(array &$variables) {
  
     $variables['START_EDITOR'] = 'themes/custom/staydirect_template_1/templates/inc/start-include--editor.html.twig';
     $variables['END_EDITOR'] = 'themes/custom/staydirect_template_1/templates/inc/end-include--editor.html.twig';
-  }
+}
 function staydirect_template_1_preprocess_html(&$variables) {
         // Check if the URL has been accessed before.
   // Get the current URL.
   $current_path = \Drupal::service('path.current')->getPath();
   $current_path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
-
 
   $service_helper = \Drupal::service('drupal.helper');
   $params = $service_helper->helper->get_parameter();
