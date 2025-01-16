@@ -230,3 +230,7 @@
   border: 1px solid #dee2e6 !important;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
+
+a.st-forgot-pass:hover {
+    color: var(--bleumarine-color) !important;
+}

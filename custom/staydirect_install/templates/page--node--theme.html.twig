@@ -58,6 +58,13 @@
 	.mz-disabled {
 		cursor: not-allowed;
 	}
+    
+    @media (max-width: 768px) {
+        .main-step .col-md-8 {
+            padding-left: 0 !important;
+        }
+    }
+
 </style>
 {% set param = get_parameter() %}
 {% set param = get_parameter() %}
@@ -76,7 +83,7 @@
   
 			</div>
 
-			<div class="col-md-8">
+			<div class="col-md-8 ps-0">
 			  <form>
 			    <input id="theme_select" type="hidden" name="theme_select" value="0" />
 				 <input  type="hidden" name="site_new" value="{{param['site_new']}}" />

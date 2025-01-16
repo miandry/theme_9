@@ -130,6 +130,7 @@
                       <td class="border-0"></td>
                       <td class="border-0"></td>
                       <td class=" fw-bolder">Subtotal</td>
+                      <script>console.log({{ n | json_encode | raw }});</script>
                       <td>${{ n.field_price_with_tax|number_format(2, '.', ',') }}</td>
                     </tr>
                     <tr>

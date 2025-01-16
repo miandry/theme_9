@@ -4,10 +4,22 @@
   {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
   {% set css = include(path_css) %}
   {{render_css(css,'block__staydirect_template_1_image_gallery_full')}}
+    {% set myuser = current_user() %}
+    {% set is_editor = hasRole('content_editor',myuser.uid) %}
+    {% set is_admin = hasRole('administrator',myuser.uid) %}
+    {% set is_web = hasRole('webmaster',myuser.uid) %}
   {% set c = block_parser(content) %}
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
           rel="stylesheet">
-    <section class="mt-5">
+<style>
+    .light-box:hover .edit_block_custom_btn_header {
+        display: block !important;
+    }
+</style>  
+    <section class="mt-5 light-box">
+        {% if is_editor or is_admin or  is_web %}
+            <a  class="edit_block_custom_btn_header edit_block_custom_btn" target="_blank" href="/block/{{c.id}}?destination={{current_url()}}"> Edit {{c.info}}</a>
+        {% endif %}
         <div class="container">
             <div class="row">
                 {% for item in c.gallery_items %}

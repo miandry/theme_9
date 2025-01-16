@@ -5,26 +5,44 @@
   {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
   {% set css = include(path_css) %} 
   {{render_css(css,'block__staydirect_template_1_login_full')}}
+
  {% set c = block_parser(content) %}
+ 
+ 
+  <style>
+     .loader-st {
+        height: 60px;
+        background: var(--bleu-color);
+        color: #FFF;
+        text-align: center;
+        font-family: "Montserrat";
+        font-size: 18px;
+        font-weight: 700;
+        border-radius: 50px;
+        margin-top: 12px;
+        border: none !important;
+        width: 100%;
+        cursor: not-allowed;
+     }
+ </style>
+ 
+
 {% if not is_login() %}
 <div class="log-reg">
   <div class="container-resp">
     <div class="left ">
       <div class="container-left reg--container-left">
         <h1 onclick='location.href="{{base_url()}}"'>
-          Hotel rental user
+          Hotel rental
         </h1>   
         <div class="content-left reg--content-left" style="position: relative;">
           {{user_login()}}
-          <style>
-    
-          </style>
           <div class="description--register-forget">
               <span>
-                  <a href="{{base_url()}}/register"> Register </a>
+                  <a href="{{base_url()}}/register" class="st-forgot-pass">New member must register</a>
               </span>
               <span>
-                  <a href="{{base_url()}}/user/password">Forget Password</a> 
+                  <a href="{{base_url()}}/user/password" class="st-forgot-pass">Forgot password?</a> 
               </span>
           </div>
         </div>
@@ -50,10 +68,41 @@
    .custom-login-form-wrapper {
           background-color: transparent !important;
     }
+    .content-left.reg--content-left .user-login-form .description--register-forget {
+        display: none;
+    }
 </style>
 {% else %} 
     {% set url = '' ~ base_url() ~ '/user' %}
     {% do redirect(url) %}
 {% endif %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const submitButton = document.getElementById('edit-submit');
+        const form = submitButton.closest('form'); // Récupère le formulaire parent
+    
+        submitButton.addEventListener('click', function (e) {
+            
+            // Vérifie si tous les champs requis du formulaire sont valides
+            if (form.checkValidity()) {
+                // Si tout est valide, remplace le bouton
+                const loaderButton = document.createElement('button');
+                loaderButton.className = 'loader-st';
+                loaderButton.type = 'button';
+                loaderButton.disabled = true;
+    
+                loaderButton.innerHTML = `
+                    <span role="status">Connecting</span>
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                `;
+    
+                submitButton.parentNode.replaceChild(loaderButton, submitButton);
+                form.submit();
+            }
+        });
+    });
+</script>
   
 {% endblock %}
+
+

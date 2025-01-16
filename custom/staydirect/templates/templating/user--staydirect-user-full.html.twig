@@ -1,7 +1,8 @@
 {% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
 
 {% block templating_content %}
-	       <!-- done -->
+
+ <!-- done -->
     {{ attach_library('staydirect/bootstrap') }}
 
 	{% set item_name = 'user--staydirect-user-full.html' %}
@@ -15,6 +16,7 @@
 
 	{%  set conditions = {
             'field_client': uid
+         
         } 
     %}
 
@@ -24,7 +26,7 @@
         .mz-bg-primary {
             background: #62929E;
         }
-                
+        
         .container--header {
             padding-top:30px;
             display: flex;
@@ -188,16 +190,6 @@
                 margin-bottom: 30px;
             }
         }
-        
-        @media (min-width: 539.98px) {
-            .container-resp {
-                max-width: 590px !important;
-                width: 100% !important;
-                padding-left: 0px !important;
-                padding-right: 0px !important;
-                margin: auto !important;
-            }
-        }
         .container--user label[for="input-file"] {
             display: block;
             width: 100%;
@@ -231,29 +223,7 @@
             padding: 10px;
             overflow: hidden;
         }
-        
-        .bg-grey {
-            background-color: #6c757d12;
-        }
-        
-        .container-resp.container--user .row.mb-2 {
-            margin-left: 200px !important;
-        }
-        
-        @media (max-width: 763px) {
-            .container-resp.container--user .row.mb-2 {
-                margin-left: 0 !important;
-            }
-            
-            footer {
-                display: block;
-            }
-        }
-        
-        footer {
-            display: none;
-        }
-        
+
     </style>
 
 	<div class="container container-resp">
@@ -266,12 +236,12 @@
 		</div>
 	</div>
 	<div class="container-resp container container--right std--useradmin container--user user--profile--rectf user--container--table user--profile--rectf user--container--table--resp">
-		<div class="row mb-2 ms-2">
+		<div class="row mb-2">
 
 			<div class="col-lg-12 user--info" id="user-info">
 
 				<div class="row useradmin--sidebar-left g-0  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative affiche--dashboard">
-					<div class="col p-4 d-flex flex-column position-static border rounded content--affiche--dashboard mz-bg-primary">
+					<div class="col p-4 pb-md-5 d-flex flex-column position-static border rounded content--affiche--dashboard mz-bg-primary">
 						<div class="container--spends">
 							<div class="content--spend--affiche--dashboard">
 								<h2  class="text-white text-start">
@@ -285,72 +255,67 @@
 					</div>
 					<img class="img--affiche--dashboard" src="/themes/custom/staydirect/img/affiche-dashboarod.png">
 				</div>
-                <div class="row">
-    				<div class="col-12 col-sm-12 col-lg-4 pe-md-3">
-						<div class="mb-3">
-						    <p class="text-dark">Your information</p>
-						</div>
+                <div class="row mt-md-5">
+    				<div class="col-12 col-sm-12 col-md-4">
     				    <div class="mx-1 row useradmin--sidebar-left g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
     					    <div class="col p-4 d-flex flex-column position-static content--right">
-    						<div>
-    						    <div class="mb-3">
-                                  <input type="text" class="form-control bg-grey p-3 border-0" id="username" placeholder="Username"
-                                        value="{{u.name}}" disabled>
-                                </div>
-                                <div class="mb-3">
-                                  <input type="email" class="form-control bg-grey p-3 border-0" id="email" placeholder="Email address"
-                                        value="{{u.mail}}" disabled>
-                                </div>
-                                <div class="mb-3">
-                                  <input type="text" class="form-control bg-grey p-3 border-0" id="first-name" placeholder="First name"
-                                        value="{{u.field_first_name}}" disabled>
-                                </div>
-                                <div class="mb-3">
-                                  <input type="text" class="form-control bg-grey p-3 border-0" id="last-name" placeholder="Last name"
-                                        value="{{u.field_last_name}}" disabled>
-                                </div>
-                                <div class="mb-3">
-                                  <input type="text" class="form-control bg-grey p-3 border-0" id="phone-number" placeholder="222-222-2222"
-                                        value="{{u.field_phone}}" disabled>
-                                </div>
-                                <div class="">
-                                  <a class="btn btn-outline-secondary w-100 p-3 mt-3"
-                                        href="/user/{{u.uid}}/edit?destination=/user">
-                                      Edit profile
-                                  </a>
-                                </div>
+    						<div class="container--spends">
+    							<div class="content--spend">
+    								<p>
+    									Username: <span class="text-capitalize">{{u.name}}</span>
+    								</p>
+    							</div>
+    							<div class="content--spend">
+    								<p>
+    									Email: {{u.mail}}
+    								</p>
+    							</div>
+    							{% if u.field_first_name %}
+    								<div class="content--spend">
+    									<p>
+    										Fisrt name: <span class="text-capitalize">{{u.field_first_name}}</span>
+    									</p>
+    								</div>
+    							{% endif %}
+    							{% if u.field_last_name %}
+    								<div class="content--spend">
+    									<p>
+    										Last name: <span class="text-capitalize">{{u.field_last_name}}</span>
+    									</p>
+    								</div>
+    							{% endif %}
+    							{% if u.field_phone %}
+    								<div class="content--spend">
+    									<p>
+    										Phone number: {{u.field_phone}}
+    									</p>
+    								</div>
+    							{% endif %}
+    							<div>
+    								<br/>
+    								<p>
+    									<a href="/user/{{u.uid}}/edit?destination=/user" class="btn-grey">
+    										Edit profile
+    									</a>
+    								</p>
+    							</div>
+    
     						</div>
     					</div>
+    					</div>
     				</div>
-    				</div>
+            
                     {% if booking is empty %}
-                    	<div class="col-12 col-sm-12 col-lg-8 text-center p-5">
+                    	<div class="col-12 col-sm-12 col-md-8 text-center p-5">
                     	      <p>Your website list is empty. Start your build your website now!</p><br/>
                                <a class="btn" href="/order" style="padding: 5px !important; font-size: 15px !important;">
                                 Start Building</a>
                     	</div>
                     {% else %}
      
-    				<div class="col-12 col-sm-12 col-lg-8 ps-md-3">
-                        <div class="mb-3">
-                            <p class="text-dark">Overview</p>
-                        </div>
-                        <div class="row justify-content-between mb-3">
-                            <div class="col-12 col-sm-6 col-md-6">
-                                <div class=" text-center bg-grey rounded border-2 me-md-3 p-3 mb-3">
-                                    <p class="fs-1 fw-bold">5</p>
-                                    <p>Booking</p>
-                                    <p class="fw-bold">completed</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6">
-                                <div class=" text-center bg-grey rounded border-2 ms-md-3 p-3 mb-3">
-                                    <p class="fs-1 fw-bold">5</p>
-                                    <p>Booking</p>
-                                    <p class="fw-bold">in progress</p>
-                                </div>
-                            </div>
-                        </div>
+             
+
+    				<div class="col-12 col-sm-12 col-md-8">
     				    <div class="mx-1 row g-0 border rounded overflow-hiddenn flex-md-row mb-4 shadow-sm h-md-250 position-relative history--product" id="history-product">
         					<div
         					    class="col p-4 d-flex flex-column position-static mySwiper content--table--history--booking"
@@ -455,7 +420,8 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a class="dropdown-item p-2" href="#">
+                                                 
+                                                                <a class="dropdown-item p-2" href="{{base_url}}/unsubscribe?id={{n.field_subscription_id}}">
                                                                     Unsubscribe
                                                                 </a>
                                                             </li>
@@ -464,6 +430,7 @@
             										</td>
             									</tr>
             								{% endfor %}
+            
             							</tbody>
             						</table>
         					</div>
@@ -475,5 +442,6 @@
 			</div>
 		</div>
 	</div>
+
 
 {% endblock %}

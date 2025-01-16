@@ -32,6 +32,13 @@
     font-size: 21px!important;
     padding-bottom: 10px!important;
 }
+
+@media (max-width: 768px) {
+    .main-step .col-md-8 {
+        padding-left: 0rem !important;
+    }
+}
+
 </style>
    
    {% include 'themes/custom/staydirect_install/templates/inc/header_process.html.twig'  %}
@@ -47,7 +54,7 @@
           <div class="col-md-8">
 
             <div class="row form-payment">
-              <div class="col-md-12 col-lg-12 choosecontent">
+              <div class="col-md-12 col-lg-12 choosecontent ps-0">
                   {{drupal_form("Drupal\\site_manager\\Form\\ProcessForm")}}
               </div>
 

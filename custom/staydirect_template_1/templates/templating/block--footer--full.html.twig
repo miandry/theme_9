@@ -10,6 +10,16 @@
 {% set paragraphs = c['field_paragraphs'] %}
 {% set paragraphs_length = paragraphs|length %}
 {% include START_EDITOR with {'c': c}  %}
+<style>
+         #block-staydirect-template-1-content .description--register-forget,
+        #block-staydirect-template-2-content .description--register-forget,
+        #block-staydirect-template-3-content .description--register-forget {
+            position: inherit !important;
+        }
+        .custom-login-form-wrapper {
+             background-color: transparent !important;
+        }
+</style>
 
 <footer>
   <div class="footer-top">
@@ -33,7 +43,7 @@
         </div>
         <div class="col-md-4 col-sm-6 footer-right">
           <div class="content-footer-right">
-            <h3>Follow us.</h3>
+            <h3>Follow us</h3>
             <p>
               {% for size in 0 .. (paragraphs_length - 1) %}
                   <a href=" {{paragraphs[size]['field_link'].url}}">

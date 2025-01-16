@@ -9,8 +9,11 @@
     {% set c = block_parser(content) %}
     {% set links= c['field_link'] %}
     {% set bank_account = config('mz_payement.stripe', 'account') %}
+    {% set bank_account_status = config('mz_payement.stripe', 'status') %}
+
     
     {% set status = config("mz_payement.status","status") %}
+
     {% set sites = config("mz_payement.status","site_variables") %}
 
     {% set site_id = site_variables["site_id"] %} 
@@ -730,55 +733,30 @@
     {% set is_web = hasRole('webmaster',myuser.uid) %}
     {% set is_customer = hasRole('customer',myuser.uid) %}
     {% set display = false %}
-    {% if is_admin %}
-        {% if status == 'confirmed' and bank_account is null %}
-            {% set display = true %}
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
-            <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
-                <div class="navbar--fixed-left">
-                <div class="preview--staydirect-logo">
-                    <a class="link--staydirect-logo" href="https://staydirecttech.com/">StayDirect TECHNOLOGIES</a>
-                </div>
-                </div>
-                <div class="navbar--fixed-left text_demo">
-                    Please set up your bank account for payment processing
-                </div>
-                <div class="navbar--fixed-right">
-                <div class="preview--action--buy">
-                    <a class="header-buy-now btn--3d color--primary shadow-none" href="/admin/bank/page">Start Setup </a>
-                </div>
-                </div>
-            </div>
-        </nav>
-        {% elseif status == 'start_payment' or status is null %}
-            {% set display = true %}
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
-            <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
-                <div class="navbar--fixed-left">
-                <div class="preview--staydirect-logo">
-                    <a class="link--staydirect-logo" href="https://staydirecttech.com/">StayDirect TECHNOLOGIES</a>
-                </div>
-                </div>
-                <div class="navbar--fixed-left text_demo text-md-center">
-                    This is still a preview. To test it, click on Login below. Username: demo / password: demo <br>
-                    Click Buy Now to finish your purchase.
-                </div>
-                <div class="navbar--fixed-right">
-                <div class="preview--action--buy">
-                    <form>
-                        <input type="hidden" name="action" value="start_payment" />
-                        <input type="hidden" name="site_id" value="{{site_id}}" />
-                        <input type="hidden" name="parent" value="{{parent_site }}" />
-                        <button type="submit" class="header-buy-now btn--3d color--primary  shadow-none" >Buy now</button>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </nav>
-        {% endif %}
-    {% endif %}
+   
+   
+{% if bank_account_status != 'complet' %}
     
-    {% if (status == 'start_payment' or status is null) and not is_login() %}
+    {% if status == 'confirmed' and bank_account is null %}
+        {% set display = true %}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
+        <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
+            <div class="navbar--fixed-left">
+            <div class="preview--staydirect-logo">
+                <a class="link--staydirect-logo" href="https://staydirecttech.com/">StayDirect TECHNOLOGIES</a>
+            </div>
+            </div>
+            <div class="navbar--fixed-left text_demo">
+                Please set up your bank account for payment processing
+            </div>
+            <div class="navbar--fixed-right">
+            <div class="preview--action--buy">
+                <a class="header-buy-now btn--3d color--primary shadow-none" href="/admin/bank/page">Start Setup </a>
+            </div>
+            </div>
+        </div>
+    </nav>
+    {% elseif (status == 'start_payment' or status is null) and bank_account is null %}
         {% set display = true %}
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
         <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
@@ -804,6 +782,8 @@
         </div>
     </nav>
     {% endif %}
+{% endif %}
+
     <header class="header-sticky header--sticky-htl">
 
     {% if is_editor or is_admin or  is_web %}
@@ -814,11 +794,7 @@
             <div class="content-header-left--resp">
               <div class="logo--resp">
                 <h1>
-                   {% if c.field_text is null %}
-                       <a href="{{base_url()}}">{{c.field_text}} {{ site_name }}</a>
-                   {% else %}
-                       <a href="{{base_url()}}">{{ site_name }}</a>
-                   {% endif %}
+                    <a href="{{base_url()}}">{{c.field_text}}</a>
                 </h1>
                 
             </div>
@@ -856,7 +832,7 @@
                                         {% set current_user = current_user() %}
                                         {% set uid = (current_user.uid) %}
                                         {% if hasRole('webmaster',uid) %}
-                                        <li><a href="{{base_url()}}/admin">Dashboard</a></li>
+                                        <li><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
                                         {% endif%}
 
                                         <li><a href="{{base_url()}}/user/logout">Logout</a></li>
@@ -896,7 +872,7 @@
                 {% else %} 
                     <li><a href="{{base_url()}}/user">My account</a></li>
                     <li><a href="{{base_url()}}/booking#form-booking">My Booking</a></li> 
-                    <li><a href="{{base_url()}}/admin">Dashboard</a></li>
+                    <li><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
                     <li><a href="{{base_url()}}/user">Logout</a></li>
                 {% endif %}
             </ul>

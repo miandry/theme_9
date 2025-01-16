@@ -44,12 +44,12 @@
                     <div class="row form-payment-1">
                         <div class="col-md-12 col-lg-12">
                             <div class="node-site-form node-form">
-                                <h4> Website information </h4>
-                                <p> Website name: {{site.label_site}}</p>
-                                <p class="text-muted">Profile:  {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
-                                <p> Theme: {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_3" %} Monochrome Elegance {% endif %} </p>
-                                <p> Website URL: {{site.field_st_domain_name}}</p>
-                                  <p> Price per month: {{price_booking_system}} USD </p>
+                                <h4 class="fs-2 mb-3"> Website information </h4>
+                                <p class="mb-2"><span class="fw-bold">Website name:</span> {{site.label_site}}</p>
+                                <p class="text-muted mb-2"><span class="fw-bold">Profile:</span> {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
+                                <p class="mb-2"> <span class="fw-bold">Theme:</span> {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_3" %} Monochrome Elegance {% endif %} </p>
+                                <p class="mb-2"> <span class="fw-bold">Website URL:</span> <a href="{{site.field_st_domain_name}}" target="_blank" class="text-white">{{site.field_st_domain_name}}</a></p>
+                                <p class="mb-2"> <span class="fw-bold">Price per month:</span> {{price_booking_system}} USD </p>
                             </div>
                         </div>
                     </div>

@@ -1,259 +1,171 @@
 {% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
 {% block templating_content %}
 
- <!-- done -->
-    {% set item_name = 'block--staydirect-header-user-full.html' %} 
+<!-- done -->
+{% set item_name = 'block--staydirect-header-user-full.html' %} 
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_header_user_full')}}
 
-    <!-- Header -->
-    {% set c = block_parser(content) %}
-    {% set menu1 = simplify_menu(c.field_menu_1) %}
-    {% set menu1_length = menu1|length %}
-    {% set menu2 = simplify_menu(c.menu) %}
-    {% set menu2_length = menu2|length %}
-    {% set menu_user = simplify_menu(c.menu_user) %}
-    {% set menu_user_length = menu_user|length %}
-    {% set count = 0 %}
-    {% set icons = ['bi bi-house', 'bi bi-eye', 'bi bi-telephone'] %}
-    {% set user = current_user() %}
-    {% set uid = get_id_by_url('user') %}
-	{% set u = user_parser(uid) %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
-        .navbar-vertical {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background-color: #fff;
-            overflow-x: hidden;
-            transition: width 0.3s;
-        }
-
-        .navbar-vertical .nav-link {
-            color: #33333399;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        .navbar-vertical .nav-link:hover {
-            background-color: #f2f2f2;
-        }
-
-        .navbar-vertical i {
-            margin-right: 10px;
-        }
+        <!-- Header -->
+        {% set c = block_parser(content) %}
+        {% set menu1 = simplify_menu(c.field_menu_1) %}
+        {% set menu1_length = menu1|length %}
+        {% set menu2 = simplify_menu(c.menu) %}
+        {% set menu2_length = menu2|length %}
+        {% set menu_user = simplify_menu(c.menu_user) %}
+        {% set menu_user_length = menu_user|length %}
+        {% set count = 0 %}
         
-        .mz-mobile-nav-menu {
-            height: 85vh;
-            overflow: scroll;
-        }
-        
-        #mz-begin-mobile {
-            color: white !important;
-            font-weight: bold !important;
-            padding: 0 !important;
-        }
-        
-        .mz-color-secondary {
-            color: rgba(51, 51, 51, 0.60) !important;
-        }
-        
-        .container--user-edit .row.mb-2 {
-            margin-left: 200px !important;
-        }
-        
-        @media (max-width: 763px) {
-            .container--user-edit .row.mb-2 {
-                margin-left: 0 !important;
+        <style>
+            .mz-mobile-nav-menu {
+                height: 85vh;
+                overflow: scroll;
             }
-        }
-    </style>
-             
-    <!-- Barre de navigation verticale -->
-    <nav class="navbar-vertical d-flex flex-column align-items-start p-0 border-end d-none d-md-block"
-        style="z-index: 999;" >
-        <a href="{{base_url()}}" class="w-100 mb-3">
-            <img src="{{c['field_logo']['image'].url}}" class="mx-auto" width="200px">
-        </a>
-        <div class="w-100">
-            {% for item in menu1.menu_tree %}
-                <a href="{{ item.url }}" target="_blank" class="nav-link ps-4 py-1 w-100">
-                    <i class="{{ icons[loop.index0] }} fs-5"></i>
-                    <span class="menu-text ms-2">{{ item.text }}</span>
-                </a>
-            {% endfor %}
-        </div>
-        <div class="w-100 position-absolute bottom-0 pb-5">
-            <div class="mb-4">
-                <a href="#" class="nav-link ps-4 py-1 w-100">
-                    <i class="bi bi-gear fs-5"></i>
-                    <span class="menu-text ms-2">Setting</span>
-                </a>
-                <a href="#" class="nav-link ps-4 py-1 w-100">
-                    <i class="bi bi-question-circle fs-5"></i>
-                    <span class="menu-text ms-2">Help</span>
-                </a>
-            </div>
-            <div class="ps-4">
-                <div class="row align-items-center justify-content-between flex-nowrap"
-                    style="width: 90%;">
-                    <div class="w-auto">
-                        <img src="{{c.pdp.image.url}}" width="50" height="50"
-                            class="bg-grey rounded-circle border-1">
-                    </div>
-                    <div class="w-auto">
-                        <p class="text-capitalize m-0">{{u.field_first_name}}</p>
-                        <small>customer</small>
-                    </div>
-                    <div class="w-auto">
-                        <a href="{{base_url()}}/user/logout" class="bg-grey p-2 pt-3 rounded border-1">
-                            <i class="bi bi-box-arrow-right fs-4 text-dark"></i>
+            
+            #mz-begin-mobile {
+                color: white !important;
+                font-weight: bold !important;
+                padding: 0 !important;
+            }
+            
+            .mz-color-secondary {
+                color: rgba(51, 51, 51, 0.60) !important;
+            }
+        </style>
+        <div class="header-sticky">
+            <div class="container-resp">
+                <div class="content-header">
+                    <div class="logo-header">
+                        <a href="{{base_url()}}">
+                            <img src="{{c['field_logo']['image'].url}}" alt="">
                         </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    
-    <!-- mobile -->
-    
-    <div class="header-sticky d-block d-md-none">
-        <div class="container-resp">
-            <div class="content-header">
-                <div class="logo-header">
-                    <a href="{{base_url()}}">
-                        <img src="{{c['field_logo']['image'].url}}" alt="">
-                    </a>
-                </div>
-                <div class="menu">
-                    <ul>
-                        {% for item in menu1.menu_tree %}
-                        <li><a href="{{ item.url }}" target="_blank"> {{ item.text }} </a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="cta">
-                    <ul>
-                        <li class="btn-login humberger-menu1" style="position: relative;">
-                            {% if not is_login() %}
-                            <a class="" href="#">Login</a>
-                            <div class="menu-mobile-effet1" style="">
-                                <ul>
-                                    <li>
-                                        <a href="{{base_url()}}/login">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{base_url()}}/register">Register</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            {% else %}
-                            <a class="" href="#">My account</a>
-                            <div class="menu-mobile-effet1">
-                                <ul class="list-dropdwn">
-                                    {% for item in menu_user.menu_tree %}
-                                    <li><a href="{{ item.url }}">{{ item.text }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            {% endif %}
-                        </li>
-                        <li class="btn-begin">
-                            <a class="btn" href="{{base_url()}}/order">Build your website</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="icon-menu-mobile menu-mobile">
-                    <div class="menu-humbergers-resp" bis_skin_checked="1">
-                        <div class="rect-humb-resp rh-1-resp" bis_skin_checked="1"></div>
-                        <div class="rect-humb-resp rh-2-resp" bis_skin_checked="1"></div>
-                        <div class="rect-humb-resp rh-3-resp" bis_skin_checked="1"></div>
+                    <div class="menu">
+                        <ul>
+                            {% for item in menu1.menu_tree %}
+                                <li><a href="{{ item.url }}" target="_blank"> {{ item.text }} </a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="cta">
+                        <ul>
+                            <li class="btn-login humberger-menu1" style="position: relative;">
+                                {% if not is_login() %}
+                                    <a class="" href="#">Login</a>
+                                    <div class="menu-mobile-effet1" style="">
+                                        <ul>
+                                            <li>
+                                                <a href="{{base_url()}}/login">Login</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{base_url()}}/register">Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                {% else %}  
+                                    <a class="" href="#">My account</a>
+                                    <div class="menu-mobile-effet1">
+                                        <ul class="list-dropdwn">
+                                            {% for item in menu_user.menu_tree %}
+                                                <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </li>
+                            <li class="btn-begin">
+                                <a class="btn" href="{{base_url()}}/order">Build your website</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="icon-menu-mobile menu-mobile">
+                        <div class="menu-humbergers-resp" bis_skin_checked="1">
+                            <div class="rect-humb-resp rh-1-resp" bis_skin_checked="1"></div>
+                            <div class="rect-humb-resp rh-2-resp" bis_skin_checked="1"></div>
+                            <div class="rect-humb-resp rh-3-resp" bis_skin_checked="1"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="menu-mobile menu-mobile-effet" bis_skin_checked="1">
-            <ul class="content-menu-mobile mb-0">
-                {% for item in menu1.menu_tree %}
-                <li><a href="{{ item.url }}" class="mz-color-secondary" target="_blank">
-                        {{ item.text }} </a></li>
-                {% endfor %}
-            </ul>
-            <ul style="text-align: center !important ;">
-                {% if not is_login() %}
-                <li>
-                    <a class="mz-color-secondary" href="{{base_url()}}/user/login">Login</a>
-                </li>
-                {% else %}
-                <li><a class="mz-color-secondary" href="{{base_url()}}/user">User</a></li>
-                <li><a class="mz-color-secondary" href="{{base_url()}}/user/logout">Logout</a></li>
-                {% endif %}
-    
-                <li>
-                    <div class="w-75 mx-auto fw-bold text-white rounded-pill p-3" style="background: #62929ecc">
-                        <a class="mz-color-secondary" id="mz-begin-mobile" href="{{base_url()}}/order">Build your
-                            website</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <script>
-        /* header */
-        if (document.body.contains(document.querySelector(".header-sticky"))) {
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll >= "300") {
-                    document.querySelector(".header-sticky").style.cssText = `
-                        display: block; 
-                        position: fixed;
-                        top: 35px;
-                        left: 0;
-                        right: 0;
-                        transform: translate(0px, -35px);
-                        transition: all 300ms ease-in;
-                        z-index: 2;
-                    `;
-                    document.querySelector(".header-sticky").classList.add("shawdow")
-                } else {
-                    document.querySelector(".header-sticky").style.cssText = `
-                        position: relative;
-                        transform: translate(0px, 1px);
-                        transition: all 500ms ease-in;
-                    `;
-                    document.querySelector(".header-sticky").classList.remove("shawdow")
-                }
-            })
-            document.querySelector(".icon-menu-mobile").onclick = () => {
-                document.querySelector(".menu-mobile-effet").classList.toggle("show");
-            }
-        }
-        if (document.body.contains(document.querySelector(".video-play-img"))) {
-            document.querySelector(".video-play-img").onclick = () => {
-                document.querySelector(".popup-video").classList.remove("hidden");
-                document.querySelector(".popup-video").classList.add("box");
-                document.querySelector("video").src = vid.getAttribute("src");
-            }
-            document.querySelector(".close-video").onclick = () => {
-                document.querySelector(".popup-video").classList.remove("box");
-                document.querySelector(".popup-video").classList.add("hidden");
-            }
-        }
-    </script>
-    <script>
-        if (document.body.contains(document.querySelector(".humberger-menu1"))) {
-            document.querySelector(".humberger-menu1").onclick = () => {
-                document.querySelector(".menu-mobile-effet1").classList.toggle("show");
-            }
-        }
-    </script>
+            <div class="menu-mobile menu-mobile-effet" bis_skin_checked="1">
+                <ul class="content-menu-mobile mb-0">
+                    {% for item in menu1.menu_tree %}
+                        <li><a href="{{ item.url }}" class="mz-color-secondary" target="_blank">
+                            {{ item.text }} </a></li>
+                    {% endfor %}
+                </ul>
+                <ul style="text-align: center !important ;">
+                    {% if not is_login() %}
+                        <li>
+                            <a class="mz-color-secondary" href="{{base_url()}}/user/login">Login</a>
+                        </li>
+                    {% else %}  
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/user">User</a></li>
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/order">My Booking</a></li> 
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/admin">Dashboard</a></li>
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/user/logout">Logout</a></li>
+                    {% endif %}
 
+                    <li>
+                        <div class="w-75 mx-auto fw-bold text-white rounded-pill p-3"
+                        style="background: #62929ecc">
+                            <a class="mz-color-secondary"  id="mz-begin-mobile"
+                            href="{{base_url()}}/order">Build your website</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            /* header */
+            if( document.body.contains(  document.querySelector(".header-sticky") ) ) {
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    if(currentScroll >= "300") {
+                        document.querySelector(".header-sticky").style.cssText =  `
+                            display: block; 
+                            position: fixed;
+                            top: 35px;
+                            left: 0;
+                            right: 0;
+                            transform: translate(0px, -35px);
+                            transition: all 300ms ease-in;
+                            z-index: 2;
+                        `;
+                        document.querySelector(".header-sticky").classList.add("shawdow")
+                    }else {
+                        document.querySelector(".header-sticky").style.cssText = `
+                            position: relative;
+                            transform: translate(0px, 1px);
+                            transition: all 500ms ease-in;
+                        `;
+                        document.querySelector(".header-sticky").classList.remove("shawdow")
+                    }
+                })
+                document.querySelector(".icon-menu-mobile").onclick = () => {
+                    document.querySelector(".menu-mobile-effet").classList.toggle("show");
+                }
+            }
+            if( document.body.contains( document.querySelector(".video-play-img") ) ) {
+                document.querySelector(".video-play-img").onclick = () => {
+                    document.querySelector(".popup-video").classList.remove("hidden");
+                    document.querySelector(".popup-video").classList.add("box");
+                    document.querySelector("video").src = vid.getAttribute("src");
+                }
+                document.querySelector(".close-video").onclick = () => {
+                    document.querySelector(".popup-video").classList.remove("box");
+                    document.querySelector(".popup-video").classList.add("hidden");
+                }
+            }
+        </script>
+        <script>
+            if( document.body.contains(  document.querySelector(".humberger-menu1") ) ) {
+                document.querySelector(".humberger-menu1").onclick = () => {
+                    document.querySelector(".menu-mobile-effet1").classList.toggle("show");
+                }
+            }
+        </script>
+        <!-- End Header -->
+    
 {% endblock %}

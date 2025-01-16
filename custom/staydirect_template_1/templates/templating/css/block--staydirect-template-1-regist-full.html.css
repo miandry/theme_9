@@ -183,3 +183,7 @@
   .log-reg #edit-mail--description {
     display: none;
   }
+  
+  a.st-forgot-pass:hover {
+    color: var(--bleumarine-color) !important;
+  }
