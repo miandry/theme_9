@@ -11,6 +11,8 @@
     {% set bank_account = config('mz_payement.stripe', 'account') %}
     {% set bank_account_status = config('mz_payement.stripe', 'status') %}
 
+
+
     
     {% set status = config("mz_payement.status","status") %}
 
@@ -726,6 +728,10 @@
         .text_demo {
             font-size: 12px;
         }
+        
+        .edit_block_custom_btn {
+            z-index: 2 !important;
+        }
     </style>
     {% set myuser = current_user() %}
     {% set is_editor = hasRole('content_editor',myuser.uid) %}
@@ -736,8 +742,28 @@
    
    
 {% if bank_account_status != 'complet' %}
-    
-    {% if status == 'confirmed' and bank_account is null %}
+    {% if bank_account_status == 'pending' and is_web or is_admin %}
+       {% set display = true %}
+             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
+        <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
+            <div class="navbar--fixed-left">
+            <div class="preview--staydirect-logo">
+                <a class="link--staydirect-logo" href="https://staydirecttech.com/">StayDirect TECHNOLOGIES</a>
+            </div>
+            </div>
+            <div class="navbar--fixed-left text_demo">
+                Please set up your bank account for payment processing
+            </div>
+            <div class="navbar--fixed-right">
+            <div class="preview--action--buy">
+                <a class="header-buy-now btn--3d color--primary shadow-none" href="/admin/bank/page">Continue Setup </a>
+            </div>
+            </div>
+        </div>
+        </nav>
+    {% endif %}
+        
+    {% if status == 'confirmed' and bank_account is null and is_web or is_admin %}
         {% set display = true %}
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
         <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">

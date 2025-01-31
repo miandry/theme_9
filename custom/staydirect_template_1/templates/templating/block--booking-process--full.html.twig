@@ -7,7 +7,6 @@
 	{{render_css(css,'block--staydirect-template-1-booking-process-full')}}
 	{% set c = block_parser(content) %}
 	{% set params = get_parameter() %}
-  
 	{% if params.termService  %}
 	   {% if booking_new  %}
 	   	{%  set param1 = {
@@ -23,7 +22,17 @@
 	{% set current_user = current_user() %}
 
 	{% set u = user_parser(current_user.uid) %}
-
+	
+    {% if params.booking_back %}
+        {% set bk = node_parser(params.booking_back) %}
+        {% set rental = node_parser("39") %}
+    {% endif %}
+	
+	<style>
+	    #proceed-to-pay-form{
+	        min-height: 1000px;
+	    }
+	</style>
 	<nav class="navbar navbar-expand-md navbar-dark navbar-and-specification">
 		<div class="container">
 			<a class="logo align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none title title-specification" href="#">Hotel Rental</a>
@@ -50,10 +59,32 @@
 			</div>
 		</div>
 	</div>
+	
 	<form id="proceed-to-pay-form">
-		{% for key,item in params %}
-			<input type="hidden" name="{{key}}" value="{{item}}" class="form-control"/>
-		{% endfor %}
+	    {% if params.booking_back %}
+	        {% set diff = ((date(bk.field_dates[0].end_value).timestamp - date(bk.field_dates[0].value).timestamp) / (60 * 60 * 24)) + 1 %}
+    		<input type="hidden" name="nid" value="39" class="form-control"/>
+			<input type="hidden" name="booking-range" value="{{ (diff * rental.field_default_price) }}" class="form-control"/>
+			<input type="hidden" name="booking-range-date" value="{{bk.field_dates[0].value}} - {{bk.field_dates[0].end_value}}" class="form-control"/>
+			{% for key,item in bk.field_addons %}
+			    {% set bk_name = (item.field_name|split('(')|first|trim ~ " _type")|replace({' ': '_', '_type': '_type'}) %}
+			    <input type="hidden" name="{{ bk_name }}" value="{{ item.field_type }}" class="form-control"/>
+			{% endfor %}
+			
+			{% for key,item in bk.field_addons %}
+			
+			    {% set bk_name = (item.field_name|split('(')|first|trim )|replace({' ': '_'}) %}
+			    {% set val = item.field_value %}
+			    {% if item.field_level %}  {% set val = item.field_level ~'----'~ item.field_value %} {% endif %}
+			    <input type="hidden" name="{{ bk_name }}" value="{{ val }}" class="form-control"/>
+			{% endfor %}
+			
+			<input type="hidden" name="total" value="{{ bk.field_price_default }}" class="form-control"/>
+	    {% else %}
+    		{% for key,item in params %}
+    			<input type="hidden" name="{{key}}" value="{{item}}" class="form-control"/>
+    		{% endfor %}
+	    {% endif %}
 		{% if params.action and params.action == 'guest' %}
 			<input type="hidden" name="action" value="guest" class="form-control"/>
 		{% endif %}
@@ -85,7 +116,7 @@
 
 							<div class="needs-validation">
 
-								<h4 class="specication-ttl-2">
+								<h4 class="specication-ttl-2" id="#specication-ttl-2">
 
 									<i class="icon i-spec">
 										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewbox="0 0 30 30" fill="none">
@@ -102,7 +133,7 @@
 									</div>
 
 									<div class="col-sm-6 " bis_skin_checked="1">
-										<input type="text" class="form-control float-right" id="cc-number" name="field_last_name" value="{{u.field_last_name}}" placeholder="Last Name" required="">
+										<input type="text" class="form-control float-right" id="cc-first-name" name="field_last_name" value="{{u.field_last_name}}" placeholder="Last Name" required="">
 
 									</div>
 
@@ -140,7 +171,7 @@
 									<div class="row pt-3">
 										<div class="form-group col">
 											<div class="custom-checkbox-1 my-3">
-												<input id="termService" type="checkbox" name="termService" required="">
+												<input id="termService" type="checkbox" name="termService">
 												<label for="termService">
 													Agree to
 												</label>
@@ -156,78 +187,124 @@
 							</div>
 						</div>
 
-
 					<!--</div>-->
 					<div class="col-md-5 col-lg-5 order-md-last" bis_skin_checked="1">
-						<div class="spec-right">
-							<div class="spec-top" style="
-															                    max-width: 100%;
-															                    height: 270px;
-															                    flex-shrink: 0;
-															                    border-radius: 20px 20px 0px 0px;
-															                    background: url( {{c['field_media1']['image'].url}} ) no-repeat;
-															                    background-color: #D9D9D9;
-															                    background-size: cover;
-															                "></div>
-							<div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px; padding-top: 39px">
-								<ul class="list-group">
-									<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
-									</strong>
-									<span class="text-1">{{ params["booking-range-date"] }}</span>
-
-
-									<hr style="margin-bottom: 0;">
-
-									{% for key,item in params %}
-
-										{% if key not in ['action','nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
-
-											{% set status = true  %}
-											{% if "----" in  item %}
-												{% set group =  item|split("----")%}
-											{% endif %}
-											{% if group %}
-												{# $ {{front_currency(group[1])|raw}}  #}
-												{% set price = group[1] %}
-											{% else %}
-												
-												{% set price = item %}
-											{% endif %}
-	                                        {% if item is not numeric %}
-												{% set status = false  %}
-											{% endif %}
-											{% if item is numeric and item == 0 %}
-												{% set status = false  %}
-											{% endif %}
-
-                                           {% if status %}
-											<li class="list-group-item d-flex justify-content-between lh-sm">
+					    {% if params.booking_back %}
+    						<div class="spec-right">
+    							<div class="spec-top" style="
+    															                    max-width: 100%;
+    															                    height: 270px;
+    															                    flex-shrink: 0;
+    															                    border-radius: 20px 20px 0px 0px;
+    															                    background: url( {{c['field_media1']['image'].url}} ) no-repeat;
+    															                    background-color: #D9D9D9;
+    															                    background-size: cover;
+    															                "></div>
+    							<div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px; padding-top: 39px">
+    								<ul class="list-group">
+    									<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
+    									</strong>
+    									<span class="text-1">{{ bk.field_dates[0].value }} - {{ bk.field_dates[0].end_value }}</span>
+    
+    									<hr style="margin-bottom: 0;">
+    
+    									{% for key,item in bk.field_addons %}
+ 											<li class="list-group-item d-flex justify-content-between lh-sm">
 												<div bis_skin_checked="1">
-													<h6 class="my-0">{{ key|replace({'_':' '}) }}</h6>
+													<h6 class="my-0">{{ item.field_name }}</h6>
 												</div>
 												<span class="text-body-secondary">
-												    $ {{front_currency(price)|raw}} 
+												    $ {{front_currency(item.field_value)|raw}} 
 												</span>
 											</li>
-											{% endif %}
-
-										{% endif %}
-									{% endfor %}
-								</ul>
-								<hr style="margin-top: 36px;">
-
-								<ul class="list-group list-group-foot">
-									<li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
-										<strong>TOTAL</strong>
-										<span>$
-											{{ params["total"] }}
-										</span>
-									</li>
-								</ul>
-
-							</div>
-						</div>
-						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
+    									{% endfor %}
+    								</ul>
+    								<hr style="margin-top: 36px;">
+    
+    								<ul class="list-group list-group-foot">
+    									<li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
+    										<strong>TOTAL</strong>
+    										<span class="p-0">
+    										    $ {{ front_currency(bk.field_price_default)|raw }}
+    										</span>
+    									</li>
+    								</ul>
+    
+    							</div>
+    						</div>
+    						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
+					    {% else %}
+					    
+    						<div class="spec-right">
+    							<div class="spec-top" style="
+    															                    max-width: 100%;
+    															                    height: 270px;
+    															                    flex-shrink: 0;
+    															                    border-radius: 20px 20px 0px 0px;
+    															                    background: url( {{c['field_media1']['image'].url}} ) no-repeat;
+    															                    background-color: #D9D9D9;
+    															                    background-size: cover;
+    															                "></div>
+    							<div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px; padding-top: 39px">
+    								<ul class="list-group">
+    									<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
+    									</strong>
+    									<span class="text-1">{{ params["booking-range-date"] }}</span>
+    
+    									<hr style="margin-bottom: 0;">
+    
+    									{% for key,item in params %}
+    
+    										{% if key not in ['action','nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
+    
+    											{% set status = true  %}
+    											{% if "----" in  item %}
+    												{% set group =  item|split("----")%}
+    											{% endif %}
+    											{% if group %}
+    												{# $ {{front_currency(group[1])|raw}}  #}
+    												{% set price = group[1] %}
+    											{% else %}
+    												
+    												{% set price = item %}
+    											{% endif %}
+    	                                        {% if item is not numeric %}
+    												{% set status = false  %}
+    											{% endif %}
+    											{% if item is numeric and item == 0 %}
+    												{% set status = false  %}
+    											{% endif %}
+    
+                                               {% if status %}
+    											<li class="list-group-item d-flex justify-content-between lh-sm">
+    												<div bis_skin_checked="1">
+    													<h6 class="my-0">{{ key|replace({'_':' '}) }}</h6>
+    												</div>
+    												<span class="text-body-secondary">
+    												    $ {{front_currency(price)|raw}} 
+    												</span>
+    											</li>
+    											{% endif %}
+    
+    										{% endif %}
+    									{% endfor %}
+    								</ul>
+    								<hr style="margin-top: 36px;">
+    
+    								<ul class="list-group list-group-foot">
+    									<li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
+    										<strong>TOTAL</strong>
+    										<span>$
+    											{{ params["total"] }}
+    										</span>
+    									</li>
+    								</ul>
+    
+    							</div>
+    						</div>
+    						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
+						{% endif  %}
+						
 					</div>
 
 				</div>
@@ -236,39 +313,66 @@
 	</form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
-	<script>
+
     
-        function validatePhoneNumber(phoneNumber) {
-            const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
-            return cleanedPhoneNumber.length === 10;
+    <script>
+    function validatePhoneNumber(phoneNumber) {
+        const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+        return cleanedPhoneNumber.length === 10;
+    }
+    
+    function validateName() {
+        if ($.trim($('#cc-name').val()) !== '' && $.trim($('#cc-first-name').val()) !== '') {
+            return true
+        } else {
+            return false
         }
-        $(document).ready(function(){
-            $('#phone').inputmask("(999) 999-9999");
-            
-            $('#btn-checkout').click(function(e){
-                e.stopPropagation();
-                e.preventDefault();
-                const phoneNumber = $('#phone').val();
-                const isValid = validatePhoneNumber(phoneNumber);
-    
-                if (isValid) {
-                    $('#phone').each(function() {
-                        this.style.removeProperty('border');
-                    });
-                    $('#p-wrapper small').addClass("d-none");
+    }
+
+    $(document).ready(function () {
+        $('#phone').inputmask("(999) 999-9999");
+
+        $('#btn-checkout').click(function (e) {
+            e.preventDefault();
+
+            const phoneNumber = $('#phone').val();
+            const isValid = validatePhoneNumber(phoneNumber);
+            const isValidName = validateName();
+
+            if (isValid && isValidName) {
+                $('#phone').css('border', '');
+                $('#p-wrapper small').addClass("d-none");
+
+                const form = document.getElementById('proceed-to-pay-form');
+
+                if (form.checkValidity()) {
                     if ($('#termService').is(':checked')) {
-                      $('#proceed-to-pay-form').trigger( "submit" );
+                        form.submit();
                     } else {
-                        alert('Please accept terms and conditions')
+                        alert('Please accept terms and conditions');
                     }
                 } else {
+                    form.reportValidity();
+                }
+            } else {
+                if ($.trim($('#cc-name').val()) == '') {
+                    document.getElementById('cc-name').style.setProperty('border', '1px solid red', 'important');
+                }
+                
+                if ($.trim($('#cc-first-name').val()) == '') {  // Correction ici
+                    document.getElementById('cc-first-name').style.setProperty('border', '1px solid red', 'important');
+                }
+    
+                if (!isValid) {
                     $('#phone').each(function() {
                         this.style.setProperty('border', '1px solid red', 'important');
                     });
                     $('#p-wrapper small').removeClass("d-none")
                 }
-            });
+                
+            }
         });
-    </script>
+    });
+</script>
 
 {% endblock %}

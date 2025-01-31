@@ -1,0 +1,23 @@
+{% set c = block_parser(content) %}
+{% set is_editor = hasRole('content_editor',myuser.uid) %}
+{% set is_admin = hasRole('administrator',myuser.uid) %}
+{% set is_web = hasRole('webmaster',myuser.uid) %}
+<div class="position-relative terms-wrapper">
+    <div class="container col-md-10 mx-auto">
+    {% if is_editor or is_admin or  is_web %}
+        <style>
+            .terms-wrapper:hover .edit_block_custom_btn_header {
+                display: block !important;
+            }
+        </style>
+            <a  class="edit_block_custom_btn_header edit_block_custom_btn position-absolute start-0 top-0" target="_blank" href="/block/{{c.id}}?destination={{current_url()}}">
+                Edit {{c.info}}</a>
+    {% endif %}
+    <div>
+        <header>
+            <h1>Terms and Conditions</h1>
+        </header>
+        {{ c.body[0].value|raw }}
+    </div>
+    </div>
+</div>

@@ -361,9 +361,8 @@
                   </li>
                   <div class="date_booking input-group">
                     <input type="hidden" name="nid" value="{{ n.nid }}"/>
-                     <input id="datepickerVal" required class="Dym form-check-input" type="hidden" name="booking-range" />
-                     <input id="datepicker" required name="booking-range-date"  required="" placeholder="Select your dates   >"  style="width: 100%"/>
-
+                    <input id="datepickerVal" required class="Dym form-check-input" value="{{params['booking-range']}}" type="hidden" name="booking-range"/>
+                     <input id="datepicker"  value="{{params['booking-range-date']}}" required name="booking-range-date" placeholder="Select your dates   >" style="width: 100%"/>
                   </div>
              
       {% for key,item in addons %}
@@ -452,10 +451,10 @@
                 {% else %}
                   <div class="row px-2 py-4">
                       <div class="col-md-6">
-                          <a  href="/register?destination={{current_url_alias()}}" class="btn  btn-checkout    border-radius-0 ">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
+                          <a  href="/login?destination={{current_url_alias()}}" class="btn  btn-checkout    border-radius-0 ">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
                       </div>                
                       <div class="col-md-6">
-                          <button  name="action" class="btn btn-checkout   border-radius-0 " value="guest" type="submit">Checkout as Guest </button> </div>  
+                          <button  name="action" class="btn btn-checkout   border-radius-0 " value="guest" type="submit">Checkout as Guest</button> </div>  
                       </div>
                   </div>
                 {% endif %}
