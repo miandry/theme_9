@@ -1137,9 +1137,7 @@
         font-style: normal !important;
         font-weight: 500 !important;
         line-height: 150%;
-        /* 30px */
         text-align: center !important;
-        border-radius: 0 !important;
     }
     
     .left-login-submit {
@@ -1238,7 +1236,6 @@
     
     /* -- register */
     .log-reg-resp .desc--forgt-passwd {
-        text-align: right !important;
         margin-top: 12px;
         padding-right: 5px;
     }
@@ -1309,7 +1306,7 @@
 
                                 <div class="btn-tab-login-register-resp d-none">
                                     <div class="tab_btn active tab_btn_login">
-                                        login
+                                        Login
                                     </div>
                                     <a class="tab_btn tab_btn_signup" href="{{base_url()}}/register">
                                         <span style="color: rgba(51, 51, 51, 0.82);">
@@ -1320,8 +1317,9 @@
 
                             </div>
                         </div>
-                        <div class="desc--forgt-passwd">
-                            <a href="{{base_url()}}/password" class="st-forgot-pass">Forgot your password?</a>
+                        <div class="desc--forgt-passwd px-4">
+                           <a href="{{base_url()}}/register" class="st-forgot-pass me-3">Register</a>
+                            <a href="{{base_url()}}/user/password" class="st-forgot-pass">Forgot your password?</a>
                         </div>
                     </div>
                 </div>
@@ -1358,6 +1356,7 @@
    }
 </style>
 <script>
+    document.getElementById("edit-submit").value = "Login";
     let form_logreg = document.getElementById("log-reg-js");
     if( document.body.contains(form_logreg) )  {
         let js_formpass = document.querySelectorAll(".js-form-type-password");

@@ -6,7 +6,9 @@
     {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
     {% set css = include(path_css) %} 
     {{render_css(css,'block__staydirect_header_user_full')}}
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Header -->
         {% set c = block_parser(content) %}
         {% set menu1 = simplify_menu(c.field_menu_1) %}
@@ -31,6 +33,11 @@
             
             .mz-color-secondary {
                 color: rgba(51, 51, 51, 0.60) !important;
+            }
+            
+            .menu-mobile-effet1 {
+                top: auto !important;
+                right: 0 !important;
             }
         </style>
         <div class="header-sticky">
@@ -91,7 +98,7 @@
             <div class="menu-mobile menu-mobile-effet" bis_skin_checked="1">
                 <ul class="content-menu-mobile mb-0">
                     {% for item in menu1.menu_tree %}
-                        <li><a href="{{ item.url }}" class="mz-color-secondary" target="_blank">
+                        <li><a href="{{ item.url }}" class="mz-color-secondary icon-menu-mobile" target="_blank">
                             {{ item.text }} </a></li>
                     {% endfor %}
                 </ul>
@@ -101,9 +108,11 @@
                             <a class="mz-color-secondary" href="{{base_url()}}/user/login">Login</a>
                         </li>
                     {% else %}  
-                        <li><a class="mz-color-secondary" href="{{base_url()}}/user">User</a></li>
-                        <li><a class="mz-color-secondary" href="{{base_url()}}/order">My Booking</a></li> 
-                        <li><a class="mz-color-secondary" href="{{base_url()}}/admin">Dashboard</a></li>
+                        {% set myuser = current_user() %}
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/user">User profile</a></li>
+                        {% if hasRole('webmaster',myuser.uid) or hasRole('administrator',myuser.uid) or hasRole('content_editor',myuser.uid) %}
+                            <li><a class="mz-color-secondary" href="{{base_url()}}/admin/bookings">Dashboard</a></li>
+                        {% endif%}
                         <li><a class="mz-color-secondary" href="{{base_url()}}/user/logout">Logout</a></li>
                     {% endif %}
 
@@ -143,9 +152,6 @@
                         document.querySelector(".header-sticky").classList.remove("shawdow")
                     }
                 })
-                document.querySelector(".icon-menu-mobile").onclick = () => {
-                    document.querySelector(".menu-mobile-effet").classList.toggle("show");
-                }
             }
             if( document.body.contains( document.querySelector(".video-play-img") ) ) {
                 document.querySelector(".video-play-img").onclick = () => {
@@ -158,6 +164,10 @@
                     document.querySelector(".popup-video").classList.add("hidden");
                 }
             }
+            
+            $('.icon-menu-mobile').on('click', function(){
+                $(".menu-mobile-effet").toggleClass('show')
+            })
         </script>
         <script>
             if( document.body.contains(  document.querySelector(".humberger-menu1") ) ) {

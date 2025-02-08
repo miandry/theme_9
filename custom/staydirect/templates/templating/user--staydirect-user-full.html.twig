@@ -364,6 +364,7 @@
             								{% for item in booking|reverse %}
             									{% set n = node_parser(item) %}
             									{% set site = node_parser(n.field_item['#object']) %}
+            									{% if n.moderation_state != "init" %}
             									<tr>
             										<th scope="row" class="py-1">{{n.nid}}</th>
             										<td  class="py-1">
@@ -430,6 +431,7 @@
                                                         </div>
             										</td>
             									</tr>
+            									{% endif %}
             								{% endfor %}
             
             							</tbody>

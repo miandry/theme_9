@@ -367,7 +367,8 @@
             transition: all .3s linear !important;
             overflow: hidden !important;
             height: 0 !important;
-            top: 76px;
+            top: auto !important;
+            right: 0 !important;
             color: #fff;
             z-index: 2;
         }
@@ -540,7 +541,8 @@
             }
         
             .menu-mobile-effet1 {
-                top: 74px;
+                top: auto !important;
+                right: 0 !important;
             }
         }
         
@@ -590,7 +592,8 @@
             }
         
             .menu-mobile-effet1 {
-                top: 76px;
+                top: auto !important;
+                right: 0 !important;
             }
         
             .menu-mobile-effet1 {
@@ -731,6 +734,10 @@
         
         .edit_block_custom_btn {
             z-index: 2 !important;
+        }
+        
+        button.trigger.focusable {
+            display: none !important;
         }
     </style>
     {% set myuser = current_user() %}
@@ -897,8 +904,7 @@
                     </li>
                 {% else %} 
                     <li><a href="{{base_url()}}/user">My account</a></li>
-                    <li><a href="{{base_url()}}/booking#form-booking">My Booking</a></li> 
-                    <li><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
+                    <li class="d-none"><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
                     <li><a href="{{base_url()}}/user">Logout</a></li>
                 {% endif %}
             </ul>

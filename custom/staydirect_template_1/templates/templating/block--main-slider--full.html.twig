@@ -13,7 +13,11 @@
 
       {% set imgs = c['field_images'] %}
       {% set imgs_length = imgs|length %}
-
+        <style>
+            button.trigger.focusable {
+                display: none !important;
+            }
+        </style>
       <div id="section--slider" class="banniere section--slider">
         <div class="wrapper--resp">
           <div class="settings" style="display: none;">

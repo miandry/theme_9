@@ -174,7 +174,7 @@
     transition: all .3s linear !important;
     overflow: hidden !important;
     height: 0 !important;
-    top: 71px;
+    top: auto !important;
     color: #fff;
     z-index: 2;
     display: block;

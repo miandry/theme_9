@@ -873,14 +873,10 @@
     }
 
     .container-form-login-tab #edit-actions {
-        width: 50%;
         height: 80px;
-        border-radius: 20px 0px 0px 20px;
+        border-radius: 20px;
         overflow: hidden;
         z-index: 2;
-        position: absolute;
-        bottom: 0;
-        left: 0;
     }
 
     .container-form-login-tab #edit-actions input {
@@ -1167,9 +1163,7 @@
         font-style: normal !important;
         font-weight: 500 !important;
         line-height: 150%;
-        /* 30px */
         text-align: center !important;
-        border-radius: 0 !important;
     }
 
     .left-login-submit {
@@ -1268,7 +1262,6 @@
 
     /* -- register */
     .log-reg-resp .desc--forgt-passwd {
-        text-align: right !important;
         margin-top: 12px;
         padding-right: 5px;
     }
@@ -1298,6 +1291,9 @@
     a.st-forgot-pass:hover {
         color: #4d7c88;
     }
+    .useradmin--sidebar-left {
+      margin-bottom: 0px !important;
+     }
 </style>
 
 <section id="log-reg-js" class="login-resp login-and log-reg-resp">
@@ -1325,20 +1321,11 @@
                                     {{user_register()}}
                                 </div>
                                 <!-- end register -->
-                                <div class="btn-tab-login-register-resp">
-                                    <div class="tab_btn active tab_btn_login">
-                                        Create new account
-                                    </div>
-                                    <a class="tab_btn tab_btn_signup" href="{{base_url()}}/login">
-                                        <span style="color: rgba(51, 51, 51, 0.82);">Log in</span>
-                                    </a>
-                                </div>
-                              
-
                             </div>
                         </div>
-                        <div class="desc--forgt-passwd">
-                            <a href="{{base_url()}}/password" class="st-forgot-pass">Forgot your password?</a>
+                        <div class="desc--forgt-passwd px-4">
+                            <a href="{{base_url()}}/login" class="st-forgot-pass me-3">Login</a>
+                            <a href="{{base_url()}}/user/password" class="st-forgot-pass">Forgot your password?</a>
                         </div>
                     </div>
                 </div>
