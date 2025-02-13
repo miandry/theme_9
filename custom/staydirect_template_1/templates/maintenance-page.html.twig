@@ -90,8 +90,6 @@ html, body {
 {% set status = config("mz_payement.status","status") %}
 {% set sites = config("mz_payement.status","site_variables") %}
 
-
-
   {% if status == 'start_payment' %}
     <h1>Please, finish your payment.</h1>
     <h3>For more information, contact us at:</h3>
@@ -100,9 +98,7 @@ html, body {
        <a href="{{sites.parent_site}}/pay?site_id={{sites.site_id}}">Click here to process your payment</a>
        <a href="{{sites.parent_site}}/user/login">Log in to StayDirect for more details</a>
     </div>
-  {% endif %}
-
-  {% if status == 'in_process' %}
+  {% elseif status == 'in_process' %}
     <h1>Payment under validation</h1>
     <h2>Your website will be available after validation of your payment.</h2>
     <h3>For more information, please contact us at:</h3>
@@ -110,16 +106,21 @@ html, body {
     <div class="md-mtnc">
       <a  href="{{sites.parent_site}}/user/login">Log in to StayDirect for more details</a>
     </div>
-  {% endif %}  
-
-    {% if status == 'confirmed' %}
-    <h1>Your payment is confirmed </h1>
-    <h2>Please set up your bank account for.</h2>
+  {% elseif status == 'confirmed' %}
+    <h1>Website is on Maintenace mode </h1>
     <h3>To contact us in the meantime please email:</h3>
     <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
     <div class="md-mtnc">
       <a  href="{{sites.parent_site}}/user/login">Log in to StayDirect for more details</a>
     </div>
-  {% endif %}  
+  {% else %} 
+    <h1>Website is on Maintenace mode </h1>
+    <h3>To contact us in the meantime please email:</h3>
+    <a href="mailto:staydirect@staydirecttech.com">staydirect@staydirecttech.com</a>
+    <div class="md-mtnc">
+      <a  href="{{sites.parent_site}}/user/login">Log in to StayDirect for more details</a>
+    </div>
+  {% endif %}
+
 
 </main>

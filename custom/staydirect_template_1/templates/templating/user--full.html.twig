@@ -12,7 +12,8 @@
         } 
    %}
 	{% set booking = node_parser_by_properties(conditions)%}
-	<div class="container container-resp">
+
+	<div class="container container-resp hidden">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="container--header">
@@ -131,7 +132,7 @@
         							<tbody>
         								{% for item in booking|reverse %}
             								{% set n = node_parser(item) %}
-            								{% if n.moderation_state != "init" %}
+            								{% if n.moderation_state != "init" and n.field_price_with_tax %}
             									{% set article = node_parser(n.field_item['#object']) %}
             									<tr>
             										<th scope="row">{{n.nid}}</th>
