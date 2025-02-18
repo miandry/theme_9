@@ -223,6 +223,9 @@
             padding: 10px;
             overflow: hidden;
         }
+        .badge-unsubscribe{
+                background-color: gray;
+        }
 
     </style>
 
@@ -365,7 +368,7 @@
             									{% set n = node_parser(item) %}
             									{% set site = node_parser(n.field_item['#object']) %}
             									{% if n.moderation_state != "init" %}
-            									<tr>
+            									<tr {% if site.status == 0 %} class="unsubscribe" {% endif %}>
             										<th scope="row" class="py-1">{{n.nid}}</th>
             										<td  class="py-1">
             										    {{ site.label_site}} 
@@ -385,6 +388,10 @@
             											{% endif %}
             										</td>
             										<td  class="py-1">
+                                                     {% if site.status == 0 %} 
+                                                            	<span class="badge badge-unsubscribe p-1">
+            												    Unsubscribe </span> 
+                                                     {% else %} 
             											{% if n.moderation_state == "validate" %}
             												<span class="badge badge-paid p-1">
             												    Booking Confirmed</span>
@@ -402,6 +409,7 @@
             												<span class="badge badge-inpaid p-1">
             												    Archived</span>
             											{% endif %}
+                                                    {% endif %}  
             
             										</td>
             										<td  class="py-1">
@@ -422,10 +430,16 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                 
+                                                               {% if site.status == 0 %} 
+                                                                <a class="dropdown-item p-2" href="{{base_url}}/user">
+                                                                    subscribe again
+                                                                </a>
+                                                               {% else %} 
                                                                 <a class="dropdown-item p-2" href="{{base_url}}/unsubscribe?id={{n.field_subscription_id}}">
                                                                     Unsubscribe
                                                                 </a>
+                                                               {% endif %}
+                                                               
                                                             </li>
                                                           </ul>
                                                         </div>
