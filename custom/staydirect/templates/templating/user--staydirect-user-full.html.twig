@@ -431,8 +431,8 @@
                                                             </li>
                                                             <li>
                                                                {% if site.status == 0 %} 
-                                                                <a class="dropdown-item p-2" href="{{base_url}}/user">
-                                                                    subscribe again
+                                                                <a class="dropdown-item p-2" href="{{base_url}}/pay?again=1&site_id={{site.nid}}">
+                                                                   Resubscribe now!
                                                                 </a>
                                                                {% else %} 
                                                                 <a class="dropdown-item p-2" href="{{base_url}}/unsubscribe?id={{n.field_subscription_id}}">
