@@ -388,9 +388,14 @@
             											{% endif %}
             										</td>
             										<td  class="py-1">
-                                                     {% if site.status == 0 %} 
+                                                     {% if site.fiel_date  %} 
+                                                              {% if site.status == 0 %} 
                                                             	<span class="badge badge-unsubscribe p-1">
             												    Unsubscribe </span> 
+                                                              {% else %} 
+                                                                	<span class="badge badge-unsubscribe p-1">
+            												    Unsubscription in Progress </span> 
+                                                              {% endif %}  
                                                      {% else %} 
             											{% if n.moderation_state == "validate" %}
             												<span class="badge badge-paid p-1">
@@ -430,14 +435,15 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                               {% if site.status == 0 %} 
-                                                                <a class="dropdown-item p-2" href="{{base_url}}/pay?again=1&site_id={{site.nid}}">
-                                                                   Resubscribe now!
-                                                                </a>
-                                                               {% else %} 
+                                                               {% if site.fiel_date %} 
                                                                 <a class="dropdown-item p-2" href="{{base_url}}/unsubscribe?id={{n.field_subscription_id}}">
                                                                     Unsubscribe
                                                                 </a>
+                                                               {% else %} 
+                                                                 <a class="dropdown-item p-2" href="{{base_url}}/pay?again=1&site_id={{site.nid}}">
+                                                                   Resubscribe now!
+                                                                </a>
+                                                         
                                                                {% endif %}
                                                                
                                                             </li>
