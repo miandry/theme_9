@@ -7,6 +7,8 @@ libraries:
   - 'staydirect/global-styling'
 regions:
   header: 'Header'
+  footer_simple: 'Footer simple'
+  header_simple: " Header simple"
   pre_content: 'Pre-content'
   help: Help
   content: Content
