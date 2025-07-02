@@ -446,11 +446,15 @@
        .custom-login-form-wrapper input {
              border: none !important;
         }
+        
+        .d-none {
+            display: none !important;
+        }
     </style>
     <footer>
         <div class="container-resp">
 
-            <div style="width: 100%; overflow: hidden;">
+            <div style="width: 100%; overflow: hidden;" class="for-register">
                 <svg xmlns="http://www.w3.org/2000/svg" height="2" viewBox="0 0 1202 2" fill="none">
                     <path d="M1 1H1201" stroke="#333333" stroke-opacity="0.11" stroke-linecap="round"/>
                 </svg>
@@ -461,12 +465,15 @@
                     <ul>
                         {% for item in menu3.menu_tree %}
                         <li>
-                            <a href="{{ item.url }}" target="_blank">  {{ item.text }} </a>
+                            <a href="{{ item.url }}">  {{ item.text }} </a>
                         </li>
                         {% endfor %}
+                        <li>
+                            <a href="/faq">FAQ</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="footer-right-resp">
+                <div class="footer-right-resp d-none">
                     <ul>
                         {% for size in 0 .. (paragraphs_length - 1) %}
                         <li>
@@ -479,7 +486,7 @@
 
             <div class="footer-copyright" style="margin-top: -15px;">
                 <p class="text-center">
-                    {{ c['field_text1'] }}
+                    Copyright &#169; {{ "now"|date("Y") }} {{ c['field_text1'] }}
                 </p>
             </div>
 

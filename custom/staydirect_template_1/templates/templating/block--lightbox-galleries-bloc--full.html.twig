@@ -20,7 +20,7 @@
         {% if is_editor or is_admin or  is_web %}
             <a  class="edit_block_custom_btn_header edit_block_custom_btn" target="_blank" href="/block/{{c.id}}?destination={{current_url()}}"> Edit {{c.info}}</a>
         {% endif %}
-        <div class="container">
+        <div class="container" style="cursor: pointer;">
             <div class="row">
                 {% for item in c.gallery_items %}
                 <div class="col-lg-3 col-sm-6 mb-4">

@@ -68,12 +68,12 @@
                     picker.on('view', (evt) => {
                         const { view, date, target } = evt.detail;
                         const d = date ? date.format('YYYY-MM-DD') : null;
-
                         if (view === 'CalendarDay' && priceList[d]) {
-            
+                            const valeur = parseInt(priceList[d], 10);
+                            const formate = formatToK(valeur);
                             const span = target.querySelector('.day-price') || document.createElement('span');
                             span.className = 'day-price';
-                            span.innerHTML = `$${priceList[d]}`;
+                            span.innerHTML = `$${formate}`;
 
                             target.append(span);
                         }
@@ -121,9 +121,17 @@
             jQuery('select').on('change', function() {
                 caluction();
             });
+            
+            // format price on CalendarDay 
+            function formatToK(num) {
+              if (num >= 1000) {
+                return (num / 1000).toFixed(num % 1000 === 0 ? 0 : 1) + 'k';
+              }
+              return num.toString();
+            }
 
             function caluction() {
-                let total = 0;
+                let total = 0.00;
                 // let url = "";
                 jQuery('.booking-form input.Dym, .booking-form select.Dym').each(
                     function(index) {
@@ -140,7 +148,11 @@
                     }
                 );
                 if(document.getElementById('total_prix')){
-                    document.getElementById('total_prix').innerHTML = total;
+                    let formatted = total.toLocaleString('en-US', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    });
+                    document.getElementById('total_prix').innerHTML = "$" + formatted;
                 }            
                 jQuery("#total_prix_hidden").val(total);
             }
@@ -154,7 +166,7 @@
                     var $montant = $(this).parent().parent().find('.qty-montant').val();
                     var qty = $(event.target).val();
                     var $total = parseFloat(qty) * parseFloat($montant);
-                    $valueOnChange.html($total);
+                    $valueOnChange.html($total.toFixed(2));
                     $valueOnChangeAmount.val($total);
                     caluction();
                 })

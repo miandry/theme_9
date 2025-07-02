@@ -7,22 +7,87 @@
  * - breadcrumb: Breadcrumb trail items.
  */
 #}
-
-
-
+{% set url = current_url_alias() %}
 {% if breadcrumb %}
+<style>
+    .ad-none {
+        display: none !important;
+    }
+</style>
   <nav class="gin-breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
     <ol class="gin-breadcrumb__list">
+        
     {% for item in breadcrumb %}
       {% if item.text %}
-      <li class="gin-breadcrumb__item">
-        {% if item.url %}
-          <a href="{{ item.url }}" class="gin-breadcrumb__link"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>{{ item.text }}</a>
-        {% else %}
-          <span class="gin-breadcrumb__text">{{ item.text }}</span>
-        {% endif %}
-      </li>
+          {% if url == "/taxonomy/term/1/edit" %}
+              <li class="gin-breadcrumb__item">
+                {% if item.url %}
+                  <a href="{{ item.url }}" class="gin-breadcrumb__link"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>
+                      Edit
+                  </a>
+                  {% else %}
+                  <span class="gin-breadcrumb__text">My rental add-ons</span>
+                {% endif %}
+              </li>
+          {% elseif url == "/admin/users" %}
+              <li class="gin-breadcrumb__item">
+                  <span class="gin-breadcrumb__text">/ Users</span>
+              </li>
+              <li class="gin-breadcrumb__item">
+                  <a href="{{ item.url }}" class="gin-breadcrumb__link ad-none"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>
+                      Administration
+                  </a>
+                   <span class="gin-breadcrumb__text"> Users</span>
+              </li>
+          {% elseif url == "/admin/bank/page" %}
+              <li class="gin-breadcrumb__item">
+                  <span class="gin-breadcrumb__text">/ Bank</span>
+              </li>
+              <li class="gin-breadcrumb__item">
+                  <a href="{{ item.url }}" class="gin-breadcrumb__link ad-none"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>
+                      Administration
+                  </a>
+                   <span class="gin-breadcrumb__text"> Bank setup</span>
+              </li>
+          {% elseif url == "/node/39/edit" %}
+              <li class="gin-breadcrumb__item">
+                  <a href="{{ item.url }}" class="gin-breadcrumb__link"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>
+                      Edit
+                  </a>
+                   <span class="gin-breadcrumb__text"> / My rental details</span>
+              </li>
+          {% elseif url == "/admin/my-refunds" %}
+              <li class="gin-breadcrumb__item">
+                  <span class="gin-breadcrumb__text">/ Refunds history</span>
+              </li>
+              <li class="gin-breadcrumb__item">
+                  <a href="{{ item.url }}" class="gin-breadcrumb__link ad-none"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>
+                    Administration
+                  </a>
+                   <span class="gin-breadcrumb__text">Refunds history</span>
+              </li>
+          {% elseif url == "/admin/bookings" %}
+              <li class="gin-breadcrumb__item">
+                  <span class="gin-breadcrumb__text">/ Bookings request</span>
+              </li>
+              <li class="gin-breadcrumb__item">
+                  <a href="{{ item.url }}" class="gin-breadcrumb__link ad-none"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>
+                    Administration
+                  </a>
+                   <span class="gin-breadcrumb__text">Bookings request</span>
+              </li>
+          {% else %}
+              <li class="gin-breadcrumb__item">
+                {% if item.url %}
+                  <a href="{{ item.url }}" class="gin-breadcrumb__link"{% if item.attributes.title %} title="{{ item.attributes.title }}"{% endif %}{% if item.attributes.data %} {{ item.attributes.data }}{% endif %}>
+                      {{ item.text }}
+                  </a>
+                {% else %}
+                  <span class="gin-breadcrumb__text">{{ item.text }}</span>
+                {% endif %}
+              </li>
+          {% endif %}
       {% endif %}
     {% endfor %}
     </ol>

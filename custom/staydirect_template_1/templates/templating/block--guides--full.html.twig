@@ -11,7 +11,7 @@
 {% include START_EDITOR with {'c': c}  %}
 
 
-<div class="aminitie" style="background: url({{ c.field_image1["image"].url }});"></div>
+<div class="aminitie" style="background: url({{ c.field_image1["image"].uri|image_style('highlight_bg_1260_460') }});"></div>
 <div class="container">
   <div class="container-aminitie d-flex">
         <div class="col-md-12 auto">
@@ -24,7 +24,7 @@
                 <div class="col-6">
                   <ul class="list-unstyled ps-0">
                     <li>
-                      <a class="icon-link" href="#">
+                      <a class="icon-link" href="javascript:void(0);">
                         {% if paragraphs[size]['field_icon1']['image'].url is defined %}
                           <img src="{{paragraphs[size]['field_icon1']['image'].url}}" alt="" style="width: 25px; height: 25px;">
                         {% else %}
@@ -39,7 +39,7 @@
                     </li>
                 {% elseif size%4== 3%}
                     <li>
-                      <a class="icon-link" href="#">
+                      <a class="icon-link" href="javascript:void(0);">
                         {% if paragraphs[size]['field_icon1']['image'].url is defined %}
                           <img src="{{paragraphs[size]['field_icon1']['image'].url}}" alt="" style="width: 25px; height: 25px;">
                         {% else %}
@@ -54,7 +54,7 @@
                 </div>
                 {% else %}
                   <li>
-                    <a class="icon-link" href="#">
+                    <a class="icon-link" href="javascript:void(0);">
                       {% if paragraphs[size]['field_icon1']['image'].url is defined %}
                         <img src="{{paragraphs[size]['field_icon1']['image'].url}}" alt="" style="width: 25px; height: 25px;">
                       {% else %}

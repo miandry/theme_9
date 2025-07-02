@@ -1,0 +1,61 @@
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+      .text-primary {
+          color: #4dabf7;
+      }
+      .border-primary {
+          border-color: #4dabf7;
+      }
+  </style>
+<div class="max-w-5xl mx-auto p-6">
+      <div class="border-b mb-6">
+        <div class="flex space-x-4">
+          <a href="/admin/tutorial" class="px-4 py-3 text-gray-500 hover:text-gray-700">
+            Video Tutorials
+          </a>
+          <button class="px-4 py-3 text-primary border-b-2 border-primary font-medium">
+            User roles
+          </button>
+        </div>
+      </div>
+    <!-- Webmaster -->
+    <section class="bg-white shadow-md rounded-2xl p-6 mb-8 border-l-4 border-blue-600">
+      <h2 class="text-2xl font-semibold text-blue-600 mb-4">🧑‍💻 Webmaster</h2>
+      <p class="mb-4">
+        The <strong>Webmaster</strong> role includes both editorial and functional responsibilities. It involves daily site management without modifying source code.
+      </p>
+      <ul class="list-disc ml-6 space-y-1">
+        <li>Create/edit content</li>
+        <li>Manage views, menus, blocks</li>
+        <li>Manage users and roles</li>
+        <li>Oversee site functionality</li>
+        <li>Optimize content presentation</li>
+      </ul>
+      <p class="mt-3 text-sm text-gray-500">⚠️ No access to the database or advanced technical configurations.</p>
+    </section>
+
+    <!-- Content Editor -->
+    <section class="bg-white shadow-md rounded-2xl p-6 mb-8 border-l-4 border-green-600">
+      <h2 class="text-2xl font-semibold text-green-600 mb-4">📝 Content Editor</h2>
+      <p class="mb-4">
+        The <strong>Content Editor</strong> role focuses on content management. It allows creating, editing, publishing, and organizing site content.
+      </p>
+      <ul class="list-disc ml-6 space-y-1">
+        <li>Edit views, menus, blocks content on the site</li>
+      </ul>
+      <p class="mt-3 text-sm text-gray-500">⚠️ No access to site structure or configuration.</p>
+    </section>
+
+    <!-- Authenticated User -->
+    <section class="bg-white shadow-md rounded-2xl p-6 mb-8 border-l-4 border-purple-600">
+      <h2 class="text-2xl font-semibold text-purple-600 mb-4">👤 Authenticated User</h2>
+      <p class="mb-4">
+        The <strong>Authenticated User</strong> role is automatically assigned to all logged-in users. It’s the default role for site members.
+      </p>
+      <ul class="list-disc ml-6 space-y-1">
+        <li>Access their own account</li>
+        <li>can make bookings on the site.</li>
+      </ul>
+      <p class="mt-3 text-sm text-gray-500">⚠️ No access to administration or other users’ content.</p>
+    </section>
+  </div>

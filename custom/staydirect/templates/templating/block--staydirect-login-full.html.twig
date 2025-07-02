@@ -12,7 +12,6 @@
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraph3'] %}
 {% set paragraphs_length = paragraphs|length %}
-
 <style>
     *,
     *::after,
@@ -1317,8 +1316,8 @@
 
                             </div>
                         </div>
-                        <div class="desc--forgt-passwd px-4">
-                           <a href="{{base_url()}}/register" class="st-forgot-pass me-3">Register</a>
+                        <div class="desc--forgt-passwd px-4 d-flex justify-content-between flex-wrap">
+                           <a href="{{base_url()}}/register" class="st-forgot-pass me-3">New User Registration</a>
                             <a href="{{base_url()}}/user/password" class="st-forgot-pass">Forgot your password?</a>
                         </div>
                     </div>
@@ -1327,7 +1326,7 @@
 
     
 
-            <div class="right-register-resp d-none d-md-block">
+            <div class="right-register-resp">
                 <div class="content-right-register-resp tab-content-right tab-content-right-login show" 
                     style="background: url({{c['field_media1']['image'].url}}); 
                             background-size: cover;
@@ -1412,20 +1411,5 @@
         
     }
 </script>
-
-<script>
-    if( document.body.contains( document.querySelector("#log-reg-js form .std--useradmin.container--user-edit.container--user")) ) {
-      document.querySelector("#log-reg-js form .std--useradmin.container--user-edit.container--user").classList.remove("container");
-      document.querySelector("#log-reg-js form .std--useradmin.container--user-edit.container--user #user-info").classList.remove("col-lg-9")
-      document.querySelector("#log-reg-js form.user-register-form.user-form .useradmin--sidebar-left.position-relative").classList.remove("position-relative");
-    }
-        var inputName = document.getElementById('edit-name');
-        inputName.placeholder = 'Username';
-        var inputPass = document.getElementById('edit-pass');
-        inputPass.placeholder = 'Password';
-</script> 
-
-
-
 
 {% endblock %}

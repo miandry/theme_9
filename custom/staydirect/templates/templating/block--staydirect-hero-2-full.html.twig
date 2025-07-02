@@ -444,15 +444,9 @@
             font-size: 24px !important;
             text-align: left !important;
         }
-        .hero-2-resp .content-hero-2-resp {
-            gap: 55px !important;
-        }
         .hero-2-resp .container-hero2-right-resp ul.about-list-resp {
             gap: 20px !important;
             margin-top: 20px !important;
-        }
-        .hero-2-resp  .about-item-right-resp p {
-            font-size: 9px !important;
         }
     }
     @media (min-width: 991.98px) {
@@ -460,27 +454,15 @@
             font-size: 30px !important;
             text-align: left !important;
         }
-        .hero-2-resp .content-hero-2-resp {
-            gap: 65px !important;
-        }
         .hero-2-resp .container-hero2-right-resp ul.about-list-resp {
             gap: 25px !important;
             margin-top: 25px !important;
-        }
-        .hero-2-resp  .about-item-right-resp p {
-            font-size: 13px !important;
         }
     }
     @media (min-width: 1111.98px) {
         .hero-2-resp h3.title-resp {
             font-size: 36px !important;
             text-align: left !important;
-        }
-        .hero-2-resp .content-hero-2-resp {
-            gap: 75px !important;
-        }
-        .hero-2-resp  .about-item-right-resp p {
-            font-size: 15px !important;
         }
         .hero-2-resp .container-hero2-right-resp ul.about-list-resp {
             gap: 30px !important;
@@ -490,12 +472,6 @@
     @media (min-width: 1199.98px) {
         .hero--2-resp {
             height: 195px !important;
-        }
-        .hero-2-resp .content-hero-2-resp {
-            gap: 75px !important;
-        }
-        .hero-2-resp  .about-item-right-resp p {
-            font-size: 17px !important;
         }
         .hero-2-resp .container-hero2-right-resp ul.about-list-resp {
             gap: 35px !important;
@@ -507,18 +483,12 @@
         }
     }
     @media (min-width: 1359.98px) {
-        .hero-2-resp .content-hero-2-resp {
-            gap: 150px !important;
-        }
         .hero-2-resp h3.title-resp {
             font-family: "Vastine" !important;
             font-size: 40px !important;
             line-height: 150% !important;
             margin-top: 20px !important;
             text-align: left !important;
-        }
-        .hero-2-resp  .about-item-right-resp p {
-            font-size: 18px !important;
         }
         .hero-2-resp .container-hero2-right-resp ul.about-list-resp {
             gap: 40px !important;
@@ -546,13 +516,33 @@
         font-weight: 400 !important;
         line-height: 150% !important;
     }
+    
+    .ft-about {
+        font-size: 50px !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: 150% !important;
+        margin-top: 20px !important;
+    }
+
+        .hero-2-resp  .about-item-right-resp p {
+            font-size: 18px !important;
+        }
 
 </style>
 
-<div id="about-us" class="hero--2-resp"></div>
-<section class="hero-2-resp">
+<div id="about-us" class="hero--2-resp" style="height: 1px !important;"></div>
+<section class="hero-2-resp pt-0 mt-3 mt-md-5 pt-md-4">
+    <div class="content-hero-1-resp-head text-center">
+      <h4 class="title-resp">
+           {{c.field_title}}
+      </h4>
+      <h3 class="ft-about" style="font-family: 'vastine' !important;">
+          {{c.field_subtitle}}
+      </h3>
+    </div>
     <div class="container-resp">
-        <div class="content-hero-2-resp">
+        <div class="content-hero-2-resp align-items-center">
             <h4 class="title-resp none-desk">
                 {{c.field_title}}
             </h4>
@@ -560,41 +550,25 @@
                 {{c.field_subtitle}}
             </h3>
             <hr class="hr-title-resp none-desk">
-            <div class="container-hero2-left-resp">
+            <div class="container-hero2-left-resp  col-12 col-sm-5">
                 <div class="content-hero2-left-resp">
                     <img src="{{c['field_image']['image'].url}}" alt="About" class="img-hero-2-left-resp">
                     </div>
             </div>
-            <div class="container-hero2-right-resp">
+            <div class="container-hero2-right-resp  col-12 col-sm-5">
                 <div class="content-hero2-right-resp">
-                    <h4 class="title-resp none-tab none-mob">
-                        {{c.field_title}}
-                    </h4>
-                    <h3 class="title-resp none-tab none-mob">
-                        {{c.field_subtitle}}
-                    </h3>
-                    <hr class="hr-title-resp none-tab none-mob">
                     <ul class="about-list-resp">
-                        
                         <li>
-                            <div class="about-item-left-resp">
-                                <div class="about-item-content-left-resp">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                        <path d="M12.1528 15.7987H17.0139C17.3362 15.7987 17.6453 15.6706 17.8732 15.4427C18.1012 15.2148 18.2292 14.9057 18.2292 14.5834C18.2292 14.2611 18.1012 13.952 17.8732 13.724C17.6453 13.4961 17.3362 13.3681 17.0139 13.3681H12.1528C11.8305 13.3681 11.5214 13.4961 11.2935 13.724C11.0656 13.952 10.9375 14.2611 10.9375 14.5834C10.9375 14.9057 11.0656 15.2148 11.2935 15.4427C11.5214 15.6706 11.8305 15.7987 12.1528 15.7987ZM23.0903 3.64587H6.07642C5.22142 3.65251 4.39595 3.95943 3.74431 4.51299C3.09267 5.06656 2.65631 5.83154 2.51152 6.67421C2.36673 7.51689 2.52272 8.38365 2.95222 9.12297C3.38171 9.8623 4.05739 10.4271 4.86114 10.7188V21.875C4.86114 22.842 5.24525 23.7693 5.92898 24.453C6.61271 25.1368 7.54004 25.5209 8.50697 25.5209H20.6598C21.6267 25.5209 22.554 25.1368 23.2377 24.453C23.9215 23.7693 24.3056 22.842 24.3056 21.875V10.7188C25.1093 10.4271 25.785 9.8623 26.2145 9.12297C26.644 8.38365 26.8 7.51689 26.6552 6.67421C26.5104 5.83154 26.0741 5.06656 25.4224 4.51299C24.7708 3.95943 23.9453 3.65251 23.0903 3.64587ZM21.875 21.875C21.875 22.1974 21.747 22.5065 21.5191 22.7344C21.2912 22.9623 20.9821 23.0903 20.6598 23.0903H8.50697C8.18466 23.0903 7.87555 22.9623 7.64764 22.7344C7.41973 22.5065 7.2917 22.1974 7.2917 21.875V10.9375H21.875V21.875ZM23.0903 8.50699H6.07642C5.75411 8.50699 5.445 8.37895 5.21709 8.15104C4.98918 7.92313 4.86114 7.61402 4.86114 7.29171C4.86114 6.9694 4.98918 6.66029 5.21709 6.43238C5.445 6.20447 5.75411 6.07643 6.07642 6.07643H23.0903C23.4126 6.07643 23.7217 6.20447 23.9496 6.43238C24.1775 6.66029 24.3056 6.9694 24.3056 7.29171C24.3056 7.61402 24.1775 7.92313 23.9496 8.15104C23.7217 8.37895 23.4126 8.50699 23.0903 8.50699Z" fill="#333333" fill-opacity="0.8"/>
-                                    </svg>
-                                </div>
-                            </div>
                             <div class="about-item-right-resp" >
                                 <h5>
                                     {{paragraphs[0].field_title}}
                                 </h5>
-                                <p>
+                                <p class="d-none">
                                     {{ paragraphs[0]['field_description1'][0].value|replace({"<p>": "", '</p>': ""}) }}
                                 </p>
-                                <p>
-                                    <strong  class="see--more--about" style="cursor:pointer">See more ...</strong>
-                                </p>
-                                
+                                {% for size in 1 .. (paragraphs_length - 1) %}
+                                    {{ paragraphs[size]['field_description1'][0].value|raw }}
+                                {% endfor %} 
                             </div>
                         </li>
                         
@@ -605,28 +579,17 @@
     </div>
 </section>
   
-<div class="hero2--contentseemore--h--s" style="margin-top: 35px !important;">
-    <div class="container-resp">
-            {% for size in 1 .. (paragraphs_length - 1) %}
-            <p style="text-align: left !important;">
-                {{ paragraphs[size]['field_description1'][0].value|replace({"<p>": "", '</p>': ""}) }}
-            </p>
-            {% endfor %} 
-    </div>
-</div>
-  
-<script>
+<!--<script>
         if( document.body.contains(  document.querySelector(".see--more--about") ) ) {
             document.querySelector(".see--more--about").onclick = () => {
                 document.querySelector(".hero2--contentseemore--h--s").classList.toggle("show");
                 if( document.querySelector(".hero2--contentseemore--h--s").getAttribute("class").includes("show")){
                         document.querySelector(".see--more--about").innerHTML = "See less";
-                        console.log("show");
                 }else{
                     document.querySelector(".see--more--about").innerHTML = "See more";
                 }
             }
         }
-</script>
+</script>-->
 <!-- End bloc hero 2-->
 {% endblock %}

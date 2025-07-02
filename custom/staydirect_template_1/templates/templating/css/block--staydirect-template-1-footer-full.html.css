@@ -217,7 +217,7 @@ float: none !important;
   .footer-left p {
     line-height: 150%; /* 27px */
   }
-  .footer-center, .footer-right {
+  .footer-center, .footer-right, .footer-left {
     margin-top: 106px;
   }
   .footer-center .content-footer-center {
@@ -249,7 +249,7 @@ float: none !important;
     align-items: center;
   }
   .footer-right p {
-    margin-top: 52px;
+    margin-top: 46px;
     margin-bottom: 29px;
     display: flex;
     flex-direction: column;

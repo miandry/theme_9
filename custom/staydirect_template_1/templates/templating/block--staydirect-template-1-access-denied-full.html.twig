@@ -16,9 +16,15 @@
     <ul style="list-style: none; padding: 0;">
         <li>Make sure you're logged in with the right permissions</li>
         <li class="my-5">
-            <a href="/"
+            {% if not is_login() %}
+            <a href="/login"
+                class="btn--resp night plrfsz my-5">
+                Go back to login page</a>
+            {% else %} 
+                <a href="/"
                 class="btn--resp night plrfsz my-5">
                 Go back to homepage</a>
+            {% endif %}
         </li>
     </ul>
     <p>Thank you for your understanding!</p>

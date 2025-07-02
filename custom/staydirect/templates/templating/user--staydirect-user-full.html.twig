@@ -15,8 +15,7 @@
 	{% set u = user_parser(uid) %}
 
 	{%  set conditions = {
-            'field_client': uid
-         
+            'field_client': uid,
         } 
     %}
 
@@ -161,6 +160,12 @@
             margin-top: 0 !important;
         }
         
+        .start-build:hover {
+            color: #fff;
+            border-color: #fff;
+            background: #62929E;
+        }
+        
         @media (min-width: 991.98px) {
             .container--profile {
                 padding-right: 0px;
@@ -277,7 +282,7 @@
     							{% if u.field_first_name %}
     								<div class="content--spend">
     									<p>
-    										Fisrt name: <span class="text-capitalize">{{u.field_first_name}}</span>
+    										First name: <span class="text-capitalize">{{u.field_first_name}}</span>
     									</p>
     								</div>
     							{% endif %}
@@ -308,13 +313,14 @@
     					</div>
     					</div>
     				</div>
-            
+    				                        
+
                     {% if booking is empty %}
-                    	<div class="col-12 col-sm-12 col-md-8 text-center p-5">
-                    	      <p>Your website list is empty. Start your build your website now!</p><br/>
-                               <a class="btn" href="/order?getstarted=1" style="padding: 5px !important; font-size: 15px !important;">
-                                Start Building</a>
-                    	</div>
+                        <div class="col-12 col-sm-12 col-md-8 text-center p-5">
+                          <p>Your website list is empty. Start your build your website now!</p><br/>
+                           <a class="btn start-build" href="/order?getstarted=1" style="padding: 10px !important; font-size: 15px !important;">
+                            Start Building</a>
+                        </div>
                     {% else %}
      
              
@@ -351,6 +357,7 @@
             							}
             							
             						</style>
+            						{#{{ drupal_view('my_bookings', 'block_1') }}#}
             						<table class="table table-striped">
             							<thead>
             								<tr>
@@ -367,7 +374,7 @@
             								{% for item in booking|reverse %}
             									{% set n = node_parser(item) %}
             									{% set site = node_parser(n.field_item['#object']) %}
-            									{% if n.moderation_state != "init" %}
+            									{% if (n.moderation_state != "init") and (n.field_status_booking != "completed") %}
             									<tr {% if site.status == 0 %} class="unsubscribe" {% endif %}>
             										<th scope="row" class="py-1">{{n.nid}}</th>
             										<td  class="py-1">
@@ -389,13 +396,24 @@
             										</td>
             										<td  class="py-1">
                                                      {% if site.field_date  %} 
-                                                              {% if site.status == 0 %} 
+                                                          {% if (n.status == 0) and (n.field_status_booking == "completed") %} 
+                                                        	<span class="badge badge-unsubscribe p-1">
+        												    Unsubscribed </span> 
+                                                          {% elseif (n.status == 1) and (n.field_status_booking == "cancel") %} 
                                                             	<span class="badge badge-unsubscribe p-1">
-            												    Unsubscribe </span> 
-                                                              {% else %} 
-                                                                	<span class="badge badge-unsubscribe p-1">
-            												    Unsubscription in Progress </span> 
-                                                              {% endif %}  
+        												    Unsubscription in Progress </span> 
+        												  {% else %} 
+            												{% if n.moderation_state == "validate" %}
+                												<span class="badge badge-paid p-1">
+                												    Booking Confirmed</span>
+                											{% endif %}
+                
+                											{% if n.moderation_state == "draft" %}
+                												<span class="badge badge-pending p-1">
+                												    Booking request validation</span>
+                											{% endif %}
+        												
+                                                          {% endif %}  
                                                      {% else %} 
             											{% if n.moderation_state == "validate" %}
             												<span class="badge badge-paid p-1">
@@ -429,11 +447,12 @@
                                                           <ul class="dropdown-menu rounded-0">
                                                             <li>
                                                                 <a class="dropdown-item p-2"
-                                                                    href="{{base_url}}/invoice?id={{n.nid}}"
+                                                                    href="{{base_url}}/mypayments?subscribe_id={{n.field_subscription_id}}&site_id={{site.nid}}"
                                                                     target="_blank">
-                                                                    Get Invoice
+                                                                    View payment history
                                                                 </a>
                                                             </li>
+                                                        	{% if n.moderation_state != "draft" %}    
                                                             <li>
                                                                {% if site.field_date %} 
                                                                      <a class="dropdown-item p-2" href="{{base_url}}/pay?again=1&site_id={{site.nid}}">
@@ -443,18 +462,16 @@
                                                                    <a class="dropdown-item p-2" href="{{base_url}}/unsubscribe?id={{n.field_subscription_id}}">
                                                                     Unsubscribe
                                                                 </a>
-                                                        
-                                                         
                                                                {% endif %}
                                                                
                                                             </li>
+                                                            	{% endif %}
                                                           </ul>
                                                         </div>
             										</td>
             									</tr>
             									{% endif %}
             								{% endfor %}
-            
             							</tbody>
             						</table>
         					</div>

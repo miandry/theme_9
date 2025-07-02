@@ -378,7 +378,7 @@
             }
 
             .bloc-video-resp .video-resp {
-                margin-top: 206px !important;
+                margin-top: 0px !important;
             }
             .bloc-video-resp .video-resp .content-video-resp {
                 height: 670px !important;
@@ -456,9 +456,6 @@
                 .bloc-video-resp .conteneur-btn-resp, .bloc-video-resp .pricing-left-resp h5 {
                     margin: auto !important;
                 }
-                .bloc-video-resp .video-resp {
-                    margin-top: 106px !important;
-                }
                 .bloc-video-resp .video-resp .content-video-resp {
                     height: 225px !important;
                 }
@@ -521,9 +518,6 @@
                 }
                 .bloc-video-resp .conteneur-btn-resp, .bloc-video-resp .pricing-left-resp h5 {
                     margin: auto !important;
-                }
-                .bloc-video-resp .video-resp {
-                    margin-top: 106px !important;
                 }
                 .bloc-video-resp .video-resp .content-video-resp {
                     height: 225px !important;
@@ -591,13 +585,6 @@
                 .bloc-video-resp  .pricing-resp {
                     margin-top: 90px !important;
                 }
-
-                .bloc-video-resp .video-resp {
-                    margin-top: 206px !important;
-                }
-                .bloc-video-resp .video-resp .content-video-resp {
-                    
-                }
                 .bloc-video-resp .play-video-resp.bg-center-resp {
                     width: 111.034px !important;
                     height: 111.034px !important;
@@ -651,9 +638,6 @@
                 }
                 .bloc-video-resp .pricing-right-resp {
                     width: 550px !important;
-                }
-                .bloc-video-resp .video-resp {
-                    margin-top: 133px !important;
                 }
                 .bloc-video-resp .video-resp .content-video-resp {
                     height: 456px !important;
@@ -891,9 +875,6 @@
                     font-weight: 400 !important;
                     line-height: 150% !important; /* 27px */
                 }
-                .bloc-video-resp .video-resp {
-                    margin-top: 206px !important;
-                }
                 .bloc-video-resp .video-resp .content-video-resp {
                     height: 670px !important;
                     /* background: #582fee !important; 
@@ -1011,10 +992,18 @@
                 color: #fff !important;
             }
             
+            .toggle-price .active {
+                background: var(--Dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) -15.04%, #62929E 104.44%)) !important;
+                color: #fff;
+            }
+            
+            .toggle-price {
+                cursor: pointer;
+            }
         </style>
 
-        <div class="bloc--video-resp" id="pricing"></div>
-        <section class="bloc-video-resp {{is_activation_price}}" style="position: relative;">
+        <div class="bloc--video-resp" id="pricing" style=" height: 1px !important;"></div>
+        <section class="bloc-video-resp {{is_activation_price}} mt-3 mt-md-5 pt-md-4" style="position: relative;">
             <div class="optimax">
                 <div class="clr-bdr" style="position: relative;">
                     <div style="position: absolute;left: 0; right: 0; width: 100%; top:-1px; height: 2px; background: #fff;"></div>
@@ -1046,16 +1035,27 @@
                         <div class="pricing-right-resp">
                             <div class="content-pricing-right-resp" style="position: relative;">
                             
-                                    <div class="star" id="star">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                            <path d="M36.6666 16.1167C36.5614 15.8118 36.3699 15.544 36.1155 15.3458C35.8611 15.1476 35.5546 15.0275 35.2333 15L25.75 13.6167L21.5 5C21.3635 4.71821 21.1504 4.48057 20.8851 4.31429C20.6198 4.14801 20.3131 4.05981 20 4.05981C19.6869 4.05981 19.3801 4.14801 19.1148 4.31429C18.8495 4.48057 18.6365 4.71821 18.5 5L14.25 13.6L4.76665 15C4.45819 15.0438 4.16819 15.1733 3.92957 15.3736C3.69094 15.5739 3.51325 15.8371 3.41665 16.1333C3.32822 16.4228 3.32029 16.7309 3.3937 17.0245C3.4671 17.3181 3.61908 17.5862 3.83332 17.8L10.7166 24.4667L9.04998 33.9333C8.99048 34.2458 9.02164 34.5688 9.13977 34.8641C9.2579 35.1594 9.45807 35.4148 9.71665 35.6C9.96868 35.7802 10.2659 35.8865 10.5751 35.9071C10.8842 35.9277 11.1929 35.8618 11.4666 35.7167L20 31.2667L28.5 35.7333C28.7339 35.8653 28.9981 35.9342 29.2666 35.9333C29.6197 35.9346 29.964 35.8237 30.25 35.6167C30.5086 35.4314 30.7087 35.1761 30.8269 34.8807C30.945 34.5854 30.9761 34.2625 30.9166 33.95L29.25 24.4833L36.1333 17.8167C36.3739 17.6128 36.5518 17.3448 36.6462 17.0439C36.7406 16.743 36.7477 16.4215 36.6666 16.1167ZM26.4166 22.7833C26.2212 22.9724 26.075 23.2064 25.9907 23.465C25.9065 23.7235 25.8868 23.9987 25.9333 24.2667L27.1333 31.25L20.8666 27.9167C20.6255 27.7883 20.3565 27.7211 20.0833 27.7211C19.8101 27.7211 19.5411 27.7883 19.3 27.9167L13.0333 31.25L14.2333 24.2667C14.2799 23.9987 14.2602 23.7235 14.1759 23.465C14.0917 23.2064 13.9454 22.9724 13.75 22.7833L8.74998 17.7833L15.7666 16.7667C16.0366 16.7291 16.2933 16.6259 16.5141 16.4661C16.735 16.3063 16.9132 16.0947 17.0333 15.85L20 9.5L23.1333 15.8667C23.2534 16.1114 23.4316 16.3229 23.6525 16.4828C23.8733 16.6426 24.13 16.7458 24.4 16.7833L31.4166 17.8L26.4166 22.7833Z" fill="white"/>
-                                        </svg>
+                                <div class="star" id="star">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <path d="M36.6666 16.1167C36.5614 15.8118 36.3699 15.544 36.1155 15.3458C35.8611 15.1476 35.5546 15.0275 35.2333 15L25.75 13.6167L21.5 5C21.3635 4.71821 21.1504 4.48057 20.8851 4.31429C20.6198 4.14801 20.3131 4.05981 20 4.05981C19.6869 4.05981 19.3801 4.14801 19.1148 4.31429C18.8495 4.48057 18.6365 4.71821 18.5 5L14.25 13.6L4.76665 15C4.45819 15.0438 4.16819 15.1733 3.92957 15.3736C3.69094 15.5739 3.51325 15.8371 3.41665 16.1333C3.32822 16.4228 3.32029 16.7309 3.3937 17.0245C3.4671 17.3181 3.61908 17.5862 3.83332 17.8L10.7166 24.4667L9.04998 33.9333C8.99048 34.2458 9.02164 34.5688 9.13977 34.8641C9.2579 35.1594 9.45807 35.4148 9.71665 35.6C9.96868 35.7802 10.2659 35.8865 10.5751 35.9071C10.8842 35.9277 11.1929 35.8618 11.4666 35.7167L20 31.2667L28.5 35.7333C28.7339 35.8653 28.9981 35.9342 29.2666 35.9333C29.6197 35.9346 29.964 35.8237 30.25 35.6167C30.5086 35.4314 30.7087 35.1761 30.8269 34.8807C30.945 34.5854 30.9761 34.2625 30.9166 33.95L29.25 24.4833L36.1333 17.8167C36.3739 17.6128 36.5518 17.3448 36.6462 17.0439C36.7406 16.743 36.7477 16.4215 36.6666 16.1167ZM26.4166 22.7833C26.2212 22.9724 26.075 23.2064 25.9907 23.465C25.9065 23.7235 25.8868 23.9987 25.9333 24.2667L27.1333 31.25L20.8666 27.9167C20.6255 27.7883 20.3565 27.7211 20.0833 27.7211C19.8101 27.7211 19.5411 27.7883 19.3 27.9167L13.0333 31.25L14.2333 24.2667C14.2799 23.9987 14.2602 23.7235 14.1759 23.465C14.0917 23.2064 13.9454 22.9724 13.75 22.7833L8.74998 17.7833L15.7666 16.7667C16.0366 16.7291 16.2933 16.6259 16.5141 16.4661C16.735 16.3063 16.9132 16.0947 17.0333 15.85L20 9.5L23.1333 15.8667C23.2534 16.1114 23.4316 16.3229 23.6525 16.4828C23.8733 16.6426 24.13 16.7458 24.4 16.7833L31.4166 17.8L26.4166 22.7833Z" fill="white"/>
+                                    </svg>
+                                </div>
+                                
+                                <div class="toggle-price">
+                                    <div class="row border-1 rounded-4 p-1 text-dark text-center my-4">
+                                        <div class="col p-3 rounded-4 active price-nav" id="monthlyPrice">Monthly</div>
+                                        <div class="col p-3 rounded-4 price-nav"  id="annuallyPrice">Annually</div>
                                     </div>
+                                </div>
                             
                                 <h6>{{c.field_title1}}</h6>
-                                <div class="price">
+                                <div class="price" id="monthlyPriceDescription">
                                     <span class="currency">${{c.field_number}}</span>
                                     <span class="period">{{c.field_text}}</span>
+                                </div>
+                                <div class="price d-none" id="annuallyPriceDescription">
+                                    <span class="currency">${{c._annual_price}}</span>
+                                    <span class="period">{{c.price_description}}</span>
                                 </div>
                                 <div class="items-price">
                                     <ul>
@@ -1082,6 +1082,9 @@
                             </div>
                         </div>
                     </div>
+                    <h3 class="title-resp my-5" style="color: white !important;">
+                       How to create a website?
+                    </h3>
 
                     <div class="video-resp">
                         <div class="content-video-resp bg-center-resp grow" 
@@ -1114,6 +1117,24 @@
                 }
                 
             }
+            $(document).ready(function() {
+                $(".price-nav").click(function() {
+                    $(".price-nav").removeClass("active");
+                    $(this).addClass("active");
+            
+                    // Récupérer l'ID de l'élément cliqué
+                    let targetId = $(this).attr("id");
+            
+                    // Afficher/Masquer la bonne description
+                    if (targetId === "monthlyPrice") {
+                        $("#monthlyPriceDescription").removeClass("d-none");
+                        $("#annuallyPriceDescription").addClass("d-none");
+                    } else if (targetId === "annuallyPrice") {
+                        $("#annuallyPriceDescription").removeClass("d-none");
+                        $("#monthlyPriceDescription").addClass("d-none");
+                    }
+                });
+            });
         </script>
 
     

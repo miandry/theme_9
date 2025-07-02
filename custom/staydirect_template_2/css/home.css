@@ -84,7 +84,7 @@
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.20);
     background: rgba(255, 255, 255, 0.10);
-    color: rgba(255, 255, 255, 0.45) !important;
+    color: rgba(255, 255, 255, 1) !important;
     font-family: "Montserrat";
     font-size: 14px;
     font-style: normal;
@@ -581,7 +581,7 @@
     font-style: italic;
     font-weight: 400;
     line-height: 150%; /* 27px */
-    word-break: break-all;
+    /* word-break: break-all;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
@@ -591,7 +591,7 @@
     -moz-line-clamp: 5;
     -ms-line-clamp: 5;
     line-clamp: 5;
-    overflow: hidden;
+    overflow: hidden; */
   }
   .testimonial .dots {
     justify-content: center;

@@ -17,6 +17,10 @@
 {% if params.email and params.comment %}
    {% set status = mz_email(config('system.site','mail'), 'Contact from '~ params.email  , params.comment) %}
 {% endif %}
+{% set myuser = current_user() %}
+{% set is_editor = hasRole('content_editor',myuser.uid) %}
+{% set is_admin = hasRole('administrator',myuser.uid) %}
+{% set is_web = hasRole('webmaster',myuser.uid) %}
 <style>
   *::after,
   *::before {
@@ -412,16 +416,20 @@ header .menu-main--resp ul li.active::after {
                               {% endfor %}
                               <br> 
                               {% for size in 0 .. (txts2_length - 1) %}
-                                {{ texts2[size] }}&nbsp;
+                                {{ texts2[size] }}<br>
                               {% endfor %}
                             </p>
+                            {% if paragraphs  %}
                             <div class="cont-icon-rs">
                               {% for size in 0 .. (paragraphs_length - 1) %}
                                 <div class="icon">
-                                  <img src=" {{paragraphs[size]['field_icon1']['image'].url}}" alt="" style="width: 25px; height: 25px;">
+                                    <a href="{{ paragraphs[size]['field_link1'].url }}" target="_blank">
+                                        <img src=" {{paragraphs[size]['field_icon1']['image'].url}}" alt="" style="width: 25px; height: 25px;">
+                                    </a>
                                 </div>
                               {% endfor %} 
                             </div>
+                            {% endif %}
                         </div>
 
                         <div class="col-md-6 form-contact">
@@ -438,10 +446,8 @@ header .menu-main--resp ul li.active::after {
                                       font-size: 15px;
                                       font-style: normal;
                                       ">Enter your email address *</span>
-                                    <input type="email" class="form-control form-control-and" id="email" placeholder="you@example.com" required="required" style="margin-top: 0;" name="email">
-                                    <div class="invalid-feedback" bis_skin_checked="1">
-                                      Please enter a valid email address for shipping updates.
-                                    </div>
+                                    <input type="email" class="form-control form-control-and" id="email"
+                                        placeholder="you@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required style="margin-top: 0;" name="email">
                                   </div>
                       
                                  
@@ -462,6 +468,58 @@ header .menu-main--resp ul li.active::after {
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector('.needs-validation');
+    const emailInput = document.getElementById('email');
+    const commentInput = form.querySelector('textarea[name="comment"]');
+
+    form.addEventListener('submit', function (e) {
+        let hasError = false;
+
+        // Supprimer anciens messages
+        const oldErrors = form.querySelectorAll('.custom-error');
+        oldErrors.forEach(el => el.remove());
+
+        // Reset borders
+        emailInput.style.border = '';
+        commentInput.style.border = '';
+
+        // Email validation
+        const email = emailInput.value.trim();
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!emailRegex.test(email)) {
+            hasError = true;
+            emailInput.style.border = '2px solid red';
+            const error = document.createElement('div');
+            error.className = 'custom-error';
+            error.style.color = 'red';
+            error.style.marginTop = '5px';
+            error.textContent = 'Please enter a valid email address.';
+            emailInput.parentNode.appendChild(error);
+        }
+
+        // Comment validation
+        if (commentInput.value.trim() === '') {
+            hasError = true;
+            commentInput.style.border = '2px solid red';
+            const error = document.createElement('div');
+            error.className = 'custom-error';
+            error.style.color = 'red';
+            error.style.marginTop = '5px';
+            error.textContent = 'Please enter a message.';
+            commentInput.parentNode.appendChild(error);
+        }
+
+        if (hasError) {
+            e.preventDefault(); // Stop submit
+        }
+    });
+});
+</script>
+
 
 
 {% endblock %}

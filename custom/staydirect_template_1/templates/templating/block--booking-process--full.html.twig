@@ -207,7 +207,7 @@
     									<span class="text-1">{{ bk.field_dates[0].value }} - {{ bk.field_dates[0].end_value }}</span>
     
     									<hr style="margin-bottom: 0;">
-    
+                                        {#{{ kint(bk) }}#}
     									{% for key,item in bk.field_addons %}
  											<li class="list-group-item d-flex justify-content-between lh-sm">
 												<div bis_skin_checked="1">
@@ -250,13 +250,12 @@
     									<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
     									</strong>
     									<span class="text-1">{{ params["booking-range-date"] }}</span>
-    
+    {#{{ kint(params) }}#}
     									<hr style="margin-bottom: 0;">
-    
     									{% for key,item in params %}
     
     										{% if key not in ['action','nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
-    
+                                                
     											{% set status = true  %}
     											{% if "----" in  item %}
     												{% set group =  item|split("----")%}
@@ -270,6 +269,9 @@
     											{% endif %}
     	                                        {% if item is not numeric %}
     												{% set status = false  %}
+    											{% endif %}
+    											{% if item is not numeric and item != 0 %}
+    												{% set status = true  %}
     											{% endif %}
     											{% if item is numeric and item == 0 %}
     												{% set status = false  %}
@@ -294,8 +296,8 @@
     								<ul class="list-group list-group-foot">
     									<li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
     										<strong>TOTAL</strong>
-    										<span>$
-    											{{ params["total"] }}
+    										<span id="total-on-process">
+    										    {{ params["total"] }}
     										</span>
     									</li>
     								</ul>
@@ -329,22 +331,43 @@
         }
     }
 
+    // format total price 
+    let total = document.getElementById('total-on-process').textContent;
+    let intValue = parseInt(total);
+    let formatted = intValue.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    document.getElementById('total-on-process').innerHTML = "$" + formatted;
+    /* end total price */
+    
+    
     $(document).ready(function () {
         $('#phone').inputmask("(999) 999-9999");
-
+    
         $('#btn-checkout').click(function (e) {
             e.preventDefault();
-
+    
             const phoneNumber = $('#phone').val();
             const isValid = validatePhoneNumber(phoneNumber);
             const isValidName = validateName();
-
-            if (isValid && isValidName) {
+            const email = $('#cc-cvv').val().trim();
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let isValidEmail = emailRegex.test(email);
+    
+            // Réinitialiser la bordure email
+            $('#cc-cvv').css('border', '');
+    
+            if (!isValidEmail) {
+                $('#cc-cvv')[0].style.setProperty('border', '1px solid red', 'important');
+            }
+    
+            if (isValid && isValidName && isValidEmail) {
                 $('#phone').css('border', '');
                 $('#p-wrapper small').addClass("d-none");
-
+    
                 const form = document.getElementById('proceed-to-pay-form');
-
+    
                 if (form.checkValidity()) {
                     if ($('#termService').is(':checked')) {
                         form.submit();
@@ -358,18 +381,17 @@
                 if ($.trim($('#cc-name').val()) == '') {
                     document.getElementById('cc-name').style.setProperty('border', '1px solid red', 'important');
                 }
-                
-                if ($.trim($('#cc-first-name').val()) == '') {  // Correction ici
+    
+                if ($.trim($('#cc-first-name').val()) == '') {
                     document.getElementById('cc-first-name').style.setProperty('border', '1px solid red', 'important');
                 }
     
                 if (!isValid) {
-                    $('#phone').each(function() {
+                    $('#phone').each(function () {
                         this.style.setProperty('border', '1px solid red', 'important');
                     });
-                    $('#p-wrapper small').removeClass("d-none")
+                    $('#p-wrapper small').removeClass("d-none");
                 }
-                
             }
         });
     });

@@ -739,6 +739,11 @@
         button.trigger.focusable {
             display: none !important;
         }
+        
+        .full-w {
+            display: block;
+            width: 100%;
+        }
     </style>
     {% set myuser = current_user() %}
     {% set is_editor = hasRole('content_editor',myuser.uid) %}
@@ -838,6 +843,11 @@
                         {% for item in c.field_link1 %}
                             <li><a href="{{base_url()}}{{ item.url }}">{{ item.title }}</a></li>
                         {% endfor %}
+                        {% set current_user = current_user() %}
+                        {% set uid = (current_user.uid) %}
+                        {% if hasRole('webmaster',uid) %}
+                        <li><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
+                        {% endif%}
                         {% if not is_login() %}
                             <li style="position: relative;" class="humberger-menu1">
                                 <a href="#">
@@ -846,10 +856,10 @@
                                 <div class="menu-mobile-effet1" style="">
                                     <ul>
                                         <li>
-                                            <a href="{{base_url()}}/login">Login</a>
+                                            <a href="{{base_url()}}/login" class="full-w">Login</a>
                                         </li>
                                         <li>
-                                            <a href="{{base_url()}}/register">Register</a>
+                                            <a href="{{base_url()}}/register" class="full-w">Register</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -861,14 +871,8 @@
                                 </a>
                                 <div class="menu-mobile-effet1">
                                     <ul class="list-dropdwn" style="color:#fff">
-                                        <li><a href="{{base_url()}}/user">User profile</a></li>
-                                        {% set current_user = current_user() %}
-                                        {% set uid = (current_user.uid) %}
-                                        {% if hasRole('webmaster',uid) %}
-                                        <li><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
-                                        {% endif%}
-
-                                        <li><a href="{{base_url()}}/user/logout">Logout</a></li>
+                                        <li><a href="{{base_url()}}/user" class="full-w">User profile</a></li>
+                                        <li><a href="{{base_url()}}/user/logout" class="full-w">Logout</a></li>
                                     </ul>
                                 </div>
                             </li>  

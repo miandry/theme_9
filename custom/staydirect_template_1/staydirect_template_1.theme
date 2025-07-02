@@ -39,6 +39,8 @@ function staydirect_template_1_preprocess_html(&$variables) {
 
     }  
 
+
+
     // payment validated
     if(isset($params["pay_validation"])
     && isset($params["status"]) 

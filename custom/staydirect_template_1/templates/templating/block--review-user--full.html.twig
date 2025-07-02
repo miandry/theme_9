@@ -206,14 +206,16 @@ header .menu-main--resp ul li.active::after {
           {% for size in 0 .. (paragraphs_length - 1) %}
             <div class="swiper-slide">
               <div class="content-slider">
+                <div style="height: 100px;overflow-y: auto;margin-bottom: 25px;">
                 <p>
-                  â€œ  {{paragraphs[size].field_description|replace({"<p>": "", '</p>': ""})}} â€œ 
+                  "{{paragraphs[size].field_description|replace({"<p>": "", '</p>': ""})}}"
                 </p>
+              </div>
                 <div class="say">
                   <div style="width: 70px; height: 70px; border-radius: 50%; background: #D9D9D9;"></div>
-                  <div style="margin-top: 8px;">
-                      <span class="name">{{paragraphs[size].field_text1}}</span><br>
-                      <span class="addr">{{paragraphs[size].field_text}}</span>
+                  <div style="margin-top: 8px;max-width: 78%;word-break: break-all;">
+                      <span class="name">{{paragraphs[size].client_name}}</span><br>
+                      <span class="addr">{{paragraphs[size].field_pays}}</span>
                   </div>
                 </div>
               </div>
@@ -228,14 +230,16 @@ header .menu-main--resp ul li.active::after {
           {% for size in 0 .. (paragraphs_length - 1) %}
           <div class="swiper-slide">
             <div class="content-slider">
+            <div style="height: 120px;overflow-y: auto;margin-bottom: 25px;">
               <p>
-                â€œ {{paragraphs[size].field_description|replace({"<p>": "", '</p>': ""})}} â€œ 
+                "{{paragraphs[size].field_description|replace({"<p>": "", '</p>': ""})}}"
               </p>
+            </div>
               <div class="say">
                 <div style="width: 70px; height: 70px; border-radius: 50%; background: #D9D9D9;"></div>
-                <div style="margin-top: 8px;">
-                    <span class="name">{{paragraphs[size].field_text1}}</span><br>
-                    <span class="addr">{{paragraphs[size].field_text}}</span>
+                <div style="margin-top: 8px;max-width: 75%;word-break: break-all;text-align: left;">
+                    <span class="name">{{paragraphs[size].client_name}}</span><br>
+                    <span class="addr">{{paragraphs[size].field_pays}}</span>
                 </div>
               </div>
             </div>
@@ -250,14 +254,16 @@ header .menu-main--resp ul li.active::after {
           {% for size in 0 .. (paragraphs_length - 1) %}
           <div class="swiper-slide">
             <div class="content-slider">
+            <div style="height: 115px;overflow-y: auto;margin-bottom: 25px;">
               <p>
-                â€œ {{paragraphs[size].field_description|replace({"<p>": "", '</p>': ""})}} â€œ 
+                "{{paragraphs[size].field_description|replace({"<p>": "", '</p>': ""})}}"
               </p>
+            </div>
               <div class="say">
                 <div style="width: 70px; height: 70px; border-radius: 50%; background: #D9D9D9;"></div>
-                <div style="margin-top: 8px;">
-                    <span class="name">{{paragraphs[size].field_text1}}</span><br>
-                    <span class="addr">{{paragraphs[size].field_text}}</span>
+                <div style="margin-top: 8px;max-width: 61%;word-break: break-all;">
+                    <span class="name">{{paragraphs[size].client_name}}</span><br>
+                    <span class="addr">{{paragraphs[size].field_pays}}</span>
                 </div>
               </div>
             </div>

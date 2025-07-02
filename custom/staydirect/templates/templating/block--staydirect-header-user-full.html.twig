@@ -38,6 +38,29 @@
             .menu-mobile-effet1 {
                 top: auto !important;
                 right: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .menu-mobile-effet1 li a {
+                padding: 0 30px 0 30px !important;
+                width: 100%;
+            }
+            
+            .menu-mobile-effet1 li:hover {
+                background: #62929E !important;
+            }
+            
+            .header-sticky .cta ul {
+                padding: 0 !important;
+            }
+            
+        
+            .header-sticky .menu ul li a:hover {
+                color: #fff !important;
+            }
+            
+            .header-sticky .cta ul li.btn-login ul li a {
+                text-align: left !important;
             }
         </style>
         <div class="header-sticky">
@@ -51,7 +74,11 @@
                     <div class="menu">
                         <ul>
                             {% for item in menu1.menu_tree %}
-                                <li><a href="{{ item.url }}" target="_blank"> {{ item.text }} </a></li>
+                                <li><a href="{{ item.url }}"
+                                {% if current_url() != 'user/password' and current_url() != 'user/register' and current_url() != 'user/login' %}
+                                  target="_blank"
+                                {% endif %}
+                                > {{ item.text }} </a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -71,7 +98,7 @@
                                         </ul>
                                     </div>
                                 {% else %}  
-                                    <a class="" href="#">My account</a>
+                                    <a class="" href="#">My Account</a>
                                     <div class="menu-mobile-effet1">
                                         <ul class="list-dropdwn">
                                             {% for item in menu_user.menu_tree %}
@@ -82,7 +109,7 @@
                                 {% endif %}
                             </li>
                             <li class="btn-begin">
-                                <a class="btn" href="{{base_url()}}/order?getstarted=1">Build your website</a>
+                                <a class="btn" href="{{base_url()}}/order?getstarted=1">Build Your Website</a>
                             </li>
                         </ul>
                     </div>
@@ -98,8 +125,11 @@
             <div class="menu-mobile menu-mobile-effet" bis_skin_checked="1">
                 <ul class="content-menu-mobile mb-0">
                     {% for item in menu1.menu_tree %}
-                        <li><a href="{{ item.url }}" class="mz-color-secondary icon-menu-mobile" target="_blank">
-                            {{ item.text }} </a></li>
+                        <li><a href="{{ item.url }}" class="mz-color-secondary icon-menu-mobile"
+                                {% if current_url() != 'user/password' and current_url() != 'user/register' and current_url() != 'user/login' %}
+                                  target="_blank"
+                                {% endif %}
+                        >{{ item.text }} </a></li>
                     {% endfor %}
                 </ul>
                 <ul style="text-align: center !important ;">
@@ -120,7 +150,7 @@
                         <div class="w-75 mx-auto fw-bold text-white rounded-pill p-3"
                         style="background: #62929ecc">
                             <a class="mz-color-secondary"  id="mz-begin-mobile"
-                            href="{{base_url()}}/order?getstarted=1">Build your website</a>
+                            href="{{base_url()}}/order?getstarted=1">Build Your Website</a>
                         </div>
                     </li>
                 </ul>

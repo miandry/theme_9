@@ -39,7 +39,7 @@
 
 .header-sticky .menu ul {
     display: flex !important;
-    gap: 40px !important;
+    gap: 20px !important;
 }
 
 .header-sticky .menu ul li {
@@ -574,7 +574,7 @@
     }
 
     .header-sticky .menu ul {
-        gap: 40px !important;
+        gap: 20px !important;
         display: flex !important;
     }
 

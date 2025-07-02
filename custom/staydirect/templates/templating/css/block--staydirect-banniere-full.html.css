@@ -33,15 +33,14 @@
     margin-top: 56px !important ;
 } 
 .content-banniere-resp .content-ban-right-resp .content-ban-right-resp-int {
-    border-radius: 40px 40px 0px 0px !important ;
+    border-radius: 40px !important ;
     border: 1px solid rgba(199, 199, 199, 0.54) !important ;
-
     height: 100% !important ;
     text-align: center !important ;
-    padding: 20px 18px 0 18px !important ;
+    padding: 20px !important ;
 }
 .content-banniere-resp .content-ban-right-resp .content-ban-right-resp-int-2 {
-    border-radius: 20px 20px 0px 0px !important ;
+    border-radius: 20px !important ;
     border: 1px solid rgba(199, 199, 199, 0.54) !important ;
     width: 100% !important ;
     height: 100% !important ;

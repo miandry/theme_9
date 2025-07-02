@@ -11,7 +11,8 @@
     .log-reg #edit-name--description,
     .log-reg #edit-mail--description,
     .log-reg .password-suggestions,
-    .log-reg #edit-pass--description {
+    .log-reg #edit-pass--description,
+    .content--right p.mb-auto {
         display: none !important;
       }
     label {
@@ -31,11 +32,11 @@
         <div class="left ">
             <div class="container-left reg--container-left">
                 <h1 onclick='location.href="{{base_url()}}"'>
-                    Hotel rental
+                    Register - Hotel rental
                 </h1>   
-                <div class="content-left reg--content-left" style="position: relative;">
+                <div class="content-left reg--content-left" id="register-tpl-form" style="position: relative;">
                     {{user_register()}}
-                    <div class="description--register-forget">
+                    <div class="description--register-forget d-flex justify-content-between" style="width: 95%;">
                         <span>
                             <a href="{{base_url()}}/login" class="st-forgot-pass">Login </a>
                         </span>
@@ -78,6 +79,20 @@
         var labelpassword = document.querySelector('label[for="edit-name"]');
         labelpassword.setAttribute('title', "Several special characters are allowed, including space, period (.), hyphen (-), apostrophe ('), underscore (_), and the @ sign.");
         labelpassword.appendChild(iconElement2);
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            function setPlaceholder(selector, placeholder) {
+                var element = document.querySelector(selector);
+                if (element) {
+                    element.setAttribute('placeholder', placeholder);
+                }
+            }
+        
+            setPlaceholder('#register-tpl-form #edit-name', 'Username');
+            setPlaceholder('#register-tpl-form #edit-mail', 'Email address');
+            setPlaceholder('#register-tpl-form #edit-pass-pass1', 'Password');
+            setPlaceholder('#register-tpl-form #edit-pass-pass2', 'Confirm password');
+        });
     </script>   
 {% else %} 
     {% set url = '' ~ base_url() ~ '/user' %}

@@ -9,7 +9,7 @@
 {% set c = block_parser(content) %}
 {% set paragraphs = c['field_paragraphs'] %}
 {% set paragraphs_length = paragraphs|length %}
-{% include START_EDITOR with {'c': c}  %}
+
 <style>
          #block-staydirect-template-1-content .description--register-forget,
         #block-staydirect-template-2-content .description--register-forget,
@@ -19,34 +19,39 @@
         .custom-login-form-wrapper {
              background-color: transparent !important;
         }
+        #nav-to-top-ands {
+            z-index: 3;
+        }
 </style>
-
+{% include START_EDITOR with {'c': c}  %}
 <footer>
   <div class="footer-top">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 footer-left">
+        <div class="col-md-4 footer-left" style="margin-top: 106px; display: block;">
           <h3>
             {{c.field_text}}
           </h3  >
-          <p>
+          <p style="margin-top: 49px;">
             {{c.field_textlong}}
           </p>
         </div>
         <div class="col-md-4 col-sm-6 footer-center">
           <div class="content-footer-center">
             <h3>{{c.field_title}}</h3>
-            <p>
+            <p  style="margin-top: 46px;">
               {{c.field_value_text1}}
             </p>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 footer-right">
+        <div class="col-md-4 col-sm-6 footer-right" style="z-index: 2;">
+            
+        {% if paragraphs  %}
           <div class="content-footer-right">
             <h3>Follow us</h3>
-            <p>
+            <p style="margin-top: 46px;">
               {% for size in 0 .. (paragraphs_length - 1) %}
-                  <a href=" {{paragraphs[size]['field_link'].url}}">
+                  <a href="{{paragraphs[size]['field_link'].url}}" target="_blank">
                     <i class="fab fa-instagram">
                       <img src="{{paragraphs[size]['field_icon']['image'].url}}" alt="" style="width: 25px; height: 25px;">
                     </i>
@@ -55,6 +60,7 @@
               {% endfor %} 
             </p>
           </div>
+        {% endif %}
         </div>
       </div>
     </div>
@@ -64,14 +70,23 @@
       <div class="line">
 
       </div>
-      <p>
-        &#9400; {{c.field_text1}}
-      </p>
+      <div class="row justify-content-between col-12 g-5">
+          <div class="col-12 col-md-6">
+              <p>
+                &#9400; Powered by StayDirect. All Rights Reserved.
+              </p>
+          </div>
+          <div class="col-12 col-md-6 text-end" style="z-index: 2;">
+              <a href="{{base_url()}}/conditions-terms" style="color: rgba(255, 255, 255, 0.60); z-index: 2;">
+                Terms and Conditions
+              </a>
+          </div>
+      </div>
     </div>
   </div>
 
 </footer>
-
+{% include END_EDITOR with {'c': c}  %}
 <div id="nav-to-top-ands" class="nav-to-top-and nav-to-top-resp active">
   <!-- 
   <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -99,6 +114,6 @@
     })
   }
 </script>
-{% include END_EDITOR with {'c': c}  %}
+
 
 {% endblock %}

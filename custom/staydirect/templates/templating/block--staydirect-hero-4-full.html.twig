@@ -18,7 +18,7 @@
         {% set params = get_parameter() %}
         <!-- contact us -->
         {% if params.email and params.comment %}
-           {% set status = mz_email(mailTo , 'Contact from '~ params.email  , params.comment) %}
+           {% set status = mz_email(mailTo , 'Inquiry from '~ params.email  , params.comment) %}
         {% endif %}
         
         <!-- feedback -->
@@ -256,7 +256,6 @@
                 text-align: center !important;
                 max-width: 742px !important;
                 margin: auto  !important;
-                margin-bottom: 98px  !important;
             }
             .hero-4-resp  .content-hero-4-resp-head h4 {
                 color: rgba(51, 51, 51, 0.60) !important;
@@ -360,10 +359,7 @@
                     gap: 110px !important;
                     align-items: center !important;
                 }
-            
-                .hero-4-resp  .content-hero-4-resp-head {
-                    margin-bottom: 51px  !important;
-                }
+           
                 .hero-4-resp  .content-hero-4-resp-head h4 {
                 font-size: 18px  !important;
                 }
@@ -377,9 +373,6 @@
                     flex-direction: column !important;
                     gap: 110px !important;
                     align-items: center !important;
-                }
-                .hero-4-resp  .content-hero-4-resp-head {
-                    margin-bottom: 51px  !important;
                 }
                 .hero-4-resp  .content-hero-4-resp-head h4 {
                 font-size: 18px  !important;
@@ -396,9 +389,6 @@
                     align-items: center !important;
                 }
             
-                .hero-4-resp  .content-hero-4-resp-head {
-                    margin-bottom: 87px  !important;
-                }
                 .hero-4-resp  .content-hero-4-resp-head h4 {
                 font-size: 18px  !important;
                 }
@@ -417,7 +407,6 @@
             
                 .hero-4-resp  .content-hero-4-resp-head {
                     max-width: 742px !important;
-                    margin-bottom: 76px  !important;
                     width: 100% !important;
                 }
                 .hero-4-resp  .content-hero-4-resp-head h4 {
@@ -452,9 +441,6 @@
             }
             @media (min-width: 1199.98px) {
                 .hero-4-resp  .content-hero-4-resp-head {
-                
-                    margin-bottom: 76px  !important;
-                
                 }
                 .hero-4-resp .content-hero-4-resp {
                     justify-content:space-between !important;
@@ -463,6 +449,10 @@
                 .hero-4-resp .step-resp {
                     max-width: 187px !important;
                 }
+            }
+            
+            textarea {
+                resize: none !important;
             }
             
         </style>
@@ -719,14 +709,14 @@
             /* end popup */
         </style>
 
-        <div class="hero--4-resp" id="contact-us"></div>
-        <section class="hero-4-resp">
+        <div class="hero--4-resp" id="contact-us" style="height: 1px !important;"></div>
+        <section class="hero-4-resp mt-3 mt-md-5 pt-md-2">
             <div class="container-resp">
-                <div class="content-hero-4-resp-head">
+                <div class="content-hero-4-resp-head mb-4">
                     <h3 class="title-resp">
                         {{c.field_title}}
                     </h3>
-                </div>
+                </div> 
             </div>
         </section>
     
@@ -741,7 +731,7 @@
                         </div>
                     </div>
                     <p>
-                        Feedback call to action
+                        Feedback
                     </p>
                 </div>
                 </div>
@@ -856,63 +846,123 @@
                                 margin-bottom: 0 !important;
                             }   
                         </style>
+                        
                         <form action="" method="POST"
-                            class="needs-validation form--email-hero-4 form--hero4--sendmail" >
-                        <h3 class="mb-2">Feedback call to action</h3>
-                        <div class="form--content--feedback">
-                                <p>Feedback category</p>
+                              class="needs-validation form--email-hero-4 form--hero4--sendmail"
+                              novalidate onsubmit="return validateEmailForm()">
+                        
+                            <h3 class="mb-2">Feedback</h3>
+                        
+                            <div class="form--content--feedback">
+                                <p>Type of feedback</p>
                                 <ul>
                                     <li>
-                                        <input type="radio" name="suggestion" id="suggestion"
-                                            value="Suggestion" checked> 
+                                        <input type="radio" name="suggestion" id="suggestion" value="Suggestion" checked> 
                                         <label for="suggestion">Suggestion</label>
                                     </li>
                                     <li>
-                                        <input type="radio" name="suggestion"
-                                            id="not-quite" value="Something is not quite right">
-                                        <label for="not-quite">
-                                            Something is not quite right
-                                        </label>
+                                        <input type="radio" name="suggestion" id="not-quite" value="Something is not quite right">
+                                        <label for="not-quite">Something is not quite right</label>
                                     </li>
                                     <li>
-                                        <input type="radio" name="suggestion"
-                                            id="compliment" value="Compliment"> 
-                                        <label for="compliment">
-                                            Compliment
-                                        </label>
+                                        <input type="radio" name="suggestion" id="compliment" value="Compliment"> 
+                                        <label for="compliment">Compliment</label>
                                     </li>
                                 </ul>
-                                <textarea id="feedback" name="feedback" placeholder="Leave a comment here" maxlength="500" onkeyup="MaxLengthTextarea(this, 150);"></textarea>
+                        
+                                <!-- Textarea -->
+                                <textarea id="feedback"
+                                          name="feedback"
+                                          placeholder="Leave a comment here"
+                                          maxlength="500"
+                                          required
+                                          onkeyup="MaxLengthTextarea(this, 150);"
+                                          style="border: 1px solid #ced4da; padding: 10px !important; color: black !important;"></textarea>
+                        
+                                <div id="feedback-error" style="color:red; font-size: 14px; display:none;">
+                                    Please enter your feedback (this field is required).
+                                </div>
+                        
                                 <p class="nb--max-char">500</p>
-
+                        
                                 <button type="submit" class="btn btn-primary btn-lg">Send</button>
-                        </div>
+                            </div>
                         </form>
-                        <form class="needs-validation form--feedback-hero-4" method="POST" action="">
+                        
+                        <form class="needs-validation form--feedback-hero-4" method="POST" action="" onsubmit="return validateForm()">
                             <div class="row mt-n5 mt-sm-n7 mt-md-n8">
                                 <div class="col-12 col-lg-12 mx-auto" style="padding-left: 0 !important; padding-right: 0 !important;">
                                     <div class="card shadow p-4 p-sm-5 p-md-6">
                                         <div class="hero-4--feedback--head">
-                                            <h2>Send mail</h2>
-                                     
+                                            <h2>Send email</h2>
                                         </div>
-                                        <!-- Card body & form -->
-                                            <div class="custom-control-message input-floating-label form-floating mb-7">
-                                                <label for="floatingTextarea2"> Enter your email <span>*</span></label>
-                                                <input type="email" required class="form-control bg-transparent" placeholder="Email" id="floatingTextarea2" style="height: 50px; padding-left: 20px;" name="email">
+                        
+                                        <!-- Email -->
+                                        <div class="custom-control-message input-floating-label form-floating mb-7">
+                                            <label for="floatingTextarea2">Enter your email <span>*</span></label>
+                                            <input type="text"
+                                                   required
+                                                   class="form-control bg-transparent"
+                                                   placeholder="Email"
+                                                   id="floatingTextarea2"
+                                                   style="height: 50px; padding-left: 20px;"
+                                                   name="email">
+                                            <div id="email-error" style="color:red; font-size: 14px; display:none;">
+                                                Please enter a valid email address (example@domain.com)
                                             </div>
-                                            <!-- Message -->
-                                            <div class="input-floating-label form-floating mb-4">
-                                                <textarea class="form-control bg-transparent mail--sms" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px; padding: 10px 15px !important" name="comment"></textarea>
-                                            </div>
-                                            <!-- Button -->
-                                            <button type="submit"
-                                                class="btn btn-lg btn-primary mb-0">Send a message</button>
-                                        
+                                        </div>
+                        
+                                        <!-- Message -->
+                                        <div class="input-floating-label form-floating mb-4">
+                                            <textarea class="form-control bg-transparent mail--sms"
+                                                      required
+                                                      placeholder="Leave a comment here"
+                                                      id="floatingTextarea2"
+                                                      style="height: 100px; padding: 10px 15px !important; color: black !important;"
+                                                      name="comment"></textarea>
+                                        </div>
+                        
+                                        <!-- Button -->
+                                        <button type="submit" class="btn btn-lg btn-primary mb-0">Send a message</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
+                        
+                        <script>
+                        function validateForm() {
+                            const inputs = document.querySelectorAll("#floatingTextarea2");
+                            const emailInput = inputs[0]; // première occurrence : input email
+                            const emailError = document.getElementById("email-error");
+                        
+                            const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+                        
+                            if (!emailPattern.test(emailInput.value)) {
+                                emailError.style.display = "block";
+                                emailInput.style.border = "1px solid red";
+                                return false;
+                            } else {
+                                emailError.style.display = "none";
+                                return true;
+                            }
+                        }
+                        
+                        function validateEmailForm() {
+                            const feedback = document.getElementById("feedback");
+                            const errorMsg = document.getElementById("feedback-error");
+                        
+                            if (feedback.value.trim() === "") {
+                                feedback.style.border = "1px solid red";
+                                errorMsg.style.display = "block";
+                                return false; // stop submit
+                            } else {
+                                feedback.style.border = "1px solid #ced4da";
+                                errorMsg.style.display = "none";
+                                return true; // allow submit
+                            }
+                        }
+                        </script>
+                        
                         <script type="text/javascript">
                             if( document.body.contains(  document.querySelector(".contact--feedback--staydirec-hero-4") ) ) {
                                 let feedback_sms = document.querySelector("#feedback");
@@ -923,7 +973,7 @@
                                 let email = document.querySelector("input[type='email']");
                                 let mail__sms = document.querySelector(".mail--sms");
                                 
-                                feedback_sms.disabled = true;
+                               /* feedback_sms.disabled = true; */
                              
                                 suggustions.forEach( function( suggustion , index ) {
                                     suggustion.addEventListener( "click", function(){
@@ -956,6 +1006,64 @@
             </div>
         </div>
         <!-- End bloc hero 4-->
+        
+        
+        {# template for FAQ #}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <div class="container mx-auto my-4 position-relative" style="z-index: 0;">
+            <div class="content-hero-4-resp-head">
+                <h3 class="title-resp" style="font-size: 50px !important;font-weight: 500 !important;">
+                    FAQ
+                </h3>
+            </div>
+            <div class="text-center my-4">
+                <h3>General Questions</h3>
+            </div>
+            <div class="accordion" id="accordionForGeneral">
+              <div class="accordion-item border-0 border-bottom">
+                <h2 class="accordion-header">
+                  <button class="accordion-button p-3 d-flex justify-content-between collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-38" aria-controls="collapse-38">
+                    What is a direct booking tool?
+                  </button>
+                </h2>
+                <div id="collapse-38" class="accordion-collapse collapse" data-bs-parent="#accordionForGeneral">
+                  <div class="accordion-body p-3">
+                    <p>A direct booking tool is a website that lets you rent out your property directly to guests, without relying<br>on third-party platforms. It helps you create your own custom rental website, where you can manage all<br>your bookings and rental activities easily.</p>
+                  </div>
+                </div>
+              </div>
+                      <div class="accordion-item border-0 border-bottom">
+                <h2 class="accordion-header">
+                  <button class="accordion-button p-3 d-flex justify-content-between collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-39" aria-controls="collapse-39">
+                    Who is the tool for?
+                  </button>
+                </h2>
+                <div id="collapse-39" class="accordion-collapse collapse" data-bs-parent="#accordionForGeneral">
+                  <div class="accordion-body p-3">
+                    <p>This tool is for anyone who wants to manage their property rentals on their own, without paying high<br>fees to third-party booking sites. It's perfect for those who prefer more control over their rental<br>business and revenues.</p>
+                  </div>
+                </div>
+              </div>
+                      <div class="accordion-item border-0 border-bottom">
+                <h2 class="accordion-header">
+                  <button class="accordion-button p-3 d-flex justify-content-between collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-40" aria-controls="collapse-40">
+                    Do I need technical skills to use this tool?
+                  </button>
+                </h2>
+                <div id="collapse-40" class="accordion-collapse collapse" data-bs-parent="#accordionForGeneral">
+                  <div class="accordion-body p-3">
+                    <p>No, you don’t need any coding or technical skills to use this tool. It is designed to be user-friendly and<br>simple, so anyone can use it easily.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 ms-2">
+                <a href="/faq" class="text-muted fw-bold">See more</a>
+            </div>
+        </div>
+        
+        {# end template for FAQ #}
         <script>
             let item_icons = document.querySelectorAll(".ev--js--icn--popup--hero4");
             let close = document.querySelector(".close--popup--hero-4");

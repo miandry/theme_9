@@ -159,6 +159,15 @@ display:none!important;
   background: #fff !important;
 }
 
+.description--register-forget {
+    margin-top: 1.5rem !important;
+}
+
+.description--register-forget a {
+    text-decoration: none;
+    color: #212529;
+}
+
 @media only screen and (max-width: 765px) {
   #mz-ps-0{
       padding-left: 0 !important;
@@ -196,37 +205,29 @@ display:none!important;
     {{ attach_library('staydirect_install/global-styling') }} 
  
     <main class="main-step main-step-specification main-simple main-order main--step-rectf">
-        <div class="container container-and">
+        <div class="container"> {# container-and #}
                 {{ page.content }}
             <div class="row mb-5">
                
                   {% if not is_login() %}
-                     <div class="m-auto col-md-6  px-4 login_process">{{user_login()}} </div>
+                     <div class="m-auto col-md-6  px-0 login_process">{{user_login()}} </div>
                   {% else %}   
                      
-                <div class="sidebar col-md-4 order-sm-first">
-                   {% set active_user = 'active' %}  
-                   {% include 'themes/custom/staydirect_install/templates/inc/menu_process.html.twig'  %}
-                </div>
-                <div class="col-md-8">
-                    <div class="row form-payment">
-                        <div class="col-md-12 col-lg-12 choosecontent ps-0">
-                         
-                            {{ render_form_entity('node','site') }}
+                    <div class="sidebar col-md-4 order-sm-first">
+                       {% set active_user = 'active' %}  
+                       {% include 'themes/custom/staydirect_install/templates/inc/menu_process.html.twig'  %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row form-payment">
+                            <div class="col-md-12 col-lg-12 choosecontent ps-0">
+                             
+                                {{ render_form_entity('node','site') }}
+                            </div>
                         </div>
                     </div>
-                </div>
-               {% endif %}
+                   {% endif %}
             </div>
         </div>
     </main>
 
     {% endif %}
-
-    <script>
-  window.addEventListener("pageshow", function (event) {
-    if (event.persisted || window.performance.navigation.type === 2) {
-      window.location.reload();
-    }
-  });
-</script>

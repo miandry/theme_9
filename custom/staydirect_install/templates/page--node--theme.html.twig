@@ -67,6 +67,8 @@
 
 </style>
 {% set param = get_parameter() %}
+{% set param = get_parameter() %}
+{% if param['site_new'] %}{% else %}    {% set t = redirect('/order') %}  {% endif %}
 
 {% include 'themes/custom/staydirect_install/templates/inc/header_process.html.twig'  %}
 <main class="main-step main-step-specification main-simple">
@@ -84,6 +86,7 @@
 			<div class="col-md-8 ps-0">
 			  <form>
 			    <input id="theme_select" type="hidden" name="theme_select" value="0" />
+				 <input  type="hidden" name="site_new" value="{{param['site_new']}}" />
 				<div class="row form-payment">
 					<div class="col-md-12 col-lg-12 choosecontent">
 						<h2 class="pb-2 border-bottom">
@@ -95,7 +98,7 @@
 									<strong class="d-inline-block mb-2 text-primary">Template 1</strong>
 									<h3 class="mb-0">Azure Bliss</h3>
 									<p class="card-text mb-auto">Elevate your digital presence with Azure Bliss and let the calming waves of blue inspire confidence and connection.</p>
-									<a data-href="https://staydirecttech.com/template1" class="btn  btn-sm  btn-sm btn-primary poptemplate1">view</a>
+									<a data-href="https://staydirecttech.com/template1" class="btn  btn-sm  btn-sm btn-primary poptemplate1">View</a>
 								</div>
 								<div class="col-auto d-none d-lg-block">
 									<img class="image-theme" width="100%" id="image1" src="{{pathlocal_theme('staydirect')}}/theme1.jpg" alt="Image 1" class="grid-image">
@@ -108,7 +111,7 @@
 									<strong class="d-inline-block mb-2 text-primary">Template 2</strong>
 									<h3 class="mb-0">Verdant Harmony</h3>
 									<p class="card-text mb-auto">Experience the Verdant Harmony template and watch your online presence flourish in a world of sustainable design.</p>
-									<a data-href="https://staydirecttech.com/template2"  class="btn  btn-sm btn-primary poptemplate2">view</a>
+									<a data-href="https://staydirecttech.com/template2"  class="btn  btn-sm btn-primary poptemplate2">View</a>
 								</div>
 								<div class="col-auto d-none d-lg-block">
 									<img class="image-theme" width="100%" id="image1" src="{{pathlocal_theme('staydirect')}}/theme2.jpg" alt="Image 1" class="grid-image">
@@ -121,7 +124,7 @@
 									<strong class="d-inline-block mb-2 text-primary">Template 3</strong>
 									<h3 class="mb-0">Monochrome Elegance</h3>
 									<p class="card-text mb-auto">Experience the enduring elegance of Monochrome Elegance and let your content shine against a backdrop of classic design.</p>
-								    <a data-href="https://staydirecttech.com/template3"  class="btn btn-sm btn-primary poptemplate3">view</a>
+								    <a data-href="https://staydirecttech.com/template3"  class="btn btn-sm btn-primary poptemplate3">View</a>
 								</div>
 								<div class="col-auto d-none d-lg-block">
 									<img class="image-theme" width="100%" id="image1" src="{{pathlocal_theme('staydirect')}}/theme3.jpg" alt="Image 1" class="grid-image">
@@ -131,15 +134,11 @@
 
 					</div>
                  	<div class="col-md-12"> 
-<input  type="submit"  name="back" value="Back"
-							class="button js-form-submit form-submit" >
 					    <input  type="submit" id="edit-submit" name="op" value="Save and continue"
 							class="button js-form-submit form-submit mz-disabled" disabled>
 					</div>
 				</div>
 			  </form>
-
-			  {{drupal_form("Drupal\\site_manager\\Form\\ProcessForm")}}
 			</div>	
 		</div>
 	</div>
@@ -156,17 +155,3 @@
 </script>
 
 {% endif %}
-    <script>
-  window.addEventListener("pageshow", function (event) {
-    if (event.persisted || window.performance.navigation.type === 2) {
-      window.location.reload();
-    }
-  });
-</script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Remove all query parameters and hash from URL
-      const cleanUrl = window.location.origin + window.location.pathname;
-      window.history.replaceState({}, document.title, cleanUrl);
-    });
-  </script>

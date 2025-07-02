@@ -42,7 +42,32 @@
         .menu-mobile-effet1 {
             top: auto !important;
             right: 0 !important;
-        } 
+            padding: 0 !important;
+        }
+        
+        .menu-mobile-effet1 li a {
+            padding: 0 30px 0 30px !important;
+            width: 100%;
+            
+        }
+        
+        .menu-mobile-effet1 li:hover {
+            background: #62929E !important;
+            color: #fff !important;
+        }
+        
+        .header-sticky .cta ul {
+            padding: 0 !important;
+        }
+        
+        .header-sticky .menu ul li a:hover {
+            color: #000 !important;
+
+        }
+        
+        .header-sticky .cta ul li.btn-login ul li a {
+            text-align: left !important;
+        }
         
     </style>
     {% set params = get_parameter() %}
@@ -77,7 +102,7 @@
                                     </ul>
                                 </div>
                             {% else %}  
-                                <a class="" href="#">My account</a>
+                                <a class="" href="#">My Account</a>
                                 <div class="menu-mobile-effet1">
                                     <ul class="list-dropdwn">
                                         {% for item in menu_user.menu_tree %}
@@ -90,7 +115,7 @@
                         <li class="btn-begin">
                             <a class="btn" href="{{base_url()}}/order?getstarted=1" id="mz-build"
                                 style="padding: 5px !important; font-size: 15px !important;">
-                                Build your website</a>
+                                Build Your Website</a>
                         </li>
                     </ul>
                 </div>
@@ -130,7 +155,7 @@
                         style="background: #62929ecc">
                             <a  id="mz-begin-mobile" class="mz-color-secondary"
                             style="padding: 5px !important; font-size: 15px !important;"
-                            href="{{base_url()}}/order?getstarted=1">Build your website</a>
+                            href="{{base_url()}}/order?getstarted=1">Build Your Website</a>
                         </div>
                     </li>
                 </ul>
@@ -138,10 +163,14 @@
         </div>
     </div>
     {% if params.suggestion or params.email %}
-        <div class="alert alert-success col-12 col-md-10 mx-auto px-4 py-2 {{ class_mail }}"
+        <div class="alert alert-success alert-dismissible fade show col-12 col-md-10 mx-auto px-4 py-2 {{ class_mail }}" role="alert">
+          The email message has been sent.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer" style="padding: 1.25rem 1rem !important;"></button>
+        </div>
+        {#<div class="alert alert-success col-12 col-md-10 mx-auto px-4 py-2 {{ class_mail }}"
             role="alert">
           The email message has been sent
-        </div>
+        </div>#}
     {% endif %}
     <script>
         /* header */

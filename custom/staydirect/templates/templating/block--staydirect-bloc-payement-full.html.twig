@@ -18,6 +18,7 @@
         {% set site_user = user_parser(site["uid"]["user"]) %}
     {% endif %}   
     {% set price_booking_system = config("mz_payment.config","price") %}
+   {% set price_booking_system_year = config("mz_payment.config","price_year") %}
     
    <style>
      .main-form-payment{
@@ -31,6 +32,18 @@
      }
     .form-payment-1 .node-site-form{
             background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%)) !important;
+    }
+    input[type="radio"]#month,
+    input[type="radio"]#year{
+        appearance: auto;
+        width: auto !important;
+        height: auto !important;
+        margin: 10px 10px 10px 0 !important;
+    }
+    
+    input[type="radio"]:checked {
+      border-color: blue;
+      background-color: blue;
     }
    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -49,22 +62,39 @@
                                 <p class="text-muted mb-2"><span class="fw-bold">Profile:</span> {% if site.field_profile == "booking" %} Booking System {% endif %}</p>
                                 <p class="mb-2"> <span class="fw-bold">Theme:</span> {% if site.st_theme == "template_1" %} Azure Bliss {% endif %}{% if site.st_theme == "template_2" %} Verdant Harmony {% endif %}{% if site.st_theme == "template_3" %} Monochrome Elegance {% endif %} </p>
                                 <p class="mb-2"> <span class="fw-bold">Website URL:</span> <a href="{{site.field_st_domain_name}}" target="_blank" class="text-white">{{site.field_st_domain_name}}</a></p>
-                                <p class="mb-2"> <span class="fw-bold">Price per month:</span> {{price_booking_system}} USD </p>
+                                <p class="mb-2"> <span class="fw-bold">Price:</span> <span id="priceValue">{{price_booking_system}}</span> USD </p>
                             </div>
                         </div>
                     </div>
                     <div class="row form-payment">
                         <div class="col-md-6 col-lg-6 choosecontent">
                             <div class="node-site-form node-form">
-                                Email
-                                <input type="text"  class="form-control" name="mail"
+                                <div>
+                                    Choose your subscription type
+                                </div>
+                                <div class="py-3 ps-3">
+                                    <div class="form-check mb-1 d-flex align-items-center">
+                                      <input class="form-check-input" type="radio" value="{{price_booking_system}}" name="price" id="month" checked>
+                                      <label class="form-check-label text-muted" for="month">
+                                        Monthly subscription for {{price_booking_system}} USD
+                                      </label>
+                                    </div>
+                                    <div class="form-check mb-1 d-flex align-items-center">
+                                      <input class="form-check-input" type="radio" value="{{price_booking_system_year}}" name="price" id="year">
+                                      <label class="form-check-label text-muted" for="year">
+                                        Annual subscription for {{price_booking_system_year}} USD
+                                      </label>
+                                    </div>
+                                </div>
+                                Email <span class="text-danger">*</span>
+                                <input type="email"  class="form-control" name="mail"
                                     value="{{site_user.mail|trim}}" required />
                             
-                                Fisrt name 
+                                Fisrt name <span class="text-danger">*</span>
                                 <input type="text"  class="form-control" name="field_first_name"
                                     value="{{site_user.field_first_name|trim|capitalize}}" required/>
 
-                                Last name
+                                Last name <span class="text-danger">*</span>
                                 <input type="text"  class="form-control" name="field_last_name"
                                     value="{{site_user.field_last_name|trim|capitalize}}" required/>
 
@@ -75,10 +105,11 @@
                               <!-- Product Details and Payment -->                          
                                 <input type="hidden"  class="form-control" name="site_id_ready"
                                     value="{{params.site_id}}"/>                    
-                                 <input type="hidden"  class="form-control" name="price"
-                                    value="{{price_booking_system}}"/>                    
-                                <div id="p-wrapper">
-                                    Phone number
+                                 <input type="hidden"  class="form-control"
+                                    value="{{price_booking_system}}"/>     
+                                 <input type="hidden" class="form-control" name="interval" id="interval" value="month" />
+                                <div id="p-wrapper" class="mb-3">
+                                    Phone number <span class="text-danger">*</span>
                                     <input type="text"  class="form-control" name="field_phone"
                                         value="{{site_user.field_phone}}" id="phone-number"
                                         style="margin: 10px auto 5px auto!important;" required />
@@ -112,17 +143,22 @@
             $('#phone-number').inputmask("(999) 999-9999");
             
             $('#proceed-to-payment').click(function(e){
-                e.stopPropagation();
                 e.preventDefault();
+            
+                let form = $('#proceed-to-pay-form')[0];
+            
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+            
                 const phoneNumber = $('#phone-number').val();
                 const isValid = validatePhoneNumber(phoneNumber);
-    
+            
                 if (isValid) {
-                    $('#proceed-to-pay-form').trigger( "submit" );
+                    form.submit();
                 } else {
-                    $('#phone-number').each(function() {
-                        this.style.setProperty('border', '1px solid red', 'important');
-                    });
+                    $('#phone-number')[0].style.setProperty('border', '1px solid red', 'important');
                     $('#p-wrapper small').removeClass("d-none")
                 }
             });
@@ -181,6 +217,19 @@
                 price.value = priceCurrent;
             }
         } #}
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            const radios = document.querySelectorAll('input[name="price"]');
+            const priceSpan = document.getElementById("priceValue");
+             const interval = document.getElementById("interval");
+            radios.forEach(radio => {
+                radio.addEventListener("change", function () {
+                    priceSpan.textContent = this.value;
+                    interval.value = this.id ;
+                });
+            });
+        });
+
 
     </script> 
 
