@@ -12,7 +12,7 @@
 {{ attach_library('staydirect/maintenance') }}
 
 {% set step_number = "Website" %}
-{% set step_name = "Choose a business type" %}
+{% set step_name = "Choose a profile" %}
 
 <style>
 .site-manager-process{
@@ -38,7 +38,6 @@
         padding-left: 0rem !important;
     }
 }
-
 </style>
    
    {% include 'themes/custom/staydirect_install/templates/inc/header_process.html.twig'  %}
@@ -66,3 +65,11 @@
     </main>
 
 {% endif %}
+
+    <script>
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted || window.performance.navigation.type === 2) {
+      window.location.reload();
+    }
+  });
+</script>
