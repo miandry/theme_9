@@ -162,15 +162,16 @@
             </div>
         </div>
     </div>
-    {% if params.suggestion or params.email %}
+    {% if params.suggestion %}
         <div class="alert alert-success alert-dismissible fade show col-12 col-md-10 mx-auto px-4 py-2 {{ class_mail }}" role="alert">
-          The email message has been sent.
+          Thank you! Your feedback has been successfully submitted.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer" style="padding: 1.25rem 1rem !important;"></button>
         </div>
-        {#<div class="alert alert-success col-12 col-md-10 mx-auto px-4 py-2 {{ class_mail }}"
-            role="alert">
-          The email message has been sent
-        </div>#}
+    {% elseif (params.email) %}
+        <div class="alert alert-success alert-dismissible fade show col-12 col-md-10 mx-auto px-4 py-2 {{ class_mail }}" role="alert">
+          Thank you! Your message has been successfully sent. We’ll get back to you shortly.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer" style="padding: 1.25rem 1rem !important;"></button>
+        </div>
     {% endif %}
     <script>
         /* header */
@@ -225,6 +226,15 @@
                 document.querySelector(".menu-mobile-effet1").classList.toggle("show");
             }
         }
+        document.addEventListener('DOMContentLoaded', function () {
+            const alertBox = document.querySelector('.alert.alert-dismissible');
+            if (alertBox) {
+            setTimeout(() => {
+                const bsAlert = bootstrap.Alert.getOrCreateInstance(alertBox);
+                bsAlert.close();
+            }, 5000);
+            }
+        });
     </script>
     <!-- End Header -->
 {% endblock %}
