@@ -347,7 +347,7 @@
               </h3>
             </div>
             <div class="content-hero-1-resp step">
-                {% for size in 0 .. (paragraphs_length - 1) %}
+                {% for key, size in 0 .. (paragraphs_length - 1) %}
                     {% if paragraphs[size].field_active %}
                         {% set active = "active" %}
                     {% else %}
@@ -364,7 +364,7 @@
                                 <img class="c67zf cmz8h c01lu icon-step"  src="{{paragraphs[size]['field_icon']['image'].url}}" style="background: none !important;"/>
                             </div>
                             <h5>
-                                {{paragraphs[size].field_title}}
+                                Step {{ key + 1 }} - {{paragraphs[size].field_title}}
                             </h5>
                             <p>
                                 {{ paragraphs[size]['field_description'][0].value|replace({"<p>": "", '</p>': ""}) }}
