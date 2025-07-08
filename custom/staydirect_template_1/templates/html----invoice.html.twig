@@ -1,0 +1,168 @@
+
+{% set inc_ = include_template("include-invoice") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <meta name="author" content="harnishdesign.net">
+
+    <!-- Stylesheet ======================= -->
+    <link rel="stylesheet" type="text/css" href="/themes/custom/porto/vendor/bootstrap/css/bootstrap.min.css?rsusqj">
+    <style>
+        .body-invoice {
+            background: #e7e9ed;
+            color: #535b61;
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        /* =================================== */
+        /*  Layouts
+        /* =================================== */
+        .invoice-container {
+            margin: 15px auto;
+            padding: 70px;
+            max-width: 850px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -o-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 767px) {
+            .invoice-container {
+                padding: 35px 20px 70px 20px;
+                margin-top: 0px;
+                border: none;
+                border-radius: 0px;
+            }
+        }
+
+        .invoice-status {
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .invoice-status .paid {
+            color: green;
+        }
+
+        .invoice-status .unpaid {
+            color: red;
+        }
+    </style>
+</head>
+{% set params = get_parameter() %}
+{% set n = node_parser(params["id"]) %}
+{% set user = current_user() %}
+{% set u = user_parser(user['uid']) %}
+{% set site = node_parser(n.field_item['#object']) %}
+
+<body cz-shortcut-listen="true" class="body-invoice">
+    <!-- Container -->
+    <div class="container-fluid invoice-container">
+        <!-- Header -->
+        <header class="header--invoice" style="height: auto !important;">
+            <div class="row align-items-left">
+                <div class="col-sm-12 text-left text-left mb-3 mb-sm-0">
+                    <img src="https://staydirecttech.com/sites/default/files/2023-09/Logo.png" alt="">
+                    <!--<h4 class="text-7 mb-0">Invoice INline #INV-{{ n.nid }} </h4>-->
+                </div>
+                <div class="mt-1">
+                    <p class="m-0">StayDirect Technologies, LLC</p>
+                    <p class="m-0">312 Fieldcrest Drive</p>
+                    <p class="m-0">Nashville, TN 37211</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <div class="mt-4">
+                <h2 class="text-uppercase fw-bolder text-dark">Invoice</h2>
+            </div>
+            <div>
+                <p class="m-0"><strong>Invoice :</strong><span> #INV-{{ n.nid }}</span></p>
+                <p class="m-0"><strong>Invoice date:</strong><span> {{ "now"|date("m/d/Y") }}</span></p>
+                <p class="m-0"><strong>Payment date:</strong><span> {{ n.created|date("m/d/Y") }}
+                </span></p>
+
+            </div>
+            <div class="mt-4">
+                <h4 class="text-uppercase fw-bolder text-dark">BILL TO:</h4>
+            </div>
+            <div>
+                <p class="m-0"><span>{{ u.field_first_name }} {{ u.field_last_name }}</span></p>
+                <p class="m-0"><span>{{ u.field_phone }}</span></p>
+
+            </div>
+            <div class="mt-4">
+                <table class="table">
+                  <thead>
+                    <tr style="background: #62929E;" class="text-white">
+                      <th scope="col">QTY</th>
+                      <th scope="col">DESCRIPTION</th>
+                      <th scope="col">PERIOD</th>
+                      <th scope="col">UNIT PRICE</th>
+                      <th scope="col">AMOUNT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Website</td>
+                      <td>09/01/2024 – 09/30/2024</td>
+                      <td>${{ n.field_price_with_tax|number_format(2, '.', ',') }}</td>
+                      <td>${{ n.field_price_with_tax|number_format(2, '.', ',') }}</td>
+                    </tr>
+                    <tr>
+                      <th class="border-0" scope="row"></th>
+                      <td class="border-0"></td>
+                      <td class="border-0"></td>
+                      <td class=" fw-bolder">Subtotal</td>
+                      <script>console.log({{ n | json_encode | raw }});</script>
+                      <td>${{ n.field_price_with_tax|number_format(2, '.', ',') }}</td>
+                    </tr>
+                    <tr>
+                      <th class="border-0" scope="row"></th>
+                      <td class="border-0"></td>
+                      <td class="border-0"></td>
+                      <td class=" fw-bolder">Tax</td>
+                      <td>${{ 2.50|number_format(2, '.', ',') }}</td>
+                    </tr>
+                    <tr>
+                      <th class="border-0" scope="row"></th>
+                      <td class="border-0"></td>
+                      <td class="border-0"></td>
+                      <td style="background: #62929E;" class="text-white fw-bolder">TOTAL</td>
+                      <td style="background: #62929E;" class="text-white fw-bolder">
+                          ${{ (n.field_price_with_tax + 2.50)|number_format(2, '.', ',') }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="mt-4">
+                <p class="fst-italic">Thank you for your business!</p>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="text-center mt-4">
+            <div class="btn-group btn-group-sm d-print-none"> <a href="javascript:window.print()"
+                    class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-print"></i> Download </a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
+{% endif %}

@@ -1,0 +1,48 @@
+global-styling:
+  css:
+    theme: 
+      css/fonts.css : {}
+      css/theme.css : {}
+      css/style.css : {}
+      css/global.css : {}
+      css/step-form.css : {}
+  js:
+    js/alpinejs.min.js : {} 
+    js/aos.js : {} 
+    js/main.js : {} 
+ 
+
+bootstrap:
+  css:
+    theme: 
+      vendor/bootstrap/css/bootstrap.min.css : {}
+  js:
+    vendor/popper/popper.min.js : {}  
+    vendor/bootstrap/js/bootstrap.min.js : {}    
+
+maintenance:
+  css:
+    theme: 
+      css/maintenance-page.css : {}
+
+
+jquery-confirm:
+  css:
+    theme: 
+      vendor/jquery-confirm/dist/jquery-confirm.min.css : {}
+  js:
+    vendor/jquery-confirm/dist/jquery-confirm.min.js : {}  
+  dependencies:
+    - core/jquery
+
+      
+
+
+
+
+
+
+
+
+
+

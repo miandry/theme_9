@@ -1,0 +1,188 @@
+{% set elements = rows|first["#rows"] %} 
+{% set items = [] %}
+{% for key,item in elements %}
+{% set n = node_parser(item._entity) %} 
+{% endfor %}
+prix {{n.field_price_default}}
+
+
+<div  class="container py-2 container-bookings-and">
+    <div class="row">
+        <div class="col">
+          <ul class="breadcrumb breadcrumb-style-2 d-block text-4 mb-4 pt-4 pb-2">
+            <li><a href="#" class="text-color-default text-color-hover-primary text-decoration-none">Home</a></li>
+            <li>My bookings</li>
+          </ul>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-3 order-2 order-lg-1">
+            <div class="d-flex justify-content-center mb-4">
+                <div class="profile-image-outer-container">
+                    <div class="profile-image-inner-container bg-color-primary">
+                        <img src="http://www.sahaza.net/sites/default/files/pictures/2022-09/project-6.jpeg">
+                    </div>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <ul class="nav nav-list flex-column sort-source mb-5">
+                    <li class="nav-item" data-option-value="*">
+                        <a class="nav-link" href="/user">Mon profile</a>
+                    </li>
+                    <li class="nav-item" data-option-value="*">
+                        <a class="nav-link" href="/carts">Votre paniers</a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+       
+        <div class="col-lg-9 order-1 order-lg-2  table-view-porto">
+            <div class="row">
+                <div class="col">
+                    <div class="card card-modern">
+                        <div class="card-body">
+                            <div class="datatables-header-footer-wrapper">
+                                <div class="datatable-header">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                            <a href="#" class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Add Order</a>
+                                        </div>
+                                        <div class="col-8 col-lg-auto ms-auto ml-auto mb-3 mb-lg-0">
+                                            <div class="d-flex align-items-lg-center flex-column flex-lg-row">
+                                                <label class="ws-nowrap me-3 mb-0">Filter By:</label>
+                                                <select class="form-control select-style-1 filter-by" name="filter-by">
+                                                    <option value="all" selected="">All</option>
+                                                    <option value="1">ID</option>
+                                                    <option value="2">Car Item</option>
+                                                    <option value="3">Dates</option>
+                                                    <option value="4">Price default</option>
+                                                    <option value="5">Status</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-lg-auto ps-lg-1 mb-3 mb-lg-0">
+                                            <div class="d-flex align-items-lg-center flex-column flex-lg-row">
+                                                <label class="ws-nowrap me-3 mb-0">Show:</label>
+                                                <select class="form-control select-style-1 results-per-page" name="results-per-page">
+                                                    <option value="12" selected="">12</option>
+                                                    <option value="24">24</option>
+                                                    <option value="36">36</option>
+                                                    <option value="100">100</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-auto ps-lg-1">
+                                            <div class="search search-style-1 search-style-1-lg mx-lg-auto">
+                                                <div class="input-group">
+                                                    <input type="text" class="search-term form-control" name="search-term" id="search-term" placeholder="Search Order">
+                                                    <button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="datatable-ecommerce-list_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"><div class="row justify-content-between"><div class="col-auto"></div><div class="col-auto"></div></div><div class="table-responsive"><table class="table table-ecommerce-simple table-borderless table-striped mb-0 dataTable no-footer" id="datatable-ecommerce-list" style="min-width: 640px;" role="grid" aria-describedby="datatable-ecommerce-list_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th width="3%" class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 20.1875px;">
+                                                <input type="checkbox" name="select-all" class="select-all checkbox-style-1 p-relative top-2" value="">
+                                            </th>
+                                            <th width="8%" class="sorting" tabindex="0" aria-controls="datatable-ecommerce-list" rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending" style="width: 66.625px;">ID</th>
+                                            <th width="28%" class="sorting" tabindex="0" aria-controls="datatable-ecommerce-list" rowspan="1" colspan="1" aria-label="Customer Name: activate to sort column ascending" style="width: 305.725px;">Car Item</th>
+                                            <th width="18%" class="sorting" tabindex="0" aria-controls="datatable-ecommerce-list" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 186.175px;">Dates</th>
+                                            <th width="18%" class="sorting" tabindex="0" aria-controls="datatable-ecommerce-list" rowspan="1" colspan="1" aria-label="Total: activate to sort column ascending" style="width: 186.175px;">Price default</th>
+                                            <th width="15%" class="sorting" tabindex="0" aria-controls="datatable-ecommerce-list" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 150.312px;">Status</th>
+                                         </tr>
+                                    </thead>
+                                    <tbody> 
+
+                                        {% for key,item in elements %}
+
+                                            {% set n = node_parser(item._entity) %}
+
+                                            {% set state = n.moderation_state %} 
+
+                                            {% if n.moderation_state == "canceled_booking" %}
+                                          
+                                                {% set state = "Cancel" %} 
+                                            
+                                            {% endif %}
+
+                                            {% if key%2 == 0 %}
+    
+                                                <tr role="row" class="odd">
+                                                    <td width="30">
+                                                        <input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="">
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><strong>{{n['title']}}</strong></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><span>{{n['field_item'].title}}</span></a>
+                                                    </td>
+                                                    <td>{{ n['field_dates'][0].value}} <br> {{ n['field_dates'][0].end_value }}</td>
+                                                    <td>{{n.field_price_default}}</td>
+                                                    <td>
+                                                        <span class="ecommerce-status on-hold">{{state}}</span>
+                                                    </td>
+                                                </tr>
+                                            
+                                            {% else %}
+                                            
+                                            <tr role="row" class="odd">
+                                                <td width="30">
+                                                    <input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="">
+                                                </td>
+                                                <td>
+                                                    <a href="#"><strong>{{n['title']}}</strong></a>
+                                                </td>
+                                                <td>
+                                                    <a href="#"><span>{{n['field_item'].title}}</span></a>
+                                                </td>
+                                                <td>{{ n['field_dates'][0].value}} <br> {{ n['field_dates'][0].end_value }}</td>
+                                                <td>{{n.field_price_default}}</td>
+                                                <td>
+                                                    <span class="ecommerce-status on-hold">{{state}}</span>
+                                                </td>
+                                            </tr>
+                                            
+                                            {% endif %}
+                                          
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table></div></div>
+                                <hr class="solid mt-5 opacity-4">
+                                <div class="datatable-footer">
+                                    <div class="row align-items-center justify-content-between mt-3">
+                                        <div class="col-md-auto order-1 mb-3 mb-lg-0">
+                                            <div class="d-flex align-items-stretch">
+                                                <div class="d-grid gap-3 d-md-flex justify-content-md-end me-4">
+                                                    <select class="form-control select-style-1 bulk-action" name="bulk-action" style="min-width: 170px;">
+                                                        <option value="" selected="">Bulk Actions</option>
+                                                        <option value="delete">Delete</option>
+                                                    </select>
+                                                    <a href="ecommerce-orders-detail.html" class="bulk-action-apply btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Apply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-auto text-center order-3 order-lg-2">
+                                            <div class="results-info-wrapper"><div class="dataTables_info" id="datatable-ecommerce-list_info" role="status" aria-live="polite">Showing 1 to 12 of 16 entries</div></div>
+                                        </div>
+                                        <div class="col-lg-auto order-2 order-lg-3 mb-3 mb-lg-0">
+                                            <div class="pagination-wrapper"><div class="dataTables_paginate paging_simple_numbers" id="datatable-ecommerce-list_paginate"><ul class="pagination pagination-modern pagination-modern-spacing justify-content-center"><li class="paginate_button page-item previous disabled" id="datatable-ecommerce-list_previous"><a href="#" aria-controls="datatable-ecommerce-list" data-dt-idx="previous" tabindex="0" class="page-link"><i class="fas fa-chevron-left"></i></a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable-ecommerce-list" data-dt-idx="0" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable-ecommerce-list" data-dt-idx="1" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item next" id="datatable-ecommerce-list_next"><a href="#" aria-controls="datatable-ecommerce-list" data-dt-idx="next" tabindex="0" class="page-link"><i class="fas fa-chevron-right"></i></a></li></ul></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <!-- end: page -->
+            </div>
+        </div>
+
+    </div>
+</div>

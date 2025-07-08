@@ -1,0 +1,64 @@
+global-styling:
+   version: 1.0
+   css:
+    theme:
+      #vendor/bootstrap/css/bootstrap.min.css: {}
+      #vendor/font-awesome/css/font-awesome.min.css: {}
+      #vendor/font-awesome/css/font.css: {}
+      css/panels-ipe.css : {}
+      css/style.css : {}
+
+   js:
+      #vendor/bootstrap/js/bootstrap.min.js: {}
+      #/libraries/jquery-flexslider/jquery.flexslider.js: {}
+      #/libraries/magnific-popup/jquery.magnific-popup.js: {}
+      #/libraries/responsiveslides/responsiveslides: {}
+      #/libraries/memenu/memenu.js: {}
+      #/libraries/wow/wow.min.js: {}
+      #/libraries/imagezoom/imagezoom.js: {}
+      js/main.js : {}
+   dependencies:
+        - core/jquery
+color:
+   version: 1.0
+   css:
+    theme:
+      #vendor/bootstrap/css/bootstrap.min.css: {}
+      color/preview.css: {}
+   js:
+      color/preview.es6.js: {}
+   dependencies:
+      - color/drupal.color
+
+paniers :
+   version: 1.0
+   header: false
+   js:
+     js/paniers.js: {}
+   dependencies:
+     - core/jquery
+attributes :
+   version: 1.0
+   header: false
+   js:
+     js/attributes.js: {}
+   dependencies:
+     - core/jquery
+google_map:
+  version: 5.1.3
+  header: true
+  js:
+    https://maps.googleapis.com/maps/api/js?key=AIzaSyBoevlYpAgQSQCvqhkRS9IiCfNrhhUrF6k&sensor=false: { type: external, minified: true }
+booking-datepicker:
+  version: 1.0
+  js:
+    js/booking-datepicker.js: { }
+  dependencies:
+    - porto/easepick
+spinner-form:
+  version: 1.0
+  js:
+    js/bootstrap-input-spinner.js: { }
+  dependencies:
+    - core/jquery
+    - porto/bootstrap

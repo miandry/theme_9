@@ -1,0 +1,10 @@
+name: 'Theme Stay Direct Install'
+type: theme
+base theme: claro
+description: 'A Drupal theme based on Bootstrap 5 theme design.'
+core_version_requirement: ^8 || ^9
+regions:
+  content: 'Content'
+  disalbed: 'Disabled'
+libraries:
+  - 'staydirect_install/global-styling'

@@ -1,0 +1,19 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/bootstrap.min.css : {}
+      css/fonts.css: {}
+      css/global.css: {}
+      css/step-form.css: {}
+      css/reset.css: {}
+      css/style.css: {}
+  js:
+    vendor/bootstrap/js/bootstrap.min.js : {}  
+    js/staydirect_install.js : {}
+
+popup:
+  js:
+    js/popup.js : {}  
+  dependencies:
+    - staydirect/jquery-confirm

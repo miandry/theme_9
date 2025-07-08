@@ -1,0 +1,41 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
+{{ attach_library('porto/owl.carousel') }}
+{% set block_content_array = (block_parser(content)) %}
+{% set title = block_content_array['title']%}
+{% set paragraphs = block_content_array['paragraphs']%}
+{% set paragraphs_length = paragraphs|length %}
+
+{% if title is defined %}
+    <h4>{{title}}</h4>
+{% endif %}
+		<section class="section section-height-3  border-0 m-0" >
+					<div class="container">
+						<div class="row">
+		<div class="owl-carousel owl-theme owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'items': 1, 'autoplay': true, 'autoplayTimeout': 3000}" style="height: auto;">
+			<div class="owl-stage-outer">
+				<div class="owl-stage" style="transform: translate3d(-1092px, 0px, 0px); transition: all 0.25s ease 0s; width: 3276px;">
+						{% for size in 0 .. (paragraphs_length - 1) %}
+								<div class="owl-item" style="width: 546px;">
+									<div>
+										<div class="testimonial testimonial-style-2 testimonial-with-quotes">
+											<blockquote>
+												<p class="mb-0">{{paragraphs[size]['body']|raw}}</p>
+											</blockquote>
+											<div class="testimonial-arrow-down"></div>
+											<div class="testimonial-author">
+												<img src="{{paragraphs[size]['media']['image']['url']}}" class="img-fluid rounded-circle" alt="{{paragraphs[size]['media']['image']['alt']}}">
+												<p><strong class="font-weight-extra-bold">{{paragraphs[size]['field_auteur']}}</strong>{{paragraphs[size]['description_de_l_auteur']}}</span></p>
+											</div>
+										</div>
+									</div>
+								</div>
+						{% endfor %}
+					</div>
+				</div>
+		</div>
+</div>
+	</div>
+				</section>
+{% endblock %}

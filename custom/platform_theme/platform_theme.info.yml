@@ -1,0 +1,29 @@
+name: Platform Theme
+type: theme
+description: 'Base Themes'
+package: Theme List
+core_version_requirement: ^8.9 || ^9 || ^10
+
+libraries:
+  - platform_theme/global-styling
+base theme: porto
+regions:
+  hidden: Hidden
+  header: Header
+  footer: Footer
+  content: Content
+  top: Top
+  center: center
+  bottom: Bottom
+  left: Left
+  right: Right
+  left_category: Left Category
+  right_category: Right Category
+  top_category: Top Category
+  bottom_category: Bottom Category
+  login: login
+
+
+
+
+

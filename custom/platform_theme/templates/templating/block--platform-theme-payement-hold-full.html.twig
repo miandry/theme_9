@@ -1,0 +1,28 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+  {{ attach_library('mz_payment/stripe') }}
+  {{ attach_library('mz_payment/mz_payment') }}
+
+  <form id="stripe-hold" action="/payment/hold" method="POST">
+    <div class="group">
+      <label>
+        <span>Card number</span>     </label>
+        <div id="card-element" class="field"></div>
+      <label class="amount-label">
+        <span>Amount</span>
+      </label>
+      <input type="hidden" id="booking_id"  name="booking_id" value="{{ params.booking_id }}" class="field"  />
+
+      <input id="amount" required readonly name="amount" value="{{ params.amount }}" class="field" placeholder="0.00" /> {{ currency() }}
+
+    </div>
+    <button type="submit">Submit Payment</button>
+    <div class="outcome" id="card-errors" role="alert">
+      <div class="error"></div>
+      <div class="success">
+        Success! Your Stripe token is <span class="token"></span>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{% set myuser = current_user() %}
+{% set is_editor = hasRole('content_editor',myuser.uid) %}
+{% set is_admin = hasRole('administrator',myuser.uid) %}
+{% set is_web = hasRole('webmaster',myuser.uid) %}
+
+{% if is_editor or is_admin or  is_web %}
+</div>
+{% endif %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Upload with jQuery Mobile</title>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+  <div data-role="page" id="uploadPage">
+    <div data-role="header">
+      <h1>Upload Image</h1>
+    </div>
+
+    <div data-role="content">
+      <form id="imageUploadForm" enctype="multipart/form-data">
+        <label for="file">Choose an image:</label>
+        <input type="file" name="image" id="file" accept="image/*">
+        <input type="submit" value="Upload" id="uploadButton">
+      </form>
+      <div id="uploadStatus"></div>
+    </div>
+  </div>
+
+  <script>
+    $(document).on('pageinit', '#uploadPage', function() {
+      $('#imageUploadForm').on('submit', function(event) {
+        event.preventDefault();
+        
+        var formData = new FormData(this);
+        
+        $.ajax({
+          url: 'http://transfer.local:8888/api/v1/uploader', // Change this to your server-side upload script
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            console.log(response);
+            $('#uploadStatus').html('<p>Image uploaded successfully!</p>');
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            $('#uploadStatus').html('<p>Error uploading image: ' + errorThrown + '</p>');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

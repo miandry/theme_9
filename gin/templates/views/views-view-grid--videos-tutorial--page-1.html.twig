@@ -1,0 +1,203 @@
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+      }
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        position: relative;
+        width: 90%;
+        max-width: 1024px;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .close-modal {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        cursor: pointer;
+        padding: 8px;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#4dabf7", secondary: "#e9f7ff" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      }
+      .sidebar-link.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      }
+      .video-thumbnail:hover .play-button {
+      transform: scale(1.1);
+      opacity: 1;
+      }
+      .play-button {
+      transition: all 0.2s ease;
+      opacity: 0.8;
+      }
+    </style>
+    <div id="videoModal" class="modal">
+      <div class="modal-content">
+        <button class="close-modal">
+          <i class="ri-close-line ri-2x"></i>
+        </button>
+        <video id="videoPlayer" controls class="w-full aspect-video">
+          <source
+            src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <div class="border-b px-6">
+        <div class="flex space-x-4">
+          <button
+            class="px-4 py-3 text-primary border-b-2 border-primary font-medium"
+          >
+            Video Tutorials
+          </button>
+          <a href="/admin/tutorial/role-description" class="px-4 py-3 text-gray-500 hover:text-gray-700">
+            User roles
+          </a>
+        </div>
+      </div>
+      <!-- Content Area -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="mb-6">
+          <h2 class="text-lg font-medium text-gray-800 mb-1">
+            Getting Started
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Essential tutorials to help you get familiar with the rental
+            management system
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Video 1 -->
+            {% for key,item in rows %}
+                {% set n = node_parser(item["#row"].nid) %}
+                <div class="bg-white rounded shadow-sm overflow-hidden">
+                  <div class="relative video-thumbnail" data-video-url="{{ n.media['video'].url }}">
+                    <div class="aspect-video bg-gray-100 relative">
+                      <img
+                        src="{{ n.cover_image['image'].url }}"
+                        class="w-full h-full object-cover"
+                      />
+                      <div
+                        class="absolute inset-0 flex items-center justify-center play-button"
+                      >
+                        <div
+                          class="w-16 h-16 rounded-full bg-primary bg-opacity-90 flex items-center justify-center"
+                        >
+                          <i class="ri-play-fill text-white ri-2x"></i>
+                        </div>
+                      </div>
+                    </div>
+                   {# <div
+                      class="absolute top-2 right-2 bg-gray-900 bg-opacity-70 text-white text-xs px-2 py-1 rounded"
+                    >
+                      5:24
+                    </div>#}
+                  </div>
+                  <div class="p-4">
+                    <h3 class="font-medium text-gray-800">{{ n.title }}</h3>
+                    <p class="text-gray-600 text-sm mt-1">
+                      {{ n.description }}
+                    </p>
+                    <!--<div class="flex items-center mt-3 text-xs text-gray-500">
+                      <div class="flex items-center">
+                        <i class="ri-eye-line mr-1"></i>
+                        <span>1,245 views</span>
+                      </div>
+                      <div class="mx-2">•</div>
+                      <span>Updated May 2, 2025</span>
+                    </div> -->
+                  </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("videoModal");
+        const videoPlayer = document.getElementById("videoPlayer");
+        const source = videoPlayer.querySelector("source");
+        const closeBtn = document.querySelector(".close-modal");
+        const thumbnails = document.querySelectorAll(".video-thumbnail");
+    
+        thumbnails.forEach((thumbnail) => {
+          thumbnail.addEventListener("click", () => {
+            const videoUrl = thumbnail.dataset.videoUrl;
+            if (videoUrl) {
+              source.src = videoUrl;
+              videoPlayer.load(); // recharge le player avec le nouveau src
+              videoPlayer.play();
+              modal.classList.add("active");
+            }
+          });
+        });
+    
+        closeBtn.addEventListener("click", () => {
+          modal.classList.remove("active");
+          videoPlayer.pause();
+          videoPlayer.currentTime = 0;
+        });
+    
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("active");
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+          }
+        });
+      });
+    </script>

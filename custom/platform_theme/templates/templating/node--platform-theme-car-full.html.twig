@@ -1,0 +1,876 @@
+{% extends get_module_path('templating') ~ "/templates/misc/node.html.twig" %}
+{% block templating_content %}
+{{ attach_library('platform_theme/booking-datepicker') }}
+{{ attach_library('porto/owl.carousel') }}
+{{ attach_library('platform_theme/spinner-form') }}
+{{ attach_library('platform_theme/google_map') }}
+
+
+{% set n = (node_parser(node)) %}
+{% set images = n.field_images %}
+{% set features = n.field_features %}
+{% set rules = n.field_rules_and_policies %}
+{% set specifications = n.field_specifications %}
+{% set amenities = n.field_amenities %}
+{% set related = n.field_related %}
+{% set tags = n.field_features_tags %}
+
+{% set uid = current_user().uid %}
+{% set imgs = n['field_images'] %}
+{% set imgs_length = imgs|length %}
+
+{% set owner = node_parser(n.field_owner.node) %}
+
+{% set nid =  n.nid %}
+{% set params = get_parameter() %}
+{% if params.comment_body %}
+{% set comment = save('comment','comment',params) %} 
+{% set t = redirect(current_url_alias()) %}
+{{message('Your review is posted successfully','status')}}
+{% endif %}
+{% set comment = n.comment %}
+{% if params.carid %}
+   {{storage_set('booking_info',params)}}
+   {% set t = redirect('/booking-process') %} 
+{% endif %}
+
+
+<style>
+          
+    .container_and{
+        max-height: 500px; 
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .container_and img {
+        width: 100%;
+    }
+
+    .container_and img:first-child {
+        padding-right: 5px;
+    } 
+
+    .container_and a {
+        width: 100%;
+    }
+     .container-share{
+      position:relative;
+     }
+   .container-share .social-icons{
+    position: absolute;
+    bottom: 30px;
+    z-index: 230;
+    left: 3%;
+    }
+    .container-share  .social-icons li {
+
+    margin: -2px 5px 0 0!important;
+}
+</style>
+
+<div class="container-share">
+{% if(images) %}
+
+    {% if imgs_length == 1 %}
+
+        {% set css = "container_and" %}
+
+        <div class="{{css}}">
+            <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+                <div class="masonry-loader masonry-loader-showing">
+                    <div class="masonry row" data-plugin-masonry data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}"> 
+                        
+                        {% for size in 0 .. (imgs_length - 1) %}
+
+                            <div class="masonry-item no-default-style col-6 overflow-hidden px-0">
+                                <a class="d-inline-block custom-img-thumbnail-style-1 img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon rounded-0 appear-animation" href="{{ img.image.url }}" data-appear-animation="maskDown" data-appear-animation-delay="500">
+                                    <img src="{{ img.image.url }}" class="img-fluid rounded-0" alt="" />
+                                </a>
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if imgs_length == 2 %}
+
+        <div class="container_and">
+            <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+                <div class="masonry-loader masonry-loader-loaded">
+                    <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}" style="position: relative; height: 588.587px;">
+                        
+                        {% for size in 0 .. (imgs_length - 1) %}
+
+
+                            {% if size == 0 %}
+                                <div class="masonry-item no-default-style col-6 overflow-hidden px-0" style="position: absolute; left: 0px; top: 0px; width: 50%;">
+                                    <a class="d-inline-block custom-img-thumbnail-style-1 img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon rounded-0 appear-animation animated maskDown appear-animation-visible" href="{{ n['field_images'][size]['image'].url }}" data-appear-animation="maskDown" data-appear-animation-delay="500" style="animation-delay: 500ms;">
+                                        <img src="{{ n['field_images'][size]['image'].url }}" class="img-fluid rounded-0" alt="">
+                                    </a>
+                                </div>
+                            {% endif %}
+                            
+                            {% if size == 1 %}
+                                <div class="masonry-item no-default-style col-6 overflow-hidden px-0" style="position: absolute;left: 661.3px;  width: 50%;">
+                                    <a class="d-inline-block custom-img-thumbnail-style-1 img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon rounded-0 appear-animation animated maskUp appear-animation-visible" href="{{ n['field_images'][size]['image'].url }}" data-appear-animation="maskUp" data-appear-animation-delay="500" style="animation-delay: 500ms;">
+                                        <img src="{{ n['field_images'][size]['image'].url }}" class="img-fluid rounded-0" alt="">
+                                    </a>
+                                </div>
+                            {% endif %}
+                        
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if imgs_length == 4 %}
+
+      <style>
+
+        .container-grid{
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-self: center;
+        }
+
+        .content-grid {
+          background-size: cover; 
+          background-position: center;
+          position: absolute !important;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          overflow: hidden;
+        }
+
+        .cover {
+          background-size: cover; 
+          background-position: center;
+          position: absolute !important;
+          width: 100%;
+          height: 100%;
+        }
+
+      </style>
+     
+       <div class="container_and">
+        <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+              
+          <div  class="owl-carousel owl-carousel-light manual"  data-dynamic-height="['460px','460px','460px','210px','180px']" style="height: 460px; overflow: hidden;">
+
+                <div class="cover" style="top: 0;">
+                  
+                  <div class="container-grid">
+
+                    <div style="grid-template-columns: repeat(2,1fr); grid-template-rows: 1fr; width: 100%; height: 100%;display: grid;gap: 5px;box-sizing: border-box;">
+                      
+                      
+
+                        <div style="position: relative;">
+                          <a  href="{{ n['field_images'][0]['image'].url }}">
+                            <img src="{{ n['field_images'][0]['image'].url }}"  alt="" style="display: none;"/>
+                            <div class="content-grid" style="background-image: url({{ n['field_images'][0]['image'].url }});">
+                            </div>
+                          </a>
+                        </div>
+
+                        <div style="display: grid;grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;gap: 5px;">
+                          
+                          <div style="display: grid;grid-template-columns: 1fr; grid-template-rows: 1fr 1fr;gap: 5px;">
+                            
+                            <div style="background-color: #35363a;position: relative;">
+                              <a  href="{{ n['field_images'][1]['image'].url }}">
+                                <img src="{{ n['field_images'][1]['image'].url }}"  alt="" style="display: none;"/>
+                                <div class="content-grid" style="background-image: url({{ n['field_images'][1]['image'].url }});"></div>
+                              </a>
+                            </div>
+
+                            <div style="background: #cc6ca5;position: relative;">
+                              <a  href="{{ n['field_images'][2]['image'].url }}">
+                                <img src="{{ n['field_images'][2]['image'].url }}"  alt="" style="display: none;"/>
+                                <div class="content-grid" style="background-image: url({{ n['field_images'][2]['image'].url }});" data="img/anders/project-portfolio-4-4.jpg"></div>
+                              </a>
+                            </div>
+
+                          </div>
+
+                          <div style="position: relative;">
+                            <a  href="{{ n['field_images'][3]['image'].url }}">
+                              <img src="{{ n['field_images'][3]['image'].url }}"  alt="" style="display: none;"/>
+                              <div class="content-grid" style="background-image: url({{ n['field_images'][3]['image'].url }});"></div>
+                            </a>
+                          </div>
+
+                        </div>
+
+                    
+
+                    </div>
+                  </div>
+
+                </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    {% endif %}
+
+
+
+{% endif %}
+      {{content.addtoany}}
+ </div>     
+
+
+
+
+<div class="container container-car-and" style="max-width: 1300px !important; margin-top: 65px">
+
+    <div class="row">
+
+        <div class="col-md-8 mb-4 mb-md-0">
+
+            <h1 class="text-dark font-weight-bold text-8" style="margin-bottom: 0 !important">{{ n.title }}</h1>
+
+            <div class="overflow-auto md:-mb-4 md:overflow-x-visible whitespace-nowrap md:whitespace-normal md:pb-0 pb-4-and" style=" padding: 10px 0">
+
+                  {% for item in tags %}
+                      {% set term = taxonomy_term_parser(item.term) %}
+                      <div class="inline-flex items-center px-4 py-1 mr-3 rounded-full md:mb-4 bg-grey-100">
+                      {% if term.field_media_icon %}<img class="mt-1 mx-1"  src="{{term.field_media_icon.image.url}}" width="16" height="16" />{% endif %}
+                          <div class="text-sm font-normal text-gray-900 md:text-base semiHighlight">{{term.name}}</div>
+                      </div>
+                  {% endfor %}                   
+            </div>
+
+            <hr>
+
+            <div>
+            <h2 class="text-color-dark font-weight-normal text-5 mb-2">
+                <strong class="font-weight-extra-bold">{{ 'Description'|t}}</strong></h2>
+                {{ n.body|first.value|raw }}
+            </div>
+            <hr> 
+
+            <!-- FEATURE -->
+              {% if features %}
+                  <div class="row-features" style="padding-top: 20px">
+                  <div class="row">
+                      <div class="col">
+                          <h4>{{ 'FEATURE'|t }}</h4>
+                      </div>
+                  </div>
+                  <div class="row" style="padding-bottom: 30px;">
+
+                    {% for item in features %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
+
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %} 
+
+                  </div>
+                  </div>
+                  <div class="row"><hr></div>
+              {% endif %}
+            <!-- END FEATURE -->
+    
+            <!-- Amenities -->
+            {% if amenities %}
+              <div class="row-features" style="padding-top: 20px">
+                  <div class="row">
+                      <div class="col">
+                          <h4>{{ 'Amenities'|t }}</h4>
+                      </div>
+                  </div>
+
+                  <div class="row" style="padding-bottom: 30px;">
+          
+                    {% for item in amenities %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
+
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %} 
+
+                  </div>
+              </div>
+              <div class="row"><hr></div>
+            {% endif %}
+            <!-- END Amenities -->
+
+            <!-- Specifications -->
+            {% if specifications %}
+
+            <div class="row-features" style="padding-top: 20px">
+                <div class="row">
+                    <div class="col">
+                        <h4>{{ 'Specifications'|t }}</h4>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-bottom: 30px;">
+                            
+                    {% for item in specifications %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
+
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %} 
+                             
+                </div>
+
+            </div>
+            <div class="row"><hr></div>
+            <!-- END Specifications -->
+             {% endif %}
+
+            <!-- Rules -->
+             {% if rules %}
+            <div class="row-features" style="padding-top: 20px">
+                <div class="row">
+                    <div class="col">
+                        <h4>{{ 'Rules'|t }}</h4>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-bottom: 30px;">    
+                    {% for item in rules %}
+                          
+                        {% set term = (taxonomy_term_parser(item.term)) %}
+                    
+                        {% if loop.first %}
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2 "> 
+                            <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                            </li>  
+                        {% endif %}
+
+                        {% if loop.index is not divisible by(4) and not loop.last and not loop.first  %}
+
+                          <li> 
+                              {% if term.field_media_icon %}
+                                <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                              {% endif %} 
+                              {{item.title}}
+                          </li> 
+                        
+                        {% endif %}
+
+                        {% if loop.index is divisible by(4) and not loop.last %}
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="list list-icons list-icons-style-2"> 
+                        {% endif %}
+
+                        {% if loop.last %}
+
+                              <li> 
+                                  {% if term.field_media_icon %}
+                                    <img class="mb-1"  src="{{term.field_media_icon.image.url}}" width="24" height="24" />
+                                  {% endif %} 
+                                  {{item.title}}
+                              </li> 
+
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    {% endfor %}           
+                </div>
+
+            </div>
+              {% endif %}
+            <!-- END Rules -->
+          
+
+        </div>
+
+    <div class="col-md-4 position-relative">
+      <div>
+        <div class="booking-form call-to-action featured featured-primary">
+          <form method="get" action="{{current_url_alias()}}" style="width: 100%">
+            <h4 class="font-weight-bold text-uppercase text-4 mb-3">Dates</h4>
+            <table class="shop_table cart-totals mb-3">
+              <tbody>
+              <tr>
+                <td colspan="2" class="border-top-0 p-0">
+                  <input type="hidden" name="carid" value="{{ n.nid }}"/>
+                  <input id="datepickerVal" value="0" class="Dym form-check-input" type="hidden" name="booking-range" />
+                  <input id="datepicker" name="booking-range-date"  required="" placeholder="Select your dates   >"  style="width: 100%"/>
+                </td>
+              </tr>
+              {% for key,item in addons %}
+                <input  type="hidden" value="{{ item.type }}"   name="{{ item.name }}__type" /> 
+                {% if item.type =="addon_with_quantity" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="row form-check-with-qty">
+                        <input type="hidden" value="{{ item.price }}" class="qty-montant" />
+                        <div class="col">
+                          <input type="hidden" name="{{ item.name }}" value="0" class="Dym qty-input" />
+                          <div class="form-check-label pt-2" for="tabContent9Checkbox">
+                            {{ item.name }} : $<span class="qty-input-display">{{ item.price }}</span> 
+                          </div>
+                        </div>
+                        <div class="col number-input-custom">
+                          <input class="quantity" min="0"  value="0" type="number">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="addon_additional_price" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="form-check form-check-addition-price">
+                        <span id="myval" style="display: none" >{{ item.price }}</span>
+                        <input class="Dym form-check-input" style="pointer-events: none;"  type="checkbox" value="{{ item.price }}"  checked="true" name="{{ item.name }}" >
+                        <label class="form-check-label" for="tabContent9Checkbox">
+                          {{ item.name }} :  ${{ item.price }}
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="addons" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="form-check">
+                        <span id="myval" style="display: none" >{{ item.price }}</span>
+                        <input class="Dym form-check-input"  value="0" type="checkbox" name="{{ item.name }}" >
+                        <label class="form-check-label" for="tabContent9Checkbox">
+                          {{ item.name }} :  ${{ item.price }}
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="select_addons" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <strong class="d-block text-color-dark mb-2">{{ item.name }}</strong>
+                      <div  class="d-flex flex-column">
+                        <select class="Dym form-select form-control h-auto py-2 valid"   name="{{ item.name }}"  aria-invalid="false">
+                          <option value="0">- None -</option>
+                          {% for keychild,child in item.list %}
+                            <option value="{{ child.name }}----{{ child.price }}">{{ child.name }} : ${{ child.price }} </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+              <tr class="total">
+                <td>
+                  <strong class="text-color-dark text-3-5">Total</strong>
+                </td>
+                <td class="text-end">
+                  <strong class="text-color-dark">$<span id="total_prix" class="amount text-color-dark text-5">0</span></strong>
+                </td>
+              </tr>
+              <td colspan="2">
+                Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
+              </td>
+              </tr>
+              </tbody>
+            </table>
+            
+            {% if logged_in %}
+              <button id="btn-booking" type="submit" class="hidden btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Request to book now <i class="fas fa-arrow-right ms-2"></i></button>
+            {% else %}
+               <a  href="/signin-signup?destination={{current_url_alias()}}" class="btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+    <div class="row" style=" padding: 50px 0">
+        <div class="col">
+
+            <hr class="mt-0">
+            <h3 class="font-weight-semibold text-4 mb-3" style="padding: 10px 0">SUGGESTION SHOP</h3>
+
+            
+
+            <div class="products row" >
+                <div class="col" style="padding:0 0 30px 0">
+                    <div class="owl-carousel owl-theme nav-style-1 nav-outside nav-outside nav-dark mb-0" data-plugin-options="{'loop': false, 'autoplay': false, 'items': 4, 'nav': true, 'dots': false, 'margin': 20, 'autoplayHoverPause': true, 'autoHeight': true, 'stagePadding': '75', 'navVerticalOffset': '50px'}">
+                    {% for item in related %}
+                        {% set related_item = (node_parser(item.nid)) %}
+                        {% set related_img = related_item.field_images|first.image.url %}
+                        {% set url = related_item.field_url.url %}
+                            <div class="product mb-0" style="padding: 0 10px">
+
+                                <div class="product-thumb-info border-0 mb-3">
+                                    <a href="{{ path('entity.node.canonical', {'node':related_item.nid }) }}">
+                                    <div class="product-thumb-info-image">
+                                        <img alt="" style="height: 200px;" class="img-fluid" src="{{related_img}}">
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                    <h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">{{related_item.title}}</a></h3>
+                                    </div>
+                                    <a href="{{ path('entity.node.canonical', {'node':related_item.nid }) }}" class="text-decoration-none text-color-default text-color-hover-dark text-4">
+                                    <i class="icon-eye icons"></i>
+                                    </a>
+                                </div>
+                                <div title="Rated 5 out of 5">
+                                    <input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
+                                </div>
+
+                            </div>
+                    {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <section class="section-no-background section-no-border mt-0 mb-0" id="testimonials" style="padding-top:0!important; margin-top:0!important; padding-bottom: 50px">
+                <div class="container">
+         
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <div class="testimonial pb-4 appear-animation animated fadeInRight appear-animation-visible" data-appear-animation="fadeInRight" data-appear-animation-delay="0" style="animation-delay: 0ms; margin-bottom:0px !important">
+                                <div class="testimonial-author" style="margin-left: 0 !important">
+                                    <div class="testimonial-author-thumbnail" style=" border-radius: 50%; width: 55px; height: 55px; border: solid 1px #ced2e3">
+                                        <img src="{{owner.field_image.url}}" class="img-fluid rounded-circle" alt="">
+                                    </div>
+                                    <p><strong style="font-size: 1.5rem;">{{owner.title}} {{owner.field_last_name}}</strong></p>
+                                </div>
+                                <div class="testimonial-arrow-down" style="padding-bottom:9px"></div>
+
+                                <p>{{owner.field_description}}</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <style>
+
+                    </style>
+
+                    <div class="md:flex md:items-center">
+                        <button onclick="window.location.href='javascript:void(Tawk_API.toggle() )';" data-testid="ask-host-btn" data-size="normal" data-shape="pill" data-variant="primary-outlined" class="Button_button__Qtiwa before-focus-style rounded relative highlight transition-all duration-500 w-full md:w-auto md:justify-self-start md:whitespace-nowrap">
+                            <span class="Button_content__QS4_W">Message host</span>
+                        </button>
+                        <p class="p-and mt-2 text-xs text-center text-gray-500 md:inline md:ml-4 md:w-28 md:mt-0">
+                            Usually answers in less than 24 hours
+                        </p>
+                    </div>
+                    
+                    
+                </div>
+            </section>
+
+            <hr>
+
+
+            <!-- REVIEW DESIGN-->
+            <section class="section border-0 m-0" style="background:#fff !important; padding-top:0; padding-bottom: 0">
+              <div class="container pb-3 my-5">
+                <div class="row pb-3 mb-4">
+                  <div class="col">
+                    <h4 class="font-weight-bold text-color-dark line-height-1 mb-0">Customers Reviews</h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="owl-carousel nav-outside nav-style-1 nav-dark nav-arrows-thin nav-font-size-lg custom-carousel-box-shadow-1 mb-0" data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 1}, '768': {'items': 2}, '979': {'items': 2}, '1199': {'items': 3}}, 'autoplay': true, 'autoplayTimeout': 5000, 'autoplayHoverPause': true, 'dots': false, 'nav': true, 'loop': true, 'margin': 15, 'stagePadding': '75'}">
+                      
+                      {% for item in comment %}
+                          {% if item.status == 1 %}
+                      <div>
+                        <div class="card custom-border-radius-1">
+                          <div class="card-body">
+                            <div class="custom-testimonial-style-1 testimonial testimonial-style-2 testimonial-with-quotes testimonial-remove-right-quote text-center mb-0">
+                              <blockquote style="padding-top: 30px">
+                                <p class="text-color-dark text-3 font-weight-light px-0 mb-2">
+                                  {{item.comment_body|raw}}
+                                </p>
+                              </blockquote>
+                              <div class="testimonial-author">
+                                <p><strong class="font-weight-extra-bold">{{item.field_first_name}} {{item.field_last_name}}</strong></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                          {% endif %}
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+				    </section>
+            <!-- END REVIEW DESIGN-->
+
+           
+
+            <div class="post-block mt-5 post-leave-comment">
+                <h4 class="mb-3">Reviews</h4>
+
+                <form class="contact-form p-4 rounded bg-color-grey" action="{{current_url_alias()}}" method="POST">      
+                    <input type="hidden" name="comment_type"   value="comment" />
+                    <input type="hidden" name="subject"   value="review by {{uid}}" />
+                    <input type="hidden" name="entity_type"   value="node" />
+                    <input type="hidden" name="entity_id"   value="{{nid}}" />
+                    <input type="hidden" name="field_name"   value="comment" />
+                    <input type="hidden" name="uid"   value="{{uid}}" />
+                                         
+                    <div class="p-2">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="form-label required font-weight-bold text-dark">First Name</label>
+                                <input type="text" name="field_first_name" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" required="">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="form-label font-weight-bold text-dark">Last Name</label>
+                                <input type="text" name="field_last_name" value=""   class="form-control"  >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label class="form-label required font-weight-bold text-dark">Review description</label>
+                                <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control" name="comment_body" required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col mb-0">
+                                <input type="submit" value="Post Review" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+{% set map = n.field_location %}
+
+{% if  map %}
+{% set map_length = map|length %}
+<div style="background: #fcfafc; margin-bottom: 50px;">
+    <div class="container" >
+        <div class="row" style="padding: 40px 0">
+            <div id="map" style="height: 500px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var locations = [
+        {% for size in 0 .. (map_length - 1) %}
+            ['', {{ map[size].lat }}, {{ map[size].lng }}, {{size+1}}]{% if not loop.last %},{% endif %}
+        {% endfor %}
+     ];
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+    
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        icon:'{{base_url()}}/themes/custom/platform_theme/img/car.png',
+        map: map
+      });
+      
+     // google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      //  return function() {
+      //    infowindow.setContent(locations[i][0]);
+      //    infowindow.open(map, marker);
+      //  }
+     // })(marker, i));
+    }
+</script>
+  {% endif %}
+
+
+{% endblock %}
+

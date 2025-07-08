@@ -1,0 +1,12 @@
+.main-form-payment{
+    border: 1px solid #716d6d;
+    border-radius: 20px;
+    padding: 15px;
+}
+.right-pay-form{}
+.main-step p{
+    color: white !important;
+}
+.form-payment-1 .node-site-form{
+       background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%)) !important;
+}

@@ -1,0 +1,150 @@
+
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+
+{% block templating_content %}
+{% set c = block_parser(content) %}
+{% set select = c['field_select'][0].value %}
+{{select}}
+<style>
+    .candt .simple--banniere {
+        height: 300px;
+        overflow: hidden;   
+        background: #f5F5F5;
+        background: url(./img/banniere-simple.jpg), linear-gradient(to bottom, #ADB2B6, #ABAEB3);;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        color: #fff !important;
+    }
+    .candt .simple--banniere p {
+        color: #fff;
+        font-weight: 500;
+    }
+    .candt .candt-lr {
+        max-width: 100%;
+        max-height: 500px;
+        overflow: hidden;
+        padding: 0 10px;
+        border-radius: 5px;
+    }
+    .candt .candt-lr img {
+        object-fit: contain;
+        width: 100%;
+    }
+</style>
+
+<main class="container candt">
+
+    {% if select== 2 %}
+        <div class="p-4 mb-4 rounded text-body-emphasis bg-body-secondary simple--banniere" style="
+        background: #f5F5F5;
+        {{ bannier_img }};
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        ">
+            <div class="col-lg-6 px-0">
+            
+            </div>
+        </div>
+        <div class="row g-5 img-none-center-4">
+            <div class="col-md-12">
+                <article class="blog-post">
+                    <h2 class="display-5 link-body-emphasis mb-3 p-4 text-center">
+                        {{c.field_title}}
+                    </h2>
+                    <p>
+                        {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+                    </p>
+                </article>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if select == 4 %}
+        <div class="row g-5 img-none-center-4">
+            <div class="col-md-12">
+                <article class="blog-post">
+                    <h2 class="display-5 link-body-emphasis mb-3 p-4 text-center">
+                        {{c.field_title}}
+                    </h2>
+                    <p>
+                        {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+                    </p>
+                </article>
+            </div>
+        </div>
+    {% endif %}
+
+  
+
+    {% if select== 0 %}
+        <div class="row mb-2 candt-lr">
+            <div class="col-md-6">
+                <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <p class="card-text mb-auto">
+                        <img src="{{c['field_media1']['image'].url}}" alt="">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-3">
+                            {{c.field_title}}
+                        </h3>
+                        <p class="card-text mb-auto">
+                            {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if select== 3 %}
+        <div class="row g-5">
+            <div class="col-md-12">
+                <article class="blog-post">
+                    <h2 class="display-5 link-body-emphasis mb-3">
+                        I {{c.field_title}}
+                    </h2>
+                    <p>
+                        {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+                    </p>
+                </article>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if select== 1 %}
+        <div class="row mb-2 candt-lr">
+            <div class="col-md-6">
+                <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-3">
+                            {{c.field_title}}
+                        </h3>
+                        <p class="card-text mb-auto">
+                            {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <p class="card-text mb-auto">
+                        <img src="{{c['field_media1']['image'].url}}" alt="">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</main>
+
+{% endblock %}

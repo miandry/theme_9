@@ -1,0 +1,530 @@
+{% extends get_module_path('templating') ~ "/templates/misc/node.html.twig" %}
+{% block templating_content %}
+{{ attach_library('staydirect_template_1/booking-details') }}
+{{ attach_library('staydirect_template_1/spinner-form') }}
+
+
+
+  {% set item_name = 'node--staydirect-template-1-article-full.html' %} 
+  {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+  {% set css = include(path_css) %} 
+  {{render_css(css,'node__staydirect_template')}}
+
+
+
+
+{% set n = (node_parser(node)) %}
+{% set imgs = n.field_images %}
+{% set params = get_parameter() %}
+
+{% set specifications = n['field_specifications'] %}
+{% set specifications_length = specifications|length %}
+
+{% set features = n['field_features'] %}
+{% set features_length = features|length %}
+
+{% set amenities = n['field_amenities'] %}
+{% set amenities_length = amenities|length %}
+
+{% set rules = n['policies_and_rules_'] %}
+{% set rules_length = amenities|length %}
+      
+  {% if params.nid %}
+      {% set t = redirect('/booking-process', params) %} 
+  {% endif %}
+
+<style>
+ .btn-checkout {
+      padding: 15px 25px!important;
+      font-size: 16px;
+ }
+</style>
+<script>
+   function checkFormEmpty() {
+    var form = document.getElementById('mytemplatebooking');
+    var elements = form.elements;
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      // Check if the element is a text input, textarea, or select
+      if (element.name == "booking-range" 
+      && element.tagName === 'INPUT' && element.value === '') {
+        alert('Please fill out Dates before submitting your booking .');
+        return false;
+      }
+    }
+    // If all fields are filled, submit the form
+    return true;
+  }
+</script>
+<section class="banniere--resp">
+  <div class="wrapper--resp">
+      <div class="container-banniere-resp grid">
+
+          <div class="banniere-col1 grid" style="     
+              background: url( {{ imgs[0]['image'].url }} );
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center center;
+          ">
+            
+          </div>
+          <div class="banniere-col2 grid">
+              <div class="banniere-col2-row1 grid">
+                  <div class="grid banniere-col2-row1-col1" style="     
+                  background: url({{ imgs[1]['image'].url }});
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position: center center;
+              ">
+                    
+                  </div>
+                  <div class="grid banniere-col2-row1-col2" style="     
+                  background: url({{ imgs[2]['image'].url }});
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position: center center;
+              ">
+                  </div>
+              </div>
+              <div class="banniere-col2-row2 grid">
+                  <div class="grid banniere-col2-row2-col1 grid" style="     
+                  background: url({{ imgs[3]['image'].url }});
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position: center center;
+              ">
+
+                  </div>
+                  <div class="grid banniere-col2-row2-col2" style="     
+                  background: url({{ imgs[4]['image'].url }});
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position: center center;
+              "  id="form-booking">
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<div class="specification">
+    <div class="container" id="form-booking">
+        <div class="row">
+          <div class="col-md-7 col-lg-7 spec-left" bis_skin_checked = "1">
+              <div class="header-cnt">
+              <h1>{{n.title}}</h1>
+              <p class="desc-cnt">
+                  {{n.body|first.value|raw}}
+              </p>
+            </div>
+            {% if specifications  %}
+            <div class="content-spec-left" style="margin-top: 30px;">
+              <h4 class="mb-3">
+                  <i class="icon i-spec">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M19.6376 15.8875C20.8631 14.9234 21.7576 13.6012 22.1967 12.105C22.6357 10.6087 22.5975 9.01287 22.0873 7.53937C21.5772 6.06587 20.6204 4.78802 19.3502 3.8836C18.08 2.97918 16.5594 2.49316 15.0001 2.49316C13.4408 2.49316 11.9203 2.97918 10.65 3.8836C9.3798 4.78802 8.42305 6.06587 7.91288 7.53937C7.40272 9.01287 7.36451 10.6087 7.80357 12.105C8.24263 13.6012 9.13713 14.9234 10.3626 15.8875C8.26271 16.7288 6.43048 18.1242 5.06123 19.9249C3.69199 21.7256 2.83707 23.8642 2.58762 26.1125C2.56956 26.2767 2.58401 26.4428 2.63015 26.6014C2.67629 26.7599 2.7532 26.9078 2.85651 27.0367C3.06514 27.2969 3.3686 27.4636 3.70012 27.5C4.03164 27.5365 4.36407 27.4398 4.62427 27.2311C4.88448 27.0225 5.05115 26.7191 5.08762 26.3875C5.3621 23.944 6.52723 21.6873 8.36039 20.0485C10.1936 18.4097 12.5662 17.5038 15.0251 17.5038C17.484 17.5038 19.8567 18.4097 21.6898 20.0485C23.523 21.6873 24.6881 23.944 24.9626 26.3875C24.9966 26.6947 25.1432 26.9784 25.374 27.1838C25.6048 27.3892 25.9036 27.5019 26.2126 27.5H26.3501C26.6778 27.4623 26.9773 27.2967 27.1833 27.0391C27.3894 26.7815 27.4853 26.453 27.4501 26.125C27.1995 23.8703 26.34 21.7263 24.9637 19.9228C23.5874 18.1193 21.7463 16.7244 19.6376 15.8875ZM15.0001 15C14.0112 15 13.0445 14.7068 12.2223 14.1574C11.4 13.608 10.7592 12.8271 10.3807 11.9135C10.0023 10.9998 9.90326 9.99449 10.0962 9.02458C10.2891 8.05468 10.7653 7.16376 11.4646 6.4645C12.1638 5.76524 13.0548 5.28903 14.0247 5.09611C14.9946 4.90318 15.9999 5.0022 16.9135 5.38064C17.8272 5.75907 18.6081 6.39994 19.1575 7.22218C19.7069 8.04443 20.0001 9.01113 20.0001 10C20.0001 11.3261 19.4733 12.5979 18.5357 13.5356C17.598 14.4733 16.3262 15 15.0001 15Z" fill="white"/>
+                    </svg>
+                  </i>
+                  <span class="text">Specifications</span> 
+                </h4>
+                <div class="container--item-booking">
+                  <div class="row">
+                      {% for size in 0 .. (specifications_length - 1) %}
+                          <div class="col-12 col-sm-6">
+                            <ul class="list-unstyled ps-0">
+                              <li>
+                                <a class="icon-link">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
+                                        <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                   {{specifications[size].title}}
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                      {% endfor %} 
+                  </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if amenities  %}
+            <div class="content-spec-left" style="margin-top: 30px;">
+              <h4 class="mb-3">
+                  <i class="icon i-spec">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M19.6376 15.8875C20.8631 14.9234 21.7576 13.6012 22.1967 12.105C22.6357 10.6087 22.5975 9.01287 22.0873 7.53937C21.5772 6.06587 20.6204 4.78802 19.3502 3.8836C18.08 2.97918 16.5594 2.49316 15.0001 2.49316C13.4408 2.49316 11.9203 2.97918 10.65 3.8836C9.3798 4.78802 8.42305 6.06587 7.91288 7.53937C7.40272 9.01287 7.36451 10.6087 7.80357 12.105C8.24263 13.6012 9.13713 14.9234 10.3626 15.8875C8.26271 16.7288 6.43048 18.1242 5.06123 19.9249C3.69199 21.7256 2.83707 23.8642 2.58762 26.1125C2.56956 26.2767 2.58401 26.4428 2.63015 26.6014C2.67629 26.7599 2.7532 26.9078 2.85651 27.0367C3.06514 27.2969 3.3686 27.4636 3.70012 27.5C4.03164 27.5365 4.36407 27.4398 4.62427 27.2311C4.88448 27.0225 5.05115 26.7191 5.08762 26.3875C5.3621 23.944 6.52723 21.6873 8.36039 20.0485C10.1936 18.4097 12.5662 17.5038 15.0251 17.5038C17.484 17.5038 19.8567 18.4097 21.6898 20.0485C23.523 21.6873 24.6881 23.944 24.9626 26.3875C24.9966 26.6947 25.1432 26.9784 25.374 27.1838C25.6048 27.3892 25.9036 27.5019 26.2126 27.5H26.3501C26.6778 27.4623 26.9773 27.2967 27.1833 27.0391C27.3894 26.7815 27.4853 26.453 27.4501 26.125C27.1995 23.8703 26.34 21.7263 24.9637 19.9228C23.5874 18.1193 21.7463 16.7244 19.6376 15.8875ZM15.0001 15C14.0112 15 13.0445 14.7068 12.2223 14.1574C11.4 13.608 10.7592 12.8271 10.3807 11.9135C10.0023 10.9998 9.90326 9.99449 10.0962 9.02458C10.2891 8.05468 10.7653 7.16376 11.4646 6.4645C12.1638 5.76524 13.0548 5.28903 14.0247 5.09611C14.9946 4.90318 15.9999 5.0022 16.9135 5.38064C17.8272 5.75907 18.6081 6.39994 19.1575 7.22218C19.7069 8.04443 20.0001 9.01113 20.0001 10C20.0001 11.3261 19.4733 12.5979 18.5357 13.5356C17.598 14.4733 16.3262 15 15.0001 15Z" fill="white"/>
+                    </svg>
+                  </i>
+                  <span class="text">Amenities</span> 
+                </h4>
+                <div class="container--item-booking">
+                  <div class="row">
+                    {% for size in 0 .. (amenities_length - 1) %}
+                      <div class="col-12 col-sm-6">
+                        <ul class="list-unstyled ps-0">
+                          <li>
+                            <a class="icon-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
+                                    <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                               {{amenities[size].title}}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    {% endfor %} 
+                  </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if features  %}
+            <div class="content-spec-left" style="margin-top: 30px;">
+              <h4 class="mb-3">
+                  <i class="icon i-spec">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M19.6376 15.8875C20.8631 14.9234 21.7576 13.6012 22.1967 12.105C22.6357 10.6087 22.5975 9.01287 22.0873 7.53937C21.5772 6.06587 20.6204 4.78802 19.3502 3.8836C18.08 2.97918 16.5594 2.49316 15.0001 2.49316C13.4408 2.49316 11.9203 2.97918 10.65 3.8836C9.3798 4.78802 8.42305 6.06587 7.91288 7.53937C7.40272 9.01287 7.36451 10.6087 7.80357 12.105C8.24263 13.6012 9.13713 14.9234 10.3626 15.8875C8.26271 16.7288 6.43048 18.1242 5.06123 19.9249C3.69199 21.7256 2.83707 23.8642 2.58762 26.1125C2.56956 26.2767 2.58401 26.4428 2.63015 26.6014C2.67629 26.7599 2.7532 26.9078 2.85651 27.0367C3.06514 27.2969 3.3686 27.4636 3.70012 27.5C4.03164 27.5365 4.36407 27.4398 4.62427 27.2311C4.88448 27.0225 5.05115 26.7191 5.08762 26.3875C5.3621 23.944 6.52723 21.6873 8.36039 20.0485C10.1936 18.4097 12.5662 17.5038 15.0251 17.5038C17.484 17.5038 19.8567 18.4097 21.6898 20.0485C23.523 21.6873 24.6881 23.944 24.9626 26.3875C24.9966 26.6947 25.1432 26.9784 25.374 27.1838C25.6048 27.3892 25.9036 27.5019 26.2126 27.5H26.3501C26.6778 27.4623 26.9773 27.2967 27.1833 27.0391C27.3894 26.7815 27.4853 26.453 27.4501 26.125C27.1995 23.8703 26.34 21.7263 24.9637 19.9228C23.5874 18.1193 21.7463 16.7244 19.6376 15.8875ZM15.0001 15C14.0112 15 13.0445 14.7068 12.2223 14.1574C11.4 13.608 10.7592 12.8271 10.3807 11.9135C10.0023 10.9998 9.90326 9.99449 10.0962 9.02458C10.2891 8.05468 10.7653 7.16376 11.4646 6.4645C12.1638 5.76524 13.0548 5.28903 14.0247 5.09611C14.9946 4.90318 15.9999 5.0022 16.9135 5.38064C17.8272 5.75907 18.6081 6.39994 19.1575 7.22218C19.7069 8.04443 20.0001 9.01113 20.0001 10C20.0001 11.3261 19.4733 12.5979 18.5357 13.5356C17.598 14.4733 16.3262 15 15.0001 15Z" fill="white"/>
+                    </svg>
+                  </i>
+                  <span class="text">Features</span> 
+                </h4>
+                <style>
+                  .container--item-booking ul li {
+                    margin-top: 20px;
+                  }
+                  .container--item-booking  .icon-link {
+                    color: var(--bleu-color);
+                  }
+                </style>
+                <div class="container--item-booking">
+                  <div class="row">
+                    {% for size in 0 .. (features_length - 1) %}
+                      <div class="col-12 col-sm-6">
+                        <ul class="list-unstyled ps-0">
+                          <li>
+                            <a class="icon-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="#3498db" stroke-width="1.5"/>
+                                    <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#3498db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{features[size].title}}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    {% endfor %} 
+                  </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if rules  %}
+            <div class="content-spec-left" style="margin-top: 30px;">
+              <h4 class="mb-3">
+                  <i class="icon i-spec">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="35" height="35" viewBox="0 0 19.00 19.00" class="cf-icon-svg" stroke="#000000" stroke-width="0.00019">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                        <path d="M14.443 4.445a1.615 1.615 0 0 1-1.613 1.614h-.506v8.396a1.615 1.615 0 0 1-1.613 1.613H2.17a1.613 1.613 0 1 1 0-3.227h.505V4.445A1.615 1.615 0 0 1 4.289 2.83h8.54a1.615 1.615 0 0 1 1.614 1.614zM2.17 14.96h7.007a1.612 1.612 0 0 1 0-1.01H2.172a.505.505 0 0 0 0 1.01zm9.045-10.515a1.62 1.62 0 0 1 .08-.505H4.29a.5.5 0 0 0-.31.107l-.002.001a.5.5 0 0 0-.193.397v8.396h6.337a.61.61 0 0 1 .6.467.632.632 0 0 1-.251.702.505.505 0 1 0 .746.445zm-.86 1.438h-5.76V6.99h5.76zm0 2.26h-5.76V9.25h5.76zm0 2.26h-5.76v1.108h5.76zm2.979-5.958a.506.506 0 0 0-.505-.505.496.496 0 0 0-.31.107h-.002a.501.501 0 0 0-.194.398v.505h.506a.506.506 0 0 0 .505-.505z"></path>
+                    </g>
+                    
+                    </svg>
+                  </i>
+                  <span class="text">Rules and Polices</span> 
+                </h4>
+                <div class="container--item-booking">
+                  <div class="row" id="rules-policies">
+                    {% for size in 0 .. (rules_length - 1) %}
+                      <div class="col-12">
+                          <h5 class="my-3 text-dark">{{rules[size].title}}</h5>
+                          <div>
+                              {{rules[size].content[0]['value']|raw}}
+                          </div>
+                      </div>
+                    {% endfor %} 
+                    
+                    <style>
+                      #rules-policies ul li, #rules-policies ol li {
+                        margin-top: 10px;
+                        margin-left: 1rem;
+                      }
+                     #rules-policies ol {
+                        list-style: auto;
+                        padding-left: 0;
+                      }
+                      
+                        #rules-policies ul li{
+                            list-style: initial;
+                        }
+
+                      #rules-policies {
+                        /*color: #130e0e80;*/
+                        color: var(--bleu-color);
+                      }
+                    </style>
+                  </div>
+                </div>
+            </div>
+            {% endif %}
+          </div>
+
+
+      
+
+          <div class="col-md-5 col-lg-5 order-md-last" bis_skin_checked="1">
+            <style>
+              .specification .spec-right {
+                max-width: 471px;
+                margin: auto;
+                border-radius: 0px 0px 20px 20px;
+                border-right: 1px solid rgba(51, 51, 51, 0.20);
+                border-bottom: 1px solid rgba(51, 51, 51, 0.20);
+                border-left: 1px solid rgba(51, 51, 51, 0.20);
+                background: #FFF;
+              }
+              .specification .spec-top {
+                max-width: 100%;
+                height: 270px;
+                flex-shrink: 0;
+                border-radius: 20px 20px 0px 0px;
+                background: url( {{n['field_image']['image'].url}} ) no-repeat;
+                background-color: #D9D9D9;
+                background-size: cover;
+              }
+              .specification .list-group-head h6 {
+                color: var(--bleumarine-color);
+                font-family: "Montserrat";
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: normal;
+                margin-top: 10px !important;
+              }
+              .specification .list-group small {
+                color: rgba(51, 51, 51, 0.50);
+                font-family: "Montserrat";
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin-top: 14px !important;
+                display: inline-block;
+              }
+              .specification .spec-right hr {
+                max-width: 401px;
+                height: 1px;
+                background: rgba(51, 51, 51, 0.20);
+                margin: auto;
+                margin-top: 25px;
+                margin-bottom: 19px;
+                max-width: 401px;
+              }
+              .specification .spec-right li {
+                border: none !important;
+                padding: 0;
+                margin-top: 20px;
+              }
+              .specification .spec-right form {
+                margin-top: 10px;
+              }
+ 
+              .specification .spec-right .list-group-foot {
+                margin-top: 31.5px;
+              }
+              .specification .spec-right .list-group-foot strong {
+                color: #333;
+                font-family: "Montserrat";
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+              }
+              .specification .spec-right .list-group-foot span {
+                color: var(--bleu-color);
+                text-align: right;
+                font-family: "Montserrat";
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+              } 
+              .specification .spec-right + button, .spectification .btn {
+                margin:auto;
+                max-width: 471px;
+                height: 60px;
+                flex-shrink: 0;
+                background: var(--bleu-color) !important;
+                color: #FFF;
+                text-align: center;
+                font-family: Montserrat;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                text-align: center !important;
+                margin-top: 66px;
+                display: block;
+              }
+              ::placeholder {
+                color: rgba(51, 51, 51, 0.50) !important;
+              }
+
+              @media screen and (max-device-width: 767.98px){ 
+                .navbar-and-specification .title-specification {
+                    margin-top: 30px !important;
+                }
+                .specification .form-control {
+                  width: 100%;
+                }
+                .specification .spec-right {
+                    max-width: 566px;
+                }
+              }
+              
+
+                  @media screen and (max-device-width: 575.98px){
+                    .navbar-and-specification .title-specification {
+                        margin-top: 10px;
+                      } 
+                    .specification .form-control {
+                      width: 100%;
+                    }
+                  }
+                  .date_booking .easepick-wrapper{
+                           z-index: 1;
+                  }
+                .need_set_up  {
+                        border: 1px solid #cac6c6;
+                        padding: 15px;
+                        margin: 5px 0px;
+                        text-align: center;
+                        border-radius: 20px;
+                        color: red;
+                  }
+            </style>
+         <form id="mytemplatebooking" onsubmit="return checkFormEmpty();" class="booking-form" >
+            <div class="spec-right">
+              <div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px">
+                   
+                  <li class="list-group-item d-flex justify-content-between" style="margin-top: 40px;">
+                    <small>Dates</small>
+                  </li>
+                  <div class="date_booking input-group">
+                    <input type="hidden" name="nid" value="{{ n.nid }}"/>
+                    <input id="datepickerVal" required class="Dym form-check-input" value="{{params['booking-range']}}" type="hidden" name="booking-range"/>
+                     <input id="datepicker"  value="{{params['booking-range-date']}}" required name="booking-range-date" placeholder="Select your dates   >" style="width: 100%"/>
+                  </div>
+             
+            {% for key,item in addons %}
+                <input  type="hidden" value="{{ item.type }}"   name="{{ item.name }}__type" /> 
+                {% if item.type =="addon_with_quantity" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="row form-check-with-qty" style="max-width: 100% !important;">
+                        <input type="hidden" value="{{ item.price }}" class="qty-montant" />
+                        <div class="col col--with-qty-and">
+                          <input type="hidden" name="{{ item.name }}" value="0" class="Dym qty-input" />
+                          <div class="form-check-label form-check-label-and pt-4 d-flex" for="tabContent9Checkbox">
+                             <div>
+                                {{ item.name }} <br> (${{ item.price }}.00 each)
+                             </div>
+                             <div>
+                                : $<span class="qty-input-display">0.00</span>
+                             </div>
+                          </div>
+                        </div>
+                        <div class="col number-input-custom">
+                          <input class="quantity quantity-hidden" min="0"   type="number" style="display: none !important">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="addon_additional_price" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="form-check form-check-addition-price">
+                        <span id="myval" style="display: none" >{{ item.price }}</span>
+                        <input class="Dym form-check-input" style="pointer-events: none;"  type="checkbox" value="{{ item.price }}"  checked="true" name="{{ item.name }}" >
+                        <label class="form-check-label" for="tabContent9Checkbox">
+                          {{ item.name }} :  ${{ item.price }}.00
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="addons" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <div class="form-check">
+                        <span id="myval" style="display: none" >{{ item.price }}</span>
+                        <input class="Dym form-check-input"  value="0" type="checkbox" name="{{ item.name }}" >
+                        <label class="form-check-label" for="tabContent9Checkbox">
+                          {{ item.name }} :  ${{ item.price }}.00
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if item.type =="select_addons" %}
+                  <tr class="shipping">
+                    <td colspan="2">
+                      <strong class="d-block text-color-dark mb-2">{{ item.name }}</strong>
+                      <div  class="d-flex flex-column">
+                        <select class="Dym form-select form-control h-auto py-2 valid"   name="{{ item.name }}"  aria-invalid="false">
+                          <option>- None -</option>
+                          {% for keychild,child in item.list %}
+                            <option value="{{ child.name }}----{{ child.price }}">{{ child.name }} : ${{ child.price }}.00 </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+                 <hr style="margin-top: 36px;">
+
+                <ul class="list-group list-group-foot">
+                  <li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
+                      <strong>TOTAL</strong>
+                     <input type="hidden" id="total_prix_hidden" name="total" value="0"/>
+                      <span id="total_prix">0.00</span>
+                  </li>
+                </ul>
+            
+   
+              
+              </div>
+            </div>
+          {% set account_bank = config("mz_payement.stripe","account") %}
+          {% set account_status = config("mz_payement.stripe","status") %}
+ 
+          {% if  account_status=='complet' and account_bank  %} 
+                {% if logged_in %}
+                  <button  class="w-100 btn btn-primary btn-sm" type="submit">Continue to checkout</button>        
+
+                {% else %}
+                  <div class="row px-2 py-4">
+                      <div class="col-md-6">
+                          <a  href="/login?destination={{current_url_alias()}}" class="btn  btn-checkout    border-radius-0 ">Login to book <i class="fas fa-arrow-right ms-2"></i></a>
+                      </div>                
+                      <div class="col-md-6">
+                          <button  name="action" class="btn btn-checkout   border-radius-0 " value="guest" type="submit" title="A guest account will be created.">Checkout as Guest</button> </div>
+                      </div>
+                  </div>
+                {% endif %}
+          {% else %}
+               <div class="need_set_up"><b>For now, this website is not available for booking. Thank you for your understanding.</b></div>      
+          {% endif %} 
+             </form>
+          </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

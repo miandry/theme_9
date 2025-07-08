@@ -1,0 +1,108 @@
+{{ attach_library('claro/global-styling') }}
+{{ attach_library('staydirect_install/global-styling') }}
+{{ attach_library('staydirect/maintenance') }}
+{{ attach_library('classy/progress') }}
+
+{% set css = 
+     '.main-content{margin-top: -15px;}
+	  .body-content-order-form  #image-wrapper{border-radius: 30px;padding: 15px;background: rgba(217, 217, 217, 0.17);}
+      .body-content-order-form .logo { height:auto!important }
+	  .body-content-order-form .field--name-st-domain-name, 
+	  .body-content-order-form .field--name-site-name{display:none!important}
+	  .body-content-order-form .field--name-st-domain-name{display:none!important}
+      .body-content-order-form .vertical-tabs,
+	  .body-content-order-form .js-form-type-vertical-tabs{display:none!important}
+	  .body-content-order-form .node-site-form input,
+	  .body-content-order-form .node-site-form textarea,
+	  .body-content-order-form .node-site-form select{display:block;margin-top:10px}
+	  .body-content-order-form .node-site-form  .description{font-size: 13px;font-style: italic;font-family:Kanit;padding-top: 5px;font-weight: 200;}
+	  .body-content-order-form .node-site-form .form-item {background: rgba(217, 217, 217, 0.17);padding: 30px;border-radius: 30px;}
+    ' 
+%}
+{{render_css(css,'process_order_website')}}
+{% set url = current_url_alias() %}
+<div class="body-content-order-form">
+	<div class="header-step">
+		<div class="container container-and">
+			<div class="row row-and">
+				<div class="col-6 themed-grid-col">
+					<div class="top-left">
+						<a href="#">
+							<img src="/themes/custom/staydirect_install/logo.png" alt="" class="logo">
+						</a>
+					</div>
+				</div>
+				<div class="col-6 themed-grid-col text-right">
+					<div class="top-right">
+					 {% if url == "/order" %} 
+						<div class="step">
+							<a href="#">Step 1</a>
+						</div>
+						<div class="ttl-step">Information</div>
+					 {% endif %}
+					 {% if url == "/app" %} 
+						<div class="step">
+							<a href="#">Step 2</a>
+						</div>
+						<div class="ttl-step">Profil</div>
+					 {% endif %}
+					 {% if url == "/theme" %} 
+						<div class="step">
+							<a href="#">Step 3</a>
+						</div>
+						<div class="ttl-step">Themes</div>
+					 {% endif %}
+					 {% if url == "/process" %} 
+						<div class="step">
+							<a href="#">Step 4</a>
+						</div>
+						<div class="ttl-step">Conditions</div>
+                       
+					 {% endif %}
+                	 {% if url == "/batch" %} 
+						<div class="step">
+							<a href="#">Step 5</a>
+						</div>
+						<div class="ttl-step">Installing</div>
+					 {% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container main-step">
+		<div class="row p-4">
+			<div class="col-4" role="complementary">
+				<ol class="task-list">
+					<li  {% if url == "/order" %} class="is-active" {% endif %} >
+						Web site Information
+						<span class="visually-hidden">
+							(active)</span>
+					</li>
+					<li  {% if url == "/app" %} class="is-active" {% endif %}  >
+						Web site profile
+					</li>
+					<li {% if url == "/theme" %} class="is-active" {% endif %}>
+						Select web theme 
+					</li>
+					<li {% if url == "/process" %} class="is-active" {% endif %}>
+						Conditions and terms
+					</li>
+                    <li {% if url == "/batch" %} class="is-active" {% endif %}>
+						Web site installing
+					</li>
+				</ol>
+			</div>
+			<div role="main" class="main-content col-8 px-5 py-5">
+			   <div class="progress" data-drupal-progress>
+                 <div class="progress__label"> Your Web site Installing </div>
+                 <div class="progress__track"><div class="progress__bar" style="width: {{ percent }}%"></div></div>
+                 <div class="progress__percentage">{{ percent }}%</div>
+                 <div class="progress__description">{{ message }}</div>
+               </div>
+			</div>
+
+		</div>
+	</div>
+</div>
+{# /.layout-container #}

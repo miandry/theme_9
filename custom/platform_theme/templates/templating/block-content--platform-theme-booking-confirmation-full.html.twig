@@ -1,0 +1,122 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+  {% set params = get_parameter() %}
+  {% set total = 0 %}
+  {% set car_url = node_url(params['carid']) %}
+   <div role="main" class="main shop pb-4">
+				<div class="container">
+				    <div class="row">
+                        <div class="col">
+                            <ul class="breadcrumb breadcrumb-dividers-no-opacity font-weight-bold text-6 justify-content-center my-5">
+                            <li class="text-transform-none me-2">
+                                <a href="{{ car_url }}" class="text-decoration-none text-color-dark text-color-hover-primary">Request to book</a>
+                            </li>
+                            <li class="text-transform-none text-color-dark me-2">
+                                <a href="#" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Booking Process</a>
+                            </li>
+                            <li class="text-transform-none text-color-grey-lighten">
+                                <a href="/payment" class="text-decoration-none text-color-primary ">Booking review</a>
+                            </li>
+                            <li class="text-transform-none text-color-grey-lighten">
+                                <a href="/bookings" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Payment</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+
+					<div class="row justify-content-center">
+						<div class="col-lg-8">
+							<div class="card border-width-3 border-radius-0 border-color-success">
+								<div class="card-body text-center">
+									<p class="text-color-dark font-weight-bold text-4-5 mb-0"> Please, review your details booking before continue.</p>
+								</div>
+							</div>
+							<div class="d-flex flex-column flex-md-row justify-content-between py-3 px-4 my-4">
+								<div class="text-center">
+									<span>
+										Booking Number <br>
+										<strong class="text-color-dark">{{booking_new.nid}}</strong>
+									</span>
+								</div>
+								<div class="text-center mt-4 mt-md-0">
+									<span>
+										Phone <br>
+										<strong class="text-color-dark">{{ current_user.field_phone }}</strong>
+									</span>
+								</div>
+								<div class="text-center mt-4 mt-md-0">
+									<span>
+										Email <br>
+										<strong class="text-color-dark">{{current_user.mail}}</strong>
+									</span>
+								</div>
+								<div class="text-center mt-4 mt-md-0">
+									<span>
+										Total <br>
+										<strong class="text-color-dark">{{booking_new.field_price_default}}</strong>
+									</span>
+								</div>
+								<div class="text-center mt-4 mt-md-0">
+									<span>
+										Payment Method <br>
+										<strong class="text-color-dark">{{booking_new.field_payement_method}}</strong>
+									</span>
+								</div>
+							</div>
+							<div class="card border-width-3 border-radius-0 border-color-hover-dark mb-4">
+								<div class="card-body">
+									<h4 class="font-weight-bold text-uppercase text-4 mb-3">Your Booking</h4>
+									<table class="shop_table cart-totals mb-0">
+										<tbody>
+											<tr>
+												<td>
+													<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Date range : 
+												</td>
+												<td class="text-end align-top">
+													<span class="amount font-weight-medium text-color-grey"> {{ booking_new.field_dates|first.value }} to {{ booking_new.field_dates|first.end_value }} </span>
+												</td>
+											</tr>
+											{% for key,item in booking_new.field_addons %}									
+											<tr>
+												<td>
+													<strong class="d-block text-color-dark line-height-1 font-weight-semibold">{{item.field_name}}</strong>
+													{% if item.field_group %}
+												    <span class="text-1">{{item.field_group}}</span>
+													{% endif %}
+												</td>
+												<td class="text-end align-top">
+													<span class="amount font-weight-medium text-color-grey"> $ {{item.field_value}}</span>
+												</td>
+											</tr>
+											{% endfor %}
+											<tr class="total">
+												<td>
+													<strong class="text-color-dark text-3-5">Total</strong>
+												</td>
+												<td class="text-end">
+													<strong class="text-color-dark"><span class="amount text-color-dark text-5">$ {{booking_new.field_price_default}}</span></strong>
+												</td>
+											</tr>
+											<tr class="total">
+												<td>
+													<a href="/"  class="btn btn-dark  text-uppercase  border-color-hover-primary border-radius-0 text-3 py-3">Cancel booking </a>
+												</td>
+												<td  class="align-right">
+												    {# <a href="/payements?id={{booking_new.nid}}" name="pay_now" class="btn btn-primary  text-uppercase y border-color-hover-primary border-radius-0 text-3 py-3">Continue <i class="fas fa-arrow-right ms-2"></i></a>#}
+												    <a href="/user/bookings?id={{booking_new.nid}}" name="pay_now" class="btn btn-primary  text-uppercase y border-color-hover-primary border-radius-0 text-3 py-3">Continue <i class="fas fa-arrow-right ms-2"></i></a> 
+											
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row pt-3">
+    
+							</div>
+						</div>
+					</div>
+
+				</div>
+	</div>
+{% endblock %}

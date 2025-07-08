@@ -1,0 +1,19 @@
+name: 'Theme Stay Direct Technology'
+type: theme
+base theme: false
+description: 'A Drupal theme based on Bootstrap 5 theme design.'
+core_version_requirement: ^8 || ^9
+libraries:
+  - 'staydirect/global-styling'
+regions:
+  header: 'Header'
+  footer_simple: 'Footer simple'
+  header_simple: " Header simple"
+  pre_content: 'Pre-content'
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+  disalbed: 'Disabled'
+

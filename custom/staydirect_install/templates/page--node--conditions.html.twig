@@ -1,0 +1,96 @@
+{% set inc_ = include_template("include-process-condition") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
+
+{% set id  = id_by_url() %}
+{% set n = node_parser(id) %}
+
+
+{{ attach_library('staydirect_install/global-styling') }}
+{% set logo = path_theme() ~ "/logo.png" %}
+{{ attach_library('staydirect/maintenance') }}
+{% set step_number = "Step 3" %}
+{% set step_name = "Conditions" %}
+<style>
+
+.site-manager-process{
+    background-color: #F6F6F6;
+    padding: 25px;
+    border-radius: 13px;
+}
+#edit-submit{
+  color:white!important;
+  background-color: #62929E!important;
+}
+#edit-field-profile-ecommerce{
+    pointer-events: none;
+    background-color: #dad9d9;
+}
+.fieldset__label--group {
+    font-size: 21px!important;
+    padding-bottom: 10px!important;
+}
+.site-manager-process label{
+   padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .condition_term {
+        padding-left: 0.6rem;
+    }
+    
+    .condition_term ul {
+        margin-left: 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem !important;
+        padding: 0;
+    }
+    
+    .condition_term ul li{
+
+        margin-top: 0.5rem;
+    }
+    
+    .main-step .col-md-8 {
+        padding-left: 0 !important;
+    }
+}
+</style>
+
+
+ 		{% include 'themes/custom/staydirect_install/templates/inc/header_process.html.twig'  %}
+
+    <main class="main-step main-step-specification main-simple">
+      <div class="container container-and">
+        <div class="row ">
+
+          <div class="sidebar col-md-4 order-sm-first">
+            {% set active_condition = 'active' %} 
+            
+            {% include 'themes/custom/staydirect_install/templates/inc/menu_process.html.twig'  %}
+          </div>
+
+          <div class="col-md-8 px-5">
+
+            <div class="row form-payment">
+              <div class="col-md-12 col-lg-12 choosecontent ps-0">
+                    {{drupal_form("Drupal\\site_manager\\Form\\ProcessForm")}}
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+ {% endif %}   
+     <script>
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted || window.performance.navigation.type === 2) {
+      window.location.reload();
+    }
+  });
+</script>

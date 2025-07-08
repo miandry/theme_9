@@ -1,0 +1,143 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+    {% block templating_content %}
+
+    {% set item_name = 'block--staydirect-header-step-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_header_step_full')}}
+
+<!-- done -->
+{% set c = block_parser(content) %}
+<style>
+    /*header*/
+    .header-step {
+      height: auto !important;
+    }
+    .container-and {
+        margin: auto;
+    }
+
+    .header--rect .logo {
+      width: 250px !important;
+      height: auto !important;
+      max-height: 115px !important;
+      max-width: 250px !important;
+    }
+    .container-and {
+        max-width: 80rem!important;
+        padding-right: 2.5rem !important;
+        padding-left: 2.5rem !important;
+    }
+    header .top-left {
+      margin-top: 63px
+    }
+   
+      .header-step .top-right .step a {
+          text-decoration: none;
+          color: rgba(51, 51, 51, 0.60);
+          text-align: center;
+          font-size: 25px;
+          font-family: "Kanit";
+          font-style: normal;
+          font-weight: 300;
+          line-height: 150%;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+      }
+      .header-step .top-right {
+        margin-top: 30px !important;
+      }
+      .header-step  .top-right .ttl-step {
+          color: #333;
+          text-align: right;
+          line-height: 150%;
+          font-size: 50px;
+          font-family: "Vastine";
+          font-weight: 400;
+      }
+
+      .header-step .top-right .step {
+        text-align: right !important;
+      }
+      @media (max-width: 768px) {
+        header .top-left {
+          margin-top: 44px
+        }
+        header .top-left img.logo {
+            max-width: 168.28px;
+        }
+        .header-step .top-right {
+            margin-top: 79px;
+        }
+        .header-step  .top-right .ttl-step {
+          font-size: 30px;
+        }
+        .header-step .top-right .step a {
+          font-size: 20px;
+        }
+      }
+      @media (max-width: 500px) {
+        header .top-left {
+          margin-top: 34px
+        }
+        header .top-left img.logo {
+            max-width: 148.28px;
+        }
+        .header-step .top-right {
+            margin-top: 60px;
+        }
+        .header-step  .top-right .ttl-step {
+          font-size: 18px;
+        }
+        .header-step .top-right .step a {
+          font-size: 25px;
+        }
+      }
+      @media (max-width: 380px) {
+        header .top-left {
+          margin-top: 24px
+        }
+        .header-step .top-right {
+            margin-top: 35px;
+        }
+        header .top-left img.logo {
+            max-width: 100px;
+        }
+        .header-step .top-right .step a {
+          font-size: 14px;
+        }
+        .header-step  .top-right .ttl-step {
+          font-size: 16px;
+        }
+        
+      }
+      
+      #messages{
+            margin-top: 50px;
+      }
+    /*end header*/
+
+</style>
+
+<header class="header-step header--rect">
+  <div class="container container-and">
+    <div class="row row-and">
+      <div class="col-6 themed-grid-col">
+        <div class="top-left">
+          <a href="{{base_url()}}">
+            <img src="{{c['field_media1']['image'].url}}" alt="" class="logo">
+          </a>
+        </div>
+      </div>
+      <div class="col-6 themed-grid-col text-right">
+        <div class="top-right">
+          <div class="step">
+            <a id="step-title">{{c.field_title1}}</a>
+          </div>
+          <div class="ttl-step">{{c.field_subtitle}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}

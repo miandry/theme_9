@@ -1,0 +1,68 @@
+<?php
+    use Drupal\Core\Entity\EntityStorageException;
+  
+    use Drupal\Core\Routing\TrustedRedirectResponse;
+    use Drupal\Core\Session\AccountInterface;
+    use Symfony\Component\HttpFoundation\RedirectResponse;
+    
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function staydirect_template_1_preprocess_block(array &$variables) {
+ 
+    $variables['START_EDITOR'] = 'themes/custom/staydirect_template_1/templates/inc/start-include--editor.html.twig';
+    $variables['END_EDITOR'] = 'themes/custom/staydirect_template_1/templates/inc/end-include--editor.html.twig';
+}
+function staydirect_template_1_preprocess_html(&$variables) {
+        // Check if the URL has been accessed before.
+  // Get the current URL.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $current_path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+
+  $service_helper = \Drupal::service('drupal.helper');
+  $params = $service_helper->helper->get_parameter();
+  //if($current_path_alias == "/parent-action"){
+    $service_booking = \Drupal::service('mz_payment.booking');
+    // start click buy now in template
+    if(isset($params["site_id"])  && isset($params["parent"]) && isset($params["action"]) 
+    && $params["action"] =="start_payment"){
+          $service_booking->staydirectPaymentInit($params);
+
+    }  
+    // set status in process , wait for validation
+    if(isset($params["pay_action"])
+        && isset($params["status"]) 
+        && $params["status"] == "in_process"
+        && $params["pay_action"] =="submit_payed"){
+          $service_booking->staydirectAfterPayment($params);
+          
+
+    }  
+
+
+
+    // payment validated
+    if(isset($params["pay_validation"])
+    && isset($params["status"]) 
+    && $params["status"] == "confirmed"
+    && $params["pay_validation"] =="confirmed"){
+      $service_booking->staydirectAfterPaymentConfirmed($params);
+    }
+
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    if (in_array('content_editor', $roles)) {
+      // Add inline CSS for the content_editor role.
+      $variables['#attached']['html_head'][] = [
+        [
+          '#tag' => 'style',
+          '#value' => '.layout-builder__link--configure,.layout-builder__link--remove,.layout-builder__add-block,.layout-builder__add-section{display:none!important;}.contextual-region .contextual ul.contextual-links li:not(:first-child){display:none!important;}.contextual-region .contextual ul.contextual-links li:first-child a::after{content:"(Edit Block)";color:black;}
+          ',
+        ],
+        'content-editor-styles',
+      ];
+    }
+    
+}
+
+

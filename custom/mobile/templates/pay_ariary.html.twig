@@ -1,0 +1,47 @@
+<!-- Start of first page -->
+<div data-role="page" id="pay_ariary">
+	<div data-role="header">
+		<h1>New payment Ariary</h1>
+	</div>
+	<!-- /header -->
+	<div role="main" class="ui-content">
+		<form action="#list-pay" method="post" data-ajax="false">
+			<label for="date">Date:</label>
+			<input type="date" name="field_date" id="date" value="" class="required" >
+			<select id="filter-menu" name="field_client" data-native-menu="false">
+				{% for item in clients.items %}
+					<option value="{{item.id}}">{{item.label}}</option>
+				{% endfor %}
+			</select>
+			<label for="number-pattern">Montant Ariary:</label>
+			<input type="number" name="title" id="number-pattern" value="" class="required">
+		    <label for="number-pattern">Cours:</label>
+			<input type="number" name="field_cours_yuan" id="number-pattern" value="" class="required">
+			<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<input type="radio" name="field_status" id="radio-choice-c" value="new" checked="checked">
+				<label for="radio-choice-c">New</label>
+				<input type="radio" name="field_status" id="radio-choice-d" value="payer">
+				<label for="radio-choice-d">Payer</label>
+				<input type="radio" name="field_status" id="radio-choice-e" value="cancel">
+				<label for="radio-choice-e">cancel</label>
+			</fieldset>
+			<input type="hidden" name="action" value="pay_ariary">
+
+			<input type="submit" name="submit" value="Save">
+
+		</form>
+
+	</div>
+	<!-- /content -->
+
+	<div data-role="footer">
+		<fieldset data-role="controlgroup" data-type="horizontal">
+			<a href="#list-pay" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Transfers</a>
+			<a href="#list-clients" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Clients</a>
+			<a href="#pay" class="ui-shadow ui-btn ui-corner-all">Add Payment</a>
+			    <a href="#add_client" class="ui-shadow ui-btn ui-corner-all">Add Client</a>
+		</fieldset>
+
+	</div>
+	<!-- /footer -->
+</div>

@@ -1,0 +1,193 @@
+{% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
+{% block templating_content %}
+   {% set item_name = 'user--staydirect-template-1-user-full.html' %} 
+{% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+{% set css = include(path_css) %} 
+{{render_css(css,'user__staydirect_template_1_user_full')}}
+	{% set user = current_user() %}
+	{% set u = user_parser(user['uid']) %}
+
+	{%  set conditions = {
+            'field_client': user['uid']
+        } 
+   %}
+	{% set booking = node_parser_by_properties(conditions)%}
+
+	<div class="container container-resp hidden">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="container--header">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-resp container container--right std--useradmin container--user user--profile--rectf user--container--table user--profile--rectf user--container--table--resp">
+		<div class="row mb-2">
+
+			<div class="col-lg-12 user--info" id="user-info">
+
+				<div class="row useradmin--sidebar-left g-0  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative affiche--dashboard">
+					<div class="col p-4 d-flex flex-column position-static border rounded content--affiche--dashboard"
+					    style="background: var(--bleu-color);">
+						<div class="container--spends">
+							<div class="content--spend--affiche--dashboard">
+								<h2>Welcome, <span class="text-capitalize">{{user.name}}</span></h2>
+								<p>
+								    Ready to start with us?
+								</p>
+							</div>
+						</div>
+					</div>
+					<img class="img--affiche--dashboard" src="/themes/custom/staydirect/img/affiche-dashboarod.png">
+				</div>
+				
+				<div class="row">
+				    <div class="col-12 col-sm-12 col-md-4">
+        				<div class="mx-1 row useradmin--sidebar-left g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        					<div class="col p-4 d-flex flex-column position-static content--right">
+        						<div class="container--spends">
+        							<div class="content--spend">
+        								<p>
+        									Username:
+        									<span class="text-capitalize">
+        									    {{user.name}}</span>
+        								</p>
+        							</div>
+        							<div class="content--spend">
+        								<p>
+        									Email: {{u.mail}}
+        								</p>
+        							</div>
+        							{% if u.field_first_name %}
+        								<div class="content--spend">
+        									<p>
+        										Fisrt name: 
+        										<span class="text-capitalize">
+        										    {{u.field_first_name}}</span>
+        									</p>
+        								</div>
+        							{% endif %}
+        							{% if u.field_last_name %}
+        								<div class="content--spend">
+        									<p>
+        										Last name: 
+        										<span class="text-capitalize">
+        										    {{u.field_last_name}}</span>
+        									</p>
+        								</div>
+        							{% endif %}
+        							{% if u.field_phone %}
+        								<div class="content--spend">
+        									<p>
+        										Phone number: {{u.field_phone}}
+        									</p>
+        								</div>
+        							{% endif %}
+        							<div>
+        								<br/>
+        								<p>
+        									<a 
+        									href="/user/{{u.uid}}/edit?destination=/user"
+        									class="btn-grey"
+        									style="background: var(--bleu-color) !important;">
+        										Edit profile
+        									</a>
+        								</p>
+        							</div>
+        
+        						</div>
+        					</div>
+        				</div>
+    				</div>
+    				{% if booking is empty %}
+    				<div class="col-12 col-sm-12 col-md-8 pt-5">
+    				    <p class="text-muted text-center fs-4">
+    				        Your booking list is empty. Start booking now!
+    				    </p>
+    				    <div class="text-center mt-3">
+    				        <a class="btn--resp night plrfsz mt-4 w-50 mx-auto d-block"
+    				            href="{{base_url()}}/booking">
+    				            Book Now</a>
+    				    </div>
+    				</div>
+    				{% else %}
+                    <div class="col-12 col-sm-12 col-md-8">
+        				<div class="mx-1 row g-0 border rounded overflow-hiddenn flex-md-row mb-4 shadow-sm h-md-250 position-relative history--product" id="history-product">
+        					<div class="col p-4 d-flex flex-column position-static mySwiper content--table--history--booking" style="overflow-x: scroll !important;">
+        						<table class="table table-striped">
+        							<thead>
+        								<tr>
+        									<th scope="col">ID</th>
+        									<th scope="col">Name </th>
+        									<th scope="col">Details</th>
+                                            <th scope="col">Dates
+        									</th>
+        									<th scope="col">Price</th>
+        									<th scope="col">Status</th>
+        									<th scope="col"></th>
+        								</tr>
+        							</thead>
+        							<tbody>
+        								{% for item in booking|reverse %}
+            								{% set n = node_parser(item) %}
+            								{% if n.moderation_state != "init" and n.field_price_with_tax %}
+            									{% set article = node_parser(n.field_item['#object']) %}
+            									<tr>
+            										<th scope="row">{{n.nid}}</th>
+            										<td>{{ article.title}}</td>
+                                                    <td>	
+            										   	{% for item in n.field_addons %}
+            											   {{item.field_name}} <br/>
+            											{% endfor %}
+            										 </td>
+                                                    <td>	
+                                                    	{% set dates = n.field_dates|first %}
+                                                        Check-in {% if dates.value %}{{ dates.value}}{% else %} - {% endif %} <br/>
+            											Check-out {% if dates.end_value %}{{ dates.end_value}}{% else %} - {% endif %}
+            										</td>
+            										<td>
+            											$ {{n.field_price_with_tax}} 
+            										</td>
+            										<td>
+            											{% if n.moderation_state == "validate" %}
+            												<span class="badge badge-paid">Booking Confirmed</span>
+            											{% endif %}
+            
+            											{% if n.moderation_state == "draft" %}
+            												<span class="badge badge-pending">Booking request validation</span>
+            											{% endif %}
+            											{% if n.moderation_state == "init" %}
+            												<span class="badge badge-inpaid">wait for payment</span>
+            											{% endif %}
+            											{% if n.moderation_state == "published"  %}
+            												<span class="badge badge-published">Archived</span>
+            											{% endif %}
+            											{% if n.moderation_state == "canceled_booking"  %}
+            												<span class="badge badge-cancel">Booking canceled</span>
+            											{% endif %}
+            
+            										</td>
+            										<td>
+                                                    	<a target="_blank"
+                                                    	    class="text-decoration-underline"
+                                                    	    href="{{base_url}}/invoice?id={{n.nid}}">
+                                                    	    Get Invoice</a>
+            										</td>
+            									</tr>
+            								{% endif %}
+        								{% endfor %}
+        							</tbody>
+        						</table>
+        					</div>
+        				</div>
+    				</div>
+    				{% endif %}
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

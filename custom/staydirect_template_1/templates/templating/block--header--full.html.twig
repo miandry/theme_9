@@ -1,0 +1,1021 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
+    {% set item_name = 'block--staydirect-template-1-header-full.html' %} 
+    {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_template_1_header_full')}}
+
+    {% set c = block_parser(content) %}
+    {% set links= c['field_link'] %}
+    {% set bank_account = config('mz_payement.stripe', 'account') %}
+    {% set bank_account_status = config('mz_payement.stripe', 'status') %}
+
+
+
+    
+    {% set status = config("mz_payement.status","status") %}
+
+    {% set sites = config("mz_payement.status","site_variables") %}
+
+    {% set site_id = site_variables["site_id"] %} 
+    {% set parent_site = site_variables["parent_site"] %} 
+    {% set site_name = config('system.site','name') %}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        ul {
+            margin-bottom: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        ul li {
+            list-style-type: none;
+        }
+        
+        .wrapper--resp {
+            margin: auto;
+        }
+        
+        form.user-pass input[type="submit"] {
+            padding: 20px 35px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 38px;
+            background: var(--bleu-color);
+            color: #FFF;
+            font-family: "Montserrat";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            border: none !important;
+            margin-top: 25px;
+        }
+        
+        form.user-pass {
+            max-width: 54%;
+            margin: auto;
+            margin-top: 75px;
+            margin-bottom: 75px;
+            /* margin: auto; */
+            text-align: center;
+        }
+        
+        .header--sticky-htl .menu-mobile-effet1.show li a {
+            font-family: "Montserrat";
+            font-style: normal;
+            line-height: normal;
+            font-size: 15px !important;
+            font-weight: 400 !important;
+            color: rgb(255, 255, 255) !important;
+        }
+        
+        .container-book-right a {
+            color: #fff !important;
+            border: solid 1px #fff !important;
+            padding: 15px 10px !important;
+            border-radius: 13px !important;
+        }
+        
+        @media (max-width: 499.96px) {
+            .wrapper--resp {
+                width: 100%;
+                max-width: none !important;
+                padding-left: 20px;
+                padding-right: 20px
+            }
+        
+            .none-mob {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 499.98px) {
+            .wrapper--resp {
+                width: 100%;
+                max-width: none;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        
+            .none-mob {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 767.98px) {
+            .wrapper--resp {
+                width: 100%;
+                max-width: none !important;
+                padding-left: 40px;
+                padding-right: 40px
+            }
+        
+            .none-tab {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 991.98px) {
+            .wrapper--resp {
+                width: 100%;
+                max-width: none !important;
+                padding-left: 60px;
+                padding-right: 60px;
+            }
+        
+            .none-desk,
+            .menu-mobile-effet {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 1199.98px) {
+            .wrapper--resp {
+                width: 100%;
+                max-width: none !important;
+                padding-left: 60px;
+                padding-right: 60px;
+            }
+        }
+        
+        @media (min-width: 1385.98px) {
+            .wrapper--resp {
+                max-width: 1200px !important;
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+        }
+        
+        @media (min-width: 1499.98px) {
+            .wrapper--resp {
+                max-width: 1500px;
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+        }
+        
+        header .menu-main--resp ul {
+            display: flex;
+            flex-direction: row;
+            gap: 39px;
+        }
+        
+        header .menu-main--resp ul li a {
+            color: var(--bleumarine-color);
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+        
+        header .menu-main--resp ul.list-header li a {
+            font-size: 23px !important;
+        }
+        
+        header .menu-main--resp ul li.active a {
+            color: var(--bleu-color);
+        }
+        
+        header .menu-main--resp ul li.active::after {
+            content: "";
+            width: 29px;
+            height: 3px;
+            background: var(--bleu-color);
+            margin-top: 10px !important;
+            display: block;
+            margin: auto;
+        }
+        
+        header {
+            padding-top: 100px;
+            padding-bottom: 38px;
+            background: #fff;
+            z-index: 5;
+            margin-top: 39px;
+        }
+        
+        @media (min-width: 589px) {
+            header {
+                padding-top: 55px;
+            }
+        }
+        
+        header .container-header--resp {
+            height: 62px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+        
+        header .content-header-left--resp {
+            margin-right: auto;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        header .content-header-right--resp {
+            margin-left: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 93px;
+            margin-top: 15px;
+        }
+        
+        .logo--resp h1 {
+            margin-bottom: 0;
+        }
+        
+        .logo--resp h1 a {
+            color: var(--bleumarine-color) !important;
+            font-family: "Playfair Display";
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            font-size: 30px !important;
+        }
+        
+        .humberger-menu {
+            width: 62px;
+            height: 62px;
+            flex-shrink: 0;
+            border-radius: 14.286px;
+            border: 1.429px solid var(--bleumarine-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .humberger-menu svg {
+            width: 45px;
+            height: 45px;
+        }
+        
+        .humberger-menu svg path {
+            stroke: var(--bleumarine-color);
+        }
+        
+        .shawdow {
+            background: #fff;
+            -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+        }
+        
+        /* star */
+        .rating--resp {
+            display: inline-block;
+            padding-left: 40px;
+        }
+        
+        .rating--resp svg {
+            width: 21px;
+            height: 21px;
+        }
+        
+        /* end star */
+        
+        .btn--resp {
+            justify-content: center;
+            align-items: center;
+            border-radius: 38px;
+            background: var(--bleu-color);
+            color: #FFF;
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+        }
+        
+        .container-menu-resp {
+            position: absolute;
+            z-index: 5;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: #fff;
+        }
+        
+        @media (max-width: 430px) {
+            .container-menu-resp {
+                top: 175px;
+            }
+        }
+        
+        @media (min-width: 590px) and (max-width: 585px) {
+            .container-menu-resp {
+                top: 155px;
+            }
+        }
+        
+        .content-menu-mobile {
+            background: rgb(201 212 245 / 13%) !important;
+        }
+        
+        .menu-mobile-effet {
+            transition: all .3s linear !important;
+            overflow: hidden !important;
+            height: 0 !important;
+        }
+        
+        .menu-mobile-effet.show {
+            height: 100vh !important
+        }
+        
+        .content-menu-mobile li {
+            padding: 20px 10px !important;
+            text-align: center !important;
+            line-height: 150% !important;
+            list-style-type: none;
+        }
+        
+        .content-menu-mobile li a {
+            font-family: "Montserrat";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin-right: 39px !important;
+            color: rgba(51, 51, 51, 0.60) !important
+        }
+        
+        /*user*/
+        .menu-mobile-effet1 {
+            height: 100px;
+            background: var(--bleu-color);
+            position: absolute;
+            width: 234px;
+            transition: all .3s linear !important;
+            overflow: hidden !important;
+            height: 0 !important;
+            top: auto !important;
+            right: 0 !important;
+            color: #fff;
+            z-index: 2;
+        }
+        
+        .menu-mobile-effet1 ul {
+            display: block !important;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        .menu-mobile-effet1 ul.list-dropdwn li a {
+            font-size: 15px !important;
+            font-weight: 400 !important;
+            color: rgb(255, 255, 255) !important;
+        }
+        
+        .menu-mobile-effet1.show {
+            height: auto !important
+        }
+        
+        .menu-mobile-effet1 ul {}
+        
+        .menu-mobile-effet1 li {
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        /*user */
+        @media (max-width: 499.96px) {
+            .logo--resp h1 a {
+                font-size: 20px !important;
+            }
+        
+            .humberger-menu {
+                width: 50px;
+                height: 50px;
+                justify-content: center;
+                align-items: center;
+                display: flex !important;
+            }
+        
+            .humberger-menu svg {
+                width: 32.153px;
+                height: 32.143px;
+            }
+        
+            header .content-header-right--resp {
+                display: none;
+            }
+        
+            .rating--resp {
+                display: inline-block;
+                padding-left: 15px;
+            }
+        
+            .rating--resp svg {
+                width: 18px;
+                height: 18px;
+            }
+        
+            header .menu-main--resp ul.list-header ul.list-dropdwn li a {
+                font-size: 15px !important;
+            }
+        }
+        
+        @media (min-width: 499.98px) {
+            .logo--resp h1 a {
+                font-size: 25px !important;
+            }
+        
+            .humberger-menu {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        
+            .humberger-menu svg {
+                width: 32.153px;
+                height: 32.143px;
+            }
+        
+            header .content-header-right--resp {
+                display: none;
+            }
+        
+            header .menu-main--resp ul.list-header ul.list-dropdwn li a {
+                font-size: 15px !important;
+            }
+        }
+        
+        @media (min-width: 767.98px) {
+            .drop-down {
+                display: flex;
+            }
+        
+            .humberger-menu {
+                width: 62px;
+                height: 62px;
+            }
+        
+            .humberger-menu svg {
+                width: 45px;
+                height: 45px;
+            }
+        
+            header .menu-main--resp ul.list-header ul.list-dropdwn li a {
+                font-size: 15px !important;
+            }
+        }
+        
+        @media (min-width: 991.98px) {
+            .logo--resp h1 a {
+                font-size: 30px !important;
+            }
+        
+            .btn--resp.plrfsz {
+                padding: 20px 15px;
+                gap: 10px;
+                font-size: 15px;
+                font-weight: 800;
+            }
+        
+            .humberger-menu {
+                display: none;
+            }
+        
+            header .content-header-right--resp {
+                display: flex;
+            }
+        
+            .rating--resp {
+                padding-left: 10px;
+            }
+        
+            .rating--resp svg {
+                width: 18px;
+                height: 18px;
+            }
+        
+            header .content-header-right--resp {
+                gap: 15px;
+            }
+        
+            header .menu-main--resp ul {
+                gap: 25px;
+            }
+        
+            header .menu-main--resp ul {
+                gap: 20px;
+            }
+        
+            .logo--resp h1 a {
+                font-size: 25px !important;
+            }
+        
+            header .menu-main--resp ul li a {
+                font-weight: 500;
+            }
+        
+            header .menu-main--resp ul.list-header li a {
+                font-size: 19px !important;
+            }
+        
+            header .menu-main--resp ul.list-header ul.list-dropdwn li a {
+                font-size: 15px !important;
+            }
+        
+            .menu-mobile-effet1 {
+                top: auto !important;
+                right: 0 !important;
+            }
+        }
+        
+        @media (min-width: 1199.98px) {
+            .btn--resp.plrfsz {
+                padding: 20px 30px;
+                gap: 10px;
+                font-size: 18px;
+                font-weight: 800;
+            }
+        
+            .rating--resp {
+                padding-left: 20px;
+            }
+        
+            .rating--resp svg {
+                width: 21px;
+                height: 21px;
+            }
+        
+            header .content-header-right--resp {
+                gap: 55px;
+            }
+        
+            header .menu-main--resp ul {
+                gap: 39px;
+            }
+        
+            header .menu-main--resp ul {
+                gap: 39px;
+            }
+        
+            .logo--resp h1 a {
+                font-size: 30px !important;
+            }
+        
+            header .menu-main--resp ul li a {
+                font-weight: 500;
+            }
+        
+            header .menu-main--resp ul.list-header li a {
+                font-size: 23px !important;
+            }
+        
+            header .menu-main--resp ul.list-header ul.list-dropdwn li a {
+                font-size: 15px !important;
+            }
+        
+            .menu-mobile-effet1 {
+                top: auto !important;
+                right: 0 !important;
+            }
+        
+            .menu-mobile-effet1 {
+                width: 227px;
+            }
+        }
+        
+        @media (min-width: 1385.98px) {
+            .btn--resp {
+                padding: 20px 35px;
+                gap: 10px;
+                border-radius: 38px;
+                font-size: 18px;
+            }
+        
+            .rating--resp svg {
+                width: 21px;
+                height: 21px;
+            }
+        
+            header .content-header-right--resp {
+                gap: 55px;
+            }
+        
+            header .menu-main--resp ul {
+                gap: 39px;
+            }
+        }
+        
+        @media (min-width: 1499.98px) {
+            .btn--resp {
+                padding: 20px 35px;
+                gap: 10px;
+                border-radius: 38px;
+                font-size: 18px;
+            }
+        
+            .rating--resp svg {
+                width: 21px;
+                height: 21px;
+            }
+        
+            header .content-header-right--resp {
+                gap: 93px;
+            }
+        
+            header .menu-main--resp ul {
+                gap: 39px;
+            }
+        }
+        
+        /* additional styles */
+        
+        
+        .edit_block_custom_btn_header {
+            position: absolute !important;
+            top: 0px;
+            display: none !important;
+        }
+        
+        .header-sticky:hover .edit_block_custom_btn_header {
+            display: block !important;
+        }
+        
+        @import url('https://fonts.cdnfonts.com/css/valentine-2');
+        
+        .header-sticky.shawdow {
+            margin-top: 53px !important;
+        }
+        
+        .navbar--fixed--top {
+            height: 53px;
+            color: #fff;
+            font-size: 1.25rem;
+        }
+        
+        .navbar--fixed--top .navbar--fixed-container {
+            padding-left: 25px !important;
+            padding-right: 25px !important;
+            display: flex !important;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center !important;
+            width: 100%;
+        }
+        
+        .navbar--fixed--top .navbar--fixed-container .navbar--fixed-right .btn--3d {
+            position: relative;
+            background: #ff8900 !important;
+            font-size: 14px;
+            padding: 5px 20px;
+            line-height: 1.5;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            font-style: normal !important;
+        }
+        
+        .navbar--fixed--top .navbar--fixed-container .navbar--fixed-center {
+            color: #fff;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            height: 60px;
+            padding: 0 80px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            white-space: nowrap;
+            transition: all .3s;
+        }
+        
+        .navbar--fixed--top .navbar--fixed-container .navbar--fixed-left .link--staydirect-logo {
+            color: #fff !important;
+            font-family: "vastine" !important;
+            font-size: 20px !important;
+            font-style: normal !important;
+            font-weight: 400 !important;
+            line-height: 150% !important;
+            text-align: center !important;
+            text-transform: uppercase;
+        }
+        
+        .text_demo {
+            font-size: 12px;
+        }
+        
+        .edit_block_custom_btn {
+            z-index: 2 !important;
+        }
+        
+        button.trigger.focusable {
+            display: none !important;
+        }
+        
+        .full-w {
+            display: block;
+            width: 100%;
+        }
+    </style>
+    {% set myuser = current_user() %}
+    {% set is_editor = hasRole('content_editor',myuser.uid) %}
+    {% set is_admin = hasRole('administrator',myuser.uid) %}
+    {% set is_web = hasRole('webmaster',myuser.uid) %}
+    {% set is_customer = hasRole('customer',myuser.uid) %}
+    {% set display = false %}
+   
+   
+{% if bank_account_status != 'complet' %}
+    {% if bank_account_status == 'pending' and is_web or is_admin %}
+       {% set display = true %}
+             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
+        <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
+            <div class="navbar--fixed-left">
+            <div class="preview--staydirect-logo">
+                <a class="link--staydirect-logo" href="https://staydirecttech.com/">StayDirect TECHNOLOGIES</a>
+            </div>
+            </div>
+            <div class="navbar--fixed-left text_demo">
+                Please set up your bank account for payment processing
+            </div>
+            <div class="navbar--fixed-right">
+            <div class="preview--action--buy">
+                <a class="header-buy-now btn--3d color--primary shadow-none" href="/admin/bank/page">Continue Setup </a>
+            </div>
+            </div>
+        </div>
+        </nav>
+    {% endif %}
+        
+    {% if status == 'confirmed' and bank_account is null and is_web or is_admin %}
+        {% set display = true %}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
+        <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
+            <div class="navbar--fixed-left">
+            <div class="preview--staydirect-logo">
+                <a class="link--staydirect-logo" href="https://staydirecttech.com/">StayDirect TECHNOLOGIES</a>
+            </div>
+            </div>
+            <div class="navbar--fixed-left text_demo">
+                Please set up your bank account for payment processing
+            </div>
+            <div class="navbar--fixed-right">
+            <div class="preview--action--buy">
+                <a class="header-buy-now btn--3d color--primary shadow-none" href="/admin/bank/page">Start Setup </a>
+            </div>
+            </div>
+        </div>
+    </nav>
+    {% elseif (status == 'start_payment' or status is null) and bank_account is null %}
+        {% set display = true %}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar--fixed--top">
+        <div class="navbar--fixed-container bg-dark pt-1 p-3 pt-sm-0 p-sm-3 p-md-0">
+            <div class="navbar--fixed-left">
+            <div class="preview--staydirect-logo">
+                <a class="link--staydirect-logo" href="https://staydirecttech.com/">StayDirect TECHNOLOGIES</a>
+            </div>
+            </div>
+            <div class="navbar--fixed-left text_demo text-md-center">
+                This is still a preview. To test it, click on Login below. Username: demo / password: demo <br>
+                Click Buy Now to finish your purchase.
+            </div>
+            <div class="navbar--fixed-right">
+            <div class="preview--action--buy">
+                <form>
+                    <input type="hidden" name="action" value="start_payment" />
+                    <input type="hidden" name="site_id" value="{{site_id}}" />
+                    <input type="hidden" name="parent" value="{{parent_site }}" />
+                    <button type="submit" class="header-buy-now btn--3d color--primary  shadow-none" >Buy now</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+{% endif %}
+
+    <header class="header-sticky header--sticky-htl">
+
+    {% if is_editor or is_admin or  is_web %}
+        <a  class="edit_block_custom_btn_header edit_block_custom_btn" target="_blank" href="/block/{{c.id}}?destination={{current_url()}}"> Edit {{c.info}}</a>
+    {% endif %}
+        <div class="wrapper--resp">
+        <div class="container-header--resp">
+            <div class="content-header-left--resp">
+              <div class="logo--resp">
+                <h1>
+                    <a href="{{base_url()}}">{{c.field_text}}</a>
+                </h1>
+                
+            </div>
+         </div>
+            <div class="content-header-right--resp">
+                <div class="menu-main--resp">
+                    <ul class="list-header">
+                        {% for item in c.field_link1 %}
+                            <li><a href="{{base_url()}}{{ item.url }}">{{ item.title }}</a></li>
+                        {% endfor %}
+                        {% set current_user = current_user() %}
+                        {% set uid = (current_user.uid) %}
+                        {% if hasRole('webmaster',uid) %}
+                        <li><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
+                        {% endif%}
+                        {% if not is_login() %}
+                            <li style="position: relative;" class="humberger-menu1">
+                                <a href="#">
+                                    Login
+                                </a>
+                                <div class="menu-mobile-effet1" style="">
+                                    <ul>
+                                        <li>
+                                            <a href="{{base_url()}}/login" class="full-w">Login</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{base_url()}}/register" class="full-w">Register</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        {% else %} 
+                            <li style="position: relative;z-index: 99;" class="humberger-menu1">
+                                <a href="#">
+                                    My account
+                                </a>
+                                <div class="menu-mobile-effet1">
+                                    <ul class="list-dropdwn" style="color:#fff">
+                                        <li><a href="{{base_url()}}/user" class="full-w">User profile</a></li>
+                                        <li><a href="{{base_url()}}/user/logout" class="full-w">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </li>  
+                        {% endif %}
+                    </ul>
+                    </div>
+                    <div class="menu-btn--resp">
+                    <ul>
+                        <li>
+                            <a href="{{base_url()}}{{c['field_link'].url}}#form-booking" class="btn--resp night plrfsz">{{c['field_link'].title}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="humberger-menu icon-menu-mobile">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" fill="none">
+                <path d="M11.25 15H33.75M11.25 22.5H33.75M11.25 30H33.75"  stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            </div>
+        </div>
+
+        <div class="container-menu-resp  menu-mobile-effet">
+            <ul class="content-menu-mobile">
+                {% for item in c.field_link1 %}
+                    <li><a href="{{base_url()}}{{ item.url }}">{{ item.title }}</a></li>
+                {% endfor %}
+                {% if not is_login() %}
+                    <li>
+                        <a href="{{base_url()}}/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{base_url()}}/register">Register</a>
+                    </li>
+                {% else %} 
+                    <li><a href="{{base_url()}}/user">My account</a></li>
+                    <li class="d-none"><a href="{{base_url()}}/admin/bookings">Dashboard</a></li>
+                    <li><a href="{{base_url()}}/user">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        </div>
+    </header>
+    <script>
+        if( document.body.contains(  document.querySelector(".humberger-menu") ) ) {
+            document.querySelector(".humberger-menu ").onclick = () => {
+                document.querySelector(".menu-mobile-effet").classList.toggle("show");
+            }
+        }
+    </script>
+    
+    
+    {% if display %}
+        <script>
+            /* header */
+            if( document.body.contains(  document.querySelector(".header-sticky") ) ) {
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    if(currentScroll >= "300") {
+                        document.querySelector(".header-sticky").style.cssText =  `
+                            display: block; 
+                            position: fixed;
+                            top: 35px;
+                            left: 0;
+                            right: 0;
+                            transform: translate(0px, -35px);
+                            transition: all 300ms ease-in;
+                            z-index: 100
+                        `;
+                        document.querySelector(".header-sticky").classList.add("shawdow")
+                    }else {
+                        document.querySelector(".header-sticky").style.cssText = `
+                            position: relative;
+                            transform: translate(0px, 1px);
+                            transition: all 500ms ease-in;
+                        `;
+                        document.querySelector(".header-sticky").classList.remove("shawdow")
+                    }
+                })
+                document.querySelector(".icon-menu-mobile").onclick = () => {
+                    document.querySelector(".menu-mobile-effet").classList.toggle("show");
+                }
+            }
+        
+            /*end header*/
+        </script>
+    {% else  %}
+    <style>
+        header {
+            padding-top: 38px;
+            padding-bottom: 38px;
+            margin-top: 0;
+        }
+        .header-sticky.shawdow {
+          margin-top: 30px !important;
+        }
+        @media (max-width: 430px) {
+          .container-menu-resp {
+            top: 135px;
+          }
+        }
+    </style>
+    <script>
+        /* header */
+        if( document.body.contains(  document.querySelector(".header-sticky") ) ) {
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if(currentScroll >= "300") {
+                    document.querySelector(".header-sticky").style.cssText =  `
+                        display: block; 
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        transform: translate(0px, -35px);
+                        transition: all 300ms ease-in;
+                        z-index: 100
+                    `;
+                    document.querySelector(".header-sticky").classList.add("shawdow")
+                }else {
+                    document.querySelector(".header-sticky").style.cssText = `
+                        position: relative;
+                        transform: translate(0px, 1px);
+                        transition: all 500ms ease-in;
+                    `;
+                    document.querySelector(".header-sticky").classList.remove("shawdow")
+                }
+            })
+            document.querySelector(".icon-menu-mobile").onclick = () => {
+                document.querySelector(".menu-mobile-effet").classList.toggle("show");
+            }
+        }
+    
+        /*end header*/
+    </script>
+    {% endif %}
+    
+    
+    <script>
+        if( document.body.contains(  document.querySelector(".humberger-menu1") ) ) {
+            document.querySelector(".humberger-menu1").onclick = () => {
+                document.querySelector(".menu-mobile-effet1").classList.toggle("show");
+            }
+        }
+    </script>
+
+{% endblock %}

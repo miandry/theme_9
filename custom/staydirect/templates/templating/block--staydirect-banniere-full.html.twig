@@ -1,0 +1,42 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+    {% block templating_content %}
+
+       <!-- done -->
+    {% set item_name = 'block--staydirect-banniere-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_banniere_full')}}
+    
+    {% set c = block_parser(content) %}
+    {% set links= c['field_link'] %}
+    <section class="banniere-resp">
+        <div class="container-resp">
+            <div class="container-banniere-resp">
+                <div class="content-banniere-resp">
+                    <div class="content-ban-left-resp">
+                        <h2 class="title-resp">
+                            {{c.field_title}}
+                        </h2>
+                        <hr class="hr-title-resp hr-banniere-resp">
+                        <p class="p-resp">
+                            {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+                        </p>
+                        <div class="conteneur-btn-resp">
+                            <a href="{{base_url()}}/order?getstarted=1" class="header-sticky-btn-resp a-btn-resp">
+                                {{links['title']}}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="content-ban-right-resp">
+                        <div class="content-ban-right-resp-int">
+                            <div class="content-ban-right-resp-int-2" style="background: url({{c['field_image']['image'].url}});">
+                                <img src="{{c['field_image']['image'].url}}" alt="" style="display: none !important ; margin:auto !important ; min-width: 100% !important ; min-height: 100% !important ; height: auto !important ;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banniere -->
+{% endblock %}

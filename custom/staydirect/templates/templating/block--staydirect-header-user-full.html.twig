@@ -1,0 +1,211 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
+<!-- done -->
+{% set item_name = 'block--staydirect-header-user-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_header_user_full')}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Header -->
+        {% set c = block_parser(content) %}
+        {% set menu1 = simplify_menu(c.field_menu_1) %}
+        {% set menu1_length = menu1|length %}
+        {% set menu2 = simplify_menu(c.menu) %}
+        {% set menu2_length = menu2|length %}
+        {% set menu_user = simplify_menu(c.menu_user) %}
+        {% set menu_user_length = menu_user|length %}
+        {% set count = 0 %}
+        
+        <style>
+            .mz-mobile-nav-menu {
+                height: 85vh;
+                overflow: scroll;
+            }
+            
+            #mz-begin-mobile {
+                color: white !important;
+                font-weight: bold !important;
+                padding: 0 !important;
+            }
+            
+            .mz-color-secondary {
+                color: rgba(51, 51, 51, 0.60) !important;
+            }
+            
+            .menu-mobile-effet1 {
+                top: auto !important;
+                right: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .menu-mobile-effet1 li a {
+                padding: 0 30px 0 30px !important;
+                width: 100%;
+            }
+            
+            .menu-mobile-effet1 li:hover {
+                background: #62929E !important;
+            }
+            
+            .header-sticky .cta ul {
+                padding: 0 !important;
+            }
+            
+        
+            .header-sticky .menu ul li a:hover {
+                color: #000 !important;
+            }
+            
+            .header-sticky .cta ul li.btn-login ul li a {
+                text-align: left !important;
+            }
+        </style>
+        <div class="header-sticky">
+            <div class="container-resp">
+                <div class="content-header">
+                    <div class="logo-header">
+                        <a href="{{base_url()}}">
+                            <img src="{{c['field_logo']['image'].url}}" alt="">
+                        </a>
+                    </div>
+                    <div class="menu">
+                        <ul>
+                            {% for item in menu1.menu_tree %}
+                                <li><a href="{{ item.url }}"
+                                {% if current_url() != 'user/password' and current_url() != 'user/register' and current_url() != 'user/login' %}
+                                  target="_blank"
+                                {% endif %}
+                                > {{ item.text }} </a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="cta">
+                        <ul>
+                            <li class="btn-login humberger-menu1" style="position: relative;">
+                                {% if not is_login() %}
+                                    <a class="" href="#">Login</a>
+                                    <div class="menu-mobile-effet1" style="">
+                                        <ul>
+                                            <li>
+                                                <a href="{{base_url()}}/login">Login</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{base_url()}}/register">Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                {% else %}  
+                                    <a class="" href="#">My Account</a>
+                                    <div class="menu-mobile-effet1">
+                                        <ul class="list-dropdwn">
+                                            {% for item in menu_user.menu_tree %}
+                                                <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </li>
+                            <li class="btn-begin">
+                                <a class="btn" href="{{base_url()}}/order?getstarted=1">Build Your Website</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="icon-menu-mobile menu-mobile">
+                        <div class="menu-humbergers-resp" bis_skin_checked="1">
+                            <div class="rect-humb-resp rh-1-resp" bis_skin_checked="1"></div>
+                            <div class="rect-humb-resp rh-2-resp" bis_skin_checked="1"></div>
+                            <div class="rect-humb-resp rh-3-resp" bis_skin_checked="1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-mobile menu-mobile-effet" bis_skin_checked="1">
+                <ul class="content-menu-mobile mb-0">
+                    {% for item in menu1.menu_tree %}
+                        <li><a href="{{ item.url }}" class="mz-color-secondary icon-menu-mobile"
+                                {% if current_url() != 'user/password' and current_url() != 'user/register' and current_url() != 'user/login' %}
+                                  target="_blank"
+                                {% endif %}
+                        >{{ item.text }} </a></li>
+                    {% endfor %}
+                </ul>
+                <ul style="text-align: center !important ;">
+                    {% if not is_login() %}
+                        <li>
+                            <a class="mz-color-secondary" href="{{base_url()}}/user/login">Login</a>
+                        </li>
+                    {% else %}  
+                        {% set myuser = current_user() %}
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/user">User profile</a></li>
+                        {% if hasRole('webmaster',myuser.uid) or hasRole('administrator',myuser.uid) or hasRole('content_editor',myuser.uid) %}
+                            <li><a class="mz-color-secondary" href="{{base_url()}}/admin/bookings">Dashboard</a></li>
+                        {% endif%}
+                        <li><a class="mz-color-secondary" href="{{base_url()}}/user/logout">Logout</a></li>
+                    {% endif %}
+
+                    <li>
+                        <div class="w-75 mx-auto fw-bold text-white rounded-pill p-3"
+                        style="background: #62929ecc">
+                            <a class="mz-color-secondary"  id="mz-begin-mobile"
+                            href="{{base_url()}}/order?getstarted=1">Build Your Website</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            /* header */
+            if( document.body.contains(  document.querySelector(".header-sticky") ) ) {
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    if(currentScroll >= "300") {
+                        document.querySelector(".header-sticky").style.cssText =  `
+                            display: block; 
+                            position: fixed;
+                            top: 35px;
+                            left: 0;
+                            right: 0;
+                            transform: translate(0px, -35px);
+                            transition: all 300ms ease-in;
+                            z-index: 2;
+                        `;
+                        document.querySelector(".header-sticky").classList.add("shawdow")
+                    }else {
+                        document.querySelector(".header-sticky").style.cssText = `
+                            position: relative;
+                            transform: translate(0px, 1px);
+                            transition: all 500ms ease-in;
+                        `;
+                        document.querySelector(".header-sticky").classList.remove("shawdow")
+                    }
+                })
+            }
+            if( document.body.contains( document.querySelector(".video-play-img") ) ) {
+                document.querySelector(".video-play-img").onclick = () => {
+                    document.querySelector(".popup-video").classList.remove("hidden");
+                    document.querySelector(".popup-video").classList.add("box");
+                    document.querySelector("video").src = vid.getAttribute("src");
+                }
+                document.querySelector(".close-video").onclick = () => {
+                    document.querySelector(".popup-video").classList.remove("box");
+                    document.querySelector(".popup-video").classList.add("hidden");
+                }
+            }
+            
+            $('.icon-menu-mobile').on('click', function(){
+                $(".menu-mobile-effet").toggleClass('show')
+            })
+        </script>
+        <script>
+            if( document.body.contains(  document.querySelector(".humberger-menu1") ) ) {
+                document.querySelector(".humberger-menu1").onclick = () => {
+                    document.querySelector(".menu-mobile-effet1").classList.toggle("show");
+                }
+            }
+        </script>
+        <!-- End Header -->
+    
+{% endblock %}

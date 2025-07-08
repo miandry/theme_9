@@ -1,0 +1,109 @@
+<style>
+body {
+  background: #fff;;
+}
+
+#card {
+  position: relative;
+  top: 110px;
+  width: 60%;
+  display: block;
+  margin: auto;
+  text-align: center;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+}
+
+#upper-side {
+  padding: 2em;
+  background-color: #62929E;
+  display: block;
+  color: #fff;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+#checkmark {
+  font-weight: lighter;
+  fill: #fff;
+  margin: -3.5em auto auto 20px;
+}
+
+#status {
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1em;
+  margin-top: -.2em;
+  margin-bottom: 0;
+}
+
+#lower-side {
+  padding: 2em 2em 5em 2em;
+  background: #fff;
+  display: block;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+#message {
+  margin-top: -.5em;
+  color: #757575;
+  letter-spacing: 1px;
+}
+
+#contBtn {
+  position: relative;
+  top: 1.5em;
+  text-decoration: none;
+  background: #62929E;
+  color: #fff;
+  margin: auto;
+  padding: .8em 3em;
+  -webkit-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  -moz-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  border-radius: 25px;
+  -webkit-transition: all .4s ease;
+		-moz-transition: all .4s ease;
+		-o-transition: all .4s ease;
+		transition: all .4s ease;
+}
+
+#contBtn:hover {
+  -webkit-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  -moz-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  -webkit-transition: all .4s ease;
+		-moz-transition: all .4s ease;
+		-o-transition: all .4s ease;
+		transition: all .4s ease;
+}
+#card svg{
+    width: 140px;
+    margin-bottom: 20px;
+}
+</style>
+<div id='card' class="animated fadeIn">
+  <div id='upper-side'>
+      <svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <path class="circle" d="M13 1C6.372583 1 1 6.372583 1 13s5.372583 12 12 12 12-5.372583 12-12S19.627417 1 13 1z"/>
+    <path class="tick" d="M6.5 13.5L10 17 l8.808621-8.308621"/>
+  </g>
+</svg>
+      <h3 id='status'>
+      Your website is ready
+    </h3>
+  </div>
+  <div id='lower-side'>
+    <p id='message'>
+      Congratulations, your website has been successfully created.
+    </p>
+    <div>
+    <a href="/" id="contBtn">View Front Page</a>
+    <a href="/user/login" id="contBtn">View Admin Page</a>
+    </div>
+  </div>
+</div>

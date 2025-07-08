@@ -1,0 +1,171 @@
+{% set inc_ = include_template("include-process-theme") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
+
+{% set id  = id_by_url() %}
+{% set n = node_parser(id) %}
+
+
+{{ attach_library('staydirect_install/global-styling') }}
+
+{{ attach_library('staydirect/maintenance') }}
+{{ attach_library('staydirect_install/popup') }}
+
+
+{% set step_number = "Website" %}
+{% set step_name = "Choose a theme" %}
+<style>
+	.site-manager-process {
+		background-color: #F6F6F6;
+		padding: 25px;
+		border-radius: 13px;
+	}
+	#edit-submit {
+		color: white !important;
+		background-color: #62929E !important;
+	}
+	#edit-field-profile-ecommerce {
+		pointer-events: none;
+		background-color: #dad9d9;
+	}
+	.fieldset__label--group {
+		font-size: 21px !important;
+		padding-bottom: 10px !important;
+	}
+	.image-theme{
+		width: 370px;
+        margin: 5px;
+	}
+	.element:hover {
+	    background-color: #ccc; 
+	    border-radius:5px;
+	}
+	.element:hover {
+	    background-color: #ccc; 
+	    border-radius:5px;
+	}
+	.element a{
+		    width: 100px;
+        margin: 10px 0px;
+	}
+	.element.active .content_row {
+
+	    border-radius:5px;
+		border: 5px solid #585454 !important;
+	}
+
+	.mz-disabled {
+		cursor: not-allowed;
+	}
+    
+    @media (max-width: 768px) {
+        .main-step .col-md-8 {
+            padding-left: 0 !important;
+        }
+    }
+
+</style>
+{% set param = get_parameter() %}
+
+{% include 'themes/custom/staydirect_install/templates/inc/header_process.html.twig'  %}
+<main class="main-step main-step-specification main-simple">
+	<div class="container container-and">
+		<div class="row ">
+
+			<div class="sidebar col-md-4 order-sm-first">
+
+				{% set active_theme = 'active' %} 
+				
+                {% include 'themes/custom/staydirect_install/templates/inc/menu_process.html.twig'  %}
+  
+			</div>
+
+			<div class="col-md-8 ps-0">
+			  <form>
+			    <input id="theme_select" type="hidden" name="theme_select" value="0" />
+				<div class="row form-payment">
+					<div class="col-md-12 col-lg-12 choosecontent">
+						<h2 class="pb-2 border-bottom">
+							Themes
+						</h2>
+						<div class="col-md-12 element" id="template_1">
+							<div class="content_row row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+								<div class="col p-4 d-flex flex-column position-static">
+									<strong class="d-inline-block mb-2 text-primary">Template 1</strong>
+									<h3 class="mb-0">Azure Bliss</h3>
+									<p class="card-text mb-auto">Elevate your digital presence with Azure Bliss and let the calming waves of blue inspire confidence and connection.</p>
+									<a data-href="https://staydirecttech.com/template1" class="btn  btn-sm  btn-sm btn-primary poptemplate1">View</a>
+								</div>
+								<div class="col-auto d-none d-lg-block">
+									<img class="image-theme" width="100%" id="image1" src="{{pathlocal_theme('staydirect')}}/theme1.jpg" alt="Image 1" class="grid-image">
+								</div>
+							</div>
+						</div>
+		                <div class="col-md-12 element" id="template_2">
+							<div class="content_row row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+								<div class="col p-4 d-flex flex-column position-static">
+									<strong class="d-inline-block mb-2 text-primary">Template 2</strong>
+									<h3 class="mb-0">Verdant Harmony</h3>
+									<p class="card-text mb-auto">Experience the Verdant Harmony template and watch your online presence flourish in a world of sustainable design.</p>
+									<a data-href="https://staydirecttech.com/template2"  class="btn  btn-sm btn-primary poptemplate2">View</a>
+								</div>
+								<div class="col-auto d-none d-lg-block">
+									<img class="image-theme" width="100%" id="image1" src="{{pathlocal_theme('staydirect')}}/theme2.jpg" alt="Image 1" class="grid-image">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 element" id="template_3">
+							<div class="content_row row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+								<div class="col p-4 d-flex flex-column position-static">
+									<strong class="d-inline-block mb-2 text-primary">Template 3</strong>
+									<h3 class="mb-0">Monochrome Elegance</h3>
+									<p class="card-text mb-auto">Experience the enduring elegance of Monochrome Elegance and let your content shine against a backdrop of classic design.</p>
+								    <a data-href="https://staydirecttech.com/template3"  class="btn btn-sm btn-primary poptemplate3">View</a>
+								</div>
+								<div class="col-auto d-none d-lg-block">
+									<img class="image-theme" width="100%" id="image1" src="{{pathlocal_theme('staydirect')}}/theme3.jpg" alt="Image 1" class="grid-image">
+								</div>
+							</div>
+						</div>
+
+					</div>
+                 	<div class="col-md-12"> 
+<input  type="submit"  name="back" value="Back"
+							class="button js-form-submit form-submit" >
+					    <input  type="submit" id="edit-submit" name="op" value="Save and continue"
+							class="button js-form-submit form-submit mz-disabled" disabled>
+					</div>
+				</div>
+			  </form>
+
+			  {{drupal_form("Drupal\\site_manager\\Form\\ProcessForm")}}
+			</div>	
+		</div>
+	</div>
+</main>
+
+<script>
+    const elements = document.querySelectorAll('#template_1, #template_2, #template_3');
+    elements.forEach(function(element) {
+        element.addEventListener('click', function() {
+			document.getElementById('edit-submit').classList.remove('mz-disabled');
+			document.getElementById('edit-submit').disabled = false;
+        });
+    });
+</script>
+{% endif %}
+    <script>
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted || window.performance.navigation.type === 2) {
+      window.location.reload();
+    }
+  });
+</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Remove all query parameters and hash from URL
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    });
+  </script>

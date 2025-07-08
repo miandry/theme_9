@@ -1,0 +1,12 @@
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-image: none !important;
+}
+
+.mz-card-desc{
+  display: none;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.mz-image-wrapper:hover .mz-card-desc {
+  display: block;
+}

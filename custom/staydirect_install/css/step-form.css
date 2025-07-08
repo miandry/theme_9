@@ -1,0 +1,422 @@
+/*header*/
+.container-and {
+  max-width: 80rem!important;
+  padding-right: 2.5rem !important;
+  padding-left: 2.5rem !important;
+  margin: auto !important;
+}
+header .top-left {
+  margin-top: 63px
+}
+header .top-left img.logo {
+    max-width: 206.28px;
+    max-height: 120px;
+}
+.header-step { 
+  height: auto !important;
+}
+.header-step .top-right .step a {
+    text-decoration: none;
+    color: rgba(51, 51, 51, 0.60);
+    text-align: center;
+    font-size: 25px;
+    font-family: "Kanit";
+    font-style: normal;
+    font-weight: 300;
+    line-height: 150%;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+.header-step .top-right {
+  margin-top: 31px ;
+}
+.header-step  .top-right .ttl-step {
+    color: #333;
+    text-align: right;
+    line-height: 150%;
+    font-size: 50px;
+    font-family: "Vastine";
+    font-weight: 400;
+}
+@media (max-width: 768px) {
+  header .top-left {
+    margin-top: 44px
+  }
+  header .top-left img.logo {
+      max-width: 168.28px;
+  }
+  .header-step .top-right {
+      margin-top: 79px !important;
+  }
+  .header-step  .top-right .ttl-step {
+    font-size: 30px;
+  }
+  .header-step .top-right .step a {
+    font-size: 20px;
+  }
+}
+@media (max-width: 500px) {
+  header .top-left {
+    margin-top: 34px
+  }
+  header .top-left img.logo {
+      max-width: 148.28px;
+  }
+  .header-step .top-right {
+      margin-top: 60px !important;
+  }
+  .header-step  .top-right .ttl-step {
+    font-size: 18px;
+  }
+  .header-step .top-right .step a {
+    font-size: 25px !important;
+  }
+}
+@media (max-width: 380px) {
+  header .top-left {
+    margin-top: 24px
+  }
+  .header-step .top-right {
+      margin-top: 35px !important;
+  }
+  header .top-left img.logo {
+      max-width: 100px;
+  }
+  .header-step .top-right .step a {
+    font-size: 14px !important;
+  }
+  .header-step  .top-right .ttl-step {
+    font-size: 16px;
+  }
+  
+}
+/*end header*/
+    .main-step .px-5 {
+      padding-left: 3rem !important;
+    }
+    .main-step  .p-5 {
+        padding: 3rem!important;
+    }
+    .main-step {
+      margin-top: 82px !important;
+    }
+    .main-step .container {
+      max-width: 1200px;
+    }
+    .main-step .sidebar .d-flex.active {
+       /* background: #e4eeff; */
+        background: #62929E;
+        font-weight: 500;
+        color: #fff !important;
+        text-align: center;
+        font-family: "Kanit";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        border-radius: 0 2rem 2rem 0;
+        padding-left: 3rem;
+    }
+    .main-step .d-flex.active p {
+      color: #fff !important;
+    }
+
+    .main-step .sidebar .d-flex {
+      background: #F6F6F6;
+      color: #fff !important;
+      text-align: center;
+      font-family: "Kanit";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      border-radius: 0 2rem 2rem 0;
+      padding-left: 3rem;
+  }
+   
+    .main-step p {
+      margin: 1rem;
+      margin-left: 0;
+     
+    }
+
+    .main-step .sidebar p {
+      color: #232429 !important;
+    }
+
+    .main-step .row-step .step-icon{
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(51, 51, 51, 0.30);
+      background: #F6F6F6;
+    }
+    .main-step .row-step .step-icon.active{
+      border-radius: 20px;
+      border: 1px solid rgba(199, 199, 199, 0.54);
+      background: linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%);
+    }
+
+    .main-step .row-step .step-icon svg {
+      width: 50px;
+      height: 50px;
+    }
+    @media (max-width: 992px) {
+      .main-step .sidebar {
+        padding-right: 25px !important;
+      }
+    }
+    @media (max-width: 768px) { 
+      .main-step, .main-step .row-step {
+        margin-top: 76px;
+      }
+      .header-step .top-right {
+        margin-top: 59px !important;
+      }
+      .main-step .px-5 {
+        padding-left: 0 !important; ;
+      
+      }
+      .main-step .sidebar {
+        padding-right: 0px !important;
+        margin-bottom: 74px;
+      }
+    }
+    @media (max-width: 500px) {
+      .main-step {
+        margin-top: 61px;
+      }
+      .main-step .row-step .step-icon{
+        width: 75px;
+        height: 75px;
+      }
+      .main-step .row-step .step-icon svg {
+        width: 37.5px;
+        height: 37.5px;
+      }
+      .main-step .row-step {
+        margin-top: 61px;
+      }
+      .main-step  .p-5 {
+          padding: 0rem!important;
+      }
+
+      .main-step .sidebar {
+          padding-right: 0px !important;
+          margin-bottom: 3rem;
+      }
+      .main-step .col-tab-step {
+          font-size: 12px !important;
+      }
+      .header-step .top-right {
+        margin-top: 25px !important;
+      }
+    }
+    /*end main step icon */
+
+    /*main step tab*/
+    .main-step .row.row-tab-step {
+        background: #F6F6F6;
+        margin-bottom: 44px;
+        border-radius: 40px;
+        overflow: hidden;
+        padding: 0
+    }
+    .main-step .col-tab-step {
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        font-family: "Kanit";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+    }
+    .main-step .col-tab-step.active {
+        background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%));
+        color: #FFF;
+    }
+    /*end main step icon*/
+
+    /*main form*/
+    .main-step hr {
+      opacity: 0.045;
+    }
+    .main-step .row.form-payment {
+        margin-bottom: 75px;
+    }
+    .main-step .row.form-payment .left .card{
+        width: 313px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        border: 2px solid rgba(51, 51, 51, 0.85);
+        background: #FCFCFC;
+        float: left;
+        height: 150px;
+    }
+    .main-step .form-payment form.form-facturation {
+        border-radius: 10px;
+        padding-bottom: 42px;
+    }
+    .main-step  h2.title-form {
+      font-size: 35px;
+    }
+    .main-step .form-payment form label {
+        color: rgba(51, 51, 51, 0.50);
+        font-size: 18px;
+        font-family: "Kanit";
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%;
+    }
+    .main-step .form-payment form .label-checkbox {
+      font-size: 14px;
+    }
+    .main-step .form-label {
+        margin-bottom: 0 !important;
+    }
+
+    .main-step .form-payment .left,.main-step .form-payment .right {
+        padding: 0 !important;
+    }
+
+    .main-step dl,.main-step  ol, .main-step ul {
+        margin-top: 0;
+        margin-bottom: 0 !important;
+    }
+    .main-step h3 {
+        margin-bottom: 0 !important;
+    }
+    .main-step .form-payment .col-12, .main-step .form-payment .col-sm-6 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-top: 0;
+    }
+    .pmain-step .form-payment .col-sm-6 {
+        width: 48%;
+    }
+    .form-select-lg {
+      color: rgba(51, 51, 51, 0.50);
+      font-size: 18px;
+      font-family: "Kanit";
+      font-style: normal;
+      font-weight: 400;
+      border-radius: 10px;
+      background: #F6F6F6;
+      height: 60px;
+    }
+    .main-step .form-payment form input.input-form-and, form textarea.input-form-and {
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        border-radius: 10px;
+        background: #F6F6F6;
+        color: rgba(51, 51, 51, 0.62);
+        font-size: 20px;
+        font-family: Kanit;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 150%;
+        letter-spacing: 1.6px;
+        padding: 15px 20px;
+        margin-top: 15px;
+        margin-bottom: 35px;
+    }
+    .main-step textarea.form-control {
+        border-radius: 10px;
+        border-radius: 10px;
+        background: #F6F6F6;
+        width: 992px;
+        min-height: 150px;
+    }
+    .main-step .btn-lg-and {
+        display: flex;
+        max-width: 442px;
+        padding: 10px 30px;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 10px;
+        border-radius: 10px;
+        border: 1px solid #333;
+        color: #333;
+        font-size: 20px;
+        font-family: "Kanit";
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+        width: 100%;
+    }
+    .main-step figure {
+        margin: 0 !important;
+    }
+    .main-step .btn-pre-nxt p{
+        width: 191px;
+        text-align: center;
+        border-radius: 10px;
+        gap: 10px;
+        padding: 15px 40px 15px 30px;
+        border: 1px solid rgba(51, 51, 51, 0.19);
+        display: inline-flex;
+        align-items: center;
+        color: rgba(51, 51, 51, 0.62);
+        font-size: 20px;
+        font-family: "Kanit";
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+    }
+    .main-step .btn-pre-nxt p.last{
+        color: #FFF !important;
+        border-radius: 10px;
+        background:  linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%);
+
+    }
+    .main-step .btn-pre-nxt p.primary{
+        color: rgba(51, 51, 51, 0.62);
+    }
+
+    .main-step .row.form-payment .col-sm-6{
+        width: 50%;
+    }  
+    .main-step .row.form-payment .col-sm-6.first-col-sm-6 input {
+        width: 97%;
+        float: left;
+    }  
+    .main-step .row.form-payment .col-sm-6.last-col-sm-6 input{
+        width: 97%;
+        float: right;
+    } 
+    .main-step input::file-selector-button {
+        font-weight: bold;
+        color: dodgerblue;
+        padding: 0.5em;
+        border: thin solid grey;
+        border-radius: 3px;
+        color: rgba(51, 51, 51, 0.50);
+        text-align: center;
+        font-size: 16px;
+        font-family: "Kanit";
+        font-style: normal;
+        font-weight: 300;
+        line-height: 150%;
+        border: none;
+    }
+    .main-step .row.form-payment {
+      margin-bottom: 75px;
+    }
+    /*end main form*/
+
+  
+    .main-step-specification .d-flex-btn .btn-save {
+      background: var(--dgrad-bleu, linear-gradient(138deg, rgba(98, 146, 158, 0.80) 0%, #62929E 100%));
+      color: #FFF;
+  }
+  .main-step-specification .d-flex-btn .btn {
+    border-radius: 10px;
+    font-family: "Kanit";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 27px;
+    padding: 15px 40px;
+    align-items: center;
+    gap: 10px;
+}

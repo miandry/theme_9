@@ -1,0 +1,118 @@
+<?php
+
+use Drupal\Core\Url;
+
+/**
+ * Form_alter()
+ */
+function platform_theme_form_alter(&$form, $form_state, $form_id)
+{
+    // User form (Login, Register or Forgot password)
+    if (strpos($form_id, 'user_login') !== false || strpos($form_id, 'user_register') !== false || strpos($form_id, 'user_pass') !== false) {
+        $form['actions']['submit']['#attributes']['class'][] = 'button--primary';
+    }
+    if (strpos($form_id, 'user_register') !== false) {
+        // Move actions before new elements.
+        $form['actions']['#weight'] = '98';
+
+        // New wrapper.
+        $form['more-links'] = [
+            '#type' => 'container',
+            '#weight' => '99',
+            '#attributes' => ['class' => ['more-links']],
+        ];
+        // Forgot password link.
+        $form['more-links']['forgot_password_link'] = [
+            '#type' => 'link',
+            '#url' => Url::fromUserInput('/password'),
+            '#title' => t('Forgot your password?'),
+            '#attributes' => ['class' => ['link', 'forgot-password-link']],
+            '#weight' => '2',
+        ];
+
+        // Login  link.
+        $form['more-links']['login_link'] = [
+            '#type' => 'link',
+            '#url' => Url::fromUserInput('/login'),
+            '#title' => t('Login'),
+            '#attributes' => ['class' => ['link', 'login-link']],
+            '#weight' => '2',
+        ];
+    }
+    // Adding button/links to Register and Forgot password.
+    if (strpos($form_id, 'user_login') !== false) {
+        // Move actions before new elements.
+        $form['actions']['#weight'] = '98';
+
+        // Add new class to submit button.
+        $form['actions']['submit']['#attributes']['class'][] = 'button-login';
+
+        // New wrapper.
+        $form['more-links'] = [
+            '#type' => 'container',
+            '#weight' => '99',
+            '#attributes' => ['class' => ['more-links']],
+        ];
+
+        // Register button.
+        $form['more-links']['register_button'] = [
+            '#type' => 'link',
+            '#url' => Url::fromUserInput('/register'),
+            '#title' => t('Create new account'),
+            '#attributes' => [
+                'class' => [
+                    'register-button',
+                    'button',
+                    'button--secondary',
+                ],
+            ],
+            '#weight' => '1',
+        ];
+
+        // Forgot password link.
+        $form['more-links']['forgot_password_link'] = [
+            '#type' => 'link',
+            '#url' => Url::fromUserInput('/password'),
+            '#title' => t('Forgot your password?'),
+            '#attributes' => ['class' => ['link', 'forgot-password-link']],
+            '#weight' => '2',
+        ];
+    }
+
+    // Changing name of Reset button.
+    if (strpos($form_id, 'user_pass') !== false) {
+        // Move actions before new elements.
+        $form['actions']['#weight'] = '98';
+
+        // New wrapper.
+        $form['more-links'] = [
+            '#type' => 'container',
+            '#weight' => '99',
+            '#attributes' => ['class' => ['more-links']],
+        ];
+        // Register button.
+        $form['more-links']['register_button'] = [
+            '#type' => 'link',
+            '#url' => Url::fromUserInput('/register'),
+            '#title' => t('Create new account'),
+            '#attributes' => [
+                'class' => [
+                    'register-button',
+                    'button',
+                    'button--secondary',
+                ],
+            ],
+            '#weight' => '1',
+        ];
+
+        // Login  link.
+        $form['more-links']['login_link'] = [
+            '#type' => 'link',
+            '#url' => Url::fromUserInput('/login'),
+            '#title' => t('Login'),
+            '#attributes' => ['class' => ['link', 'login-link']],
+            '#weight' => '2',
+        ];
+        $form['actions']['submit']['#value'] = t('Reset');
+    }
+}

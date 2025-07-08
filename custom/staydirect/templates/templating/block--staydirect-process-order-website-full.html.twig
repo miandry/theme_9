@@ -1,0 +1,40 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+    
+    {% block templating_content %}
+   
+    {{ attach_library('staydirect/maintenance') }}
+    {{ attach_library('claro/global-styling') }}
+    {{ attach_library('staydirect_install/global-styling') }}
+
+    {% set item_name = 'block--staydirect-process-order-website-full.html' %} 
+    {% set path_css = directory ~ '/templates/templating/css/'~ item_name ~'.css' %}
+    {% set css = include(path_css) %} 
+    {{render_css(css,'block__staydirect_process_order_website_full')}}
+
+    <main class="main-step main-step-specification main-simple main-order main--step-rectf">
+        <div class="container container-and">
+            <div class="row mb-5">
+                  {% if not is_login() %}
+                     <div class="m-auto col-md-6  px-4 login_process">{{user_login()}} </div>
+                  {% else %}   
+                     
+                <div class="sidebar col-md-4 order-sm-first">
+                   {% set active_user = 'active' %}  
+                   {% include 'themes/custom/staydirect_install/templates/inc/menu_process.html.twig'  %}
+                </div>
+                <div class="col-md-8">
+                    <div class="row form-payment">
+                        <div class="col-md-12 col-lg-12 choosecontent">
+                         
+                            {{ render_form_entity('node','site') }}
+                        </div>
+                    </div>
+                </div>
+               {% endif %}
+            </div>
+        </div>
+    </main>
+            
+{% endblock %}
+
+ 

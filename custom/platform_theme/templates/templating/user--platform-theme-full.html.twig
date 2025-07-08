@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Theme override to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ */
+#}
+
+{% extends get_module_path('templating') ~ "/templates/misc/user.html.twig" %}
+{% block templating_content %}
+  {#
+  /**
+   * @file
+   * Theme override to present all user data.
+   *
+   * This template is used when viewing a registered user's page,
+   * e.g., example.com/user/123. 123 being the user's ID.
+   *
+   * Available variables:
+   * - content: A list of content items. Use 'content' to print all content, or
+   *   print a subset such as 'content.field_example'. Fields attached to a user
+   *   such as 'user_picture' are available as 'content.user_picture'.
+   * - attributes: HTML attributes for the container element.
+   * - user: A Drupal User entity.
+   *
+   * @see template_preprocess_user()
+   */
+  #}
+  {% set u = user_parser(user) %}
+  <article{{ attributes.addClass('profile') }}>
+    {% if content %}
+      <div class="container pt-3 pb-2">
+        <div class="row">
+          <div class="col">
+            <ul class="breadcrumb breadcrumb-style-2 d-block text-4 mb-4">
+              <li><a href="#" class="text-color-default text-color-hover-primary text-decoration-none">Home</a></li>
+              <li>User profil</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-lg-3 mt-4 mt-lg-0">
+
+            <div class="d-flex justify-content-center mb-4">
+              <div class="profile-image-outer-container">
+                <div class="profile-image-inner-container bg-color-primary">
+                  {% if u.user_picture %}
+                    <img src="{{ u.user_picture.url }}">
+                  {% else %}
+                    <img src="{{ base_url() }}/{{ directory }}/img/avatars/avatar.jpg">
+                  {% endif %}
+                </div>
+                <input type="file" id="file" class="profile-image-input">
+              </div>
+            </div>
+
+            <aside class="sidebar mt-2" id="sidebar">
+              <ul class="nav nav-list flex-column mb-5">
+                {% set user_menu = simplify_menu('account') %}
+                {% for item in user_menu.menu_tree %}
+                  <li class="nav-item"><a class="nav-link" href=" {{ item.url }}">{{ item.text }}</a></li>
+                {% endfor %}
+              </ul>
+            </aside>
+
+          </div>
+          <div class="col-lg-9">
+             {{ render_form_entity('user','user',u.uid) }} 
+
+            {# {{ user_password_forget() }} #}
+          </div>
+        </div>
+
+      </div>
+    {% endif %}
+  </article>
+{% endblock %}

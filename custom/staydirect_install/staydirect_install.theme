@@ -1,0 +1,38 @@
+<?php
+
+  /**
+ * Implements hook_theme_suggestions_HOOK_alter() for page templates.
+ */
+function staydirect_install_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    // Check if the current page is a node page.
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      // Get the content type of the node.
+      $node_type = $node->getType();
+      // Add a suggestion based on the content type.
+      $suggestions[] = 'page__node_' . $node_type;
+      $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
+      if( $alias){
+        $suggestions[] = 'page__node_' .  str_replace('/', '_', $alias);
+      }
+    }
+  }
+}
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function staydirect_install_page_attachments_alter(array &$attachments) {
+  // Check if the current path is a batch processing page.
+  $current_path = \Drupal::service('path.current')->getPath();
+  if (strpos($current_path, '/batch') === 0) {  
+    // Remove the library if the condition is met.
+    if (isset($attachments['#attached']['library'])) {
+      $libs = $attachments['#attached']['library'];
+      foreach($libs as $key => $lib){
+        if($lib == "staydirect_install/global-styling"){
+          unset($attachments['#attached']['library'][$key]);
+        }        
+      }
+    }
+  }
+}

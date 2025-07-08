@@ -1,0 +1,202 @@
+{% extends get_module_path("templating") ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+{% set path_css = directory ~ "/templates/templating/css/block-content--staydirect-test-full.html.css" %}
+{% set css = include(path_css) %}
+{{render_css(css,"block-content--staydirect-test-full_html_twig")}}
+        <!-- bloc showcase-->
+
+
+
+
+    <div class="template--resp" id="template"></div>
+    <section id="showcase-resp" class="showcase-resp">
+        <div class="container-resp">
+      
+            <div class="content-showcase-resp step">
+
+                    test
+
+            </div>
+        </div>
+    </section>
+    <!-- End bloc showcase-->
+
+    <style>
+        .popup-showcase-resp {
+            position: fixed !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 2 !important;
+            width: 100% !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            background: rgba(0,0,0,0.8) !important;
+            transition: all 0.95s ease-out !important;
+
+        }
+        .popup-showcase-resp.hidden {
+            visibility: hidden !important;
+            opacity: 0 !important;
+            transition: all 0.95s linear !important;
+        }
+        .popup-showcase-resp.box {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: all 0.95s ease-out !important;
+        }
+        .theme-item-slide {
+            cursor: pointer !important;
+        }
+        .close {
+            position: absolute !important;
+            right: 35px !important;
+            top: 35px !important;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            border: solid 3px #fff !important;
+            color: #fff !important;
+            opacity: 0.7 !important;
+            background: #000 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 4 !important;
+            cursor: pointer !important;
+        }
+        .container-popup-gallery-slider-and svg {
+            width: 45px !important;
+            height: 45px !important;
+            color: #fff !important;
+        }
+        .container-popup-gallery-slider-and path {
+            color: #fff !important;
+            fill: #fff !important;
+        }
+    </style>
+  
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        * {
+            scroll-behavior: smooth !important;
+        }
+        body, html {
+            width: 100% !important;
+            height: 100% !important;
+            margin: auto !important;
+        }
+        .container-slider-and {
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+        .slider-and {
+            height: 100% !important;
+            display: flex !important;
+            transition: all 0.5s !important;
+        }
+        .gallery-and {
+            width: 100% !important;
+            height: 100% !important;
+            flex-basis: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 20px !important;
+        }
+        .control-slide-left-and {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            left: 50px !important;
+            cursor: pointer !important;
+            z-index: 1 !important;
+        }
+        .control-slide-right-and {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            right: 50px !important;
+            cursor: pointer !important;
+            z-index: 1 !important;
+        }
+        .conroll-round-slide-and {
+            height: 20px !important;
+        
+            position: absolute !important;
+            bottom: 50px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 100% !important;
+            z-index: 2 !important;
+        }
+        .conroll-round-slide-and ul {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
+        }
+        .conroll-round-slide-and ul li {
+            width: 20px !important;
+            height: 20px !important;
+            border-radius: 50% !important;
+            list-style-type: none !important;
+            cursor: pointer !important;
+            background: #fff !important;
+        }
+        .conroll-round-slide-and ul li.active {
+            width: 20px !important;
+            height: 20px !important;
+            border-radius: 50% !important;
+            background: transparent !important;
+            list-style-type: none !important;
+            cursor: pointer !important;
+            border: solid 1px #21171746 !important;
+            border: solid 1px #fff !important;
+        }
+        .body-gallery-slide-and {
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+    </style>
+   
+    <div class="popup-showcase-resp popup container-popup-gallery-slider-and hidden">
+        <div class="body-popup body-gallery-slide-and">
+            <div class="container-popup container-slider-and">
+                <div class="close close-showcase-resp close-gallery-slider-and"> 
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg width="45" height="45" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M14 14L34 34" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 34L34 14" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="control-slide control-slide-and">
+                    <span class="left left-slide-resp control-slide-left-and">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/> </svg> </span>
+                    <span class="right right-slide-resp control-slide-right-and"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/> </svg> </span>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+ 
+        <iframe
+            width="800"
+            height="600"
+            src="https://staydirect.cloud/login">
+        </iframe>
+    
+  
+    
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
+  {% set item_name = 'block--staydirect-template-1-check-availaibility-full.html' %} 
+  {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+  {% set css = include(path_css) %} 
+  {{render_css(css,'block__staydirect_template_1_check_availaibility_full')}}
+{{ attach_library('staydirect_template_1/booking-details') }}
+{{ attach_library('staydirect_template_1/spinner-form') }}
+
+{% set c = block_parser(content) %}
+                
+
+            <form action="/booking" >
+    <div class="container container-book-form">
+      <div class="row row-and" >
+        <div class="col-md-9 auto">
+          <div class="row row-and">
+            <div class="col-md-9 container-book-left">
+              <div class="row row-and">
+                <div class="col-sm-12 content-book-left">
+                   <input id="datepickerStart" value="0"  type="hidden" name="start" />
+                   <input id="datepickerEnd" value="0"  type="hidden" name="end" />  
+                   <input id="datepickerVal" value="0" class="Dym form-check-input" type="hidden" name="booking-range" />
+                   <input id="datepicker" name="booking-range-date"  required="" placeholder="Select your dates   >"  style="width: 100%"/>
+             
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-3 container-book-right" >
+              <button type="submit"  style=" 
+              color: #fff !important;
+              border: solid 1px #fff !important;
+              padding: 15px 10px !important;
+              border-radius: 13px !important;
+              background-color: transparent;
+            ">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                  <form>
+
+{% endblock %}

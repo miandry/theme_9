@@ -1,0 +1,400 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+
+{% block templating_content %}
+
+{% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/block--staydirect-template-1-booking-process-full.html.css' %}
+	{% set css = include(path_css) %}
+	{{render_css(css,'block--staydirect-template-1-booking-process-full')}}
+	{% set c = block_parser(content) %}
+	{% set params = get_parameter() %}
+	{% if params.termService  %}
+	   {% if booking_new  %}
+	   	{%  set param1 = {
+            'booking_new': booking_new
+            } 
+        %}
+		 {% set t = redirect('/payment/checkout',param1) %}  
+		{% else %}
+		{% endif %}
+	{% endif %}
+
+
+	{% set current_user = current_user() %}
+
+	{% set u = user_parser(current_user.uid) %}
+	
+    {% if params.booking_back %}
+        {% set bk = node_parser(params.booking_back) %}
+        {% set rental = node_parser("39") %}
+    {% endif %}
+	
+	<style>
+	    #proceed-to-pay-form{
+	        min-height: 1000px;
+	    }
+	</style>
+	<nav class="navbar navbar-expand-md navbar-dark navbar-and-specification">
+		<div class="container">
+			<a class="logo align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none title title-specification" href="#">Hotel Rental</a>
+		</div>
+	</nav>
+	<div class="step--process">
+		<div class="wrapper--resp">
+			<div class="container-step--process">
+				<div class="step-1 step">
+					<div class="round--step active"></div>
+					<p>Booking</p>
+					<div class="trait active"></div>
+					<div class="trait2 "></div>
+				</div>
+				<div class="step-2 step">
+					<div class="round--step"></div>
+					<p>Process</p>
+
+				</div>
+				<div class="step-3 step">
+					<div class="round--step"></div>
+					<p>Payment</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<form id="proceed-to-pay-form">
+	    {% if params.booking_back %}
+	        {% set diff = ((date(bk.field_dates[0].end_value).timestamp - date(bk.field_dates[0].value).timestamp) / (60 * 60 * 24)) + 1 %}
+    		<input type="hidden" name="nid" value="39" class="form-control"/>
+			<input type="hidden" name="booking-range" value="{{ (diff * rental.field_default_price) }}" class="form-control"/>
+			<input type="hidden" name="booking-range-date" value="{{bk.field_dates[0].value}} - {{bk.field_dates[0].end_value}}" class="form-control"/>
+			{% for key,item in bk.field_addons %}
+			    {% set bk_name = (item.field_name|split('(')|first|trim ~ " _type")|replace({' ': '_', '_type': '_type'}) %}
+			    <input type="hidden" name="{{ bk_name }}" value="{{ item.field_type }}" class="form-control"/>
+			{% endfor %}
+			
+			{% for key,item in bk.field_addons %}
+			
+			    {% set bk_name = (item.field_name|split('(')|first|trim )|replace({' ': '_'}) %}
+			    {% set val = item.field_value %}
+			    {% if item.field_level %}  {% set val = item.field_level ~'----'~ item.field_value %} {% endif %}
+			    <input type="hidden" name="{{ bk_name }}" value="{{ val }}" class="form-control"/>
+			{% endfor %}
+			
+			<input type="hidden" name="total" value="{{ bk.field_price_default }}" class="form-control"/>
+	    {% else %}
+    		{% for key,item in params %}
+    			<input type="hidden" name="{{key}}" value="{{item}}" class="form-control"/>
+    		{% endfor %}
+	    {% endif %}
+		{% if params.action and params.action == 'guest' %}
+			<input type="hidden" name="action" value="guest" class="form-control"/>
+		{% endif %}
+		<div class="specification">
+			<div class="container">
+				<div class="row">
+					<div class="settings" style="display: none;">
+						<div class="content-settings">
+							<div class="setting-color version-bleu active">
+								<svg width="16" height="16" fill="#3498DB" xmlns="http://www.w3.org/2000/svg" svg-inline="" role="presentation" focusable="false">
+									<path d="M10.74 2c2.349 0 3.927 2.235 3.927 4.32C14.667 10.543 8.119 14 8 14c-.118 0-6.667-3.457-6.667-7.68C1.333 4.235 2.911 2 5.26 2 6.607 2 7.49 2.683 8 3.283 8.511 2.683 9.393 2 10.74 2z"></path>
+								</svg>
+							</div>
+							<div class="setting-color version-vert">
+								<svg width="16" height="16" fill="#1ECC71" xmlns="http://www.w3.org/2000/svg" svg-inline="" role="presentation" focusable="false">
+									<path d="M10.74 2c2.349 0 3.927 2.235 3.927 4.32C14.667 10.543 8.119 14 8 14c-.118 0-6.667-3.457-6.667-7.68C1.333 4.235 2.911 2 5.26 2 6.607 2 7.49 2.683 8 3.283 8.511 2.683 9.393 2 10.74 2z"></path>
+								</svg>
+							</div>
+							<div class="setting-color version-gris">
+								<svg width="16" height="16" fill="#333" xmlns="http://www.w3.org/2000/svg" svg-inline="" role="presentation" focusable="false">
+									<path d="M10.74 2c2.349 0 3.927 2.235 3.927 4.32C14.667 10.543 8.119 14 8 14c-.118 0-6.667-3.457-6.667-7.68C1.333 4.235 2.911 2 5.26 2 6.607 2 7.49 2.683 8 3.283 8.511 2.683 9.393 2 10.74 2z"></path>
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-7 col-lg-7 spec-left">
+
+						<div class="content-spec-left">
+
+							<div class="needs-validation">
+
+								<h4 class="specication-ttl-2" id="#specication-ttl-2">
+
+									<i class="icon i-spec">
+										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewbox="0 0 30 30" fill="none">
+											<path d="M19.6376 15.8875C20.8631 14.9234 21.7576 13.6012 22.1967 12.105C22.6357 10.6087 22.5975 9.01287 22.0873 7.53937C21.5772 6.06587 20.6204 4.78802 19.3502 3.8836C18.08 2.97918 16.5594 2.49316 15.0001 2.49316C13.4408 2.49316 11.9203 2.97918 10.65 3.8836C9.3798 4.78802 8.42305 6.06587 7.91288 7.53937C7.40272 9.01287 7.36451 10.6087 7.80357 12.105C8.24263 13.6012 9.13713 14.9234 10.3626 15.8875C8.26271 16.7288 6.43048 18.1242 5.06123 19.9249C3.69199 21.7256 2.83707 23.8642 2.58762 26.1125C2.56956 26.2767 2.58401 26.4428 2.63015 26.6014C2.67629 26.7599 2.7532 26.9078 2.85651 27.0367C3.06514 27.2969 3.3686 27.4636 3.70012 27.5C4.03164 27.5365 4.36407 27.4398 4.62427 27.2311C4.88448 27.0225 5.05115 26.7191 5.08762 26.3875C5.3621 23.944 6.52723 21.6873 8.36039 20.0485C10.1936 18.4097 12.5662 17.5038 15.0251 17.5038C17.484 17.5038 19.8567 18.4097 21.6898 20.0485C23.523 21.6873 24.6881 23.944 24.9626 26.3875C24.9966 26.6947 25.1432 26.9784 25.374 27.1838C25.6048 27.3892 25.9036 27.5019 26.2126 27.5H26.3501C26.6778 27.4623 26.9773 27.2967 27.1833 27.0391C27.3894 26.7815 27.4853 26.453 27.4501 26.125C27.1995 23.8703 26.34 21.7263 24.9637 19.9228C23.5874 18.1193 21.7463 16.7244 19.6376 15.8875ZM15.0001 15C14.0112 15 13.0445 14.7068 12.2223 14.1574C11.4 13.608 10.7592 12.8271 10.3807 11.9135C10.0023 10.9998 9.90326 9.99449 10.0962 9.02458C10.2891 8.05468 10.7653 7.16376 11.4646 6.4645C12.1638 5.76524 13.0548 5.28903 14.0247 5.09611C14.9946 4.90318 15.9999 5.0022 16.9135 5.38064C17.8272 5.75907 18.6081 6.39994 19.1575 7.22218C19.7069 8.04443 20.0001 9.01113 20.0001 10C20.0001 11.3261 19.4733 12.5979 18.5357 13.5356C17.598 14.4733 16.3262 15 15.0001 15Z" fill="white"/>
+										</svg>
+									</i>
+									Informations
+								</h4>
+
+								<div class="row gy-3" bis_skin_checked="1">
+
+									<div class="col-sm-6" bis_skin_checked="1">
+										<input type="text" class="form-control" id="cc-name" name="field_first_name" value="{{u.field_first_name}}" placeholder="First Name" required="">
+									</div>
+
+									<div class="col-sm-6 " bis_skin_checked="1">
+										<input type="text" class="form-control float-right" id="cc-first-name" name="field_last_name" value="{{u.field_last_name}}" placeholder="Last Name" required="">
+
+									</div>
+
+									<div class="w-100 col-md-12" bis_skin_checked="1">
+										<input type="text" name="mail" value="{{u.mail}}" class="form-control" id="cc-cvv" placeholder="Email" required="" style="width: 100% !important; max-width: 100% !important;">
+									</div>
+
+									<div class="col-sm-12" id="p-wrapper" bis_skin_checked="1">
+										<input type="text" name="field_phone" value="{{u.field_phone}}" class="form-control" id="phone" placeholder="Phone number" required="" style="width: 100% !important;">
+										<small class="text-danger d-none">
+                                            Invalid phone number</small>
+									</div>
+									
+                                </div>
+
+									<style>
+										.specification .form-control-slccuntr {
+											background: url('./img/uil_angle-left.png') no-repeat !important;
+											background-position: right 20px bottom 15px !important;
+											
+										}
+										.specification .form-control {
+										    width: 100% !important;
+										}
+									</style>
+
+
+									<div class="w-100 col-md-12 mt-4 px-0" bis_skin_checked="1">
+										<textarea name="notes" class="form-control form-control-textarea" placeholder="Notes"></textarea>
+									</div>
+
+									<p class="d-none">
+										This site is protected by reCAPTCHA and the Google privacy policy and Terms of Service apply.
+									</p>
+									<div class="row pt-3">
+										<div class="form-group col">
+											<div class="custom-checkbox-1 my-3">
+												<input id="termService" type="checkbox" name="termService">
+												<label for="termService">
+													Agree to
+												</label>
+												<a target="_blank" href="/conditions-terms">Terms and Conditions
+												</a>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+						</div>
+
+					<!--</div>-->
+					<div class="col-md-5 col-lg-5 order-md-last" bis_skin_checked="1">
+					    {% if params.booking_back %}
+    						<div class="spec-right">
+    							<div class="spec-top" style="
+    															                    max-width: 100%;
+    															                    height: 270px;
+    															                    flex-shrink: 0;
+    															                    border-radius: 20px 20px 0px 0px;
+    															                    background: url( {{c['field_media1']['image'].url}} ) no-repeat;
+    															                    background-color: #D9D9D9;
+    															                    background-size: cover;
+    															                "></div>
+    							<div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px; padding-top: 39px">
+    								<ul class="list-group">
+    									<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
+    									</strong>
+    									<span class="text-1">{{ bk.field_dates[0].value }} - {{ bk.field_dates[0].end_value }}</span>
+    
+    									<hr style="margin-bottom: 0;">
+                                        {#{{ kint(bk) }}#}
+    									{% for key,item in bk.field_addons %}
+ 											<li class="list-group-item d-flex justify-content-between lh-sm">
+												<div bis_skin_checked="1">
+													<h6 class="my-0">{{ item.field_name }}</h6>
+												</div>
+												<span class="text-body-secondary">
+												    $ {{front_currency(item.field_value)|raw}} 
+												</span>
+											</li>
+    									{% endfor %}
+    								</ul>
+    								<hr style="margin-top: 36px;">
+    
+    								<ul class="list-group list-group-foot">
+    									<li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
+    										<strong>TOTAL</strong>
+    										<span class="p-0">
+    										    $ {{ front_currency(bk.field_price_default)|raw }}
+    										</span>
+    									</li>
+    								</ul>
+    
+    							</div>
+    						</div>
+    						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
+					    {% else %}
+					    
+    						<div class="spec-right">
+    							<div class="spec-top" style="
+    															                    max-width: 100%;
+    															                    height: 270px;
+    															                    flex-shrink: 0;
+    															                    border-radius: 20px 20px 0px 0px;
+    															                    background: url( {{c['field_media1']['image'].url}} ) no-repeat;
+    															                    background-color: #D9D9D9;
+    															                    background-size: cover;
+    															                "></div>
+    							<div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px; padding-top: 39px">
+    								<ul class="list-group">
+    									<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
+    									</strong>
+    									<span class="text-1">{{ params["booking-range-date"] }}</span>
+    {#{{ kint(params) }}#}
+    									<hr style="margin-bottom: 0;">
+    									{% for key,item in params %}
+    
+    										{% if key not in ['action','nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
+                                                
+    											{% set status = true  %}
+    											{% if "----" in  item %}
+    												{% set group =  item|split("----")%}
+    											{% endif %}
+    											{% if group %}
+    												{# $ {{front_currency(group[1])|raw}}  #}
+    												{% set price = group[1] %}
+    											{% else %}
+    												
+    												{% set price = item %}
+    											{% endif %}
+    	                                        {% if item is not numeric %}
+    												{% set status = false  %}
+    											{% endif %}
+    											{% if item is not numeric and item != 0 %}
+    												{% set status = true  %}
+    											{% endif %}
+    											{% if item is numeric and item == 0 %}
+    												{% set status = false  %}
+    											{% endif %}
+    
+                                               {% if status %}
+    											<li class="list-group-item d-flex justify-content-between lh-sm">
+    												<div bis_skin_checked="1">
+    													<h6 class="my-0">{{ key|replace({'_':' '}) }}</h6>
+    												</div>
+    												<span class="text-body-secondary">
+    												    $ {{front_currency(price)|raw}} 
+    												</span>
+    											</li>
+    											{% endif %}
+    
+    										{% endif %}
+    									{% endfor %}
+    								</ul>
+    								<hr style="margin-top: 36px;">
+    
+    								<ul class="list-group list-group-foot">
+    									<li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
+    										<strong>TOTAL</strong>
+    										<span id="total-on-process">
+    										    {{ params["total"] }}
+    										</span>
+    									</li>
+    								</ul>
+    
+    							</div>
+    						</div>
+    						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
+						{% endif  %}
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+
+    
+    <script>
+    function validatePhoneNumber(phoneNumber) {
+        const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+        return cleanedPhoneNumber.length === 10;
+    }
+    
+    function validateName() {
+        if ($.trim($('#cc-name').val()) !== '' && $.trim($('#cc-first-name').val()) !== '') {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    // format total price 
+    let total = document.getElementById('total-on-process').textContent;
+    let intValue = parseInt(total);
+    let formatted = intValue.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    document.getElementById('total-on-process').innerHTML = "$" + formatted;
+    /* end total price */
+    
+    
+    $(document).ready(function () {
+        $('#phone').inputmask("(999) 999-9999");
+    
+        $('#btn-checkout').click(function (e) {
+            e.preventDefault();
+    
+            const phoneNumber = $('#phone').val();
+            const isValid = validatePhoneNumber(phoneNumber);
+            const isValidName = validateName();
+            const email = $('#cc-cvv').val().trim();
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let isValidEmail = emailRegex.test(email);
+    
+            // Réinitialiser la bordure email
+            $('#cc-cvv').css('border', '');
+    
+            if (!isValidEmail) {
+                $('#cc-cvv')[0].style.setProperty('border', '1px solid red', 'important');
+            }
+    
+            if (isValid && isValidName && isValidEmail) {
+                $('#phone').css('border', '');
+                $('#p-wrapper small').addClass("d-none");
+    
+                const form = document.getElementById('proceed-to-pay-form');
+    
+                if (form.checkValidity()) {
+                    if ($('#termService').is(':checked')) {
+                        form.submit();
+                    } else {
+                        alert('Please accept terms and conditions');
+                    }
+                } else {
+                    form.reportValidity();
+                }
+            } else {
+                if ($.trim($('#cc-name').val()) == '') {
+                    document.getElementById('cc-name').style.setProperty('border', '1px solid red', 'important');
+                }
+    
+                if ($.trim($('#cc-first-name').val()) == '') {
+                    document.getElementById('cc-first-name').style.setProperty('border', '1px solid red', 'important');
+                }
+    
+                if (!isValid) {
+                    $('#phone').each(function () {
+                        this.style.setProperty('border', '1px solid red', 'important');
+                    });
+                    $('#p-wrapper small').removeClass("d-none");
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock %}

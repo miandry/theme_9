@@ -1,0 +1,28 @@
+<!-- Start of first page -->
+<div data-role="page" id="add_client">
+	<div data-role="header">
+		<h1>New client</h1>
+	</div>
+	<!-- /header -->
+	<div role="main" class="ui-content">
+		<form action="#pay" method="post" data-ajax="false">
+			<label for="number-pattern">Nom du client :</label>
+			<input type="text" name="name"  value="" class="required">
+			<input type="hidden" name="action" value="add_client">
+			<input type="submit" name="submit" value="Save">
+		</form>
+
+	</div>
+	<!-- /content -->
+
+	<div data-role="footer">
+		<fieldset data-role="controlgroup" data-type="horizontal">
+			<a href="#list-pay" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Transfers</a>
+			<a href="#list-clients" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Clients</a>
+			<a href="#pay" class="ui-shadow ui-btn ui-corner-all">Add Payment</a>
+			<a href="#pay_ariary" class="ui-shadow ui-btn ui-corner-all">Add Payment Ariary</a>
+		</fieldset>
+
+	</div>
+	<!-- /footer -->
+</div>

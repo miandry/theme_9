@@ -1,0 +1,99 @@
+<!-- Start of second page -->
+<div data-role="page" id="list-pay">
+
+	<div data-role="header">
+		<h1>List pay</h1>
+	</div>
+	<!-- /header -->
+
+	<div role="main" class="ui-content">
+    <div data-role="popup" id="popupBasic">
+      <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      <div class="ui-body">
+              <form action="#list-pay"  method="post" data-ajax="false">
+                 <div id="mytitle"></div>
+                 <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<input type="radio" name="field_status" id="radio-choice-c" value="new" checked="checked">
+						<label for="radio-choice-c">New</label>
+						<input type="radio" name="field_status" id="radio-choice-d" value="payer">
+						<label for="radio-choice-d">Payer</label>
+						<input type="radio" name="field_status" id="radio-choice-e" value="cancel">
+						<label for="radio-choice-e">cancel</label>
+					</fieldset>
+			       <input type="hidden" name="action" value="update_transfer">
+                 <input type="hidden" id="nid" name="id" value="0">
+                <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
+        </form>
+ </div>
+  
+    </div>
+		<form>
+			<input id="filterTable-input" data-type="search">
+		</form>
+		<fieldset data-role="controlgroup" data-type="horizontal">
+			<button id="save" class="ui-btn">Calcul Sum</button>
+			<a href="#pay" class="ui-shadow ui-btn ui-corner-all">Add Payment</a>
+            <a href="#pay_ariary" class="ui-shadow ui-btn ui-corner-all">Add Payment Ariary</a>
+            <a href="#add_client" class="ui-shadow ui-btn ui-corner-all">Add Client</a>
+		</fieldset>
+	
+		<table data-role="table" id="table-column-toggle" data-mode="columntoggle" data-filter="true" data-input="#filterTable-input" class="ui-responsive table-stroke">
+			<thead>
+
+				<tr class="info">
+					<th data-priority="3">Num</th>
+					<th>Client</th>
+					<th data-priority="1">Montant</th>
+					<th data-priority="2">
+						Status
+					</th>
+					<th data-priority="5">Date</th>
+                    <th data-priority="6">Delete</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="text-total"></td>
+					<td class="total text-right"></td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% for item in transfer.items %}
+					{% set n = (node_parser(item["#entity"])) %}
+                    
+					<tr class="subtotal-content">
+						<th>{{loop.index}}</th>
+						<td>
+							<a data-value-custom="{{n.field_client.title}}" data-id-custom="{{n.nid}}" class="popupcontentchanger" data-position-to="window" href="#popupBasic" data-rel="popup"  data-rel="external">{{n.field_client.title}} </a> ( {{n.type}})
+						</td>
+                        {% if n.field_status == 'cancel' %}
+                        	<td data-value="0" class="valor">0</td>
+                        {% else %} 
+                                {% if n.type == 'mvola' %}
+                                    {% set montant = -1*(n.title)/(n.field_cours_yuan) %}
+                                    <td data-value="{{n.title}}" class="valor color_red">{{montant|number_format(0, '', '') }}</td>
+                                {% else %}
+                                    {% set montant = n.title %}
+                                    <td data-value="{{n.title}}" class="valor">{{montant|number_format(0, '', '') }}</td>
+                                {% endif %}
+                        {% endif %}
+						<td>{{n.field_status}}</td>
+						<td>{{n.field_date}}</td>
+                        <td data-priority="6">
+                        <form action="#list-pay"  method="post" data-ajax="false">   
+                          <input type="hidden" name="action" value="delete_transfer">
+                          <input type="hidden" name="id" value="{{n.nid}}">
+                           <button type="submit" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-notext"></button>
+                        </form></td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+	<!-- /content -->
+
+	<div data-role="footer"></div>
+	<!-- /footer -->
+</div>

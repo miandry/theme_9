@@ -1,0 +1,37 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+
+  {% set item_name = 'block--staydirect-template-1-banner-simple-full.html' %} 
+  {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+  {% set css = include(path_css) %} 
+  {{render_css(css,'block__staydirect_template_1_banner_simple_full')}}
+
+{% set c = block_parser(content) %}
+
+{% if c['field_image1']['image'].url is defined %}
+    {% set url_img = c['field_image1']['image'].url %}
+    {% set bannier_img = "background: url(#{url_img}), linear-gradient(to bottom, #ADB2B6, #ABAEB3);" %}
+{% else %}
+    {% set bannier_img = "" %} 
+{% endif %}
+
+<main class="container candt">
+    <div class="p-4 mb-4 rounded text-body-emphasis bg-body-secondary simple--banniere" style="
+        background: #f5F5F5;
+        {{ bannier_img }};
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    ">
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic">
+                {{c.field_title}}
+            </h1>
+            <p class="lead my-3">
+                {{c['body'][0].value|replace({"<p>": "", '</p>': ""})}}
+            </p>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

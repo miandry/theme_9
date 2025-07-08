@@ -1,0 +1,116 @@
+{% extends get_module_path('templating') ~ "/templates/misc/block.html.twig" %}
+{% block templating_content %}
+  {% set item_name = 'block--lightbox-galleries-bloc--full.html' %}
+  {% set path_css = '/themes/custom/staydirect_template_1/templates/templating/css/'~ item_name ~'.css' %}
+  {% set css = include(path_css) %}
+  {{render_css(css,'block__staydirect_template_1_image_gallery_full')}}
+    {% set myuser = current_user() %}
+    {% set is_editor = hasRole('content_editor',myuser.uid) %}
+    {% set is_admin = hasRole('administrator',myuser.uid) %}
+    {% set is_web = hasRole('webmaster',myuser.uid) %}
+  {% set c = block_parser(content) %}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+<style>
+    .light-box:hover .edit_block_custom_btn_header {
+        display: block !important;
+    }
+</style>  
+    <section class="mt-5 light-box">
+        {% if is_editor or is_admin or  is_web %}
+            <a  class="edit_block_custom_btn_header edit_block_custom_btn" target="_blank" href="/block/{{c.id}}?destination={{current_url()}}"> Edit {{c.info}}</a>
+        {% endif %}
+        <div class="container" style="cursor: pointer;">
+            <div class="row">
+                {% for item in c.gallery_items %}
+                <div class="col-lg-3 col-sm-6 mb-4">
+                    <div class="card text-bg-dark border border-0 rounded-0 position-relative mz-image-wrapper"
+                        style="height: 250px;">
+                        <img src="{{item.gallery_image.url}}"
+                        class="img-fluid gallery-image h-100 object-fit-cover"
+                            alt="Image 3">
+                        <div class="position-absolute mz-card-desc"
+                            style="top: 20px; bottom: 20px; left: 20px; right: 20px;">
+                            <div class="row align-items-center text-center h-100">
+                                <h5 class="card-title text-dark mz-card-desc-text">
+                                    {{item.gallery_description}}
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+            <div class="modal-content bg-black">
+                <div class="modal-header justify-content-between border-bottom-0">
+                    <h5 class="modal-title" id="galleryModalLabel"><span id="imageNumber" class="text-white"></span></h5>
+                    <span data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-x-circle text-white fw-bold fs-4"></i>
+                    </span>
+                    
+                </div>
+                <div class="modal-body row align-items-center">
+                    <div id="carouselExampleIndicators" class="carousel slide carousel-fade">
+                        <div class="carousel-inner">
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"><i
+                                    class="bi bi-chevron-left fs-1 text-white"></i></span>
+                            <span class="visually-hidden">Précédent</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"><i
+                                    class="bi bi-chevron-right fs-1 text-white"></i></span>
+                            <span class="visually-hidden">Suivant</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var images = document.querySelectorAll(".mz-card-desc");
+    
+        images.forEach(function (image, index) {
+            image.addEventListener("click", function () {
+                var clickedImage = this;
+                var currentIndex = Array.from(images).indexOf(clickedImage);
+                var carouselInner = document.querySelector("#carouselExampleIndicators .carousel-inner");
+                carouselInner.innerHTML = "";
+    
+                images.forEach(function (img, idx) {
+                    var imgSrc = img.closest('.mz-image-wrapper').querySelector('.gallery-image').getAttribute('src');
+                    var cardTitle = img.querySelector('.card-title').textContent;
+                    var activeClass = idx === currentIndex ? "active" : "";
+                    var carouselItem = document.createElement("div");
+                    carouselItem.className = "carousel-item d-flex align-items-center justify-content-center " + activeClass;
+                    carouselItem.innerHTML = `
+                        <div>
+                        <img width="500" height="300" class="d-block mx-auto" src="${imgSrc}">
+                        <h5 class="text-center mt-2 text-white">${cardTitle}</h5> </div>`;
+                    carouselInner.appendChild(carouselItem);
+                });
+    
+                document.getElementById("imageNumber").textContent = (currentIndex + 1) + " / " + images.length;
+                var carousel = new bootstrap.Carousel(document.getElementById("carouselExampleIndicators"));
+                carousel.to(currentIndex);
+                var galleryModal = new bootstrap.Modal(document.getElementById("galleryModal"));
+                galleryModal.show();
+            });
+        });
+    
+        document.getElementById("carouselExampleIndicators").addEventListener("slid.bs.carousel", function () {
+            var currentIndex = Array.from(document.querySelectorAll("#carouselExampleIndicators .carousel-item")).indexOf(document.querySelector("#carouselExampleIndicators .carousel-item.active"));
+            document.getElementById("imageNumber").textContent = (currentIndex + 1) + " / " + images.length;
+        });
+    </script>
+{% endblock %}

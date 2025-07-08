@@ -1,0 +1,442 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i");
+body {
+    font-family: "Oswald", sans-serif;
+}
+
+.contextual {
+    z-index: 9999;
+}
+
+.shop .products .product .onsale {
+    padding: 0px 10px;
+    width: auto!important;
+    height: auto!important;
+    background-color: #eb223f;
+    border-bottom-color: #d01a34;
+}
+
+input {
+    max-width: 100%;
+}
+
+.comment mark {
+    display: none;
+}
+
+.mini-products-list {
+    max-height: 321px;
+    overflow-y: scroll;
+    padding: 5px!important;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.text-light p {
+    color: white!important;
+}
+
+.block-login-popup {
+    margin-top: 6px;
+}
+
+.edit-template {
+    display: none;
+}
+
+.layout-builder-block a.edit-template[tabindex="-1"] {
+    pointer-events: auto!Important;
+    position: absolute;
+    z-index: 9999;
+    border-radius: 50%;
+    background-color: #ea2828;
+    width: 25px;
+    text-align: center;
+    display: block;
+}
+
+.rate-view-only .fivestar-average-stars {
+    pointer-events: none;
+}
+
+.rate-view-only .fivestar-average-stars .cancel {
+    display: none;
+}
+
+.tabs a {
+    padding: initial;
+}
+
+.user-icon-commentaire {
+    font-size: 33px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.user-com {
+    margin-top: 10px;
+}
+
+#description img {
+    max-width: width 100% !important;
+}
+
+.path-comment .user-com {
+    display: none;
+}
+
+#drupal-off-canvas .details-wrapper,
+#drupal-off-canvas .details-wrapper a {
+    display: block;
+}
+
+div.tabs {
+    margin: auto;
+}
+
+.reset-container-fluid {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.reset-bg-colored {
+    background-color: transparent!important;
+}
+
+#header .bg-dark .header-nav nav>ul>li>a {
+    color: white!important;
+}
+
+#header .bg-dark .header-nav-features .header-nav-top-icon {
+    color: white!important;
+}
+
+.contact-message-feedback-form label {
+    display: block!important;
+}
+
+.route-searchview-node-search>h2 {
+    display: none;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.path-frontpage .block-inline-blockheader-transparent img.logo-hidden-front {
+    display: none;
+}
+
+.media-library-item__preview img {
+    max-width: 100%;
+    padding: 5px;
+}
+
+.media-library-item__attributes {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.custom-thumb-info-2 .thumb-info-caption .thumb-info-caption-text {
+    min-height: auto !important;
+}
+
+#header .header-nav-features .header-nav-features-cart .mini-products-list li {
+    padding: 0px!important;
+}
+
+.margin-auto {
+    margin: auto!important;
+}
+
+
+/* order page user */
+
+.list-cart-token {
+    display: inline-flex;
+}
+
+.list-cart-token a {
+    margin: 2px 5px;
+}
+
+.view-display-id-page_2 .view-filters {
+    background-color: #f7f7f7;
+    padding: 0px 15px;
+    border-radius: 5px;
+}
+
+.order-lg-2-custom {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 0px;
+    border-radius: 5px;
+}
+
+
+/*card form user profile */
+
+.card-form {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+}
+
+.user-form .field--name-phone,
+.user-form .field--type-entity-reference-revisions {
+    background-color: #f7f7f7;
+    padding: 5px;
+}
+
+.link.tabledrag-toggle-weight {
+    display: none!important;
+}
+
+.user-form .form-submit {
+    font-size: 12.8px;
+    font-size: 0.8rem;
+    padding: 8.528px 14.928px;
+    padding: 0.533rem 0.933rem;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.owl-carousel {
+    margin-bottom: 0px;
+}
+
+.bg-reset {
+    background-color: transparent!important;
+}
+
+.mt-minus-25 {
+    margin-top: -25px;
+}
+
+.fullscreen {
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+#footer {
+    margin-top: 0px!important;
+}
+
+
+/* .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front{
+    z-index: 9999!important;
+} */
+
+.js-layout-builder-block .header-body {
+    position: relative!important
+}
+
+.js-layout-builder-block .reset-container-fluid {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+.flag.flag-zh-hans {
+    background-position: -208px -22px;
+}
+
+.flag {
+    margin-top: -1px;
+    margin-right: 2px;
+}
+
+.text-color-light {
+    color: white!important
+}
+
+.layout-builder-block__content-preview-placeholder-label {
+    margin: 30px!important;
+}
+
+.bg-primary {
+    color: black!important;
+}
+
+.path-frontpage .block-inline-blockheader-transparent img.logo-hidden-front {
+    display: inline-block!important;
+}
+
+.header-vanillapepper .header-nav-features .header-nav-features-dropdown {
+    min-width: auto!important
+}
+
+@media (max-width: 575px) {
+    .node--view-mode-thumbnail .post-image .img-thumbnail {
+        width: 100%
+    }
+}
+
+.user-logged-in.path-node.page-node-type-landing-page #block-platform-theme-local-tasks {
+    position: absolute;
+}
+
+.float-right {
+    float: right;
+}
+
+.profile-image-outer-container .profile-image-inner-container img {
+    height: 150px;
+    width: 150px;
+}
+
+.full-screen {
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+.product .product-thumb-info .product-thumb-info-image img {
+    border: 1px solid #cdcdcd;
+}
+
+#views-exposed-form-search-page-page-1 {
+    display: none;
+}
+
+.header-nav-features-dropdown .forgot-password-link {
+    float: right;
+}
+
+.booking-form .form-check-input {
+    margin-top: 0.45em;
+}
+
+.user-form-custom label {
+    display: block!important;
+}
+
+.user-form-custom .text-left {
+    text-align: left!important;
+}
+
+.user-form-custom .register-button,
+.user-form-custom .forgot-password-link {
+    margin-right: 10px;
+}
+
+.number-input-custom {
+    width: 8rem;
+}
+
+input#datepicker {
+    height: 3rem;
+    width: 2.5rem;
+    border-color: rgba(0, 0, 0, 0.09);
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 15px;
+    min-width: 250px!important;
+    margin-bottom: 15px;
+}
+
+.form-check-addition-price .form-check-input {
+    background-color: gray!important;
+    border-color: gray!important;
+}
+
+
+/*user page*/
+
+form.user-form {
+    margin: 0!important;
+}
+
+form.user-form .collapse-processed>summary:before {
+    float: left;
+    background: none!important;
+}
+
+*,
+ ::after,
+ ::before {
+    box-sizing: border-box;
+}
+
+form.user-form .card-form {
+    border: none !important
+}
+
+form.user-form .form-item-mail label,
+form.user-form .form-item-name label,
+form.user-form .form-item-pass-pass1 label,
+form.user-form .js-form-item label {
+    display: inline-block;
+    width: 25%;
+    font-size: .9em !important;
+    color: #777;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+form.user-form input[type="text"],
+form.user-form input[type="email"],
+form.user-form .js-form-item input[type="text"],
+form.user-form .js-form-item input[type="email"],
+form.user-form .js-form-item input[type="password"] {
+    width: 70% !important;
+    line-height: 1.85 !important;
+    border-color: rgba(0, 0, 0, 0.09) !important;
+    color: #555 !important;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+form.user-form .form-item .description,
+form.user-form .password-strength__text,
+form.user-form .password-strength__title,
+form.user-form .js-password-confirm-message {
+    font-size: 0.7em !important;
+}
+
+div.description {
+    margin-bottom: 16px !important;
+}
+
+.confirm-parent,
+.password-parent {
+    max-width: 100% !important;
+}
+
+form.user-form input[type="submit"] {
+    margin-top: 20px;
+    background-color: #006ea6 !important;
+    background-image: none !important;
+    border-color: #006699 #006699 #004466 !important;
+    color: #fff !important;
+}
+
+.container-user-and .card-form {
+    border: none !important;
+}
+details a {
+    color: #444 !important
+}

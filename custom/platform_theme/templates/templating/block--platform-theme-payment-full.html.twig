@@ -1,0 +1,30 @@
+<button type="button" onclick="goback()" class="back">Go Back</button>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-container">
+      <form autocomplete="off" action="checkout-charge.php" method="POST">
+        <div>
+          <input type="text" name="c_name" required/>
+          <label>Customer Name</label>
+        </div>
+        <div>
+          <input type="text" name="address" required/>
+          <label>Address</label>
+        </div>
+
+
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_1tOP9ics9ImqKyfmS1imAdMX007Ob54j8t"
+          data-amount="2233"
+        data-name="name_stripe"
+        data-description="desc"
+        data-image=""
+        data-currency="usd"
+        data-locale="auto">
+        </script>
+      </form>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,75 @@
+{% set inc_ = include_template("include-process-app") %}
+{% if (inc_["status"]) %}
+      {{inc_}}
+{% else %}
+
+{% set id  = id_by_url() %}
+{% set n = node_parser(id) %}
+
+
+{{ attach_library('staydirect_install/global-styling') }}
+
+{{ attach_library('staydirect/maintenance') }}
+
+{% set step_number = "Website" %}
+{% set step_name = "Choose a profile" %}
+
+<style>
+.site-manager-process{
+    background-color: #F6F6F6;
+    padding: 25px;
+    border-radius: 13px;
+}
+#edit-submit{
+  color:white!important;
+  background-color: #62929E!important;
+}
+#edit-field-profile-ecommerce{
+    pointer-events: none;
+    background-color: #dad9d9;
+}
+.fieldset__label--group {
+    font-size: 21px!important;
+    padding-bottom: 10px!important;
+}
+
+@media (max-width: 768px) {
+    .main-step .col-md-8 {
+        padding-left: 0rem !important;
+    }
+}
+</style>
+   
+   {% include 'themes/custom/staydirect_install/templates/inc/header_process.html.twig'  %}
+    <main class="main-step main-step-specification main-simple">
+      <div class="container container-and">
+        <div class="row ">
+
+          <div class="sidebar col-md-4 order-sm-first">
+           {% set active_profile = 'active' %} 
+           
+           {% include 'themes/custom/staydirect_install/templates/inc/menu_process.html.twig'  %}
+           </div>
+          <div class="col-md-8">
+
+            <div class="row form-payment">
+              <div class="col-md-12 col-lg-12 choosecontent ps-0">
+                  {{drupal_form("Drupal\\site_manager\\Form\\ProcessForm")}}
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+{% endif %}
+
+    <script>
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted || window.performance.navigation.type === 2) {
+      window.location.reload();
+    }
+  });
+</script>
