@@ -164,16 +164,25 @@
             											{% if n.moderation_state == "published"  %}
             												<span class="badge badge-published">Archived</span>
             											{% endif %}
-            											{% if n.moderation_state == "canceled_booking"  %}
+            											{% if n.moderation_state == "canceled"  %}
             												<span class="badge badge-cancel">Booking canceled</span>
             											{% endif %}
             
             										</td>
             										<td>
+														{% if n.moderation_state == "canceled"  %}
+														   ---
+														{% else %}
+														 	<a target="_blank"
+                                                    	    class="text-decoration-underline"
+                                                    	    href="{{base_url}}/cancel/{{n.nid}}/booking">
+                                                    	    Cancel Booking</a> <br/>
+
                                                     	<a target="_blank"
                                                     	    class="text-decoration-underline"
                                                     	    href="{{base_url}}/invoice?id={{n.nid}}">
                                                     	    Get Invoice</a>
+															{% endif %}
             										</td>
             									</tr>
             								{% endif %}
