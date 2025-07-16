@@ -49,7 +49,15 @@
         .wrapper--resp {
             margin: auto;
         }
-        
+
+        .list-dropdwn li:hover {
+            background: var(--bleumarine-color);
+        }
+
+        ul.list-header li a:hover {
+            color: var(--bleu-color);
+        }
+
         form.user-pass input[type="submit"] {
             padding: 20px 35px;
             justify-content: center;
@@ -854,11 +862,11 @@
                                     Login
                                 </a>
                                 <div class="menu-mobile-effet1" style="">
-                                    <ul>
-                                        <li>
+                                    <ul class="list-dropdwn my-0 py-0">
+                                        <li class="py-3">
                                             <a href="{{base_url()}}/login" class="full-w">Login</a>
                                         </li>
-                                        <li>
+                                        <li class="py-3">
                                             <a href="{{base_url()}}/register" class="full-w">Register</a>
                                         </li>
                                     </ul>
@@ -870,9 +878,9 @@
                                     My account
                                 </a>
                                 <div class="menu-mobile-effet1">
-                                    <ul class="list-dropdwn" style="color:#fff">
-                                        <li><a href="{{base_url()}}/user" class="full-w">User profile</a></li>
-                                        <li><a href="{{base_url()}}/user/logout" class="full-w">Logout</a></li>
+                                    <ul class="list-dropdwn my-0 py-0" style="color:#fff">
+                                        <li class="py-3"><a href="{{base_url()}}/user" class="full-w">User profile</a></li>
+                                        <li class="py-3"><a href="{{base_url()}}/user/logout" class="full-w">Logout</a></li>
                                     </ul>
                                 </div>
                             </li>  
