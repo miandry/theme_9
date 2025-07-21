@@ -42,7 +42,19 @@
 					</div>
 					<img class="img--affiche--dashboard" src="/themes/custom/staydirect/img/affiche-dashboarod.png">
 				</div>
+				{% if booking_in_process %}
 				
+					<div class="booking-continue-box" style="border: 1px solid #ccc; padding: 1.5rem; border-radius: 12px; background-color: #f9f9f9;  text-align: center;">
+
+						<p style="margin-bottom: 0.5rem;">
+							It looks like you have a booking in progress. {{booking_in_process|raw}}
+						</p>
+
+					</div>
+
+
+				{% endif %}
+			
 				<div class="row">
 				    <div class="col-12 col-sm-12 col-md-4">
         				<div class="mx-1 row useradmin--sidebar-left g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
