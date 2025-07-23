@@ -12,7 +12,55 @@
         } 
    %}
 	{% set booking = node_parser_by_properties(conditions)%}
+	<style>
+		.custom-dropdown {
+			position: relative;
+			display: inline-block;
+		}
 
+		.custom-dropdown-toggle {
+			cursor: pointer;
+			font-size: 13px;
+		}
+
+		.custom-dropdown-toggle::after {
+			content: " ▼";
+			font-size: 10px;
+			margin-left: 6px;
+		}
+
+		.custom-dropdown-menu {
+			display: none;
+			position: absolute;
+			right: 0px;
+			background-color: white;
+			min-width: 160px;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+			border-radius: 6px;
+			margin-top: 5px;
+			z-index: 100;
+		}
+
+		.custom-dropdown-menu a {
+			display: block;
+			padding: 10px 14px;
+			color: #333;
+			text-decoration: none;
+			border-bottom: 1px solid #eee;
+		}
+
+		.custom-dropdown-menu a:last-child {
+			border-bottom: none;
+		}
+
+		.custom-dropdown-menu a:hover {
+			background-color: #f5f5f5;
+		}
+
+		.custom-dropdown-menu.show {
+			display: block;
+		}
+	</style>
 	<div class="container container-resp hidden">
 		<div class="row">
 			<div class="col-lg-12">
@@ -128,7 +176,7 @@
                     <div class="col-12 col-sm-12 col-md-8">
         				<div class="mx-1 row g-0 border rounded overflow-hiddenn flex-md-row mb-4 shadow-sm h-md-250 position-relative history--product" id="history-product">
         					<div class="col p-4 d-flex flex-column position-static mySwiper content--table--history--booking" style="overflow-x: scroll !important;">
-        						<table class="table table-striped">
+        						<table class="table table-striped" style="vertical-align: middle;">
         							<thead>
         								<tr>
         									<th scope="col">ID</th>
@@ -185,16 +233,16 @@
 														{% if n.moderation_state == "canceled"  %}
 														   ---
 														{% else %}
-														 	<a target="_blank"
-                                                    	    class="text-decoration-underline"
-                                                    	    href="{{base_url}}/cancel/{{n.nid}}/booking">
-                                                    	    Cancel Booking</a> <br/>
-
-                                                    	<a target="_blank"
-                                                    	    class="text-decoration-underline"
-                                                    	    href="{{base_url}}/invoice?id={{n.nid}}">
-                                                    	    Get Invoice</a>
-															{% endif %}
+															<div class="custom-dropdown">
+																<span class="custom-dropdown-toggle badge badge-published" id="dropdownBtn">Action</span>
+																<div class="custom-dropdown-menu" id="dropdownMenu">
+																	<a target="_blank" class="" href="{{base_url}}/cancel/{{n.nid}}/booking">
+																		Cancel Booking</a>
+																	<a target="_blank" class="" href="{{base_url}}/invoice?id={{n.nid}}">
+																		Get Invoice</a>
+																</div>
+															</div>
+														{% endif %}
             										</td>
             									</tr>
             								{% endif %}
@@ -210,5 +258,18 @@
 			</div>
 		</div>
 	</div>
+  <script>
+    const btn = document.getElementById('dropdownBtn');
+    const menu = document.getElementById('dropdownMenu');
 
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      menu.classList.toggle('show');
+    });
+
+    // Fermer le menu si on clique ailleurs
+    document.addEventListener('click', function () {
+      menu.classList.remove('show');
+    });
+  </script>
 {% endblock %}
