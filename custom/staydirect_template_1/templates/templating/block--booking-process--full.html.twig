@@ -7,26 +7,22 @@
 	{{render_css(css,'block--staydirect-template-1-booking-process-full')}}
 	{% set c = block_parser(content) %}
 	{% set params = get_parameter() %}
-	{% if params.termService  %}
-	   {% if booking_new  %}
-	   	{%  set param1 = {
-            'booking_new': booking_new
-            } 
-        %}
-		 {% set t = redirect('/payment/checkout',param1) %}  
-		{% else %}
-		{% endif %}
-	{% endif %}
-
-
+	
 	{% set current_user = current_user() %}
 
 	{% set u = user_parser(current_user.uid) %}
-	
-    {% if params.booking_back %}
-        {% set bk = node_parser(params.booking_back) %}
-        {% set rental = node_parser("39") %}
+	{% if params.action and params.action == 'return' %}
+
+ 
+      {% set u = u|merge({'field_first_name': params.field_first_name}) %}
+	  {% set u = u|merge({'field_last_name': params.field_last_name}) %}
+	  {% set u = u|merge({'mail': params.mail}) %}
+	  {% set u = u|merge({'field_phone': params.field_phone}) %}
+	  {% set u = u|merge({'notes': params.notes}) %}
+
     {% endif %}
+
+
 	
 	<style>
 	    #proceed-to-pay-form{
@@ -61,30 +57,11 @@
 	</div>
 	
 	<form id="proceed-to-pay-form">
-	    {% if params.booking_back %}
-	        {% set diff = ((date(bk.field_dates[0].end_value).timestamp - date(bk.field_dates[0].value).timestamp) / (60 * 60 * 24)) + 1 %}
-    		<input type="hidden" name="nid" value="39" class="form-control"/>
-			<input type="hidden" name="booking-range" value="{{ (diff * rental.field_default_price) }}" class="form-control"/>
-			<input type="hidden" name="booking-range-date" value="{{bk.field_dates[0].value}} - {{bk.field_dates[0].end_value}}" class="form-control"/>
-			{% for key,item in bk.field_addons %}
-			    {% set bk_name = (item.field_name|split('(')|first|trim ~ " _type")|replace({' ': '_', '_type': '_type'}) %}
-			    <input type="hidden" name="{{ bk_name }}" value="{{ item.field_type }}" class="form-control"/>
-			{% endfor %}
-			
-			{% for key,item in bk.field_addons %}
-			
-			    {% set bk_name = (item.field_name|split('(')|first|trim )|replace({' ': '_'}) %}
-			    {% set val = item.field_value %}
-			    {% if item.field_level %}  {% set val = item.field_level ~'----'~ item.field_value %} {% endif %}
-			    <input type="hidden" name="{{ bk_name }}" value="{{ val }}" class="form-control"/>
-			{% endfor %}
-			
-			<input type="hidden" name="total" value="{{ bk.field_price_default }}" class="form-control"/>
-	    {% else %}
-    		{% for key,item in params %}
-    			<input type="hidden" name="{{key}}" value="{{item}}" class="form-control"/>
-    		{% endfor %}
-	    {% endif %}
+
+    	{% for key,item in params %}
+    		<input type="hidden" name="{{key}}" value="{{item}}" class="form-control"/>
+    	{% endfor %}
+
 		{% if params.action and params.action == 'guest' %}
 			<input type="hidden" name="action" value="guest" class="form-control"/>
 		{% endif %}
@@ -162,7 +139,7 @@
 
 
 									<div class="w-100 col-md-12 mt-4 px-0" bis_skin_checked="1">
-										<textarea name="notes" class="form-control form-control-textarea" placeholder="Notes"></textarea>
+										<textarea name="notes"  class="form-control form-control-textarea" placeholder="Notes">{{u.notes}}</textarea>
 									</div>
 
 									<p class="d-none">
@@ -189,52 +166,7 @@
 
 					<!--</div>-->
 					<div class="col-md-5 col-lg-5 order-md-last" bis_skin_checked="1">
-					    {% if params.booking_back %}
-    						<div class="spec-right">
-    							<div class="spec-top" style="
-    															                    max-width: 100%;
-    															                    height: 270px;
-    															                    flex-shrink: 0;
-    															                    border-radius: 20px 20px 0px 0px;
-    															                    background: url( {{c['field_media1']['image'].url}} ) no-repeat;
-    															                    background-color: #D9D9D9;
-    															                    background-size: cover;
-    															                "></div>
-    							<div style="padding-left: 23px; padding-right: 23px; padding-bottom: 49px; padding-top: 39px">
-    								<ul class="list-group">
-    									<strong class="d-block text-color-dark line-height-1 font-weight-semibold">Selected dates
-    									</strong>
-    									<span class="text-1">{{ bk.field_dates[0].value }} - {{ bk.field_dates[0].end_value }}</span>
-    
-    									<hr style="margin-bottom: 0;">
-                                        {#{{ kint(bk) }}#}
-    									{% for key,item in bk.field_addons %}
- 											<li class="list-group-item d-flex justify-content-between lh-sm">
-												<div bis_skin_checked="1">
-													<h6 class="my-0">{{ item.field_name }}</h6>
-												</div>
-												<span class="text-body-secondary">
-												    $ {{front_currency(item.field_value)|raw}} 
-												</span>
-											</li>
-    									{% endfor %}
-    								</ul>
-    								<hr style="margin-top: 36px;">
-    
-    								<ul class="list-group list-group-foot">
-    									<li class="list-group-item d-flex justify-content-between" style="margin-top: 0;">
-    										<strong>TOTAL</strong>
-    										<span class="p-0">
-    										    $ {{ front_currency(bk.field_price_default)|raw }}
-    										</span>
-    									</li>
-    								</ul>
-    
-    							</div>
-    						</div>
-    						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
-					    {% else %}
-					    
+						    
     						<div class="spec-right">
     							<div class="spec-top" style="
     															                    max-width: 100%;
@@ -254,7 +186,7 @@
     									<hr style="margin-bottom: 0;">
     									{% for key,item in params %}
     
-    										{% if key not in ['action','nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
+    										{% if key not in ['notes','field_phone','mail','field_last_name','field_first_name','action','nid','total','booking-range', 'booking-range-date'] and not(key ends with '__type')  %}
                                                 
     											{% set status = true  %}
     											{% if "----" in  item %}
@@ -305,8 +237,7 @@
     							</div>
     						</div>
     						<button class="w-100 btn btn-primary btn-lg" id="btn-checkout" type="submit">Continue to checkout</button>
-						{% endif  %}
-						
+							
 					</div>
 
 				</div>
